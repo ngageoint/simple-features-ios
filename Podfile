@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
-target :"wkb-iosTests" do
-  podspec :path => './wkb-ios.podspec'
+target :"sf-iosTests" do
+  podspec :path => './sf-ios.podspec'
 end

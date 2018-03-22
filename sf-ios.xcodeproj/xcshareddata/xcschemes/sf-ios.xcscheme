@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "042FC64A1B963FE500549A4B"
-               BuildableName = "wkb_ios.framework"
-               BlueprintName = "wkb-ios"
-               ReferencedContainer = "container:wkb-ios.xcodeproj">
+               BuildableName = "sf_ios.framework"
+               BlueprintName = "sf-ios"
+               ReferencedContainer = "container:sf-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "042FC6551B963FE500549A4B"
-               BuildableName = "wkb_iosTests.xctest"
-               BlueprintName = "wkb-iosTests"
-               ReferencedContainer = "container:wkb-ios.xcodeproj">
+               BuildableName = "sf_iosTests.xctest"
+               BlueprintName = "sf-iosTests"
+               ReferencedContainer = "container:sf-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "042FC6551B963FE500549A4B"
-               BuildableName = "wkb_iosTests.xctest"
-               BlueprintName = "wkb-iosTests"
-               ReferencedContainer = "container:wkb-ios.xcodeproj">
+               BuildableName = "sf_iosTests.xctest"
+               BlueprintName = "sf-iosTests"
+               ReferencedContainer = "container:sf-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "042FC64A1B963FE500549A4B"
-            BuildableName = "wkb_ios.framework"
-            BlueprintName = "wkb-ios"
-            ReferencedContainer = "container:wkb-ios.xcodeproj">
+            BuildableName = "sf_ios.framework"
+            BlueprintName = "sf-ios"
+            ReferencedContainer = "container:sf-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -79,9 +79,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "042FC64A1B963FE500549A4B"
-            BuildableName = "wkb_ios.framework"
-            BlueprintName = "wkb-ios"
-            ReferencedContainer = "container:wkb-ios.xcodeproj">
+            BuildableName = "sf_ios.framework"
+            BlueprintName = "sf-ios"
+            ReferencedContainer = "container:sf-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -97,9 +97,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "042FC64A1B963FE500549A4B"
-            BuildableName = "wkb_ios.framework"
-            BlueprintName = "wkb-ios"
-            ReferencedContainer = "container:wkb-ios.xcodeproj">
+            BuildableName = "sf_ios.framework"
+            BlueprintName = "sf-ios"
+            ReferencedContainer = "container:sf-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
