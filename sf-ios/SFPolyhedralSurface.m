@@ -43,4 +43,18 @@
     return polyhedralSurface;
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.polygons forKey:@"polygons"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _polygons = [decoder decodeObjectForKey:@"polygons"];
+    }
+    return self;
+}
+
 @end

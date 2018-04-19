@@ -43,4 +43,18 @@
     return lineString;
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.points forKey:@"points"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _points = [decoder decodeObjectForKey:@"points"];
+    }
+    return self;
+}
+
 @end

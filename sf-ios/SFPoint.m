@@ -54,4 +54,24 @@
     self.m = [[NSDecimalNumber alloc] initWithDouble:m];
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.x forKey:@"x"];
+    [encoder encodeObject:self.y forKey:@"y"];
+    [encoder encodeObject:self.z forKey:@"z"];
+    [encoder encodeObject:self.m forKey:@"m"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _x = [decoder decodeObjectForKey:@"x"];
+        _y = [decoder decodeObjectForKey:@"y"];
+        _z = [decoder decodeObjectForKey:@"z"];
+        _m = [decoder decodeObjectForKey:@"m"];
+    }
+    return self;
+}
+
 @end

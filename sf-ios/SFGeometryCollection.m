@@ -43,4 +43,18 @@
     return geometryCollection;
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.geometries forKey:@"geometries"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _geometries = [decoder decodeObjectForKey:@"geometries"];
+    }
+    return self;
+}
+
 @end

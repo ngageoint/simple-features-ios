@@ -39,4 +39,18 @@
     return compoundCurve;
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.lineStrings forKey:@"lineStrings"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _lineStrings = [decoder decodeObjectForKey:@"lineStrings"];
+    }
+    return self;
+}
+
 @end

@@ -26,12 +26,19 @@
 }
 
 - (void) encodeWithCoder:(NSCoder *)encoder {
-    // TODO
+    [encoder encodeInt:(int)self.geometryType forKey:@"geometryType"];
+    [encoder encodeBool:self.hasZ forKey:@"hasZ"];
+    [encoder encodeBool:self.hasM forKey:@"hasM"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
-    // TODO
-    return nil;
+    self = [super init];
+    if (self) {
+        _geometryType = (enum SFGeometryType)[decoder decodeIntForKey:@"geometryType"];
+        _hasZ = [decoder decodeBoolForKey:@"hasZ"];
+        _hasM = [decoder decodeBoolForKey:@"hasM"];
+    }
+    return self;
 }
 
 @end

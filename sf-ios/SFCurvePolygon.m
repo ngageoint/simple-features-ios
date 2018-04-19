@@ -43,4 +43,18 @@
     return curevePolygon;
 }
 
+- (void) encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    
+    [encoder encodeObject:self.rings forKey:@"rings"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _rings = [decoder decodeObjectForKey:@"rings"];
+    }
+    return self;
+}
+
 @end
