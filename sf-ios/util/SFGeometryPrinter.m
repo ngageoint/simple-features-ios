@@ -1,0 +1,190 @@
+//
+//  SFGeometryPrinter.m
+//  sf-ios
+//
+//  Created by Brian Osborn on 6/1/15.
+//  Copyright (c) 2015 NGA. All rights reserved.
+//
+
+#import "SFGeometryPrinter.h"
+#import "SFGeometry.h"
+#import "SFPoint.h"
+#import "SFLineString.h"
+#import "SFPolygon.h"
+#import "SFMultiPoint.h"
+#import "SFMultiLineString.h"
+#import "SFMultiPolygon.h"
+#import "SFGeometryCollection.h"
+#import "SFCircularString.h"
+#import "SFCompoundCurve.h"
+#import "SFCurvePolygon.h"
+#import "SFPolyhedralSurface.h"
+#import "SFTIN.h"
+#import "SFTriangle.h"
+
+@implementation SFGeometryPrinter
+
++(NSString *) getGeometryString: (SFGeometry *) geometry{
+    
+    NSMutableString * message = [[NSMutableString alloc]init];
+    
+    enum SFGeometryType geometryType = geometry.geometryType;
+    switch (geometryType) {
+        case SF_POINT:
+            [self addPoint:(SFPoint *)geometry toMessage:message];
+            break;
+        case SF_LINESTRING:
+            [self addLineString:(SFLineString *)geometry toMessage:message];
+            break;
+        case SF_POLYGON:
+            [self addPolygon:(SFPolygon *)geometry toMessage:message];
+            break;
+        case SF_MULTIPOINT:
+            [self addMultiPoint:(SFMultiPoint *)geometry toMessage:message];
+            break;
+        case SF_MULTILINESTRING:
+            [self addMultiLineString:(SFMultiLineString *)geometry toMessage:message];
+            break;
+        case SF_MULTIPOLYGON:
+            [self addMultiPolygon:(SFMultiPolygon *)geometry toMessage:message];
+            break;
+        case SF_CIRCULARSTRING:
+            [self addLineString:(SFCircularString *)geometry toMessage:message];
+            break;
+        case SF_COMPOUNDCURVE:
+            [self addCompoundCurve:(SFCompoundCurve *)geometry toMessage:message];
+            break;
+        case SF_CURVEPOLYGON:
+            [self addCurvePolygon:(SFCurvePolygon *)geometry toMessage:message];
+            break;
+        case SF_POLYHEDRALSURFACE:
+            [self addPolyhedralSurface:(SFPolyhedralSurface *)geometry toMessage:message];
+            break;
+        case SF_TIN:
+            [self addPolyhedralSurface:(SFTIN *)geometry toMessage:message];
+            break;
+        case SF_TRIANGLE:
+            [self addPolygon:(SFTriangle *)geometry toMessage:message];
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        {
+            SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
+            [message appendFormat:@"Geometries: %@", [geomCollection numGeometries]];
+            NSArray * geometries = geomCollection.geometries;
+            for(int i = 0; i < geometries.count; i++){
+                SFGeometry * subGeometry = [geometries objectAtIndex:i];
+                [message appendString:@"\n\n"];
+                [message appendFormat:@"Geometry %d", (i+1)];
+                [message appendString:@"\n"];
+                [message appendFormat:@"%@", [SFGeometryTypes name:subGeometry.geometryType]];
+                [message appendString:@"\n"];
+                [message appendString:[self getGeometryString:subGeometry]];
+            }
+        }
+            break;
+        default:
+            break;
+            
+    }
+    
+    return message;
+}
+
++(void) addPoint: (SFPoint *) point toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Latitude: %@", point.y];
+    [message appendFormat:@"\nLongitude: %@", point.x];
+}
+
++(void) addMultiPoint: (SFMultiPoint *) multiPoint toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Points: %@", [multiPoint numPoints]];
+    NSArray * points = [multiPoint getPoints];
+    for(int i = 0; i < points.count; i++){
+        SFPoint * point = [points objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        [message appendFormat:@"Point %d", (i+1)];
+        [message appendString:@"\n"];
+        [self addPoint:point toMessage:message];
+    }
+}
+
++(void) addLineString: (SFLineString *) lineString toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Points: %@", [lineString numPoints]];
+    for(SFPoint * point in lineString.points){
+        [message appendString:@"\n\n"];
+        [self addPoint:point toMessage:message];
+    }
+}
+
++(void) addMultiLineString: (SFMultiLineString *) multiLineString toMessage: (NSMutableString *) message{
+    [message appendFormat:@"LineStrings: %@", [multiLineString numLineStrings]];
+    NSArray * lineStrings = [multiLineString getLineStrings];
+    for(int i = 0; i < lineStrings.count; i++){
+        SFLineString * lineString = [lineStrings objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        [message appendFormat:@"LineString %d", (i+1)];
+        [message appendString:@"\n"];
+        [self addLineString:lineString toMessage:message];
+    }
+}
+
++(void) addPolygon: (SFPolygon *) polygon toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Rings: %@", [polygon numRings]];
+    for(int i = 0; i < polygon.rings.count; i++){
+        SFLineString * ring = [polygon.rings objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        if(i > 0){
+            [message appendFormat:@"Hole %d", i];
+            [message appendString:@"\n"];
+        }
+        [self addLineString:ring toMessage:message];
+    }
+}
+
++(void) addMultiPolygon: (SFMultiPolygon *) multiPolygon toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Polygons: %@", [multiPolygon numPolygons]];
+    NSArray * polygons = [multiPolygon getPolygons];
+    for(int i = 0; i < polygons.count; i++){
+        SFPolygon * polygon = [polygons objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        [message appendFormat:@"Polygon %d", (i+1)];
+        [message appendString:@"\n"];
+        [self addPolygon:polygon toMessage:message];
+    }
+}
+
++(void) addCompoundCurve: (SFCompoundCurve *) compoundCurve toMessage: (NSMutableString *) message{
+    [message appendFormat:@"LineStrings: %@", [compoundCurve numLineStrings]];
+    for(int i = 0; i < compoundCurve.lineStrings.count; i++){
+        SFLineString * lineString = [compoundCurve.lineStrings objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        [message appendFormat:@"LineString %d", (i+1)];
+        [message appendString:@"\n"];
+        [self addLineString:lineString toMessage:message];
+    }
+}
+
++(void) addCurvePolygon: (SFCurvePolygon *) curvePolygon toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Rings: %@", [curvePolygon numRings]];
+    for(int i = 0; i < curvePolygon.rings.count; i++){
+        SFCurve * ring = [curvePolygon.rings objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        if(i > 0){
+            [message appendFormat:@"Hole %d", i];
+            [message appendString:@"\n"];
+        }
+        [message appendString:[self getGeometryString:ring]];
+    }
+}
+
++(void) addPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface toMessage: (NSMutableString *) message{
+    [message appendFormat:@"Polygons: %@", [polyhedralSurface numPolygons]];
+    for(int i = 0; i < polyhedralSurface.polygons.count; i++){
+        SFPolygon * polygon = [polyhedralSurface.polygons objectAtIndex:i];
+        [message appendString:@"\n\n"];
+        [message appendFormat:@"Polygon %d", (i+1)];
+        [message appendString:@"\n"];
+        [self addPolygon:polygon toMessage:message];
+    }
+}
+
+@end

@@ -8,87 +8,80 @@
 
 /* Begin PBXBuildFile section */
 		042FC6571B963FE500549A4B /* sf_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042FC64B1B963FE500549A4B /* sf_ios.framework */; };
-		042FC69F1B96421E00549A4B /* WKBCircularString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6681B96421E00549A4B /* WKBCircularString.h */; };
-		042FC6A01B96421E00549A4B /* WKBCircularString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6691B96421E00549A4B /* WKBCircularString.m */; };
-		042FC6A11B96421E00549A4B /* WKBCompoundCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66A1B96421E00549A4B /* WKBCompoundCurve.h */; };
-		042FC6A21B96421E00549A4B /* WKBCompoundCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66B1B96421E00549A4B /* WKBCompoundCurve.m */; };
-		042FC6A31B96421E00549A4B /* WKBCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66C1B96421E00549A4B /* WKBCurve.h */; };
-		042FC6A41B96421E00549A4B /* WKBCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66D1B96421E00549A4B /* WKBCurve.m */; };
-		042FC6A51B96421E00549A4B /* WKBCurvePolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66E1B96421E00549A4B /* WKBCurvePolygon.h */; };
-		042FC6A61B96421E00549A4B /* WKBCurvePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66F1B96421E00549A4B /* WKBCurvePolygon.m */; };
-		042FC6A71B96421E00549A4B /* WKBGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6701B96421E00549A4B /* WKBGeometry.h */; };
-		042FC6A81B96421E00549A4B /* WKBGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6711B96421E00549A4B /* WKBGeometry.m */; };
-		042FC6A91B96421E00549A4B /* WKBGeometryCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6721B96421E00549A4B /* WKBGeometryCollection.h */; };
-		042FC6AA1B96421E00549A4B /* WKBGeometryCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6731B96421E00549A4B /* WKBGeometryCollection.m */; };
-		042FC6AB1B96421E00549A4B /* WKBGeometryEnvelope.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6741B96421E00549A4B /* WKBGeometryEnvelope.h */; };
-		042FC6AC1B96421E00549A4B /* WKBGeometryEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6751B96421E00549A4B /* WKBGeometryEnvelope.m */; };
-		042FC6AD1B96421E00549A4B /* WKBGeometryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6761B96421E00549A4B /* WKBGeometryTypes.h */; };
-		042FC6AE1B96421E00549A4B /* WKBGeometryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6771B96421E00549A4B /* WKBGeometryTypes.m */; };
-		042FC6AF1B96421E00549A4B /* WKBLineString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6781B96421E00549A4B /* WKBLineString.h */; };
-		042FC6B01B96421E00549A4B /* WKBLineString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6791B96421E00549A4B /* WKBLineString.m */; };
-		042FC6B11B96421E00549A4B /* WKBMultiCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67A1B96421E00549A4B /* WKBMultiCurve.h */; };
-		042FC6B21B96421E00549A4B /* WKBMultiCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67B1B96421E00549A4B /* WKBMultiCurve.m */; };
-		042FC6B31B96421E00549A4B /* WKBMultiLineString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67C1B96421E00549A4B /* WKBMultiLineString.h */; };
-		042FC6B41B96421E00549A4B /* WKBMultiLineString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67D1B96421E00549A4B /* WKBMultiLineString.m */; };
-		042FC6B51B96421E00549A4B /* WKBMultiPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67E1B96421E00549A4B /* WKBMultiPoint.h */; };
-		042FC6B61B96421E00549A4B /* WKBMultiPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67F1B96421E00549A4B /* WKBMultiPoint.m */; };
-		042FC6B71B96421E00549A4B /* WKBMultiPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6801B96421E00549A4B /* WKBMultiPolygon.h */; };
-		042FC6B81B96421E00549A4B /* WKBMultiPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6811B96421E00549A4B /* WKBMultiPolygon.m */; };
-		042FC6B91B96421E00549A4B /* WKBMultiSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6821B96421E00549A4B /* WKBMultiSurface.h */; };
-		042FC6BA1B96421E00549A4B /* WKBMultiSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6831B96421E00549A4B /* WKBMultiSurface.m */; };
-		042FC6BB1B96421E00549A4B /* WKBPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6841B96421E00549A4B /* WKBPoint.h */; };
-		042FC6BC1B96421E00549A4B /* WKBPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6851B96421E00549A4B /* WKBPoint.m */; };
-		042FC6BD1B96421E00549A4B /* WKBPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6861B96421E00549A4B /* WKBPolygon.h */; };
-		042FC6BE1B96421E00549A4B /* WKBPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6871B96421E00549A4B /* WKBPolygon.m */; };
-		042FC6BF1B96421E00549A4B /* WKBPolyhedralSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6881B96421E00549A4B /* WKBPolyhedralSurface.h */; };
-		042FC6C01B96421E00549A4B /* WKBPolyhedralSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6891B96421E00549A4B /* WKBPolyhedralSurface.m */; };
-		042FC6C11B96421E00549A4B /* WKBSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68A1B96421E00549A4B /* WKBSurface.h */; };
-		042FC6C21B96421E00549A4B /* WKBSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68B1B96421E00549A4B /* WKBSurface.m */; };
-		042FC6C31B96421E00549A4B /* WKBTIN.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68C1B96421E00549A4B /* WKBTIN.h */; };
-		042FC6C41B96421E00549A4B /* WKBTIN.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68D1B96421E00549A4B /* WKBTIN.m */; };
-		042FC6C51B96421E00549A4B /* WKBTriangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68E1B96421E00549A4B /* WKBTriangle.h */; };
-		042FC6C61B96421E00549A4B /* WKBTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68F1B96421E00549A4B /* WKBTriangle.m */; };
-		042FC6C71B96421E00549A4B /* WKBByteReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6911B96421E00549A4B /* WKBByteReader.h */; };
-		042FC6C81B96421E00549A4B /* WKBByteReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6921B96421E00549A4B /* WKBByteReader.m */; };
-		042FC6C91B96421E00549A4B /* WKBByteWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6931B96421E00549A4B /* WKBByteWriter.h */; };
-		042FC6CA1B96421E00549A4B /* WKBByteWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6941B96421E00549A4B /* WKBByteWriter.m */; };
-		042FC6CB1B96421E00549A4B /* WKBGeometryReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6951B96421E00549A4B /* WKBGeometryReader.h */; };
-		042FC6CC1B96421E00549A4B /* WKBGeometryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6961B96421E00549A4B /* WKBGeometryReader.m */; };
-		042FC6CD1B96421E00549A4B /* WKBGeometryWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6971B96421E00549A4B /* WKBGeometryWriter.h */; };
-		042FC6CE1B96421E00549A4B /* WKBGeometryWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6981B96421E00549A4B /* WKBGeometryWriter.m */; };
-		042FC6CF1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69A1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.h */; };
-		042FC6D01B96421E00549A4B /* WKBGeometryEnvelopeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69B1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.m */; };
-		042FC6D11B96421E00549A4B /* WKBGeometryPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69C1B96421E00549A4B /* WKBGeometryPrinter.h */; };
-		042FC6D21B96421E00549A4B /* WKBGeometryPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69D1B96421E00549A4B /* WKBGeometryPrinter.m */; };
+		042FC69F1B96421E00549A4B /* SFCircularString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6681B96421E00549A4B /* SFCircularString.h */; };
+		042FC6A01B96421E00549A4B /* SFCircularString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6691B96421E00549A4B /* SFCircularString.m */; };
+		042FC6A11B96421E00549A4B /* SFCompoundCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66A1B96421E00549A4B /* SFCompoundCurve.h */; };
+		042FC6A21B96421E00549A4B /* SFCompoundCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66B1B96421E00549A4B /* SFCompoundCurve.m */; };
+		042FC6A31B96421E00549A4B /* SFCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66C1B96421E00549A4B /* SFCurve.h */; };
+		042FC6A41B96421E00549A4B /* SFCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66D1B96421E00549A4B /* SFCurve.m */; };
+		042FC6A51B96421E00549A4B /* SFCurvePolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC66E1B96421E00549A4B /* SFCurvePolygon.h */; };
+		042FC6A61B96421E00549A4B /* SFCurvePolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC66F1B96421E00549A4B /* SFCurvePolygon.m */; };
+		042FC6A71B96421E00549A4B /* SFGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6701B96421E00549A4B /* SFGeometry.h */; };
+		042FC6A81B96421E00549A4B /* SFGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6711B96421E00549A4B /* SFGeometry.m */; };
+		042FC6A91B96421E00549A4B /* SFGeometryCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6721B96421E00549A4B /* SFGeometryCollection.h */; };
+		042FC6AA1B96421E00549A4B /* SFGeometryCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6731B96421E00549A4B /* SFGeometryCollection.m */; };
+		042FC6AB1B96421E00549A4B /* SFGeometryEnvelope.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6741B96421E00549A4B /* SFGeometryEnvelope.h */; };
+		042FC6AC1B96421E00549A4B /* SFGeometryEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6751B96421E00549A4B /* SFGeometryEnvelope.m */; };
+		042FC6AD1B96421E00549A4B /* SFGeometryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6761B96421E00549A4B /* SFGeometryTypes.h */; };
+		042FC6AE1B96421E00549A4B /* SFGeometryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6771B96421E00549A4B /* SFGeometryTypes.m */; };
+		042FC6AF1B96421E00549A4B /* SFLineString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6781B96421E00549A4B /* SFLineString.h */; };
+		042FC6B01B96421E00549A4B /* SFLineString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6791B96421E00549A4B /* SFLineString.m */; };
+		042FC6B11B96421E00549A4B /* SFMultiCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67A1B96421E00549A4B /* SFMultiCurve.h */; };
+		042FC6B21B96421E00549A4B /* SFMultiCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67B1B96421E00549A4B /* SFMultiCurve.m */; };
+		042FC6B31B96421E00549A4B /* SFMultiLineString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67C1B96421E00549A4B /* SFMultiLineString.h */; };
+		042FC6B41B96421E00549A4B /* SFMultiLineString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67D1B96421E00549A4B /* SFMultiLineString.m */; };
+		042FC6B51B96421E00549A4B /* SFMultiPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC67E1B96421E00549A4B /* SFMultiPoint.h */; };
+		042FC6B61B96421E00549A4B /* SFMultiPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC67F1B96421E00549A4B /* SFMultiPoint.m */; };
+		042FC6B71B96421E00549A4B /* SFMultiPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6801B96421E00549A4B /* SFMultiPolygon.h */; };
+		042FC6B81B96421E00549A4B /* SFMultiPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6811B96421E00549A4B /* SFMultiPolygon.m */; };
+		042FC6B91B96421E00549A4B /* SFMultiSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6821B96421E00549A4B /* SFMultiSurface.h */; };
+		042FC6BA1B96421E00549A4B /* SFMultiSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6831B96421E00549A4B /* SFMultiSurface.m */; };
+		042FC6BB1B96421E00549A4B /* SFPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6841B96421E00549A4B /* SFPoint.h */; };
+		042FC6BC1B96421E00549A4B /* SFPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6851B96421E00549A4B /* SFPoint.m */; };
+		042FC6BD1B96421E00549A4B /* SFPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6861B96421E00549A4B /* SFPolygon.h */; };
+		042FC6BE1B96421E00549A4B /* SFPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6871B96421E00549A4B /* SFPolygon.m */; };
+		042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6881B96421E00549A4B /* SFPolyhedralSurface.h */; };
+		042FC6C01B96421E00549A4B /* SFPolyhedralSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6891B96421E00549A4B /* SFPolyhedralSurface.m */; };
+		042FC6C11B96421E00549A4B /* SFSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68A1B96421E00549A4B /* SFSurface.h */; };
+		042FC6C21B96421E00549A4B /* SFSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68B1B96421E00549A4B /* SFSurface.m */; };
+		042FC6C31B96421E00549A4B /* SFTIN.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68C1B96421E00549A4B /* SFTIN.h */; };
+		042FC6C41B96421E00549A4B /* SFTIN.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68D1B96421E00549A4B /* SFTIN.m */; };
+		042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC68E1B96421E00549A4B /* SFTriangle.h */; };
+		042FC6C61B96421E00549A4B /* SFTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC68F1B96421E00549A4B /* SFTriangle.m */; };
+		042FC6C71B96421E00549A4B /* SFByteReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6911B96421E00549A4B /* SFByteReader.h */; };
+		042FC6C81B96421E00549A4B /* SFByteReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6921B96421E00549A4B /* SFByteReader.m */; };
+		042FC6C91B96421E00549A4B /* SFByteWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6931B96421E00549A4B /* SFByteWriter.h */; };
+		042FC6CA1B96421E00549A4B /* SFByteWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6941B96421E00549A4B /* SFByteWriter.m */; };
+		042FC6CF1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69A1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h */; };
+		042FC6D01B96421E00549A4B /* SFGeometryEnvelopeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69B1B96421E00549A4B /* SFGeometryEnvelopeBuilder.m */; };
+		042FC6D11B96421E00549A4B /* SFGeometryPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */; };
+		042FC6D21B96421E00549A4B /* SFGeometryPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */; };
 		042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */; };
 		042FC6D51B96453E00549A4B /* sf_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6D41B96453E00549A4B /* sf_ios.h */; };
-		0445CB271EA1335B008DC0D7 /* WKBGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB251EA1335B008DC0D7 /* WKBGeometryUtils.h */; };
-		0445CB281EA1335B008DC0D7 /* WKBGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB261EA1335B008DC0D7 /* WKBGeometryUtils.m */; };
-		0445CB2B1EA1448C008DC0D7 /* WKBCentroidPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB291EA1448C008DC0D7 /* WKBCentroidPoint.h */; };
-		0445CB2C1EA1448C008DC0D7 /* WKBCentroidPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB2A1EA1448C008DC0D7 /* WKBCentroidPoint.m */; };
-		0445CB2F1EA150D1008DC0D7 /* WKBCentroidCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB2D1EA150D1008DC0D7 /* WKBCentroidCurve.h */; };
-		0445CB301EA150D1008DC0D7 /* WKBCentroidCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB2E1EA150D1008DC0D7 /* WKBCentroidCurve.m */; };
-		0445CB331EA150E3008DC0D7 /* WKBCentroidSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB311EA150E3008DC0D7 /* WKBCentroidSurface.h */; };
-		0445CB341EA150E3008DC0D7 /* WKBCentroidSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB321EA150E3008DC0D7 /* WKBCentroidSurface.m */; };
-		0445CB361EA4FE5C008DC0D7 /* WKBGeometryUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB351EA4FE5C008DC0D7 /* WKBGeometryUtilsTestCase.m */; };
+		0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */; };
+		0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */; };
+		0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */; };
+		0445CB2C1EA1448C008DC0D7 /* SFCentroidPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB2A1EA1448C008DC0D7 /* SFCentroidPoint.m */; };
+		0445CB2F1EA150D1008DC0D7 /* SFCentroidCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB2D1EA150D1008DC0D7 /* SFCentroidCurve.h */; };
+		0445CB301EA150D1008DC0D7 /* SFCentroidCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB2E1EA150D1008DC0D7 /* SFCentroidCurve.m */; };
+		0445CB331EA150E3008DC0D7 /* SFCentroidSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */; };
+		0445CB341EA150E3008DC0D7 /* SFCentroidSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */; };
+		0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */; };
 		0472B51B1C03590500496B87 /* sf-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */; };
-		048A7BAE1C999C52007BCA5D /* WKBGeometryJSONCompatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A7BAC1C999C52007BCA5D /* WKBGeometryJSONCompatible.h */; };
-		048A7BAF1C999C52007BCA5D /* WKBGeometryJSONCompatible.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A7BAD1C999C52007BCA5D /* WKBGeometryJSONCompatible.m */; };
-		0496DB1B200813020068A2CE /* WKBEventTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB19200813020068A2CE /* WKBEventTypes.h */; };
-		0496DB1C200813020068A2CE /* WKBEventTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1A200813020068A2CE /* WKBEventTypes.m */; };
-		0496DB1F200819110068A2CE /* WKBEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB1D200819110068A2CE /* WKBEvent.h */; };
-		0496DB20200819110068A2CE /* WKBEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1E200819110068A2CE /* WKBEvent.m */; };
-		0496DB232008EC740068A2CE /* WKBEventQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB212008EC740068A2CE /* WKBEventQueue.h */; };
-		0496DB242008EC740068A2CE /* WKBEventQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB222008EC740068A2CE /* WKBEventQueue.m */; };
-		0496DB272008F5FD0068A2CE /* WKBSweepLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB252008F5FD0068A2CE /* WKBSweepLine.h */; };
-		0496DB282008F5FD0068A2CE /* WKBSweepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB262008F5FD0068A2CE /* WKBSweepLine.m */; };
-		04AB919B1BF29ECD00894999 /* WKBTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB919A1BF29ECD00894999 /* WKBTestCase.m */; };
-		04AB919E1BF29F9A00894999 /* WKBTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB919D1BF29F9A00894999 /* WKBTestUtils.m */; };
-		04AB91A11BF2A05200894999 /* WKBGeometryTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB91A01BF2A05200894999 /* WKBGeometryTestUtils.m */; };
-		04C503042008FC4C00862DA9 /* WKBSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503022008FC4C00862DA9 /* WKBSegment.h */; };
-		04C503052008FC4C00862DA9 /* WKBSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503032008FC4C00862DA9 /* WKBSegment.m */; };
-		04C503082008FC6700862DA9 /* WKBShamosHoey.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503062008FC6700862DA9 /* WKBShamosHoey.h */; };
-		04C503092008FC6700862DA9 /* WKBShamosHoey.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503072008FC6700862DA9 /* WKBShamosHoey.m */; };
+		0496DB1B200813020068A2CE /* SFEventTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB19200813020068A2CE /* SFEventTypes.h */; };
+		0496DB1C200813020068A2CE /* SFEventTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1A200813020068A2CE /* SFEventTypes.m */; };
+		0496DB1F200819110068A2CE /* SFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB1D200819110068A2CE /* SFEvent.h */; };
+		0496DB20200819110068A2CE /* SFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1E200819110068A2CE /* SFEvent.m */; };
+		0496DB232008EC740068A2CE /* SFEventQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB212008EC740068A2CE /* SFEventQueue.h */; };
+		0496DB242008EC740068A2CE /* SFEventQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB222008EC740068A2CE /* SFEventQueue.m */; };
+		0496DB272008F5FD0068A2CE /* SFSweepLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB252008F5FD0068A2CE /* SFSweepLine.h */; };
+		0496DB282008F5FD0068A2CE /* SFSweepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB262008F5FD0068A2CE /* SFSweepLine.m */; };
+		04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB919D1BF29F9A00894999 /* SFTestUtils.m */; };
+		04AB91A11BF2A05200894999 /* SFGeometryTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */; };
+		04C503042008FC4C00862DA9 /* SFSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503022008FC4C00862DA9 /* SFSegment.h */; };
+		04C503052008FC4C00862DA9 /* SFSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503032008FC4C00862DA9 /* SFSegment.m */; };
+		04C503082008FC6700862DA9 /* SFShamosHoey.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503062008FC6700862DA9 /* SFShamosHoey.h */; };
+		04C503092008FC6700862DA9 /* SFShamosHoey.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503072008FC6700862DA9 /* SFShamosHoey.m */; };
 		04C5030C20095E7300862DA9 /* ShamosHoeyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5030B20095E7300862DA9 /* ShamosHoeyTestCase.m */; };
 		B5D94958E350F092F31540ED /* libPods-sf-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-sf-iosTests.a */; };
 /* End PBXBuildFile section */
@@ -108,89 +101,82 @@
 		042FC64F1B963FE500549A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		042FC6561B963FE500549A4B /* sf_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sf_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042FC65C1B963FE500549A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		042FC6681B96421E00549A4B /* WKBCircularString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCircularString.h; sourceTree = "<group>"; };
-		042FC6691B96421E00549A4B /* WKBCircularString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCircularString.m; sourceTree = "<group>"; };
-		042FC66A1B96421E00549A4B /* WKBCompoundCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCompoundCurve.h; sourceTree = "<group>"; };
-		042FC66B1B96421E00549A4B /* WKBCompoundCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCompoundCurve.m; sourceTree = "<group>"; };
-		042FC66C1B96421E00549A4B /* WKBCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCurve.h; sourceTree = "<group>"; };
-		042FC66D1B96421E00549A4B /* WKBCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCurve.m; sourceTree = "<group>"; };
-		042FC66E1B96421E00549A4B /* WKBCurvePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCurvePolygon.h; sourceTree = "<group>"; };
-		042FC66F1B96421E00549A4B /* WKBCurvePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCurvePolygon.m; sourceTree = "<group>"; };
-		042FC6701B96421E00549A4B /* WKBGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometry.h; sourceTree = "<group>"; };
-		042FC6711B96421E00549A4B /* WKBGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometry.m; sourceTree = "<group>"; };
-		042FC6721B96421E00549A4B /* WKBGeometryCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryCollection.h; sourceTree = "<group>"; };
-		042FC6731B96421E00549A4B /* WKBGeometryCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryCollection.m; sourceTree = "<group>"; };
-		042FC6741B96421E00549A4B /* WKBGeometryEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryEnvelope.h; sourceTree = "<group>"; };
-		042FC6751B96421E00549A4B /* WKBGeometryEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryEnvelope.m; sourceTree = "<group>"; };
-		042FC6761B96421E00549A4B /* WKBGeometryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryTypes.h; sourceTree = "<group>"; };
-		042FC6771B96421E00549A4B /* WKBGeometryTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryTypes.m; sourceTree = "<group>"; };
-		042FC6781B96421E00549A4B /* WKBLineString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBLineString.h; sourceTree = "<group>"; };
-		042FC6791B96421E00549A4B /* WKBLineString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBLineString.m; sourceTree = "<group>"; };
-		042FC67A1B96421E00549A4B /* WKBMultiCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBMultiCurve.h; sourceTree = "<group>"; };
-		042FC67B1B96421E00549A4B /* WKBMultiCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBMultiCurve.m; sourceTree = "<group>"; };
-		042FC67C1B96421E00549A4B /* WKBMultiLineString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBMultiLineString.h; sourceTree = "<group>"; };
-		042FC67D1B96421E00549A4B /* WKBMultiLineString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBMultiLineString.m; sourceTree = "<group>"; };
-		042FC67E1B96421E00549A4B /* WKBMultiPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBMultiPoint.h; sourceTree = "<group>"; };
-		042FC67F1B96421E00549A4B /* WKBMultiPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBMultiPoint.m; sourceTree = "<group>"; };
-		042FC6801B96421E00549A4B /* WKBMultiPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBMultiPolygon.h; sourceTree = "<group>"; };
-		042FC6811B96421E00549A4B /* WKBMultiPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBMultiPolygon.m; sourceTree = "<group>"; };
-		042FC6821B96421E00549A4B /* WKBMultiSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBMultiSurface.h; sourceTree = "<group>"; };
-		042FC6831B96421E00549A4B /* WKBMultiSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBMultiSurface.m; sourceTree = "<group>"; };
-		042FC6841B96421E00549A4B /* WKBPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBPoint.h; sourceTree = "<group>"; };
-		042FC6851B96421E00549A4B /* WKBPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBPoint.m; sourceTree = "<group>"; };
-		042FC6861B96421E00549A4B /* WKBPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBPolygon.h; sourceTree = "<group>"; };
-		042FC6871B96421E00549A4B /* WKBPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBPolygon.m; sourceTree = "<group>"; };
-		042FC6881B96421E00549A4B /* WKBPolyhedralSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBPolyhedralSurface.h; sourceTree = "<group>"; };
-		042FC6891B96421E00549A4B /* WKBPolyhedralSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBPolyhedralSurface.m; sourceTree = "<group>"; };
-		042FC68A1B96421E00549A4B /* WKBSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBSurface.h; sourceTree = "<group>"; };
-		042FC68B1B96421E00549A4B /* WKBSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBSurface.m; sourceTree = "<group>"; };
-		042FC68C1B96421E00549A4B /* WKBTIN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBTIN.h; sourceTree = "<group>"; };
-		042FC68D1B96421E00549A4B /* WKBTIN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBTIN.m; sourceTree = "<group>"; };
-		042FC68E1B96421E00549A4B /* WKBTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBTriangle.h; sourceTree = "<group>"; };
-		042FC68F1B96421E00549A4B /* WKBTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBTriangle.m; sourceTree = "<group>"; };
-		042FC6911B96421E00549A4B /* WKBByteReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBByteReader.h; sourceTree = "<group>"; };
-		042FC6921B96421E00549A4B /* WKBByteReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBByteReader.m; sourceTree = "<group>"; };
-		042FC6931B96421E00549A4B /* WKBByteWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBByteWriter.h; sourceTree = "<group>"; };
-		042FC6941B96421E00549A4B /* WKBByteWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBByteWriter.m; sourceTree = "<group>"; };
-		042FC6951B96421E00549A4B /* WKBGeometryReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryReader.h; sourceTree = "<group>"; };
-		042FC6961B96421E00549A4B /* WKBGeometryReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryReader.m; sourceTree = "<group>"; };
-		042FC6971B96421E00549A4B /* WKBGeometryWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryWriter.h; sourceTree = "<group>"; };
-		042FC6981B96421E00549A4B /* WKBGeometryWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryWriter.m; sourceTree = "<group>"; };
-		042FC69A1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryEnvelopeBuilder.h; sourceTree = "<group>"; };
-		042FC69B1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryEnvelopeBuilder.m; sourceTree = "<group>"; };
-		042FC69C1B96421E00549A4B /* WKBGeometryPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryPrinter.h; sourceTree = "<group>"; };
-		042FC69D1B96421E00549A4B /* WKBGeometryPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryPrinter.m; sourceTree = "<group>"; };
+		042FC6681B96421E00549A4B /* SFCircularString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCircularString.h; sourceTree = "<group>"; };
+		042FC6691B96421E00549A4B /* SFCircularString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCircularString.m; sourceTree = "<group>"; };
+		042FC66A1B96421E00549A4B /* SFCompoundCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCompoundCurve.h; sourceTree = "<group>"; };
+		042FC66B1B96421E00549A4B /* SFCompoundCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCompoundCurve.m; sourceTree = "<group>"; };
+		042FC66C1B96421E00549A4B /* SFCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCurve.h; sourceTree = "<group>"; };
+		042FC66D1B96421E00549A4B /* SFCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCurve.m; sourceTree = "<group>"; };
+		042FC66E1B96421E00549A4B /* SFCurvePolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCurvePolygon.h; sourceTree = "<group>"; };
+		042FC66F1B96421E00549A4B /* SFCurvePolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCurvePolygon.m; sourceTree = "<group>"; };
+		042FC6701B96421E00549A4B /* SFGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometry.h; sourceTree = "<group>"; };
+		042FC6711B96421E00549A4B /* SFGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometry.m; sourceTree = "<group>"; };
+		042FC6721B96421E00549A4B /* SFGeometryCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryCollection.h; sourceTree = "<group>"; };
+		042FC6731B96421E00549A4B /* SFGeometryCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryCollection.m; sourceTree = "<group>"; };
+		042FC6741B96421E00549A4B /* SFGeometryEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryEnvelope.h; sourceTree = "<group>"; };
+		042FC6751B96421E00549A4B /* SFGeometryEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryEnvelope.m; sourceTree = "<group>"; };
+		042FC6761B96421E00549A4B /* SFGeometryTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryTypes.h; sourceTree = "<group>"; };
+		042FC6771B96421E00549A4B /* SFGeometryTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryTypes.m; sourceTree = "<group>"; };
+		042FC6781B96421E00549A4B /* SFLineString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLineString.h; sourceTree = "<group>"; };
+		042FC6791B96421E00549A4B /* SFLineString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFLineString.m; sourceTree = "<group>"; };
+		042FC67A1B96421E00549A4B /* SFMultiCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMultiCurve.h; sourceTree = "<group>"; };
+		042FC67B1B96421E00549A4B /* SFMultiCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMultiCurve.m; sourceTree = "<group>"; };
+		042FC67C1B96421E00549A4B /* SFMultiLineString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMultiLineString.h; sourceTree = "<group>"; };
+		042FC67D1B96421E00549A4B /* SFMultiLineString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMultiLineString.m; sourceTree = "<group>"; };
+		042FC67E1B96421E00549A4B /* SFMultiPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMultiPoint.h; sourceTree = "<group>"; };
+		042FC67F1B96421E00549A4B /* SFMultiPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMultiPoint.m; sourceTree = "<group>"; };
+		042FC6801B96421E00549A4B /* SFMultiPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMultiPolygon.h; sourceTree = "<group>"; };
+		042FC6811B96421E00549A4B /* SFMultiPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMultiPolygon.m; sourceTree = "<group>"; };
+		042FC6821B96421E00549A4B /* SFMultiSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMultiSurface.h; sourceTree = "<group>"; };
+		042FC6831B96421E00549A4B /* SFMultiSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMultiSurface.m; sourceTree = "<group>"; };
+		042FC6841B96421E00549A4B /* SFPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPoint.h; sourceTree = "<group>"; };
+		042FC6851B96421E00549A4B /* SFPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPoint.m; sourceTree = "<group>"; };
+		042FC6861B96421E00549A4B /* SFPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPolygon.h; sourceTree = "<group>"; };
+		042FC6871B96421E00549A4B /* SFPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPolygon.m; sourceTree = "<group>"; };
+		042FC6881B96421E00549A4B /* SFPolyhedralSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPolyhedralSurface.h; sourceTree = "<group>"; };
+		042FC6891B96421E00549A4B /* SFPolyhedralSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPolyhedralSurface.m; sourceTree = "<group>"; };
+		042FC68A1B96421E00549A4B /* SFSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSurface.h; sourceTree = "<group>"; };
+		042FC68B1B96421E00549A4B /* SFSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSurface.m; sourceTree = "<group>"; };
+		042FC68C1B96421E00549A4B /* SFTIN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTIN.h; sourceTree = "<group>"; };
+		042FC68D1B96421E00549A4B /* SFTIN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTIN.m; sourceTree = "<group>"; };
+		042FC68E1B96421E00549A4B /* SFTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTriangle.h; sourceTree = "<group>"; };
+		042FC68F1B96421E00549A4B /* SFTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTriangle.m; sourceTree = "<group>"; };
+		042FC6911B96421E00549A4B /* SFByteReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFByteReader.h; sourceTree = "<group>"; };
+		042FC6921B96421E00549A4B /* SFByteReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFByteReader.m; sourceTree = "<group>"; };
+		042FC6931B96421E00549A4B /* SFByteWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFByteWriter.h; sourceTree = "<group>"; };
+		042FC6941B96421E00549A4B /* SFByteWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFByteWriter.m; sourceTree = "<group>"; };
+		042FC69A1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryEnvelopeBuilder.h; sourceTree = "<group>"; };
+		042FC69B1B96421E00549A4B /* SFGeometryEnvelopeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryEnvelopeBuilder.m; sourceTree = "<group>"; };
+		042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryPrinter.h; sourceTree = "<group>"; };
+		042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryPrinter.m; sourceTree = "<group>"; };
 		042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Prefix.pch"; sourceTree = "<group>"; };
 		042FC6D41B96453E00549A4B /* sf_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sf_ios.h; sourceTree = "<group>"; };
-		0445CB251EA1335B008DC0D7 /* WKBGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryUtils.h; sourceTree = "<group>"; };
-		0445CB261EA1335B008DC0D7 /* WKBGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryUtils.m; sourceTree = "<group>"; };
-		0445CB291EA1448C008DC0D7 /* WKBCentroidPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCentroidPoint.h; sourceTree = "<group>"; };
-		0445CB2A1EA1448C008DC0D7 /* WKBCentroidPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCentroidPoint.m; sourceTree = "<group>"; };
-		0445CB2D1EA150D1008DC0D7 /* WKBCentroidCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCentroidCurve.h; sourceTree = "<group>"; };
-		0445CB2E1EA150D1008DC0D7 /* WKBCentroidCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCentroidCurve.m; sourceTree = "<group>"; };
-		0445CB311EA150E3008DC0D7 /* WKBCentroidSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBCentroidSurface.h; sourceTree = "<group>"; };
-		0445CB321EA150E3008DC0D7 /* WKBCentroidSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBCentroidSurface.m; sourceTree = "<group>"; };
-		0445CB351EA4FE5C008DC0D7 /* WKBGeometryUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryUtilsTestCase.m; sourceTree = "<group>"; };
+		0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryUtils.h; sourceTree = "<group>"; };
+		0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtils.m; sourceTree = "<group>"; };
+		0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidPoint.h; sourceTree = "<group>"; };
+		0445CB2A1EA1448C008DC0D7 /* SFCentroidPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCentroidPoint.m; sourceTree = "<group>"; };
+		0445CB2D1EA150D1008DC0D7 /* SFCentroidCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidCurve.h; sourceTree = "<group>"; };
+		0445CB2E1EA150D1008DC0D7 /* SFCentroidCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCentroidCurve.m; sourceTree = "<group>"; };
+		0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidSurface.h; sourceTree = "<group>"; };
+		0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCentroidSurface.m; sourceTree = "<group>"; };
+		0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtilsTestCase.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Bridging-Header.h"; sourceTree = "<group>"; };
-		048A7BAC1C999C52007BCA5D /* WKBGeometryJSONCompatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryJSONCompatible.h; sourceTree = "<group>"; };
-		048A7BAD1C999C52007BCA5D /* WKBGeometryJSONCompatible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryJSONCompatible.m; sourceTree = "<group>"; };
-		0496DB19200813020068A2CE /* WKBEventTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBEventTypes.h; sourceTree = "<group>"; };
-		0496DB1A200813020068A2CE /* WKBEventTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBEventTypes.m; sourceTree = "<group>"; };
-		0496DB1D200819110068A2CE /* WKBEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBEvent.h; sourceTree = "<group>"; };
-		0496DB1E200819110068A2CE /* WKBEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBEvent.m; sourceTree = "<group>"; };
-		0496DB212008EC740068A2CE /* WKBEventQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBEventQueue.h; sourceTree = "<group>"; };
-		0496DB222008EC740068A2CE /* WKBEventQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBEventQueue.m; sourceTree = "<group>"; };
-		0496DB252008F5FD0068A2CE /* WKBSweepLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBSweepLine.h; sourceTree = "<group>"; };
-		0496DB262008F5FD0068A2CE /* WKBSweepLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBSweepLine.m; sourceTree = "<group>"; };
-		04AB919A1BF29ECD00894999 /* WKBTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBTestCase.m; sourceTree = "<group>"; };
-		04AB919C1BF29F9A00894999 /* WKBTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBTestUtils.h; sourceTree = "<group>"; };
-		04AB919D1BF29F9A00894999 /* WKBTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBTestUtils.m; sourceTree = "<group>"; };
-		04AB919F1BF2A05200894999 /* WKBGeometryTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBGeometryTestUtils.h; sourceTree = "<group>"; };
-		04AB91A01BF2A05200894999 /* WKBGeometryTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBGeometryTestUtils.m; sourceTree = "<group>"; };
-		04C503022008FC4C00862DA9 /* WKBSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBSegment.h; sourceTree = "<group>"; };
-		04C503032008FC4C00862DA9 /* WKBSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBSegment.m; sourceTree = "<group>"; };
-		04C503062008FC6700862DA9 /* WKBShamosHoey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKBShamosHoey.h; sourceTree = "<group>"; };
-		04C503072008FC6700862DA9 /* WKBShamosHoey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKBShamosHoey.m; sourceTree = "<group>"; };
+		0496DB19200813020068A2CE /* SFEventTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEventTypes.h; sourceTree = "<group>"; };
+		0496DB1A200813020068A2CE /* SFEventTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEventTypes.m; sourceTree = "<group>"; };
+		0496DB1D200819110068A2CE /* SFEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEvent.h; sourceTree = "<group>"; };
+		0496DB1E200819110068A2CE /* SFEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEvent.m; sourceTree = "<group>"; };
+		0496DB212008EC740068A2CE /* SFEventQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEventQueue.h; sourceTree = "<group>"; };
+		0496DB222008EC740068A2CE /* SFEventQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEventQueue.m; sourceTree = "<group>"; };
+		0496DB252008F5FD0068A2CE /* SFSweepLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSweepLine.h; sourceTree = "<group>"; };
+		0496DB262008F5FD0068A2CE /* SFSweepLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSweepLine.m; sourceTree = "<group>"; };
+		04AB919C1BF29F9A00894999 /* SFTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTestUtils.h; sourceTree = "<group>"; };
+		04AB919D1BF29F9A00894999 /* SFTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTestUtils.m; sourceTree = "<group>"; };
+		04AB919F1BF2A05200894999 /* SFGeometryTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryTestUtils.h; sourceTree = "<group>"; };
+		04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryTestUtils.m; sourceTree = "<group>"; };
+		04C503022008FC4C00862DA9 /* SFSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSegment.h; sourceTree = "<group>"; };
+		04C503032008FC4C00862DA9 /* SFSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSegment.m; sourceTree = "<group>"; };
+		04C503062008FC6700862DA9 /* SFShamosHoey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFShamosHoey.h; sourceTree = "<group>"; };
+		04C503072008FC6700862DA9 /* SFShamosHoey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFShamosHoey.m; sourceTree = "<group>"; };
 		04C5030B20095E7300862DA9 /* ShamosHoeyTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShamosHoeyTestCase.m; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-sf-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sf-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,8 +227,46 @@
 			isa = PBXGroup;
 			children = (
 				042FC6D41B96453E00549A4B /* sf_ios.h */,
-				042FC6671B96421E00549A4B /* geom */,
-				042FC6901B96421E00549A4B /* io */,
+				042FC6681B96421E00549A4B /* SFCircularString.h */,
+				042FC6691B96421E00549A4B /* SFCircularString.m */,
+				042FC66A1B96421E00549A4B /* SFCompoundCurve.h */,
+				042FC66B1B96421E00549A4B /* SFCompoundCurve.m */,
+				042FC66C1B96421E00549A4B /* SFCurve.h */,
+				042FC66D1B96421E00549A4B /* SFCurve.m */,
+				042FC66E1B96421E00549A4B /* SFCurvePolygon.h */,
+				042FC66F1B96421E00549A4B /* SFCurvePolygon.m */,
+				042FC6701B96421E00549A4B /* SFGeometry.h */,
+				042FC6711B96421E00549A4B /* SFGeometry.m */,
+				042FC6721B96421E00549A4B /* SFGeometryCollection.h */,
+				042FC6731B96421E00549A4B /* SFGeometryCollection.m */,
+				042FC6741B96421E00549A4B /* SFGeometryEnvelope.h */,
+				042FC6751B96421E00549A4B /* SFGeometryEnvelope.m */,
+				042FC6761B96421E00549A4B /* SFGeometryTypes.h */,
+				042FC6771B96421E00549A4B /* SFGeometryTypes.m */,
+				042FC6781B96421E00549A4B /* SFLineString.h */,
+				042FC6791B96421E00549A4B /* SFLineString.m */,
+				042FC67A1B96421E00549A4B /* SFMultiCurve.h */,
+				042FC67B1B96421E00549A4B /* SFMultiCurve.m */,
+				042FC67C1B96421E00549A4B /* SFMultiLineString.h */,
+				042FC67D1B96421E00549A4B /* SFMultiLineString.m */,
+				042FC67E1B96421E00549A4B /* SFMultiPoint.h */,
+				042FC67F1B96421E00549A4B /* SFMultiPoint.m */,
+				042FC6801B96421E00549A4B /* SFMultiPolygon.h */,
+				042FC6811B96421E00549A4B /* SFMultiPolygon.m */,
+				042FC6821B96421E00549A4B /* SFMultiSurface.h */,
+				042FC6831B96421E00549A4B /* SFMultiSurface.m */,
+				042FC6841B96421E00549A4B /* SFPoint.h */,
+				042FC6851B96421E00549A4B /* SFPoint.m */,
+				042FC6861B96421E00549A4B /* SFPolygon.h */,
+				042FC6871B96421E00549A4B /* SFPolygon.m */,
+				042FC6881B96421E00549A4B /* SFPolyhedralSurface.h */,
+				042FC6891B96421E00549A4B /* SFPolyhedralSurface.m */,
+				042FC68A1B96421E00549A4B /* SFSurface.h */,
+				042FC68B1B96421E00549A4B /* SFSurface.m */,
+				042FC68C1B96421E00549A4B /* SFTIN.h */,
+				042FC68D1B96421E00549A4B /* SFTIN.m */,
+				042FC68E1B96421E00549A4B /* SFTriangle.h */,
+				042FC68F1B96421E00549A4B /* SFTriangle.m */,
 				042FC6991B96421E00549A4B /* util */,
 				042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */,
 				042FC64E1B963FE500549A4B /* Supporting Files */,
@@ -262,14 +286,13 @@
 		042FC65A1B963FE500549A4B /* sf-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */,
+				04AB919C1BF29F9A00894999 /* SFTestUtils.h */,
+				04AB919D1BF29F9A00894999 /* SFTestUtils.m */,
+				04AB919F1BF2A05200894999 /* SFGeometryTestUtils.h */,
+				04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */,
 				04C5030A20095DE500862DA9 /* sweep */,
 				042FC65B1B963FE500549A4B /* Supporting Files */,
-				04AB919A1BF29ECD00894999 /* WKBTestCase.m */,
-				04AB919C1BF29F9A00894999 /* WKBTestUtils.h */,
-				04AB919D1BF29F9A00894999 /* WKBTestUtils.m */,
-				04AB919F1BF2A05200894999 /* WKBGeometryTestUtils.h */,
-				04AB91A01BF2A05200894999 /* WKBGeometryTestUtils.m */,
-				0445CB351EA4FE5C008DC0D7 /* WKBGeometryUtilsTestCase.m */,
 			);
 			path = "sf-iosTests";
 			sourceTree = "<group>";
@@ -282,81 +305,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		042FC6671B96421E00549A4B /* geom */ = {
-			isa = PBXGroup;
-			children = (
-				042FC6681B96421E00549A4B /* WKBCircularString.h */,
-				042FC6691B96421E00549A4B /* WKBCircularString.m */,
-				042FC66A1B96421E00549A4B /* WKBCompoundCurve.h */,
-				042FC66B1B96421E00549A4B /* WKBCompoundCurve.m */,
-				042FC66C1B96421E00549A4B /* WKBCurve.h */,
-				042FC66D1B96421E00549A4B /* WKBCurve.m */,
-				042FC66E1B96421E00549A4B /* WKBCurvePolygon.h */,
-				042FC66F1B96421E00549A4B /* WKBCurvePolygon.m */,
-				042FC6701B96421E00549A4B /* WKBGeometry.h */,
-				042FC6711B96421E00549A4B /* WKBGeometry.m */,
-				042FC6721B96421E00549A4B /* WKBGeometryCollection.h */,
-				042FC6731B96421E00549A4B /* WKBGeometryCollection.m */,
-				042FC6741B96421E00549A4B /* WKBGeometryEnvelope.h */,
-				042FC6751B96421E00549A4B /* WKBGeometryEnvelope.m */,
-				042FC6761B96421E00549A4B /* WKBGeometryTypes.h */,
-				042FC6771B96421E00549A4B /* WKBGeometryTypes.m */,
-				042FC6781B96421E00549A4B /* WKBLineString.h */,
-				042FC6791B96421E00549A4B /* WKBLineString.m */,
-				042FC67A1B96421E00549A4B /* WKBMultiCurve.h */,
-				042FC67B1B96421E00549A4B /* WKBMultiCurve.m */,
-				042FC67C1B96421E00549A4B /* WKBMultiLineString.h */,
-				042FC67D1B96421E00549A4B /* WKBMultiLineString.m */,
-				042FC67E1B96421E00549A4B /* WKBMultiPoint.h */,
-				042FC67F1B96421E00549A4B /* WKBMultiPoint.m */,
-				042FC6801B96421E00549A4B /* WKBMultiPolygon.h */,
-				042FC6811B96421E00549A4B /* WKBMultiPolygon.m */,
-				042FC6821B96421E00549A4B /* WKBMultiSurface.h */,
-				042FC6831B96421E00549A4B /* WKBMultiSurface.m */,
-				042FC6841B96421E00549A4B /* WKBPoint.h */,
-				042FC6851B96421E00549A4B /* WKBPoint.m */,
-				042FC6861B96421E00549A4B /* WKBPolygon.h */,
-				042FC6871B96421E00549A4B /* WKBPolygon.m */,
-				042FC6881B96421E00549A4B /* WKBPolyhedralSurface.h */,
-				042FC6891B96421E00549A4B /* WKBPolyhedralSurface.m */,
-				042FC68A1B96421E00549A4B /* WKBSurface.h */,
-				042FC68B1B96421E00549A4B /* WKBSurface.m */,
-				042FC68C1B96421E00549A4B /* WKBTIN.h */,
-				042FC68D1B96421E00549A4B /* WKBTIN.m */,
-				042FC68E1B96421E00549A4B /* WKBTriangle.h */,
-				042FC68F1B96421E00549A4B /* WKBTriangle.m */,
-			);
-			path = geom;
-			sourceTree = "<group>";
-		};
-		042FC6901B96421E00549A4B /* io */ = {
-			isa = PBXGroup;
-			children = (
-				042FC6911B96421E00549A4B /* WKBByteReader.h */,
-				042FC6921B96421E00549A4B /* WKBByteReader.m */,
-				042FC6931B96421E00549A4B /* WKBByteWriter.h */,
-				042FC6941B96421E00549A4B /* WKBByteWriter.m */,
-				042FC6951B96421E00549A4B /* WKBGeometryReader.h */,
-				042FC6961B96421E00549A4B /* WKBGeometryReader.m */,
-				042FC6971B96421E00549A4B /* WKBGeometryWriter.h */,
-				042FC6981B96421E00549A4B /* WKBGeometryWriter.m */,
-			);
-			path = io;
-			sourceTree = "<group>";
-		};
 		042FC6991B96421E00549A4B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				042FC6911B96421E00549A4B /* SFByteReader.h */,
+				042FC6921B96421E00549A4B /* SFByteReader.m */,
+				042FC6931B96421E00549A4B /* SFByteWriter.h */,
+				042FC6941B96421E00549A4B /* SFByteWriter.m */,
+				042FC69A1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h */,
+				042FC69B1B96421E00549A4B /* SFGeometryEnvelopeBuilder.m */,
+				042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */,
+				042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */,
+				0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */,
+				0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */,
 				0496DB172006AEAE0068A2CE /* centroid */,
 				0496DB182006B3680068A2CE /* sweep */,
-				042FC69A1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.h */,
-				042FC69B1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.m */,
-				042FC69C1B96421E00549A4B /* WKBGeometryPrinter.h */,
-				042FC69D1B96421E00549A4B /* WKBGeometryPrinter.m */,
-				048A7BAC1C999C52007BCA5D /* WKBGeometryJSONCompatible.h */,
-				048A7BAD1C999C52007BCA5D /* WKBGeometryJSONCompatible.m */,
-				0445CB251EA1335B008DC0D7 /* WKBGeometryUtils.h */,
-				0445CB261EA1335B008DC0D7 /* WKBGeometryUtils.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -364,12 +327,12 @@
 		0496DB172006AEAE0068A2CE /* centroid */ = {
 			isa = PBXGroup;
 			children = (
-				0445CB291EA1448C008DC0D7 /* WKBCentroidPoint.h */,
-				0445CB2A1EA1448C008DC0D7 /* WKBCentroidPoint.m */,
-				0445CB2D1EA150D1008DC0D7 /* WKBCentroidCurve.h */,
-				0445CB2E1EA150D1008DC0D7 /* WKBCentroidCurve.m */,
-				0445CB311EA150E3008DC0D7 /* WKBCentroidSurface.h */,
-				0445CB321EA150E3008DC0D7 /* WKBCentroidSurface.m */,
+				0445CB2D1EA150D1008DC0D7 /* SFCentroidCurve.h */,
+				0445CB2E1EA150D1008DC0D7 /* SFCentroidCurve.m */,
+				0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */,
+				0445CB2A1EA1448C008DC0D7 /* SFCentroidPoint.m */,
+				0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */,
+				0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */,
 			);
 			path = centroid;
 			sourceTree = "<group>";
@@ -377,18 +340,18 @@
 		0496DB182006B3680068A2CE /* sweep */ = {
 			isa = PBXGroup;
 			children = (
-				0496DB1D200819110068A2CE /* WKBEvent.h */,
-				0496DB1E200819110068A2CE /* WKBEvent.m */,
-				0496DB212008EC740068A2CE /* WKBEventQueue.h */,
-				0496DB222008EC740068A2CE /* WKBEventQueue.m */,
-				0496DB19200813020068A2CE /* WKBEventTypes.h */,
-				0496DB1A200813020068A2CE /* WKBEventTypes.m */,
-				04C503022008FC4C00862DA9 /* WKBSegment.h */,
-				04C503032008FC4C00862DA9 /* WKBSegment.m */,
-				04C503062008FC6700862DA9 /* WKBShamosHoey.h */,
-				04C503072008FC6700862DA9 /* WKBShamosHoey.m */,
-				0496DB252008F5FD0068A2CE /* WKBSweepLine.h */,
-				0496DB262008F5FD0068A2CE /* WKBSweepLine.m */,
+				0496DB1D200819110068A2CE /* SFEvent.h */,
+				0496DB1E200819110068A2CE /* SFEvent.m */,
+				0496DB212008EC740068A2CE /* SFEventQueue.h */,
+				0496DB222008EC740068A2CE /* SFEventQueue.m */,
+				0496DB19200813020068A2CE /* SFEventTypes.h */,
+				0496DB1A200813020068A2CE /* SFEventTypes.m */,
+				04C503022008FC4C00862DA9 /* SFSegment.h */,
+				04C503032008FC4C00862DA9 /* SFSegment.m */,
+				04C503062008FC6700862DA9 /* SFShamosHoey.h */,
+				04C503072008FC6700862DA9 /* SFShamosHoey.m */,
+				0496DB252008F5FD0068A2CE /* SFSweepLine.h */,
+				0496DB262008F5FD0068A2CE /* SFSweepLine.m */,
 			);
 			path = sweep;
 			sourceTree = "<group>";
@@ -425,46 +388,43 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042FC6AB1B96421E00549A4B /* WKBGeometryEnvelope.h in Headers */,
-				04C503082008FC6700862DA9 /* WKBShamosHoey.h in Headers */,
+				042FC6AB1B96421E00549A4B /* SFGeometryEnvelope.h in Headers */,
+				04C503082008FC6700862DA9 /* SFShamosHoey.h in Headers */,
 				0472B51B1C03590500496B87 /* sf-ios-Bridging-Header.h in Headers */,
-				042FC6B91B96421E00549A4B /* WKBMultiSurface.h in Headers */,
-				0445CB331EA150E3008DC0D7 /* WKBCentroidSurface.h in Headers */,
-				0496DB232008EC740068A2CE /* WKBEventQueue.h in Headers */,
-				042FC6CB1B96421E00549A4B /* WKBGeometryReader.h in Headers */,
-				04C503042008FC4C00862DA9 /* WKBSegment.h in Headers */,
-				042FC6A51B96421E00549A4B /* WKBCurvePolygon.h in Headers */,
-				042FC6AF1B96421E00549A4B /* WKBLineString.h in Headers */,
-				042FC6BF1B96421E00549A4B /* WKBPolyhedralSurface.h in Headers */,
-				042FC6C51B96421E00549A4B /* WKBTriangle.h in Headers */,
+				042FC6B91B96421E00549A4B /* SFMultiSurface.h in Headers */,
+				0445CB331EA150E3008DC0D7 /* SFCentroidSurface.h in Headers */,
+				0496DB232008EC740068A2CE /* SFEventQueue.h in Headers */,
+				04C503042008FC4C00862DA9 /* SFSegment.h in Headers */,
+				042FC6A51B96421E00549A4B /* SFCurvePolygon.h in Headers */,
+				042FC6AF1B96421E00549A4B /* SFLineString.h in Headers */,
+				042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */,
+				042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */,
 				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
-				0445CB271EA1335B008DC0D7 /* WKBGeometryUtils.h in Headers */,
-				0445CB2F1EA150D1008DC0D7 /* WKBCentroidCurve.h in Headers */,
-				042FC6C31B96421E00549A4B /* WKBTIN.h in Headers */,
-				042FC6A11B96421E00549A4B /* WKBCompoundCurve.h in Headers */,
-				0496DB1B200813020068A2CE /* WKBEventTypes.h in Headers */,
-				048A7BAE1C999C52007BCA5D /* WKBGeometryJSONCompatible.h in Headers */,
-				042FC6A71B96421E00549A4B /* WKBGeometry.h in Headers */,
-				0445CB2B1EA1448C008DC0D7 /* WKBCentroidPoint.h in Headers */,
-				042FC6B31B96421E00549A4B /* WKBMultiLineString.h in Headers */,
-				042FC6A91B96421E00549A4B /* WKBGeometryCollection.h in Headers */,
+				0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */,
+				0445CB2F1EA150D1008DC0D7 /* SFCentroidCurve.h in Headers */,
+				042FC6C31B96421E00549A4B /* SFTIN.h in Headers */,
+				042FC6A11B96421E00549A4B /* SFCompoundCurve.h in Headers */,
+				0496DB1B200813020068A2CE /* SFEventTypes.h in Headers */,
+				042FC6A71B96421E00549A4B /* SFGeometry.h in Headers */,
+				0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */,
+				042FC6B31B96421E00549A4B /* SFMultiLineString.h in Headers */,
+				042FC6A91B96421E00549A4B /* SFGeometryCollection.h in Headers */,
 				042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */,
-				042FC6AD1B96421E00549A4B /* WKBGeometryTypes.h in Headers */,
-				042FC6B71B96421E00549A4B /* WKBMultiPolygon.h in Headers */,
-				042FC6C71B96421E00549A4B /* WKBByteReader.h in Headers */,
-				042FC6C91B96421E00549A4B /* WKBByteWriter.h in Headers */,
-				042FC6B11B96421E00549A4B /* WKBMultiCurve.h in Headers */,
-				042FC6A31B96421E00549A4B /* WKBCurve.h in Headers */,
-				0496DB272008F5FD0068A2CE /* WKBSweepLine.h in Headers */,
-				042FC6CF1B96421E00549A4B /* WKBGeometryEnvelopeBuilder.h in Headers */,
-				042FC6B51B96421E00549A4B /* WKBMultiPoint.h in Headers */,
-				042FC6D11B96421E00549A4B /* WKBGeometryPrinter.h in Headers */,
-				042FC69F1B96421E00549A4B /* WKBCircularString.h in Headers */,
-				042FC6C11B96421E00549A4B /* WKBSurface.h in Headers */,
-				042FC6BD1B96421E00549A4B /* WKBPolygon.h in Headers */,
-				042FC6CD1B96421E00549A4B /* WKBGeometryWriter.h in Headers */,
-				0496DB1F200819110068A2CE /* WKBEvent.h in Headers */,
-				042FC6BB1B96421E00549A4B /* WKBPoint.h in Headers */,
+				042FC6AD1B96421E00549A4B /* SFGeometryTypes.h in Headers */,
+				042FC6B71B96421E00549A4B /* SFMultiPolygon.h in Headers */,
+				042FC6C71B96421E00549A4B /* SFByteReader.h in Headers */,
+				042FC6C91B96421E00549A4B /* SFByteWriter.h in Headers */,
+				042FC6B11B96421E00549A4B /* SFMultiCurve.h in Headers */,
+				042FC6A31B96421E00549A4B /* SFCurve.h in Headers */,
+				0496DB272008F5FD0068A2CE /* SFSweepLine.h in Headers */,
+				042FC6CF1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h in Headers */,
+				042FC6B51B96421E00549A4B /* SFMultiPoint.h in Headers */,
+				042FC6D11B96421E00549A4B /* SFGeometryPrinter.h in Headers */,
+				042FC69F1B96421E00549A4B /* SFCircularString.h in Headers */,
+				042FC6C11B96421E00549A4B /* SFSurface.h in Headers */,
+				042FC6BD1B96421E00549A4B /* SFPolygon.h in Headers */,
+				0496DB1F200819110068A2CE /* SFEvent.h in Headers */,
+				042FC6BB1B96421E00549A4B /* SFPoint.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,43 +578,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042FC6AA1B96421E00549A4B /* WKBGeometryCollection.m in Sources */,
-				042FC6A01B96421E00549A4B /* WKBCircularString.m in Sources */,
-				0445CB281EA1335B008DC0D7 /* WKBGeometryUtils.m in Sources */,
-				042FC6B21B96421E00549A4B /* WKBMultiCurve.m in Sources */,
-				042FC6D01B96421E00549A4B /* WKBGeometryEnvelopeBuilder.m in Sources */,
-				042FC6CA1B96421E00549A4B /* WKBByteWriter.m in Sources */,
-				042FC6D21B96421E00549A4B /* WKBGeometryPrinter.m in Sources */,
-				0445CB2C1EA1448C008DC0D7 /* WKBCentroidPoint.m in Sources */,
-				0496DB20200819110068A2CE /* WKBEvent.m in Sources */,
-				0445CB301EA150D1008DC0D7 /* WKBCentroidCurve.m in Sources */,
-				042FC6BE1B96421E00549A4B /* WKBPolygon.m in Sources */,
-				042FC6B01B96421E00549A4B /* WKBLineString.m in Sources */,
-				042FC6B81B96421E00549A4B /* WKBMultiPolygon.m in Sources */,
-				042FC6C01B96421E00549A4B /* WKBPolyhedralSurface.m in Sources */,
-				042FC6B41B96421E00549A4B /* WKBMultiLineString.m in Sources */,
-				042FC6AE1B96421E00549A4B /* WKBGeometryTypes.m in Sources */,
-				042FC6A61B96421E00549A4B /* WKBCurvePolygon.m in Sources */,
-				042FC6C61B96421E00549A4B /* WKBTriangle.m in Sources */,
-				04C503092008FC6700862DA9 /* WKBShamosHoey.m in Sources */,
-				0496DB1C200813020068A2CE /* WKBEventTypes.m in Sources */,
-				042FC6B61B96421E00549A4B /* WKBMultiPoint.m in Sources */,
-				042FC6BC1B96421E00549A4B /* WKBPoint.m in Sources */,
-				042FC6AC1B96421E00549A4B /* WKBGeometryEnvelope.m in Sources */,
-				042FC6A81B96421E00549A4B /* WKBGeometry.m in Sources */,
-				042FC6A21B96421E00549A4B /* WKBCompoundCurve.m in Sources */,
-				042FC6C81B96421E00549A4B /* WKBByteReader.m in Sources */,
-				048A7BAF1C999C52007BCA5D /* WKBGeometryJSONCompatible.m in Sources */,
-				042FC6BA1B96421E00549A4B /* WKBMultiSurface.m in Sources */,
-				042FC6CE1B96421E00549A4B /* WKBGeometryWriter.m in Sources */,
-				042FC6C21B96421E00549A4B /* WKBSurface.m in Sources */,
-				042FC6C41B96421E00549A4B /* WKBTIN.m in Sources */,
-				042FC6A41B96421E00549A4B /* WKBCurve.m in Sources */,
-				0496DB242008EC740068A2CE /* WKBEventQueue.m in Sources */,
-				0445CB341EA150E3008DC0D7 /* WKBCentroidSurface.m in Sources */,
-				0496DB282008F5FD0068A2CE /* WKBSweepLine.m in Sources */,
-				04C503052008FC4C00862DA9 /* WKBSegment.m in Sources */,
-				042FC6CC1B96421E00549A4B /* WKBGeometryReader.m in Sources */,
+				042FC6AA1B96421E00549A4B /* SFGeometryCollection.m in Sources */,
+				042FC6A01B96421E00549A4B /* SFCircularString.m in Sources */,
+				0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */,
+				042FC6B21B96421E00549A4B /* SFMultiCurve.m in Sources */,
+				042FC6D01B96421E00549A4B /* SFGeometryEnvelopeBuilder.m in Sources */,
+				042FC6CA1B96421E00549A4B /* SFByteWriter.m in Sources */,
+				042FC6D21B96421E00549A4B /* SFGeometryPrinter.m in Sources */,
+				0445CB2C1EA1448C008DC0D7 /* SFCentroidPoint.m in Sources */,
+				0496DB20200819110068A2CE /* SFEvent.m in Sources */,
+				0445CB301EA150D1008DC0D7 /* SFCentroidCurve.m in Sources */,
+				042FC6BE1B96421E00549A4B /* SFPolygon.m in Sources */,
+				042FC6B01B96421E00549A4B /* SFLineString.m in Sources */,
+				042FC6B81B96421E00549A4B /* SFMultiPolygon.m in Sources */,
+				042FC6C01B96421E00549A4B /* SFPolyhedralSurface.m in Sources */,
+				042FC6B41B96421E00549A4B /* SFMultiLineString.m in Sources */,
+				042FC6AE1B96421E00549A4B /* SFGeometryTypes.m in Sources */,
+				042FC6A61B96421E00549A4B /* SFCurvePolygon.m in Sources */,
+				042FC6C61B96421E00549A4B /* SFTriangle.m in Sources */,
+				04C503092008FC6700862DA9 /* SFShamosHoey.m in Sources */,
+				0496DB1C200813020068A2CE /* SFEventTypes.m in Sources */,
+				042FC6B61B96421E00549A4B /* SFMultiPoint.m in Sources */,
+				042FC6BC1B96421E00549A4B /* SFPoint.m in Sources */,
+				042FC6AC1B96421E00549A4B /* SFGeometryEnvelope.m in Sources */,
+				042FC6A81B96421E00549A4B /* SFGeometry.m in Sources */,
+				042FC6A21B96421E00549A4B /* SFCompoundCurve.m in Sources */,
+				042FC6C81B96421E00549A4B /* SFByteReader.m in Sources */,
+				042FC6BA1B96421E00549A4B /* SFMultiSurface.m in Sources */,
+				042FC6C21B96421E00549A4B /* SFSurface.m in Sources */,
+				042FC6C41B96421E00549A4B /* SFTIN.m in Sources */,
+				042FC6A41B96421E00549A4B /* SFCurve.m in Sources */,
+				0496DB242008EC740068A2CE /* SFEventQueue.m in Sources */,
+				0445CB341EA150E3008DC0D7 /* SFCentroidSurface.m in Sources */,
+				0496DB282008F5FD0068A2CE /* SFSweepLine.m in Sources */,
+				04C503052008FC4C00862DA9 /* SFSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,10 +620,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C5030C20095E7300862DA9 /* ShamosHoeyTestCase.m in Sources */,
-				04AB919E1BF29F9A00894999 /* WKBTestUtils.m in Sources */,
-				04AB919B1BF29ECD00894999 /* WKBTestCase.m in Sources */,
-				0445CB361EA4FE5C008DC0D7 /* WKBGeometryUtilsTestCase.m in Sources */,
-				04AB91A11BF2A05200894999 /* WKBGeometryTestUtils.m in Sources */,
+				04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */,
+				0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */,
+				04AB91A11BF2A05200894999 /* SFGeometryTestUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

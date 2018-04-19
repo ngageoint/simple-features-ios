@@ -1,51 +1,48 @@
 //
-//  wkb-ios-Bridging-Header.h
-//  wkb-ios
+//  sf-ios-Bridging-Header.h
+//  sf-ios
 //
 //  Created by Brian Osborn on 11/23/15.
 //  Copyright © 2015 NGA. All rights reserved.
 //
 
-#ifndef wkb_ios_Bridging_Header_h
-#define wkb_ios_Bridging_Header_h
+#ifndef sf_ios_Bridging_Header_h
+#define sf_ios_Bridging_Header_h
 
-#import "wkb_ios.h"
-#import "WKBCircularString.h"
-#import "WKBCompoundCurve.h"
-#import "WKBCurve.h"
-#import "WKBCurvePolygon.h"
-#import "WKBGeometry.h"
-#import "WKBGeometryCollection.h"
-#import "WKBGeometryEnvelope.h"
-#import "WKBGeometryTypes.h"
-#import "WKBLineString.h"
-#import "WKBMultiCurve.h"
-#import "WKBMultiLineString.h"
-#import "WKBMultiPoint.h"
-#import "WKBMultiPolygon.h"
-#import "WKBMultiSurface.h"
-#import "WKBPoint.h"
-#import "WKBPolygon.h"
-#import "WKBPolyhedralSurface.h"
-#import "WKBSurface.h"
-#import "WKBTIN.h"
-#import "WKBTriangle.h"
-#import "WKBByteReader.h"
-#import "WKBByteWriter.h"
-#import "WKBGeometryReader.h"
-#import "WKBGeometryWriter.h"
-#import "WKBGeometryEnvelopeBuilder.h"
-#import "WKBGeometryPrinter.h"
-#import "WKBGeometryJSONCompatible.h"
-#import "WKBGeometryUtils.h"
-#import "WKBCentroidPoint.h"
-#import "WKBCentroidCurve.h"
-#import "WKBCentroidSurface.h"
-#import "WKBEvent.h"
-#import "WKBEventQueue.h"
-#import "WKBEventTypes.h"
-#import "WKBSegment.h"
-#import "WKBShamosHoey.h"
-#import "WKBSweepLine.h"
+#import "sf_ios.h"
+#import "SFCircularString.h"
+#import "SFCompoundCurve.h"
+#import "SFCurve.h"
+#import "SFCurvePolygon.h"
+#import "SFGeometry.h"
+#import "SFGeometryCollection.h"
+#import "SFGeometryEnvelope.h"
+#import "SFGeometryTypes.h"
+#import "SFLineString.h"
+#import "SFMultiCurve.h"
+#import "SFMultiLineString.h"
+#import "SFMultiPoint.h"
+#import "SFMultiPolygon.h"
+#import "SFMultiSurface.h"
+#import "SFPoint.h"
+#import "SFPolygon.h"
+#import "SFPolyhedralSurface.h"
+#import "SFSurface.h"
+#import "SFTIN.h"
+#import "SFTriangle.h"
+#import "SFByteReader.h"
+#import "SFByteWriter.h"
+#import "SFGeometryEnvelopeBuilder.h"
+#import "SFGeometryPrinter.h"
+#import "SFGeometryUtils.h"
+#import "SFCentroidPoint.h"
+#import "SFCentroidCurve.h"
+#import "SFCentroidSurface.h"
+#import "SFEvent.h"
+#import "SFEventQueue.h"
+#import "SFEventTypes.h"
+#import "SFSegment.h"
+#import "SFShamosHoey.h"
+#import "SFSweepLine.h"
 
-#endif /* wkb_ios_Bridging_Header_h */
+#endif /* sf_ios_Bridging_Header_h */
