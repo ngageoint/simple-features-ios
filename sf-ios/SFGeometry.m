@@ -41,4 +41,39 @@
     return self;
 }
 
+- (BOOL)isEqualToGeometry:(SFGeometry *)geometry {
+    if (self == geometry)
+        return YES;
+    if (geometry == nil)
+        return NO;
+    if (self.geometryType != geometry.geometryType)
+        return NO;
+    if (self.hasM != geometry.hasM)
+        return NO;
+    if (self.hasZ != geometry.hasZ)
+        return NO;
+    return YES;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SFGeometry class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToGeometry:(SFGeometry *)object];
+}
+
+- (NSUInteger)hash {
+    int prime = 31;
+    int result = 1;
+    result = prime * result + (int)self.geometryType;
+    result = prime * result + (self.hasM ? 1231 : 1237);
+    result = prime * result + (self.hasZ ? 1231 : 1237);
+    return result;
+}
+
 @end
