@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SFGeometryTypes.h"
+#import "SFGeometryEnvelope.h"
+
+@class SFPoint;
 
 /**
  *  The root of the geometry type hierarchy
@@ -39,5 +42,55 @@
  *  @return new geometry
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Does the geometry have z coordinates
+ *
+ * @return true if has z coordinates
+ */
+-(BOOL) is3D;
+
+/**
+ * Does the geometry have m coordinates.
+ *
+ * @return true if has m coordinates
+ */
+-(BOOL) isMeasured;
+
+/**
+ * Get the minimum bounding box for this Geometry
+ *
+ * @return geometry envelope
+ */
+-(SFGeometryEnvelope *) envelope;
+
+/**
+ * Get the inherent dimension (0, 1, or 2) for this Geometry
+ *
+ * @return dimension
+ */
+-(int) dimension;
+
+/**
+ * Get the mathematical centroid for this Geometry as a Point
+ *
+ * @return centroid point
+ */
+-(SFPoint *) centroid;
+
+/**
+ * Is the Geometry empty
+ *
+ * @return true if empty
+ */
+-(BOOL) isEmpty;
+
+/**
+ * Determine if this Geometry has no anomalous geometric points, such as
+ * self intersection or self tangency
+ *
+ * @return true if simple
+ */
+-(BOOL) isSimple;
 
 @end

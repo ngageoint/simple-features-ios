@@ -31,8 +31,25 @@
     [self.geometries addObject:geometry];
 }
 
--(NSNumber *) numGeometries{
-    return [NSNumber numberWithInteger:[self.geometries count]];
+-(void) addGeometries: (NSArray<SFGeometry *> *) geometries{
+    [self.geometries addObjectsFromArray:geometries];
+}
+
+-(int) numGeometries{
+    return (int)self.geometries.count;
+}
+
+-(SFGeometry *) geometryAtIndex: (int)  n{
+    return [self.geometries objectAtIndex:n];
+}
+
+-(BOOL) isEmpty{
+    return self.geometries.count == 0;
+}
+
+-(BOOL) isSimple{
+    [NSException raise:@"Unsupported" format:@"Is Simple not implemented for Geometry Collection"];
+    return NO;
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
@@ -55,6 +72,41 @@
         _geometries = [decoder decodeObjectForKey:@"geometries"];
     }
     return self;
+}
+
+- (BOOL)isEqualToGeometryCollection:(SFGeometryCollection *)geometryCollection {
+    if (self == geometryCollection)
+        return YES;
+    if (geometryCollection == nil)
+        return NO;
+    if (![super isEqual:geometryCollection])
+        return NO;
+    if (self.geometries == nil) {
+        if (geometryCollection.geometries != nil)
+            return NO;
+    } else if (![self.geometries isEqual:geometryCollection.geometries])
+        return NO;
+    return YES;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SFGeometryCollection class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToGeometryCollection:(SFGeometryCollection *)object];
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = [super hash];
+    result = prime * result
+        + ((self.geometries == nil) ? 0 : [self.geometries hash]);
+    return result;
 }
 
 @end

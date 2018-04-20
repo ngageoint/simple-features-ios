@@ -7,6 +7,8 @@
 //
 
 #import "SFGeometry.h"
+#import "SFGeometryEnvelopeBuilder.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFGeometry
 
@@ -18,6 +20,36 @@
         self.hasM = hasM;
     }
     return self;
+}
+
+-(BOOL) is3D{
+    return _hasZ;
+}
+
+-(BOOL) isMeasured{
+    return _hasM;
+}
+
+-(SFGeometryEnvelope *) envelope{
+    return [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:self];
+}
+
+-(int) dimension{
+    return [SFGeometryUtils dimensionOfGeometry:self];
+}
+
+-(SFPoint *) centroid{
+    return [SFGeometryUtils centroidOfGeometry:self];
+}
+
+-(BOOL) isEmpty{
+    [NSException raise:@"Abstract" format:@"Can not determine if abstract geometry is empty"];
+    return NO;
+}
+
+-(BOOL) isSimple{
+    [NSException raise:@"Abstract" format:@"Can not determine if abstract geometry is simple"];
+    return NO;
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
@@ -68,8 +100,8 @@
 }
 
 - (NSUInteger)hash {
-    int prime = 31;
-    int result = 1;
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
     result = prime * result + (int)self.geometryType;
     result = prime * result + (self.hasM ? 1231 : 1237);
     result = prime * result + (self.hasZ ? 1231 : 1237);

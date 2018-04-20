@@ -20,20 +20,28 @@
     return self;
 }
 
--(NSMutableArray *) getLineStrings{
-    return [self geometries];
+-(NSMutableArray<SFLineString *> *) lineStrings{
+    return (NSMutableArray<SFLineString *> *)[self curves];
 }
 
--(void) setLineStrings: (NSMutableArray *) lineStrings{
-    [self setGeometries:lineStrings];
+-(void) setLineStrings: (NSMutableArray<SFLineString *> *) lineStrings{
+    [self setCurves:(NSMutableArray<SFCurve *> *)lineStrings];
 }
 
 -(void) addLineString: (SFLineString *) lineString{
-    [self addGeometry:lineString];
+    [self addCurve:lineString];
 }
 
--(NSNumber *) numLineStrings{
-    return [self numGeometries];
+-(void) addLineStrings: (NSArray<SFLineString *> *) lineStrings{
+    [self addCurves:lineStrings];
+}
+
+-(int) numLineStrings{
+    return [self numCurves];
+}
+
+-(SFLineString *) lineStringAtIndex: (int) n{
+    return (SFLineString *)[self curveAtIndex:n];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

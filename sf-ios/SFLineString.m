@@ -7,6 +7,7 @@
 //
 
 #import "SFLineString.h"
+#import "SFShamosHoey.h"
 
 @implementation SFLineString
 
@@ -31,8 +32,40 @@
     [self.points addObject:point];
 }
 
--(NSNumber *) numPoints{
-    return [NSNumber numberWithInteger:[self.points count] ];
+-(void) addPoints: (NSArray<SFPoint *> *) points{
+    [self.points addObjectsFromArray:points];
+}
+
+-(int) numPoints{
+    return (int)self.points.count;
+}
+
+-(SFPoint *) pointAtIndex: (int) n{
+    return [self.points objectAtIndex:n];
+}
+
+-(SFPoint *) startPoint{
+    SFPoint *startPoint = nil;
+    if (![self isEmpty]) {
+        startPoint = [self.points objectAtIndex:0];
+    }
+    return startPoint;
+}
+
+-(SFPoint *) endPoint{
+    SFPoint *endPoint = nil;
+    if (![self isEmpty]) {
+        endPoint = [self.points objectAtIndex:self.points.count - 1];
+    }
+    return endPoint;
+}
+
+-(BOOL) isEmpty{
+    return self.points.count == 0;
+}
+
+-(BOOL) isSimple{
+    return [SFShamosHoey simplePolygonPoints:self.points];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
@@ -55,6 +88,41 @@
         _points = [decoder decodeObjectForKey:@"points"];
     }
     return self;
+}
+
+- (BOOL)isEqualToLineString:(SFLineString *)lineString {
+    if (self == lineString)
+        return YES;
+    if (lineString == nil)
+        return NO;
+    if (![super isEqual:lineString])
+        return NO;
+    if (self.points == nil) {
+        if (lineString.points != nil)
+            return NO;
+    } else if (![self.points isEqual:lineString.points])
+        return NO;
+    return YES;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SFLineString class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToLineString:(SFLineString *)object];
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = [super hash];
+    result = prime * result
+        + ((self.points == nil) ? 0 : [self.points hash]);
+    return result;
 }
 
 @end

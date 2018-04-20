@@ -191,7 +191,7 @@
         if (consecutive) {
             int edge1 = segment1.edge;
             int edge2 = segment2.edge;
-            int ringPoints = [[[self.rings objectAtIndex:ring1] numPoints] intValue];
+            int ringPoints = [[self.rings objectAtIndex:ring1] numPoints];
             consecutive = (edge1 + 1) % ringPoints == edge2
                 || edge1 == (edge2 + 1) % ringPoints;
         }

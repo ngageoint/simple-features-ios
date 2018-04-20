@@ -8,6 +8,7 @@
 
 #import "SFPolygon.h"
 #import "SFLineString.h"
+#import "SFShamosHoey.h"
 
 @implementation SFPolygon
 
@@ -23,6 +24,26 @@
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     return self;
+}
+
+-(NSMutableArray<SFLineString *> *) lineStrings{
+    return (NSMutableArray<SFLineString *> *) self.rings;
+}
+
+-(SFLineString *) ringAtIndex: (int) n{
+    return (SFLineString *)[super ringAtIndex:n];
+}
+
+-(SFLineString *) exteriorRing{
+    return (SFLineString *)[super exteriorRing];
+}
+
+-(SFLineString *) interiorRingAtIndex: (int) n{
+    return (SFLineString *)[super interiorRingAtIndex:n];
+}
+
+-(BOOL) isSimple{
+    return [SFShamosHoey simplePolygon:self];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

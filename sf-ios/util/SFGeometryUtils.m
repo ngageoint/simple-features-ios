@@ -174,7 +174,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(void) minimizeMultiLineString: (SFMultiLineString *) multiLineString withMaxX: (double) maxX{
     
-    NSArray * lineStrings = [multiLineString getLineStrings];
+    NSArray * lineStrings = [multiLineString lineStrings];
     for(SFLineString * lineString in lineStrings){
         [self minimizeLineString:lineString withMaxX:maxX];
     }
@@ -189,7 +189,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(void) minimizeMultiPolygon: (SFMultiPolygon *) multiPolygon withMaxX: (double) maxX{
     
-    NSArray * polygons = [multiPolygon getPolygons];
+    NSArray * polygons = [multiPolygon polygons];
     for(SFPolygon * polygon in polygons){
         [self minimizePolygon:polygon withMaxX:maxX];
     }
@@ -283,7 +283,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(void) normalizeMultiPoint: (SFMultiPoint *) multiPoint withMaxX: (double) maxX{
     
-    NSArray * points = [multiPoint getPoints];
+    NSArray * points = [multiPoint points];
     for(SFPoint * point in points){
         [self normalizePoint:point withMaxX:maxX];
     }
@@ -298,7 +298,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(void) normalizeMultiLineString: (SFMultiLineString *) multiLineString withMaxX: (double) maxX{
     
-    NSArray * lineStrings = [multiLineString getLineStrings];
+    NSArray * lineStrings = [multiLineString lineStrings];
     for(SFLineString * lineString in lineStrings){
         [self normalizeLineString:lineString withMaxX:maxX];
     }
@@ -313,7 +313,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(void) normalizeMultiPolygon: (SFMultiPolygon *) multiPolygon withMaxX: (double) maxX{
     
-    NSArray * polygons = [multiPolygon getPolygons];
+    NSArray * polygons = [multiPolygon polygons];
     for(SFPolygon * polygon in polygons){
         [self normalizePolygon:polygon withMaxX:maxX];
     }
@@ -499,7 +499,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonEdge: (SFPolygon *) polygon withEpsilon: (double) epsilon{
-    return [polygon numRings] > 0 && [self point:point onPolygonRingEdge:[polygon.rings objectAtIndex:0] withEpsilon:epsilon];
+    return [polygon numRings] > 0 && [self point:point onPolygonRingEdge:[polygon ringAtIndex:0] withEpsilon:epsilon];
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonRingEdge: (SFLineString *) ring{
@@ -519,7 +519,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) closedPolygon: (SFPolygon *) polygon{
-    return [polygon numRings] > 0 && [self closedPolygonRing:[polygon.rings objectAtIndex:0]];
+    return [polygon numRings] > 0 && [self closedPolygonRing:[polygon ringAtIndex:0]];
 }
 
 +(BOOL) closedPolygonRing: (SFLineString *) ring{

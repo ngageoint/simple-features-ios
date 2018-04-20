@@ -145,7 +145,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiPoint];
     
-    NSArray * points = [multiPoint getPoints];
+    NSArray * points = [multiPoint points];
     for(SFPoint * point in points){
         [self addPoint:point andEnvelope:envelope];
     }
@@ -164,7 +164,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiLineString];
     
-    NSArray * lineStrings = [multiLineString getLineStrings];
+    NSArray * lineStrings = [multiLineString lineStrings];
     for(SFLineString * lineString in lineStrings){
         [self addLineString:lineString andEnvelope:envelope];
     }
@@ -183,7 +183,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiPolygon];
     
-    NSArray * polygons = [multiPolygon getPolygons];
+    NSArray * polygons = [multiPolygon polygons];
     for(SFPolygon * polygon in polygons){
         [self addPolygon:polygon andEnvelope:envelope];
     }

@@ -14,7 +14,7 @@
 @implementation SFShamosHoey
 
 +(BOOL) simplePolygon: (SFPolygon *) polygon{
-    return [self simplePolygonRings:polygon.rings];
+    return [self simplePolygonRings:[polygon lineStrings]];
 }
 
 +(BOOL) simplePolygonPoints: (NSArray<SFPoint *> *) points{

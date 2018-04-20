@@ -31,8 +31,37 @@
     [self.rings addObject:ring];
 }
 
--(NSNumber *) numRings{
-    return [NSNumber numberWithInteger:[self.rings count]];
+-(void) addRings: (NSArray<SFCurve *> *) rings{
+    [self.rings addObjectsFromArray:rings];
+}
+
+-(int) numRings{
+    return (int) self.rings.count;
+}
+
+-(SFCurve *) ringAtIndex: (int) n{
+    return [self.rings objectAtIndex:n];
+}
+
+-(SFCurve *) exteriorRing{
+    return [self.rings objectAtIndex:0];
+}
+
+-(int) numInteriorRings{
+    return (int)self.rings.count - 1;
+}
+
+-(SFCurve *) interiorRingAtIndex: (int) n{
+    return [self.rings objectAtIndex:n + 1];
+}
+
+-(BOOL) isEmpty{
+    return self.rings.count == 0;
+}
+
+-(BOOL) isSimple{
+    [NSException raise:@"Unsupported" format:@"Is Simple not implemented for Curve Polygon"];
+    return NO;
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
@@ -55,6 +84,41 @@
         _rings = [decoder decodeObjectForKey:@"rings"];
     }
     return self;
+}
+
+- (BOOL)isEqualToCurvePolygon:(SFCurvePolygon *)curvePolygon {
+    if (self == curvePolygon)
+        return YES;
+    if (curvePolygon == nil)
+        return NO;
+    if (![super isEqual:curvePolygon])
+        return NO;
+    if (self.rings == nil) {
+        if (curvePolygon.rings != nil)
+            return NO;
+    } else if (![self.rings isEqual:curvePolygon.rings])
+        return NO;
+    return YES;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SFCurvePolygon class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToCurvePolygon:(SFCurvePolygon *)object];
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = [super hash];
+    result = prime * result
+        + ((self.rings == nil) ? 0 : [self.rings hash]);
+    return result;
 }
 
 @end

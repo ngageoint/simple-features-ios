@@ -20,20 +20,28 @@
     return self;
 }
 
--(NSMutableArray *) getPolygons{
-    return [self geometries];
+-(NSMutableArray<SFPolygon *> *) polygons{
+    return (NSMutableArray<SFPolygon *> *)[self surfaces];
 }
 
--(void) setPolygons: (NSMutableArray *) polygons{
-    [self setGeometries:polygons];
+-(void) setPolygons: (NSMutableArray<SFPolygon *> *) polygons{
+    [self setSurfaces:(NSMutableArray<SFSurface *> *)polygons];
 }
 
 -(void) addPolygon: (SFPolygon *) polygon{
-    [self addGeometry:polygon];
+    [self addSurface:polygon];
 }
 
--(NSNumber *) numPolygons{
-    return [self numGeometries];
+-(void) addPolygons: (NSArray<SFPolygon *> *) polygons{
+    [self addSurfaces:polygons];
+}
+
+-(int) numPolygons{
+    return [self numSurfaces];
+}
+
+-(SFPolygon *) polygonAtIndex: (int) n{
+    return (SFPolygon *)[self surfaceAtIndex:n];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

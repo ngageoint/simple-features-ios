@@ -20,20 +20,33 @@
     return self;
 }
 
--(NSMutableArray *) getPoints{
-    return [self geometries];
+-(NSMutableArray<SFPoint *> *) points{
+    return (NSMutableArray<SFPoint *> *)[self geometries];
 }
 
--(void) setPoints: (NSMutableArray *) points{
-    [self setGeometries:points];
+-(void) setPoints: (NSMutableArray<SFPoint *> *) points{
+    [self setGeometries:(NSMutableArray<SFGeometry *> *)points];
 }
 
 -(void) addPoint: (SFPoint *) point{
     [self addGeometry:point];
 }
 
--(NSNumber *) numPoints{
+-(void) addPoints: (NSArray<SFPoint *> *) points{
+    [self addGeometries:points];
+}
+
+-(int) numPoints{
     return [self numGeometries];
+}
+
+-(SFPoint *) pointAtIndex: (int) n{
+    return (SFPoint *)[self geometryAtIndex:n];
+}
+
+-(BOOL) isSimple{
+    NSSet<SFPoint *> *points = [[NSSet alloc] initWithArray:[self points]];
+    return points.count == [self numPoints];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

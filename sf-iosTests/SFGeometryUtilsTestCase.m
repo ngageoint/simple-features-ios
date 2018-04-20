@@ -261,9 +261,9 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFGeometryUtils normalizeGeometry:polygon3 withMaxX:180.0];
     
     NSArray *points = ring.points;
-    SFLineString *ring2 = [polygon2.rings objectAtIndex:0];
+    SFLineString *ring2 = [polygon2 ringAtIndex:0];
     NSArray *points2 = ring2.points;
-    SFLineString *ring3 = [polygon3.rings objectAtIndex:0];
+    SFLineString *ring3 = [polygon3 ringAtIndex:0];
     NSArray *points3 = ring3.points;
     
     for(int i = 0; i < points.count; i++){

@@ -37,14 +37,14 @@
  *
  *  @return line strings
  */
--(NSMutableArray *) getLineStrings;
+-(NSMutableArray<SFLineString *> *) lineStrings;
 
 /**
  *  Set the line strings
  *
  *  @param lineStrings line strings
  */
--(void) setLineStrings: (NSMutableArray *) lineStrings;
+-(void) setLineStrings: (NSMutableArray<SFLineString *> *) lineStrings;
 
 /**
  *  Add a line string
@@ -54,10 +54,27 @@
 -(void) addLineString: (SFLineString *) lineString;
 
 /**
+ * Add line strings
+ *
+ * @param lineStrings
+ *            line strings
+ */
+-(void) addLineStrings: (NSArray<SFLineString *> *) lineStrings;
+
+/**
  *  Get the number of line strings
  *
  *  @return line string count
  */
--(NSNumber *) numLineStrings;
+-(int) numLineStrings;
+
+/**
+ * Returns the Nth line string
+ *
+ * @param n
+ *            nth line string to return
+ * @return line string
+ */
+-(SFLineString *) lineStringAtIndex: (int) n;
 
 @end

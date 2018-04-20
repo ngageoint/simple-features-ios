@@ -11,7 +11,7 @@
 /**
  *  Geometry envelope containing x and y range with optional z and m range
  */
-@interface SFGeometryEnvelope : NSObject
+@interface SFGeometryEnvelope : NSObject <NSMutableCopying, NSCoding>
 
 /**
  *  X coordinate range
@@ -55,5 +55,109 @@
  *  @return new geometry envelope
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ *  Initialize with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinX: (NSDecimalNumber *) minX
+                      andMinY: (NSDecimalNumber *) minY
+                     andMaxX: (NSDecimalNumber *) maxX
+                      andMaxY: (NSDecimalNumber *) maxY;
+
+/**
+ *  Initialize with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinXDouble: (double) minX
+                      andMinYDouble: (double) minY
+                     andMaxXDouble: (double) maxX
+                      andMaxYDouble: (double) maxY;
+
+/**
+ *  Initialize with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ;
+
+/**
+ *  Initialize with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param minM minimum m
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *  @param maxM maximum m
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMinM: (NSDecimalNumber *) minM
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ
+                     andMaxM: (NSDecimalNumber *) maxM;
+
+/**
+ * True if has Z coordinates
+ *
+ * @return has z
+ */
+-(BOOL) is3D;
+
+/**
+ * True if has M measurements
+ *
+ * @return has m
+ */
+-(BOOL) isMeasured;
+
+/**
+ * Get the overlapping geometry envelope with the provided envelope
+ *
+ * @param envelope
+ *            envelope
+ * @return geometry envelope
+ */
+-(SFGeometryEnvelope *) overlapWithEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Get the union geometry envelope combined with the provided envelope
+ *
+ * @param envelope
+ *            envelope
+ * @return geometry envelope
+ */
+-(SFGeometryEnvelope *) unionWithEnvelope: (SFGeometryEnvelope *) envelope;
 
 @end

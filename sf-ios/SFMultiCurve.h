@@ -7,6 +7,7 @@
 //
 
 #import "SFGeometryCollection.h"
+#import "SFCurve.h"
 
 /**
  * A restricted form of GeometryCollection where each Geometry in the collection
@@ -24,5 +25,58 @@
  *  @return new multi curve
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ *  Get the curves
+ *
+ *  @return curves
+ */
+-(NSMutableArray<SFCurve *> *) curves;
+
+/**
+ *  Set the curves
+ *
+ *  @param curves curves
+ */
+-(void) setCurves: (NSMutableArray<SFCurve *> *) curves;
+
+/**
+ *  Add a curve
+ *
+ *  @param curve curve
+ */
+-(void) addCurve: (SFCurve *) curve;
+
+/**
+ * Add curves
+ *
+ * @param curves
+ *            curves
+ */
+-(void) addCurves: (NSArray<SFCurve *> *) curves;
+
+/**
+ *  Get the number of curves
+ *
+ *  @return curve count
+ */
+-(int) numCurves;
+
+/**
+ * Returns the Nth curve
+ *
+ * @param n
+ *            nth curve to return
+ * @return curve
+ */
+-(SFCurve *) curveAtIndex: (int) n;
+
+/**
+ * Determine if this Multi Curve is closed for each Curve (start point = end
+ * point)
+ *
+ * @return true if closed
+ */
+-(BOOL) isClosed;
 
 @end

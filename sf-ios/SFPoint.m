@@ -31,13 +31,6 @@
     return self;
 }
 
--(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPoint *point = [[SFPoint alloc] initWithHasZ:self.hasZ andHasM:self.hasM andX:self.x andY:self.y];
-    [point setZ:self.z];
-    [point setM:self.m];
-    return point;
-}
-
 -(void) setXValue: (double) x{
     self.x = [[NSDecimalNumber alloc] initWithDouble:x];
 }
@@ -52,6 +45,21 @@
 
 -(void) setMValue: (double) m{
     self.m = [[NSDecimalNumber alloc] initWithDouble:m];
+}
+
+-(BOOL) isEmpty{
+    return NO;
+}
+
+-(BOOL) isSimple{
+    return YES;
+}
+
+-(id) mutableCopyWithZone: (NSZone *) zone{
+    SFPoint *point = [[SFPoint alloc] initWithHasZ:self.hasZ andHasM:self.hasM andX:self.x andY:self.y];
+    [point setZ:self.z];
+    [point setM:self.m];
+    return point;
 }
 
 - (void) encodeWithCoder:(NSCoder *)encoder {
@@ -72,6 +80,62 @@
         _m = [decoder decodeObjectForKey:@"m"];
     }
     return self;
+}
+
+- (BOOL)isEqualToPoint:(SFPoint *)point {
+    if (self == point)
+        return YES;
+    if (point == nil)
+        return NO;
+    if (![super isEqual:point])
+        return NO;
+    if(self.m == nil){
+        if(point.m != nil)
+            return NO;
+    }else if(![self.m isEqual:point.m]){
+        return NO;
+    }
+    if(self.x == nil){
+        if(point.x != nil)
+            return NO;
+    }else if(![self.x isEqual:point.x]){
+        return NO;
+    }
+    if(self.y == nil){
+        if(point.y != nil)
+            return NO;
+    }else if(![self.y isEqual:point.y]){
+        return NO;
+    }
+    if(self.z == nil){
+        if(point.z != nil)
+            return NO;
+    }else if(![self.z isEqual:point.z]){
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SFPoint class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToPoint:(SFPoint *)object];
+}
+
+- (NSUInteger)hash {
+    NSUInteger prime = 31;
+    NSUInteger result = [super hash];
+    result = prime * result + ((self.m == nil) ? 0 : [self.m hash]);
+    result = prime * result + ((self.x == nil) ? 0 : [self.x hash]);
+    result = prime * result + ((self.y == nil) ? 0 : [self.y hash]);
+    result = prime * result + ((self.z == nil) ? 0 : [self.z hash]);
+    return result;
 }
 
 @end

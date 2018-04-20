@@ -16,7 +16,7 @@
 /**
  *  Array of geometries
  */
-@property (nonatomic, strong) NSMutableArray * geometries;
+@property (nonatomic, strong) NSMutableArray<SFGeometry *> *geometries;
 
 /**
  *  Initialize
@@ -54,10 +54,29 @@
 -(void) addGeometry: (SFGeometry *) geometry;
 
 /**
+ * Add geometries
+ *
+ * @param geometries
+ *            geometries
+ */
+-(void) addGeometries: (NSArray<SFGeometry *> *) geometries;
+
+/**
  *  Get the number of geometries
  *
  *  @return geometry count
  */
--(NSNumber *) numGeometries;
+-(int) numGeometries;
+
+/**
+ * Returns the Nth geometry
+ *
+ * @param n
+ *            nth geometry to return
+ * @return geometry
+ */
+-(SFGeometry *) geometryAtIndex: (int)  n;
+
+// TODO collection methods
 
 @end

@@ -50,7 +50,7 @@
             [self addLineString:(SFLineString *)geometry];
             break;
         case SF_MULTILINESTRING:
-            [self addLineStrings:[((SFMultiLineString *)geometry) getLineStrings]];
+            [self addLineStrings:[((SFMultiLineString *)geometry) lineStrings]];
             break;
         case SF_COMPOUNDCURVE:
             [self addLineStrings:((SFCompoundCurve *)geometry).lineStrings];

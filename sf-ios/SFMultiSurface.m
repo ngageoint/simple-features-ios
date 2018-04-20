@@ -15,4 +15,28 @@
     return self;
 }
 
+-(NSMutableArray<SFSurface *> *) surfaces{
+    return (NSMutableArray<SFSurface *> *)[self geometries];
+}
+
+-(void) setSurfaces: (NSMutableArray<SFSurface *> *) surfaces{
+    [self setGeometries:(NSMutableArray<SFGeometry *> *)surfaces];
+}
+
+-(void) addSurface: (SFSurface *) surface{
+    [self addGeometry:surface];
+}
+
+-(void) addSurfaces: (NSArray<SFSurface *> *) surfaces{
+    return [self addGeometries:surfaces];
+}
+
+-(int) numSurfaces{
+    return [self numGeometries];
+}
+
+-(SFSurface *) surfaceAtIndex: (int) n{
+    return (SFSurface *)[self geometryAtIndex:n];
+}
+
 @end

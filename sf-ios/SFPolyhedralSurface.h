@@ -17,7 +17,7 @@
 /**
  *  Array of polygons
  */
-@property (nonatomic, strong) NSMutableArray * polygons;
+@property (nonatomic, strong) NSMutableArray<SFPolygon *> *polygons;
 
 /**
  *  Initialize
@@ -48,6 +48,21 @@
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Get patches
+ *
+ * @return patches
+ */
+-(NSMutableArray<SFPolygon *> *) patches;
+
+/**
+ * Set patches
+ *
+ * @param patches
+ *            patches
+ */
+-(void) setPatches: (NSMutableArray<SFPolygon *> *) patches;
+
+/**
  *  Add a polygon
  *
  *  @param polygon polygon
@@ -55,10 +70,59 @@
 -(void) addPolygon: (SFPolygon *) polygon;
 
 /**
+ * Add patch
+ *
+ * @param patch
+ *            patch
+ */
+-(void) addPatch: (SFPolygon *) patch;
+
+/**
+ * Add polygons
+ *
+ * @param polygons
+ *            polygons
+ */
+-(void) addPolygons: (NSArray<SFPolygon *> *) polygons;
+
+/**
+ * Add patches
+ *
+ * @param patches
+ *            patches
+ */
+-(void) addPatches: (NSArray<SFPolygon *> *) patches;
+
+/**
  *  Get the number of polygons
  *
  *  @return polygon count
  */
--(NSNumber *) numPolygons;
+-(int) numPolygons;
+
+/**
+ *  Get the number of patches
+ *
+ *  @return patch count
+ */
+-(int) numPatches;
+
+/**
+ * Get the Nth polygon
+ *
+ * @param n
+ *            nth polygon to return
+ * @return polygon
+ */
+-(SFPolygon *) polygonAtIndex: (int) n;
+
+/**
+ * Get the Nth polygon patch
+ *
+ * @param n
+ *            nth polygon patch to return
+ * @return polygon patch
+ */
+-(SFPolygon *) patchAtIndex: (int) n;
 
 @end

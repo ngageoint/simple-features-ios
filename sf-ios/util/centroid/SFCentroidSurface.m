@@ -57,7 +57,7 @@
             [self addPolygon:(SFPolygon *) geometry];
             break;
         case SF_MULTIPOLYGON:
-            [self addPolygons:[((SFMultiPolygon *)geometry) getPolygons]];
+            [self addPolygons:[((SFMultiPolygon *)geometry) polygons]];
             break;
         case SF_CURVEPOLYGON:
             [self addCurvePolygon:(SFCurvePolygon *) geometry];

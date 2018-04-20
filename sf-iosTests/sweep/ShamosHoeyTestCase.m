@@ -148,8 +148,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
     
@@ -163,9 +163,9 @@
     [polygon addRing:hole];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
 
 }
 
@@ -185,8 +185,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
     
@@ -201,9 +201,9 @@
     [polygon addRing:hole];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:4 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:4 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     
 }
 
@@ -223,8 +223,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
     
@@ -238,9 +238,9 @@
     [polygon addRing:hole];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
 
 }
 
@@ -260,8 +260,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints1 = [[NSMutableArray alloc] init];
     
@@ -275,9 +275,9 @@
     [polygon addRing:hole1];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints2 = [[NSMutableArray alloc] init];
     
@@ -291,10 +291,10 @@
     [polygon addRing:hole2];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints]];
 
 }
 
@@ -314,8 +314,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints1 = [[NSMutableArray alloc] init];
     
@@ -329,9 +329,9 @@
     [polygon addRing:hole1];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] ];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
 
     NSMutableArray<SFPoint *> *holePoints2 = [[NSMutableArray alloc] init];
     
@@ -345,10 +345,10 @@
     [polygon addRing:hole2];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints]];
 
 }
 
@@ -368,8 +368,8 @@
     [polygon addRing:ring];
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:1 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
     NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
     
@@ -383,9 +383,9 @@
     [polygon addRing:hole];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:polygon]];
-    [SFTestUtils assertEqualIntWithValue:2 andValue2:[[polygon numRings] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] intValue]];
-    [SFTestUtils assertEqualIntWithValue:3 andValue2:[[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints] intValue]];
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     
 }
 

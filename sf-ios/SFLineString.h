@@ -17,7 +17,7 @@
 /**
  *  Array of points
  */
-@property (nonatomic, strong) NSMutableArray * points;
+@property (nonatomic, strong) NSMutableArray<SFPoint *> *points;
 
 /**
  *  Initialize
@@ -55,10 +55,27 @@
 -(void) addPoint: (SFPoint *) point;
 
 /**
+ * Add points
+ *
+ * @param points
+ *            points
+ */
+-(void) addPoints: (NSArray<SFPoint *> *) points;
+
+/**
  *  Get the number of points
  *
  *  @return point count
  */
--(NSNumber *) numPoints;
+-(int) numPoints;
+
+/**
+ * Returns the Nth point
+ *
+ * @param n
+ *            nth point to return
+ * @return point
+ */
+-(SFPoint *) pointAtIndex: (int) n;
 
 @end

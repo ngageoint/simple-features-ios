@@ -117,97 +117,97 @@
 
 +(void) compareLineStringWithExpected: (SFLineString *) expected andActual: (SFLineString *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPoints] andValue2:[actual numPoints]];
-    for(int i = 0; i < [[expected numPoints] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numPoints] andValue2:[actual numPoints]];
+    for(int i = 0; i < [expected numPoints]; i++){
         [self comparePointWithExpected:[expected.points objectAtIndex:i] andActual:[actual.points objectAtIndex:i]];
     }
 }
 
 +(void) comparePolygonWithExpected: (SFPolygon *) expected andActual: (SFPolygon *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numRings] andValue2:[actual numRings]];
-    for(int i = 0; i < [[expected numRings] intValue]; i++){
-        [self compareLineStringWithExpected:[expected.rings objectAtIndex:i] andActual:[actual.rings objectAtIndex:i]];
+    [SFTestUtils assertEqualIntWithValue:[expected numRings] andValue2:[actual numRings]];
+    for(int i = 0; i < [expected numRings]; i++){
+        [self compareLineStringWithExpected:[expected ringAtIndex:i] andActual:[actual ringAtIndex:i]];
     }
 }
 
 +(void) compareMultiPointWithExpected: (SFMultiPoint *) expected andActual: (SFMultiPoint *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPoints] andValue2:[actual numPoints]];
-    for(int i = 0; i < [[expected numPoints] intValue]; i++){
-        [self comparePointWithExpected:[[expected getPoints] objectAtIndex:i] andActual:[[actual getPoints] objectAtIndex:i]];
+    [SFTestUtils assertEqualIntWithValue:[expected numPoints] andValue2:[actual numPoints]];
+    for(int i = 0; i < [expected numPoints]; i++){
+        [self comparePointWithExpected:[[expected points] objectAtIndex:i] andActual:[[actual points] objectAtIndex:i]];
     }
 }
 
 +(void) compareMultiLineStringWithExpected: (SFMultiLineString *) expected andActual: (SFMultiLineString *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numLineStrings] andValue2:[actual numLineStrings]];
-    for(int i = 0; i < [[expected numLineStrings] intValue]; i++){
-        [self compareLineStringWithExpected:[[expected getLineStrings] objectAtIndex:i] andActual:[[actual getLineStrings] objectAtIndex:i]];
+    [SFTestUtils assertEqualIntWithValue:[expected numLineStrings] andValue2:[actual numLineStrings]];
+    for(int i = 0; i < [expected numLineStrings]; i++){
+        [self compareLineStringWithExpected:[[expected lineStrings] objectAtIndex:i] andActual:[[actual lineStrings] objectAtIndex:i]];
     }
 }
 
 +(void) compareMultiPolygonWithExpected: (SFMultiPolygon *) expected andActual: (SFMultiPolygon *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
-    for(int i = 0; i < [[expected numPolygons] intValue]; i++){
-        [self comparePolygonWithExpected:[[expected getPolygons] objectAtIndex:i] andActual:[[actual getPolygons] objectAtIndex:i]];
+    [SFTestUtils assertEqualIntWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
+    for(int i = 0; i < [expected numPolygons]; i++){
+        [self comparePolygonWithExpected:[[expected polygons] objectAtIndex:i] andActual:[[actual polygons] objectAtIndex:i]];
     }
 }
 
 +(void) compareGeometryCollectionWithExpected: (SFGeometryCollection *) expected andActual: (SFGeometryCollection *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numGeometries] andValue2:[actual numGeometries]];
-    for(int i = 0; i < [[expected numGeometries] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numGeometries] andValue2:[actual numGeometries]];
+    for(int i = 0; i < [expected numGeometries]; i++){
         [self compareGeometriesWithExpected:[expected.geometries objectAtIndex:i] andActual:[actual.geometries objectAtIndex:i]];
     }
 }
 
 +(void) compareCircularStringWithExpected: (SFCircularString *) expected andActual: (SFCircularString *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPoints] andValue2:[actual numPoints]];
-    for(int i = 0; i < [[expected numPoints] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numPoints] andValue2:[actual numPoints]];
+    for(int i = 0; i < [expected numPoints]; i++){
         [self comparePointWithExpected:[expected.points objectAtIndex:i] andActual:[actual.points objectAtIndex:i]];
     }
 }
 
 +(void) compareCompoundCurveWithExpected: (SFCompoundCurve *) expected andActual: (SFCompoundCurve *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numLineStrings] andValue2:[actual numLineStrings]];
-    for(int i = 0; i < [[expected numLineStrings] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numLineStrings] andValue2:[actual numLineStrings]];
+    for(int i = 0; i < [expected numLineStrings]; i++){
         [self compareLineStringWithExpected:[expected.lineStrings objectAtIndex:i] andActual:[actual.lineStrings objectAtIndex:i]];
     }
 }
 
 +(void) compareCurvePolygonWithExpected: (SFCurvePolygon *) expected andActual: (SFCurvePolygon *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numRings] andValue2:[actual numRings]];
-    for(int i = 0; i < [[expected numRings] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numRings] andValue2:[actual numRings]];
+    for(int i = 0; i < [expected numRings]; i++){
         [self compareGeometriesWithExpected:[expected.rings objectAtIndex:i] andActual:[actual.rings objectAtIndex:i]];
     }
 }
 
 +(void) comparePolyhedralSurfaceWithExpected: (SFPolyhedralSurface *) expected andActual: (SFPolyhedralSurface *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
-    for(int i = 0; i < [[expected numPolygons] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
+    for(int i = 0; i < [expected numPolygons]; i++){
         [self compareGeometriesWithExpected:[expected.polygons objectAtIndex:i] andActual:[actual.polygons objectAtIndex:i]];
     }
 }
 
 +(void) compareTINWithExpected: (SFTIN *) expected andActual: (SFTIN *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
-    for(int i = 0; i < [[expected numPolygons] intValue]; i++){
+    [SFTestUtils assertEqualIntWithValue:[expected numPolygons] andValue2:[actual numPolygons]];
+    for(int i = 0; i < [expected numPolygons]; i++){
         [self compareGeometriesWithExpected:[expected.polygons objectAtIndex:i] andActual:[actual.polygons objectAtIndex:i]];
     }
 }
 
 +(void) compareTriangleWithExpected: (SFTriangle *) expected andActual: (SFTriangle *) actual{
     [self compareBaseGeometryAttributesWithExpected:expected andActual:actual];
-    [SFTestUtils assertEqualWithValue:[expected numRings] andValue2:[actual numRings]];
-    for(int i = 0; i < [[expected numRings] intValue]; i++){
-        [self compareLineStringWithExpected:[expected.rings objectAtIndex:i] andActual:[actual.rings objectAtIndex:i]];
+    [SFTestUtils assertEqualIntWithValue:[expected numRings] andValue2:[actual numRings]];
+    for(int i = 0; i < [expected numRings]; i++){
+        [self compareLineStringWithExpected:[expected ringAtIndex:i] andActual:[actual ringAtIndex:i]];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "SFGeometry.h"
+#import "SFPoint.h"
 
 /**
  * The base type for all 1-dimensional geometry types. A 1-dimensional geometry
@@ -27,5 +28,33 @@
  *  @return new curve
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Get the start Point of this Curve
+ *
+ * @return start point
+ */
+-(SFPoint *) startPoint;
+
+/**
+ * Get the end Point of this Curve
+ *
+ * @return end point
+ */
+-(SFPoint *) endPoint;
+
+/**
+ * Determine if this Curve is closed (start point = end point)
+ *
+ * @return true if closed
+ */
+-(BOOL) isClosed;
+
+/**
+ * Determine if this Curve is a ring (closed and simple)
+ *
+ * @return true if a ring
+ */
+-(BOOL) isRing;
 
 @end

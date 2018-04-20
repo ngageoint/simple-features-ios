@@ -17,7 +17,7 @@
 /**
  *  Array of line strings
  */
-@property (nonatomic, strong) NSMutableArray * lineStrings;
+@property (nonatomic, strong) NSMutableArray<SFLineString *> *lineStrings;
 
 /**
  *  Initialize
@@ -44,10 +44,27 @@
 -(void) addLineString: (SFLineString *) lineString;
 
 /**
+ * Add line strings
+ *
+ * @param lineStrings
+ *            line strings
+ */
+-(void) addLineStrings: (NSArray<SFLineString *> *) lineStrings;
+
+/**
  *  Get the number of line strings
  *
  *  @return line string count
  */
--(NSNumber *) numLineStrings;
+-(int) numLineStrings;
+
+/**
+ * Returns the Nth line string
+ *
+ * @param n
+ *            nth line string to return
+ * @return line string
+ */
+-(SFLineString *) lineStringAtIndex: (int) n;
 
 @end

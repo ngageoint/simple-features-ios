@@ -18,7 +18,7 @@
 /**
  *  Array of rings
  */
-@property (nonatomic, strong) NSMutableArray * rings;
+@property (nonatomic, strong) NSMutableArray<SFCurve *> *rings;
 
 /**
  *  Initialize
@@ -56,10 +56,51 @@
 -(void) addRing: (SFCurve *) ring;
 
 /**
+ * Add rings
+ *
+ * @param rings
+ *            rings
+ */
+-(void) addRings: (NSArray<SFCurve *> *) rings;
+
+/**
  *  Get the number of rings
  *
  *  @return ring count
  */
--(NSNumber *) numRings;
+-(int) numRings;
+
+/**
+ * Returns the Nth ring where the exterior ring is at 0, interior rings
+ * begin at 1
+ *
+ * @param n
+ *            nth ring to return
+ * @return ring
+ */
+-(SFCurve *) ringAtIndex: (int) n;
+
+/**
+ * Get the exterior ring
+ *
+ * @return exterior ring
+ */
+-(SFCurve *) exteriorRing;
+
+/**
+ * Get the number of interior rings
+ *
+ * @return number of interior rings
+ */
+-(int) numInteriorRings;
+
+/**
+ * Returns the Nth interior ring for this Polygon
+ *
+ * @param n
+ *            interior ring number
+ * @return interior ring
+ */
+-(SFCurve *) interiorRingAtIndex: (int) n;
 
 @end

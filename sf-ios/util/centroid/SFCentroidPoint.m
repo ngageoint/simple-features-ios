@@ -48,7 +48,7 @@
         case SF_MULTIPOINT:
             {
                 SFMultiPoint * multiPoint = (SFMultiPoint *) geometry;
-                for(SFPoint * point in [multiPoint getPoints]){
+                for(SFPoint * point in [multiPoint points]){
                     [self addPoint:point];
                 }
             }

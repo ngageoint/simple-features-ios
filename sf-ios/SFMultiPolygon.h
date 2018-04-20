@@ -37,14 +37,14 @@
  *
  *  @return polygons
  */
--(NSMutableArray *) getPolygons;
+-(NSMutableArray<SFPolygon *> *) polygons;
 
 /**
  *  Set the polygons
  *
  *  @param polygons polygons
  */
--(void) setPolygons: (NSMutableArray *) polygons;
+-(void) setPolygons: (NSMutableArray<SFPolygon *> *) polygons;
 
 /**
  *  Add a polygon
@@ -54,10 +54,27 @@
 -(void) addPolygon: (SFPolygon *) polygon;
 
 /**
+ * Add polygons
+ *
+ * @param polygons
+ *            polygons
+ */
+-(void) addPolygons: (NSArray<SFPolygon *> *) polygons;
+
+/**
  *  Get the number of polygons
  *
  *  @return polygon count
  */
--(NSNumber *) numPolygons;
+-(int) numPolygons;
+
+/**
+ * Returns the Nth polygon
+ *
+ * @param n
+ *            nth polygon to return
+ * @return polygon
+ */
+-(SFPolygon *) polygonAtIndex: (int) n;
 
 @end
