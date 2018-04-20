@@ -361,4 +361,22 @@
  */
 +(BOOL) point: (SFPoint *) point onPathPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 withEpsilon: (double) epsilon;
 
+/**
+ * Determine if the geometries contain a Z value
+ *
+ * @param geometries
+ *            list of geometries
+ * @return true if has z
+ */
++(BOOL) hasZ: (NSArray<SFGeometry *> *) geometries;
+
+/**
+ * Determine if the geometries contain a M value
+ *
+ * @param geometries
+ *            list of geometries
+ * @return true if has m
+ */
++(BOOL) hasM: (NSArray<SFGeometry *> *) geometries;
+
 @end

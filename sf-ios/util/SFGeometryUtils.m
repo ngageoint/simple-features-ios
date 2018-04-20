@@ -608,4 +608,26 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     return onPath;
 }
 
++(BOOL) hasZ: (NSArray<SFGeometry *> *) geometries{
+    BOOL hasZ = NO;
+    for (SFGeometry *geometry in geometries) {
+        if ([geometry hasZ]) {
+            hasZ = YES;
+            break;
+        }
+    }
+    return hasZ;
+}
+
++(BOOL) hasM: (NSArray<SFGeometry *> *) geometries{
+    BOOL hasM = NO;
+    for (SFGeometry *geometry in geometries) {
+        if ([geometry hasM]) {
+            hasM = YES;
+            break;
+        }
+    }
+    return hasM;
+}
+
 @end
