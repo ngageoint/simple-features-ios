@@ -7,6 +7,7 @@
 //
 
 #import "SFGeometryCollection.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFGeometryCollection
 
@@ -17,6 +18,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     return [self initWithType:SF_GEOMETRYCOLLECTION andHasZ:hasZ andHasM:hasM];
+}
+
+-(instancetype) initWithGeometries: (NSMutableArray<SFGeometry *> *) geometries{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:geometries] andHasM:[SFGeometryUtils hasM:geometries]];
+    if(self != nil){
+        [self setGeometries:geometries];
+    }
+    return self;
+}
+
+-(instancetype) initWithGeometry: (SFGeometry *) geometry{
+    self = [self initWithHasZ:geometry.hasZ andHasM:geometry.hasM];
+    if(self != nil){
+        [self addGeometry:geometry];
+    }
+    return self;
 }
 
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{

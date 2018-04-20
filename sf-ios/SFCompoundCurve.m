@@ -8,6 +8,7 @@
 
 #import "SFCompoundCurve.h"
 #import "SFShamosHoey.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFCompoundCurve
 
@@ -20,6 +21,22 @@
     self = [super initWithType:SF_COMPOUNDCURVE andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.lineStrings = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+-(instancetype) initWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:lineStrings] andHasM:[SFGeometryUtils hasM:lineStrings]];
+    if(self != nil){
+        [self setLineStrings:lineStrings];
+    }
+    return self;
+}
+
+-(instancetype) initWithLineString: (SFLineString *) lineString{
+    self = [self initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    if(self != nil){
+        [self addLineString:lineString];
     }
     return self;
 }

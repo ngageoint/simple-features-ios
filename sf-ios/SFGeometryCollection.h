@@ -36,6 +36,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param geometries
+ *            list of geometries
+ *
+ *  @return new geometry collection
+ */
+-(instancetype) initWithGeometries: (NSMutableArray<SFGeometry *> *) geometries;
+
+/**
+ * Initialize
+ *
+ * @param geometry
+ *            geometry
+ *
+ *  @return new geometry collection
+ */
+-(instancetype) initWithGeometry: (SFGeometry *) geometry;
+
+/**
  *  Initialize
  *
  *  @param geometryType geometry type

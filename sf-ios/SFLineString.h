@@ -37,6 +37,16 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new line string
+ */
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
  *  Initialize
  *
  *  @param geometryType geometry type

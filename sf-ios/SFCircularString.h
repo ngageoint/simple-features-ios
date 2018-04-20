@@ -30,4 +30,14 @@
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
+/**
+ * Initialize
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new circular string
+ */
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
 @end

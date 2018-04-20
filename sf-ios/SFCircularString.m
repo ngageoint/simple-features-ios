@@ -7,6 +7,7 @@
 //
 
 #import "SFCircularString.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFCircularString
 
@@ -17,6 +18,14 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:SF_CIRCULARSTRING andHasZ:hasZ andHasM:hasM];
+    return self;
+}
+
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:points] andHasM:[SFGeometryUtils hasM:points]];
+    if(self != nil){
+        [self setPoints:points];
+    }
     return self;
 }
 

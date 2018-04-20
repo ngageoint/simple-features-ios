@@ -38,6 +38,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new curve polygon
+ */
+-(instancetype) initWithRings: (NSMutableArray<SFCurve *> *) rings;
+
+/**
+ * Initialize
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new curve polygon
+ */
+-(instancetype) initWithRing: (SFCurve *) ring;
+
+/**
  *  Initialize
  *
  *  @param geometryType geometry type

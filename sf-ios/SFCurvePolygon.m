@@ -7,6 +7,7 @@
 //
 
 #import "SFCurvePolygon.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFCurvePolygon
 
@@ -17,6 +18,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     return [self initWithType:SF_CURVEPOLYGON andHasZ:hasZ andHasM:hasM];
+}
+
+-(instancetype) initWithRings: (NSMutableArray<SFCurve *> *) rings{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:rings] andHasM:[SFGeometryUtils hasM:rings]];
+    if(self != nil){
+        [self setRings:rings];
+    }
+    return self;
+}
+
+-(instancetype) initWithRing: (SFCurve *) ring{
+    self = [self initWithHasZ:ring.hasZ andHasM:ring.hasM];
+    if(self != nil){
+        [self addRing:ring];
+    }
+    return self;
 }
 
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{

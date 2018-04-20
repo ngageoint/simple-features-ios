@@ -37,6 +37,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param lineStrings
+ *            list of line strings
+ *
+ *  @return new compound curve
+ */
+-(instancetype) initWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings;
+
+/**
+ * Initialize
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new compound curve
+ */
+-(instancetype) initWithLineString: (SFLineString *) lineString;
+
+/**
  *  Add a line string
  *
  *  @param lineString line string

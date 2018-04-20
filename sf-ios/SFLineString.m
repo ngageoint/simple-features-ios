@@ -8,6 +8,7 @@
 
 #import "SFLineString.h"
 #import "SFShamosHoey.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFLineString
 
@@ -18,6 +19,14 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     return [self initWithType:SF_LINESTRING andHasZ:hasZ andHasM:hasM];
+}
+
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:points] andHasM:[SFGeometryUtils hasM:points]];
+    if(self != nil){
+        [self setPoints:points];
+    }
+    return self;
 }
 
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
