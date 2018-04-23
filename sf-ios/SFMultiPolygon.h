@@ -33,6 +33,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new multi polygon
+ */
+-(instancetype) initWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Initialize
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new multi polygon
+ */
+-(instancetype) initWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Get the polygons
  *
  *  @return polygons

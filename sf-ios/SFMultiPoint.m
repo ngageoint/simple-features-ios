@@ -7,6 +7,7 @@
 //
 
 #import "SFMultiPoint.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFMultiPoint
 
@@ -17,6 +18,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:SF_MULTIPOINT andHasZ:hasZ andHasM:hasM];
+    return self;
+}
+
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:points] andHasM:[SFGeometryUtils hasM:points]];
+    if(self != nil){
+        [self setPoints:points];
+    }
+    return self;
+}
+
+-(instancetype) initWithPoint: (SFPoint *) point{
+    self = [self initWithHasZ:point.hasZ andHasM:point.hasM];
+    if(self != nil){
+        [self addPoint:point];
+    }
     return self;
 }
 

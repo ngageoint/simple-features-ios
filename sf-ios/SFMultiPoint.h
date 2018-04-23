@@ -33,6 +33,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new multi point
+ */
+-(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ * Initialize
+ *
+ * @param point
+ *            point
+ *
+ *  @return new multi point
+ */
+-(instancetype) initWithPoint: (SFPoint *) point;
+
+/**
  *  Get the points
  *
  *  @return points

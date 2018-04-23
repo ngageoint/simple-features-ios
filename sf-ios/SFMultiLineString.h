@@ -33,6 +33,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param lineStrings
+ *            list of line strings
+ *
+ *  @return new multi line string
+ */
+-(instancetype) initWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings;
+
+/**
+ * Initialize
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new multi line string
+ */
+-(instancetype) initWithLineString: (SFLineString *) lineString;
+
+/**
  *  Get the line strings
  *
  *  @return line strings

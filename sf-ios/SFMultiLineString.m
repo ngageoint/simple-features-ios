@@ -7,6 +7,7 @@
 //
 
 #import "SFMultiLineString.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFMultiLineString
 
@@ -17,6 +18,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:SF_MULTILINESTRING andHasZ:hasZ andHasM:hasM];
+    return self;
+}
+
+-(instancetype) initWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:lineStrings] andHasM:[SFGeometryUtils hasM:lineStrings]];
+    if(self != nil){
+        [self setLineStrings:lineStrings];
+    }
+    return self;
+}
+
+-(instancetype) initWithLineString: (SFLineString *) lineString{
+    self = [self initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    if(self != nil){
+        [self addLineString:lineString];
+    }
     return self;
 }
 
