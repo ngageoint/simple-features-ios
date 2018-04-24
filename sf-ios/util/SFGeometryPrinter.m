@@ -67,6 +67,8 @@
             [self addPolygon:(SFTriangle *)geometry toMessage:message];
             break;
         case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
         {
             SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
             [message appendFormat:@"Geometries: %d", [geomCollection numGeometries]];

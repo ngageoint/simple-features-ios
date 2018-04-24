@@ -8,6 +8,11 @@
 
 #import "SFGeometryCollection.h"
 #import "SFGeometryUtils.h"
+#import "SFMultiPoint.h"
+#import "SFMultiLineString.h"
+#import "SFMultiPolygon.h"
+#import "SFMultiCurve.h"
+#import "SFMultiSurface.h"
 
 @implementation SFGeometryCollection
 
@@ -58,6 +63,151 @@
 
 -(SFGeometry *) geometryAtIndex: (int)  n{
     return [self.geometries objectAtIndex:n];
+}
+
+-(enum SFGeometryType) collectionType{
+    
+    enum SFGeometryType geometryType = [self geometryType];
+    
+    switch (geometryType) {
+        case SF_MULTIPOINT:
+        case SF_MULTILINESTRING:
+        case SF_MULTIPOLYGON:
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
+            if([self isMultiPoint]){
+                geometryType = SF_MULTIPOINT;
+            }else if([self isMultiLineString]){
+                geometryType = SF_MULTILINESTRING;
+            }else if([self isMultiPolygon]){
+                geometryType = SF_MULTIPOLYGON;
+            }else if([self isMultiCurve]){
+                geometryType = SF_MULTICURVE;
+            }else if([self isMultiSurface]){
+                geometryType = SF_MULTISURFACE;
+            }
+            break;
+        default:
+            [NSException raise:@"Unexpected" format:@"Unexpected Geometry Collection Type: %u", geometryType];
+    }
+    
+    return geometryType;
+}
+
+-(BOOL) isMultiPoint{
+    BOOL isMultiPoint = [self isKindOfClass:[SFMultiPoint class]];
+    if (!isMultiPoint) {
+        isMultiPoint = [self isCollectionOfType:[SFPoint class]];
+    }
+    return isMultiPoint;
+}
+
+-(SFMultiPoint *) asMultiPoint{
+    SFMultiPoint *multiPoint;
+    if([self isKindOfClass:[SFMultiPoint class]]){
+        multiPoint = (SFMultiPoint *) self;
+    }else{
+        multiPoint = [[SFMultiPoint alloc] initWithPoints:(NSMutableArray<SFPoint *> *)self.geometries];
+    }
+    return multiPoint;
+}
+
+-(BOOL) isMultiLineString{
+    BOOL isMultiLineString = [self isKindOfClass:[SFMultiLineString class]];
+    if (!isMultiLineString) {
+        isMultiLineString = [self isCollectionOfType:[SFLineString class]];
+    }
+    return isMultiLineString;
+}
+
+-(SFMultiLineString *) asMultiLineString{
+    SFMultiLineString *multiLineString;
+    if([self isKindOfClass:[SFMultiLineString class]]){
+        multiLineString = (SFMultiLineString*) self;
+    }else{
+        multiLineString = [[SFMultiLineString alloc] initWithLineStrings:(NSMutableArray<SFLineString *> *)self.geometries];
+    }
+    return multiLineString;
+}
+
+-(BOOL) isMultiPolygon{
+    BOOL isMultiPolygon = [self isKindOfClass:[SFMultiPolygon class]];
+    if (!isMultiPolygon) {
+        isMultiPolygon = [self isCollectionOfType:[SFPolygon class]];
+    }
+    return isMultiPolygon;
+}
+
+-(SFMultiPolygon *) asMultiPolygon{
+    SFMultiPolygon *multiPolygon;
+    if([self isKindOfClass:[SFMultiPolygon class]]){
+        multiPolygon = (SFMultiPolygon*) self;
+    }else{
+        multiPolygon = [[SFMultiPolygon alloc] initWithPolygons:(NSMutableArray<SFPolygon *> *)self.geometries];
+    }
+    return multiPolygon;
+}
+
+-(BOOL) isMultiCurve{
+    BOOL isMultiCurve = [self isKindOfClass:[SFMultiLineString class]];
+    if (!isMultiCurve) {
+        isMultiCurve = [self isCollectionOfType:[SFCurve class]];
+    }
+    return isMultiCurve;
+}
+
+-(SFGeometryCollection *) asMultiCurve{
+    SFGeometryCollection *multiCurve;
+    if ([self isKindOfClass:[SFMultiLineString class]]) {
+        multiCurve = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+    } else {
+        multiCurve = self;
+    }
+    return multiCurve;
+}
+
+-(BOOL) isMultiSurface{
+    BOOL isMultiSurface = [self isKindOfClass:[SFMultiPolygon class]];
+    if (!isMultiSurface) {
+        isMultiSurface = [self isCollectionOfType:[SFSurface class]];
+    }
+    return isMultiSurface;
+}
+
+-(SFGeometryCollection *) asMultiSurface{
+    SFGeometryCollection *multiSurface;
+    if ([self isKindOfClass:[SFMultiPolygon class]]) {
+        multiSurface = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+    } else {
+        multiSurface = self;
+    }
+    return multiSurface;
+}
+
+-(SFGeometryCollection *) asGeometryCollection{
+    SFGeometryCollection *geometryCollection;
+    if([[self class] isMemberOfClass:[SFGeometryCollection class]]){
+        geometryCollection = self;
+    } else {
+        geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+    }
+    return geometryCollection;
+}
+
+-(BOOL) isCollectionOfType: (Class) type{
+    
+    BOOL isType = YES;
+    
+    for(SFGeometry *geometry in self.geometries){
+        if(![geometry isKindOfClass:type]){
+            isType = NO;
+            break;
+        }
+    }
+    
+    return isType;
 }
 
 -(BOOL) isEmpty{

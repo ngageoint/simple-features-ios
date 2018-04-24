@@ -67,6 +67,8 @@
             [self addPolygons:((SFPolyhedralSurface *)geometry).polygons];
             break;
         case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
             {
                 SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
                 NSArray * geometries = geomCollection.geometries;

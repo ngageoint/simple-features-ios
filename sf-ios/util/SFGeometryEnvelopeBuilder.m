@@ -74,6 +74,8 @@
             [self addPolygon:(SFTriangle *)geometry andEnvelope:envelope];
             break;
         case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
             {
                 [self updateHasZandMWithEnvelope:envelope andGeometry:geometry];
                 SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
