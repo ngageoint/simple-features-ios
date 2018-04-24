@@ -7,6 +7,7 @@
 //
 
 #import "SFPolyhedralSurface.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFPolyhedralSurface
 
@@ -17,6 +18,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     return [self initWithType:SF_POLYHEDRALSURFACE andHasZ:hasZ andHasM:hasM];
+}
+
+-(instancetype) initWithPolygons: (NSMutableArray<SFPolygon *> *) polygons{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:polygons] andHasM:[SFGeometryUtils hasM:polygons]];
+    if(self != nil){
+        [self setPolygons:polygons];
+    }
+    return self;
+}
+
+-(instancetype) initWithPolygon: (SFPolygon *) polygon{
+    self = [self initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    if(self != nil){
+        [self addPolygon:polygon];
+    }
+    return self;
 }
 
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{

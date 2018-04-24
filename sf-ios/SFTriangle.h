@@ -30,4 +30,24 @@
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
+/**
+ * Initialize
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new triangle
+ */
+-(instancetype) initWithRings: (NSMutableArray<SFLineString *> *) rings;
+
+/**
+ * Initialize
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new triangle
+ */
+-(instancetype) initWithRing: (SFLineString *) ring;
+
 @end

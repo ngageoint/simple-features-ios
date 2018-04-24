@@ -22,6 +22,37 @@
     return [self initWithHasZ:false andHasM:false andX:x andY:y];
 }
 
+-(instancetype) initWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z{
+    return [self initWithX:x andY:y andZ:z andM:nil];
+}
+
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z{
+    return [self initWithXValue:x andYValue:y andZ:z andM:nil];
+}
+
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZValue: (double) z{
+    return [self initWithXValue:x andYValue:y andZ:[[NSDecimalNumber alloc] initWithDouble:z]];
+}
+
+-(instancetype) initWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m{
+    self = [super initWithType:SF_POINT andHasZ:z != nil andHasM:m != nil];
+    if(self != nil){
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.m = m;
+    }
+    return self;
+}
+
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m{
+    return [self initWithX:[[NSDecimalNumber alloc] initWithDouble:x] andY:[[NSDecimalNumber alloc] initWithDouble:y] andZ:z andM:m];
+}
+
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZValue: (double) z andMValue: (double) m{
+    return [self initWithXValue:x andYValue:y andZ:[[NSDecimalNumber alloc] initWithDouble:z] andM:[[NSDecimalNumber alloc] initWithDouble:m]];
+}
+
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y{
     self = [super initWithType:SF_POINT andHasZ:hasZ andHasM:hasM];
     if(self != nil){
@@ -29,6 +60,10 @@
         self.y = y;
     }
     return self;
+}
+
+-(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y{
+    return [self initWithHasZ:hasZ andHasM:hasM andX:[[NSDecimalNumber alloc] initWithDouble:x] andY:[[NSDecimalNumber alloc] initWithDouble:y]];
 }
 
 -(void) setXValue: (double) x{

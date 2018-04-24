@@ -8,6 +8,7 @@
 
 #import "SFTriangle.h"
 #import "SFLineString.h"
+#import "SFGeometryUtils.h"
 
 @implementation SFTriangle
 
@@ -18,6 +19,22 @@
 
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:SF_TRIANGLE andHasZ:hasZ andHasM:hasM];
+    return self;
+}
+
+-(instancetype) initWithRings: (NSMutableArray<SFLineString *> *) rings{
+    self = [self initWithHasZ:[SFGeometryUtils hasZ:rings] andHasM:[SFGeometryUtils hasM:rings]];
+    if(self != nil){
+        [self setRings:rings];
+    }
+    return self;
+}
+
+-(instancetype) initWithRing: (SFLineString *) ring{
+    self = [self initWithHasZ:ring.hasZ andHasM:ring.hasM];
+    if(self != nil){
+        [self addRing:ring];
+    }
     return self;
 }
 

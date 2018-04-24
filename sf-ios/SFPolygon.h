@@ -33,6 +33,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new polygon
+ */
+-(instancetype) initWithRings: (NSMutableArray<SFLineString *> *) rings;
+
+/**
+ * Initialize
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new polygon
+ */
+-(instancetype) initWithRing: (SFLineString *) ring;
+
+/**
  *  Initialize
  *
  *  @param geometryType geometry type
@@ -49,6 +69,14 @@
  * @return line string rings
  */
 -(NSMutableArray<SFLineString *> *) lineStrings;
+
+/**
+ * Set the line string rings
+ *
+ * @param rings
+ *            line string rings
+ */
+-(void) setRings: (NSMutableArray<SFLineString *> *) rings;
 
 /**
  * Returns the Nth ring where the exterior ring is at 0, interior rings

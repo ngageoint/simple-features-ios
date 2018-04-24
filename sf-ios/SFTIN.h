@@ -31,4 +31,24 @@
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
+/**
+ * Initialize
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new tin
+ */
+-(instancetype) initWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Initialize
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new tin
+ */
+-(instancetype) initWithPolygon: (SFPolygon *) polygon;
+
 @end

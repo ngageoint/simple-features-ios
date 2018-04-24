@@ -64,6 +64,75 @@
 /**
  *  Initialize
  *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z;
+
+/**
+ *  Initialize
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z;
+
+/**
+ *  Initialize
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZValue: (double) z;
+
+/**
+ *  Initialize
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m;
+
+/**
+ *  Initialize
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m;
+
+/**
+ *  Initialize
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithXValue: (double) x andYValue: (double) y andZValue: (double) z andMValue: (double) m;
+
+/**
+ *  Initialize
+ *
  *  @param hasZ has z coordinate
  *  @param hasM has m coordinate
  *  @param x    x coordinate
@@ -72,6 +141,18 @@
  *  @return new point
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y;
+
+/**
+ *  Initialize
+ *
+ *  @param hasZ has z coordinate
+ *  @param hasM has m coordinate
+ *  @param x    x coordinate
+ *  @param y    y coordinate
+ *
+ *  @return new point
+ */
+-(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y;
 
 /**
  *  Set the x value

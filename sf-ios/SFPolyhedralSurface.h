@@ -37,6 +37,26 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
+ * Initialize
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new polyhedral surface
+ */
+-(instancetype) initWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Initialize
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new polyhedral surface
+ */
+-(instancetype) initWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Initialize
  *
  *  @param geometryType geometry type
