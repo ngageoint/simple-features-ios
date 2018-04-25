@@ -87,6 +87,8 @@
 		04F455ED2090AC7B00FC299E /* SFLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455EB2090AC7B00FC299E /* SFLine.m */; };
 		04F455F02090ACAF00FC299E /* SFLinearRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F455EE2090ACAF00FC299E /* SFLinearRing.h */; };
 		04F455F12090ACAF00FC299E /* SFLinearRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455EF2090ACAF00FC299E /* SFLinearRing.m */; };
+		04F455F52090C10100FC299E /* SFExtendedGeometryCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F455F32090C10100FC299E /* SFExtendedGeometryCollection.h */; };
+		04F455F62090C10100FC299E /* SFExtendedGeometryCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455F42090C10100FC299E /* SFExtendedGeometryCollection.m */; };
 		B5D94958E350F092F31540ED /* libPods-sf-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-sf-iosTests.a */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +188,8 @@
 		04F455EB2090AC7B00FC299E /* SFLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFLine.m; sourceTree = "<group>"; };
 		04F455EE2090ACAF00FC299E /* SFLinearRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFLinearRing.h; sourceTree = "<group>"; };
 		04F455EF2090ACAF00FC299E /* SFLinearRing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFLinearRing.m; sourceTree = "<group>"; };
+		04F455F32090C10100FC299E /* SFExtendedGeometryCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFExtendedGeometryCollection.h; sourceTree = "<group>"; };
+		04F455F42090C10100FC299E /* SFExtendedGeometryCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFExtendedGeometryCollection.m; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-sf-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sf-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B17E59AE80997CC09DD740D6 /* Pods-sf-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				042FC68D1B96421E00549A4B /* SFTIN.m */,
 				042FC68E1B96421E00549A4B /* SFTriangle.h */,
 				042FC68F1B96421E00549A4B /* SFTriangle.m */,
+				04F455F22090C02F00FC299E /* extended */,
 				042FC6991B96421E00549A4B /* util */,
 				042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */,
 				042FC64E1B963FE500549A4B /* Supporting Files */,
@@ -376,6 +381,15 @@
 			path = sweep;
 			sourceTree = "<group>";
 		};
+		04F455F22090C02F00FC299E /* extended */ = {
+			isa = PBXGroup;
+			children = (
+				04F455F32090C10100FC299E /* SFExtendedGeometryCollection.h */,
+				04F455F42090C10100FC299E /* SFExtendedGeometryCollection.m */,
+			);
+			path = extended;
+			sourceTree = "<group>";
+		};
 		63206AE083C9F99B2058A9EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +420,7 @@
 				042FC6B91B96421E00549A4B /* SFMultiSurface.h in Headers */,
 				0445CB331EA150E3008DC0D7 /* SFCentroidSurface.h in Headers */,
 				0496DB232008EC740068A2CE /* SFEventQueue.h in Headers */,
+				04F455F52090C10100FC299E /* SFExtendedGeometryCollection.h in Headers */,
 				04C503042008FC4C00862DA9 /* SFSegment.h in Headers */,
 				042FC6A51B96421E00549A4B /* SFCurvePolygon.h in Headers */,
 				04F455F02090ACAF00FC299E /* SFLinearRing.h in Headers */,
@@ -593,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042FC6AA1B96421E00549A4B /* SFGeometryCollection.m in Sources */,
+				04F455F62090C10100FC299E /* SFExtendedGeometryCollection.m in Sources */,
 				042FC6A01B96421E00549A4B /* SFCircularString.m in Sources */,
 				0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */,
 				042FC6B21B96421E00549A4B /* SFMultiCurve.m in Sources */,

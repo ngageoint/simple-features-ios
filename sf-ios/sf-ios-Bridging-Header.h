@@ -32,6 +32,7 @@
 #import "SFSurface.h"
 #import "SFTIN.h"
 #import "SFTriangle.h"
+#import "SFExtendedGeometryCollection.h"
 #import "SFByteReader.h"
 #import "SFByteWriter.h"
 #import "SFGeometryEnvelopeBuilder.h"
