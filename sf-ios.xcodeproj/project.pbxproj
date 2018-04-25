@@ -83,6 +83,10 @@
 		04C503082008FC6700862DA9 /* SFShamosHoey.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503062008FC6700862DA9 /* SFShamosHoey.h */; };
 		04C503092008FC6700862DA9 /* SFShamosHoey.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503072008FC6700862DA9 /* SFShamosHoey.m */; };
 		04C5030C20095E7300862DA9 /* ShamosHoeyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C5030B20095E7300862DA9 /* ShamosHoeyTestCase.m */; };
+		04F455EC2090AC7B00FC299E /* SFLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F455EA2090AC7B00FC299E /* SFLine.h */; };
+		04F455ED2090AC7B00FC299E /* SFLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455EB2090AC7B00FC299E /* SFLine.m */; };
+		04F455F02090ACAF00FC299E /* SFLinearRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F455EE2090ACAF00FC299E /* SFLinearRing.h */; };
+		04F455F12090ACAF00FC299E /* SFLinearRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455EF2090ACAF00FC299E /* SFLinearRing.m */; };
 		B5D94958E350F092F31540ED /* libPods-sf-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-sf-iosTests.a */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +182,10 @@
 		04C503062008FC6700862DA9 /* SFShamosHoey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFShamosHoey.h; sourceTree = "<group>"; };
 		04C503072008FC6700862DA9 /* SFShamosHoey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFShamosHoey.m; sourceTree = "<group>"; };
 		04C5030B20095E7300862DA9 /* ShamosHoeyTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShamosHoeyTestCase.m; sourceTree = "<group>"; };
+		04F455EA2090AC7B00FC299E /* SFLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFLine.h; sourceTree = "<group>"; };
+		04F455EB2090AC7B00FC299E /* SFLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFLine.m; sourceTree = "<group>"; };
+		04F455EE2090ACAF00FC299E /* SFLinearRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFLinearRing.h; sourceTree = "<group>"; };
+		04F455EF2090ACAF00FC299E /* SFLinearRing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFLinearRing.m; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-sf-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sf-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B17E59AE80997CC09DD740D6 /* Pods-sf-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +251,10 @@
 				042FC6751B96421E00549A4B /* SFGeometryEnvelope.m */,
 				042FC6761B96421E00549A4B /* SFGeometryTypes.h */,
 				042FC6771B96421E00549A4B /* SFGeometryTypes.m */,
+				04F455EA2090AC7B00FC299E /* SFLine.h */,
+				04F455EB2090AC7B00FC299E /* SFLine.m */,
+				04F455EE2090ACAF00FC299E /* SFLinearRing.h */,
+				04F455EF2090ACAF00FC299E /* SFLinearRing.m */,
 				042FC6781B96421E00549A4B /* SFLineString.h */,
 				042FC6791B96421E00549A4B /* SFLineString.m */,
 				042FC67A1B96421E00549A4B /* SFMultiCurve.h */,
@@ -396,7 +408,9 @@
 				0496DB232008EC740068A2CE /* SFEventQueue.h in Headers */,
 				04C503042008FC4C00862DA9 /* SFSegment.h in Headers */,
 				042FC6A51B96421E00549A4B /* SFCurvePolygon.h in Headers */,
+				04F455F02090ACAF00FC299E /* SFLinearRing.h in Headers */,
 				042FC6AF1B96421E00549A4B /* SFLineString.h in Headers */,
+				04F455EC2090AC7B00FC299E /* SFLine.h in Headers */,
 				042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */,
 				042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */,
 				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
@@ -602,6 +616,7 @@
 				042FC6BC1B96421E00549A4B /* SFPoint.m in Sources */,
 				042FC6AC1B96421E00549A4B /* SFGeometryEnvelope.m in Sources */,
 				042FC6A81B96421E00549A4B /* SFGeometry.m in Sources */,
+				04F455ED2090AC7B00FC299E /* SFLine.m in Sources */,
 				042FC6A21B96421E00549A4B /* SFCompoundCurve.m in Sources */,
 				042FC6C81B96421E00549A4B /* SFByteReader.m in Sources */,
 				042FC6BA1B96421E00549A4B /* SFMultiSurface.m in Sources */,
@@ -610,6 +625,7 @@
 				042FC6A41B96421E00549A4B /* SFCurve.m in Sources */,
 				0496DB242008EC740068A2CE /* SFEventQueue.m in Sources */,
 				0445CB341EA150E3008DC0D7 /* SFCentroidSurface.m in Sources */,
+				04F455F12090ACAF00FC299E /* SFLinearRing.m in Sources */,
 				0496DB282008F5FD0068A2CE /* SFSweepLine.m in Sources */,
 				04C503052008FC4C00862DA9 /* SFSegment.m in Sources */,
 			);

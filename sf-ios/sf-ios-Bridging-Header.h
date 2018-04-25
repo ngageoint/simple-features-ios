@@ -18,6 +18,8 @@
 #import "SFGeometryCollection.h"
 #import "SFGeometryEnvelope.h"
 #import "SFGeometryTypes.h"
+#import "SFLine.h"
+#import "SFLinearRing.h"
 #import "SFLineString.h"
 #import "SFMultiCurve.h"
 #import "SFMultiLineString.h"
