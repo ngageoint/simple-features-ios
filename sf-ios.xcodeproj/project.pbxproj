@@ -89,6 +89,7 @@
 		04F455F12090ACAF00FC299E /* SFLinearRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455EF2090ACAF00FC299E /* SFLinearRing.m */; };
 		04F455F52090C10100FC299E /* SFExtendedGeometryCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F455F32090C10100FC299E /* SFExtendedGeometryCollection.h */; };
 		04F455F62090C10100FC299E /* SFExtendedGeometryCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455F42090C10100FC299E /* SFExtendedGeometryCollection.m */; };
+		04F455F92090F63B00FC299E /* SFGeometryCollectionTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F455F82090F63B00FC299E /* SFGeometryCollectionTestCase.m */; };
 		B5D94958E350F092F31540ED /* libPods-sf-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-sf-iosTests.a */; };
 /* End PBXBuildFile section */
 
@@ -190,6 +191,7 @@
 		04F455EF2090ACAF00FC299E /* SFLinearRing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFLinearRing.m; sourceTree = "<group>"; };
 		04F455F32090C10100FC299E /* SFExtendedGeometryCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFExtendedGeometryCollection.h; sourceTree = "<group>"; };
 		04F455F42090C10100FC299E /* SFExtendedGeometryCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFExtendedGeometryCollection.m; sourceTree = "<group>"; };
+		04F455F82090F63B00FC299E /* SFGeometryCollectionTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFGeometryCollectionTestCase.m; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-sf-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sf-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B17E59AE80997CC09DD740D6 /* Pods-sf-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sf-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sf-iosTests/Pods-sf-iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		042FC65A1B963FE500549A4B /* sf-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				04F455F82090F63B00FC299E /* SFGeometryCollectionTestCase.m */,
 				0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */,
 				04AB919C1BF29F9A00894999 /* SFTestUtils.h */,
 				04AB919D1BF29F9A00894999 /* SFTestUtils.m */,
@@ -654,6 +657,7 @@
 				04C5030C20095E7300862DA9 /* ShamosHoeyTestCase.m in Sources */,
 				04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */,
 				0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */,
+				04F455F92090F63B00FC299E /* SFGeometryCollectionTestCase.m in Sources */,
 				04AB91A11BF2A05200894999 /* SFGeometryTestUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

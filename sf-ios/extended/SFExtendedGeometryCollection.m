@@ -23,6 +23,7 @@
     self = [super initWithType:SF_GEOMETRYCOLLECTION andHasZ:geometryCollection.hasZ andHasM:geometryCollection.hasM];
     if(self != nil){
         [self setGeometries:geometryCollection.geometries];
+        self.extendedGeometryType = SF_GEOMETRYCOLLECTION;
         [self updateGeometryType];
     }
     return self;

@@ -63,6 +63,8 @@
                 [self compareMultiPolygonWithExpected:(SFMultiPolygon *)expected andActual:(SFMultiPolygon *)actual];
                 break;
             case SF_GEOMETRYCOLLECTION:
+            case SF_MULTICURVE:
+            case SF_MULTISURFACE:
                 [self compareGeometryCollectionWithExpected:(SFGeometryCollection *)expected andActual:(SFGeometryCollection *)actual];
                 break;
             case SF_CIRCULARSTRING:
@@ -73,12 +75,6 @@
                 break;
             case SF_CURVEPOLYGON:
                 [self compareCurvePolygonWithExpected:(SFCurvePolygon *)expected andActual:(SFCurvePolygon *)actual];
-                break;
-            case SF_MULTICURVE:
-                [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
-                break;
-            case SF_MULTISURFACE:
-                [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
                 break;
             case SF_CURVE:
                 [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
