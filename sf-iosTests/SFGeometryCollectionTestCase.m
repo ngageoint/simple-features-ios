@@ -216,9 +216,13 @@
     [SFTestUtils assertEqualWithValue:geometryCollection2 andValue2:[geometryCollection asGeometryCollection]];
     
     SFExtendedGeometryCollection *extendedGeometryCollection = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
+    SFExtendedGeometryCollection *extendedGeometryCollection2 = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:multiCurve];
     [SFTestUtils assertEqualIntWithValue:SF_MULTICURVE andValue2:extendedGeometryCollection.geometryType];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTICURVE andValue2:extendedGeometryCollection2.geometryType];
     [SFTestUtils assertEqualIntWithValue:SF_MULTICURVE andValue2:[extendedGeometryCollection collectionType]];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTICURVE andValue2:[extendedGeometryCollection2 collectionType]];
     [SFTestUtils assertEqualWithValue:extendedGeometryCollection andValue2:[[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection]];
+    [SFTestUtils assertEqualWithValue:extendedGeometryCollection andValue2:extendedGeometryCollection2];
     
 }
 
@@ -265,9 +269,13 @@
     [SFTestUtils assertEqualWithValue:geometryCollection2 andValue2:[geometryCollection asGeometryCollection]];
     
     SFExtendedGeometryCollection *extendedGeometryCollection = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
+    SFExtendedGeometryCollection *extendedGeometryCollection2 = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:multiSurface];
     [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:extendedGeometryCollection.geometryType];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:extendedGeometryCollection2.geometryType];
     [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:[extendedGeometryCollection collectionType]];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:[extendedGeometryCollection2 collectionType]];
     [SFTestUtils assertEqualWithValue:extendedGeometryCollection andValue2:[[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection]];
+    [SFTestUtils assertEqualWithValue:extendedGeometryCollection andValue2:extendedGeometryCollection2];
     
 }
 
