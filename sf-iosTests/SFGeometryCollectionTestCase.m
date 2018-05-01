@@ -222,4 +222,53 @@
     
 }
 
+-(void) testMultiSurface {
+
+    NSMutableArray<SFSurface *> *surfaces = [[NSMutableArray alloc] init];
+    for(int i = 0; i < 5; i++){
+        if(i % 2 == 0){
+            [surfaces addObject:[SFGeometryTestUtils createCurvePolygonWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
+        }else{
+            [surfaces addObject:[SFGeometryTestUtils createPolygonWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
+        }
+    }
+    
+    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    [geometries addObjectsFromArray:surfaces];
+    
+    SFGeometryCollection *multiSurface = [[SFGeometryCollection alloc] initWithGeometries:(NSMutableArray<SFGeometry *> *)surfaces];
+    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    
+    [SFTestUtils assertEqualIntWithValue:[multiSurface numGeometries] andValue2:[geometryCollection numGeometries]];
+    [SFTestUtils assertEqualWithValue:multiSurface.geometries andValue2:geometryCollection.geometries];
+    
+    [SFTestUtils assertTrue:[multiSurface isMultiSurface]];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:[multiSurface collectionType]];
+    [SFTestUtils assertFalse:[multiSurface isMultiPoint]];
+    [SFTestUtils assertFalse:[multiSurface isMultiLineString]];
+    [SFTestUtils assertFalse:[multiSurface isMultiCurve]];
+    [SFTestUtils assertFalse:[multiSurface isMultiPolygon]];
+    
+    [SFTestUtils assertTrue:[geometryCollection isMultiSurface]];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:[geometryCollection collectionType]];
+    [SFTestUtils assertFalse:[geometryCollection isMultiPoint]];
+    [SFTestUtils assertFalse:[geometryCollection isMultiLineString]];
+    [SFTestUtils assertFalse:[geometryCollection isMultiCurve]];
+    [SFTestUtils assertFalse:[geometryCollection isMultiPolygon]];
+    
+    SFGeometryCollection *multiSurface2 = [geometryCollection asMultiSurface];
+    [SFTestUtils assertEqualWithValue:multiSurface andValue2:multiSurface2];
+    [SFTestUtils assertEqualWithValue:multiSurface2 andValue2:[multiSurface asMultiSurface]];
+    
+    SFGeometryCollection *geometryCollection2 = [multiSurface asGeometryCollection];
+    [SFTestUtils assertEqualWithValue:geometryCollection andValue2: geometryCollection2];
+    [SFTestUtils assertEqualWithValue:geometryCollection2 andValue2:[geometryCollection asGeometryCollection]];
+    
+    SFExtendedGeometryCollection *extendedGeometryCollection = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:extendedGeometryCollection.geometryType];
+    [SFTestUtils assertEqualIntWithValue:SF_MULTISURFACE andValue2:[extendedGeometryCollection collectionType]];
+    [SFTestUtils assertEqualWithValue:extendedGeometryCollection andValue2:[[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection]];
+    
+}
+
 @end
