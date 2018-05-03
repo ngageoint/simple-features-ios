@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'sf-ios/**/*.{h,m}'
 
-  s.resource_bundle = { 'SF' => ['sf-ios/**/*.plist'] }
+  s.resource_bundle = { 'sf-ios' => ['sf-ios/**/*.plist'] }
   s.frameworks = 'Foundation'
 end
