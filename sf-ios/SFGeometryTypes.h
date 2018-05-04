@@ -76,22 +76,4 @@ extern NSString * const SF_NONE_NAME;
  */
 +(enum SFGeometryType) fromName: (NSString *) name;
 
-/**
- *  Get the geometry type code
- *
- *  @param geometryType geometry type
- *
- *  @return geometry type code
- */
-+(int) code: (enum SFGeometryType) geometryType;
-
-/**
- *  Get the geometry type from the code
- *
- *  @param code geometry type code
- *
- *  @return geometry type
- */
-+(enum SFGeometryType) fromCode: (int) code;
-
 @end

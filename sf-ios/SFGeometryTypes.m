@@ -130,12 +130,4 @@ NSString * const SF_NONE_NAME = @"NONE";
     return value;
 }
 
-+(int) code: (enum SFGeometryType) geometryType{
-    return (int) geometryType;
-}
-
-+(enum SFGeometryType) fromCode: (int) code{
-    return code;
-}
-
 @end
