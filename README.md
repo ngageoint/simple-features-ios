@@ -26,6 +26,7 @@ View the latest [Appledoc on CocoaDocs](http://cocoadocs.org/docsets/sf-ios)
 
 Build this repository using Xcode and/or CocoaPods:
 
+    pod repo update
     pod install
 
 Open sf-ios.xcworkspace in Xcode or build from command line:
