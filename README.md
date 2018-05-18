@@ -15,7 +15,7 @@ Software source code previously released under an open source license and then m
 
 ### Simple Feature Conversion Libraries ###
 
-* [simple-features-wkb-ios](https://github.com/ngageoint/geopackage-wkb-ios) - Well Known Binary
+* [simple-features-wkb-ios](https://github.com/ngageoint/simple-features-wkb-ios) - Well Known Binary
 * [simple-features-proj-ios](https://github.com/ngageoint/simple-features-proj-ios) - Projection
 
 ### Usage ###
