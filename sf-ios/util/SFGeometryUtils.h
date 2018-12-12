@@ -431,7 +431,7 @@
 /**
  * Decode the data into a geometry
  *
- * @param bytes
+ * @param data
  *            encoded data
  * @return geometry
  */
