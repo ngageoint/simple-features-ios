@@ -636,4 +636,175 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     return hasM;
 }
 
++(NSArray<NSNumber *> *) parentHierarchyOfType: (enum SFGeometryType) geometryType{
+    
+    NSMutableArray<NSNumber *> *hierarchy = [[NSMutableArray alloc] init];
+    
+    enum SFGeometryType parentType = [self parentTypeOfType:geometryType];
+    while(parentType != SF_NONE){
+        [hierarchy addObject:[NSNumber numberWithInt:parentType]];
+        parentType = [self parentTypeOfType:parentType];
+    }
+    
+    return hierarchy;
+}
+
++(enum SFGeometryType) parentTypeOfType: (enum SFGeometryType) geometryType{
+    
+    enum SFGeometryType parentType = SF_NONE;
+    
+    switch(geometryType){
+            
+        case SF_GEOMETRY:
+            break;
+        case SF_POINT:
+            parentType = SF_GEOMETRY;
+            break;
+        case SF_LINESTRING:
+            parentType = SF_CURVE;
+            break;
+        case SF_POLYGON:
+            parentType = SF_CURVEPOLYGON;
+            break;
+        case SF_MULTIPOINT:
+            parentType = SF_GEOMETRYCOLLECTION;
+            break;
+        case SF_MULTILINESTRING:
+            parentType = SF_MULTICURVE;
+            break;
+        case SF_MULTIPOLYGON:
+            parentType = SF_MULTISURFACE;
+            break;
+        case SF_GEOMETRYCOLLECTION:
+            parentType = SF_GEOMETRY;
+            break;
+        case SF_CIRCULARSTRING:
+            parentType = SF_LINESTRING;
+            break;
+        case SF_COMPOUNDCURVE:
+            parentType = SF_CURVE;
+            break;
+        case SF_CURVEPOLYGON:
+            parentType = SF_SURFACE;
+            break;
+        case SF_MULTICURVE:
+            parentType = SF_GEOMETRYCOLLECTION;
+            break;
+        case SF_MULTISURFACE:
+            parentType = SF_GEOMETRYCOLLECTION;
+            break;
+        case SF_CURVE:
+            parentType = SF_GEOMETRY;
+            break;
+        case SF_SURFACE:
+            parentType = SF_GEOMETRY;
+            break;
+        case SF_POLYHEDRALSURFACE:
+            parentType = SF_SURFACE;
+            break;
+        case SF_TIN:
+            parentType = SF_POLYHEDRALSURFACE;
+            break;
+        case SF_TRIANGLE:
+            parentType = SF_POLYGON;
+            break;
+        default:
+            [NSException raise:@"Geometry Type Not Supported" format:@"Geomery Type is not supported: %@", [SFGeometryTypes name:geometryType]];
+    }
+    
+    return parentType;
+}
+
+
++(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (enum SFGeometryType) geometryType{
+    
+    NSMutableDictionary<NSNumber *, NSDictionary *> *hierarchy = [[NSMutableDictionary alloc] init];
+    
+    NSArray<NSNumber *> *childTypes = [self childTypesOfType:geometryType];
+    
+    if(childTypes.count > 0){
+        
+        for(NSNumber *childTypeNumber in childTypes){
+            enum SFGeometryType childType = [childTypeNumber intValue];
+            [hierarchy setObject:[self childHierarchyOfType:childType] forKey:childTypeNumber];
+        }
+    }
+    
+    return hierarchy;
+}
+
++(NSArray<NSNumber *> *) childTypesOfType: (enum SFGeometryType) geometryType{
+    
+    NSMutableArray<NSNumber *> *childTypes = [[NSMutableArray alloc] init];
+    
+    switch (geometryType) {
+            
+        case SF_GEOMETRY:
+            [childTypes addObject:[NSNumber numberWithInt:SF_POINT]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_GEOMETRYCOLLECTION]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_CURVE]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_SURFACE]];
+            break;
+        case SF_POINT:
+            break;
+        case SF_LINESTRING:
+            [childTypes addObject:[NSNumber numberWithInt:SF_CIRCULARSTRING]];
+            break;
+        case SF_POLYGON:
+            [childTypes addObject:[NSNumber numberWithInt:SF_TRIANGLE]];
+            break;
+        case SF_MULTIPOINT:
+            break;
+        case SF_MULTILINESTRING:
+            break;
+        case SF_MULTIPOLYGON:
+            break;
+        case SF_GEOMETRYCOLLECTION:
+            [childTypes addObject:[NSNumber numberWithInt:SF_MULTIPOINT]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_MULTICURVE]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_MULTISURFACE]];
+            break;
+        case SF_CIRCULARSTRING:
+            break;
+        case SF_COMPOUNDCURVE:
+            break;
+        case SF_CURVEPOLYGON:
+            [childTypes addObject:[NSNumber numberWithInt:SF_POLYGON]];
+            break;
+        case SF_MULTICURVE:
+            [childTypes addObject:[NSNumber numberWithInt:SF_MULTILINESTRING]];
+            break;
+        case SF_MULTISURFACE:
+            [childTypes addObject:[NSNumber numberWithInt:SF_MULTIPOLYGON]];
+            break;
+        case SF_CURVE:
+            [childTypes addObject:[NSNumber numberWithInt:SF_LINESTRING]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_COMPOUNDCURVE]];
+            break;
+        case SF_SURFACE:
+            [childTypes addObject:[NSNumber numberWithInt:SF_CURVEPOLYGON]];
+            [childTypes addObject:[NSNumber numberWithInt:SF_POLYHEDRALSURFACE]];
+            break;
+        case SF_POLYHEDRALSURFACE:
+            [childTypes addObject:[NSNumber numberWithInt:SF_TIN]];
+            break;
+        case SF_TIN:
+            break;
+        case SF_TRIANGLE:
+            break;
+        default:
+            [NSException raise:@"Geometry Type Not Supported" format:@"Geomery Type is not supported: %@", [SFGeometryTypes name:geometryType]];
+    }
+    
+    return childTypes;
+}
+
++(NSData *) encodeGeometry: (SFGeometry *) geometry{
+    return [NSKeyedArchiver archivedDataWithRootObject:geometry];
+}
+
++(SFGeometry *) decodeGeometry: (NSData *) data{
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 @end

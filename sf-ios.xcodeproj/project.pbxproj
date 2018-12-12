@@ -78,6 +78,7 @@
 		0496DB282008F5FD0068A2CE /* SFSweepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB262008F5FD0068A2CE /* SFSweepLine.m */; };
 		04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB919D1BF29F9A00894999 /* SFTestUtils.m */; };
 		04AB91A11BF2A05200894999 /* SFGeometryTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */; };
+		04B23E9221C18863004080AF /* SFGeometryCodingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B23E9121C18863004080AF /* SFGeometryCodingTestCase.m */; };
 		04C503042008FC4C00862DA9 /* SFSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503022008FC4C00862DA9 /* SFSegment.h */; };
 		04C503052008FC4C00862DA9 /* SFSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C503032008FC4C00862DA9 /* SFSegment.m */; };
 		04C503082008FC6700862DA9 /* SFShamosHoey.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C503062008FC6700862DA9 /* SFShamosHoey.h */; };
@@ -180,6 +181,7 @@
 		04AB919D1BF29F9A00894999 /* SFTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTestUtils.m; sourceTree = "<group>"; };
 		04AB919F1BF2A05200894999 /* SFGeometryTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryTestUtils.h; sourceTree = "<group>"; };
 		04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryTestUtils.m; sourceTree = "<group>"; };
+		04B23E9121C18863004080AF /* SFGeometryCodingTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFGeometryCodingTestCase.m; sourceTree = "<group>"; };
 		04C503022008FC4C00862DA9 /* SFSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSegment.h; sourceTree = "<group>"; };
 		04C503032008FC4C00862DA9 /* SFSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSegment.m; sourceTree = "<group>"; };
 		04C503062008FC6700862DA9 /* SFShamosHoey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFShamosHoey.h; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			children = (
 				04F455F82090F63B00FC299E /* SFGeometryCollectionTestCase.m */,
 				0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */,
+				04B23E9121C18863004080AF /* SFGeometryCodingTestCase.m */,
 				04AB919C1BF29F9A00894999 /* SFTestUtils.h */,
 				04AB919D1BF29F9A00894999 /* SFTestUtils.m */,
 				04AB919F1BF2A05200894999 /* SFGeometryTestUtils.h */,
@@ -622,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B23E9221C18863004080AF /* SFGeometryCodingTestCase.m in Sources */,
 				04C5030C20095E7300862DA9 /* ShamosHoeyTestCase.m in Sources */,
 				04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */,
 				0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */,

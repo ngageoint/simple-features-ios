@@ -11,6 +11,7 @@
 #import "SFPoint.h"
 #import "SFLineString.h"
 #import "SFPolygon.h"
+#import "SFGeometryTypes.h"
 
 /**
  * Utilities for Geometry objects
@@ -378,5 +379,62 @@
  * @return true if has m
  */
 +(BOOL) hasM: (NSArray<SFGeometry *> *) geometries;
+
+/**
+ * Get the parent type hierarchy of the provided geometry type starting with
+ * the immediate parent. If the argument is GEOMETRY, an empty list is
+ * returned, else the final type in the list will be GEOMETRY.
+ *
+ * @param geometryType
+ *            geometry type
+ * @return list of increasing parent types
+ */
++(NSArray<NSNumber *> *) parentHierarchyOfType: (enum SFGeometryType) geometryType;
+
+/**
+ * Get the parent Geometry Type of the provided geometry type
+ *
+ * @param geometryType
+ *            geometry type
+ * @return parent geometry type or null if argument is GEOMETRY (no parent
+ *         type)
+ */
++(enum SFGeometryType) parentTypeOfType: (enum SFGeometryType) geometryType;
+
+/**
+ * Get the child type hierarchy of the provided geometry type.
+ *
+ * @param geometryType
+ *            geometry type
+ * @return child type hierarchy, null if no children
+ */
++(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (enum SFGeometryType) geometryType;
+
+/**
+ * Get the immediate child Geometry Types of the provided geometry type
+ *
+ * @param geometryType
+ *            geometry type
+ * @return child geometry types, empty list if no child types
+ */
++(NSArray<NSNumber *> *) childTypesOfType: (enum SFGeometryType) geometryType;
+
+/**
+ * Encode the geometry to data
+ *
+ * @param geometry
+ *            geometry
+ * @return encoded dta
+ */
++(NSData *) encodeGeometry: (SFGeometry *) geometry;
+
+/**
+ * Decode the data into a geometry
+ *
+ * @param bytes
+ *            encoded data
+ * @return geometry
+ */
++(SFGeometry *) decodeGeometry: (NSData *) data;
 
 @end
