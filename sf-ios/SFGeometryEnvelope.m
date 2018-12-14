@@ -81,7 +81,19 @@
     return _hasM;
 }
 
+-(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope{
+    return [self overlapWithEnvelope:envelope] != nil;
+}
+
+-(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope withAllowEmpty: (BOOL) allowEmpty{
+    return [self overlapWithEnvelope:envelope withAllowEmpty:allowEmpty] != nil;
+}
+
 -(SFGeometryEnvelope *) overlapWithEnvelope: (SFGeometryEnvelope *) envelope{
+    return [self overlapWithEnvelope:envelope withAllowEmpty:NO];
+}
+
+-(SFGeometryEnvelope *) overlapWithEnvelope: (SFGeometryEnvelope *) envelope withAllowEmpty: (BOOL) allowEmpty{
     
     double minX = MAX([self.minX doubleValue], [envelope.minX doubleValue]);
     double maxX = MIN([self.maxX doubleValue], [envelope.maxX doubleValue]);
@@ -90,7 +102,7 @@
     
     SFGeometryEnvelope *overlap = nil;
     
-    if(minX < maxX && minY < maxY){
+    if((minX < maxX && minY < maxY) || (allowEmpty && minX <= maxX && minY <= maxY)){
         overlap = [[SFGeometryEnvelope alloc] initWithMinXDouble:minX andMinYDouble:minY andMaxXDouble:maxX andMaxYDouble:maxY];
     }
     
@@ -111,6 +123,13 @@
     }
     
     return unionEnvelope;
+}
+
+-(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope{
+    return [self.minX doubleValue] <= [envelope.minX doubleValue]
+        && [self.maxX doubleValue] >= [envelope.maxX doubleValue]
+        && [self.minY doubleValue] <= [envelope.minY doubleValue]
+        && [self.maxY doubleValue] >= [envelope.maxY doubleValue];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

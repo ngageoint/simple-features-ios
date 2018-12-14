@@ -143,21 +143,61 @@
 -(BOOL) isMeasured;
 
 /**
+ * Determine if intersects with the provided envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ * @return true if intersects
+ */
+-(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Determine if intersects with the provided envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ * @param allowEmpty
+ *            allow empty ranges when determining intersection
+ * @return true if intersects
+ */
+-(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope withAllowEmpty: (BOOL) allowEmpty;
+
+/**
  * Get the overlapping geometry envelope with the provided envelope
  *
  * @param envelope
- *            envelope
+ *            geometry envelope
  * @return geometry envelope
  */
 -(SFGeometryEnvelope *) overlapWithEnvelope: (SFGeometryEnvelope *) envelope;
 
 /**
+ * Get the overlapping geometry envelope with the provided envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ * @param allowEmpty
+ *            allow empty ranges when determining overlap
+ * @return geometry envelope
+ */
+-(SFGeometryEnvelope *) overlapWithEnvelope: (SFGeometryEnvelope *) envelope withAllowEmpty: (BOOL) allowEmpty;
+
+/**
  * Get the union geometry envelope combined with the provided envelope
  *
  * @param envelope
- *            envelope
+ *            geometry envelope
  * @return geometry envelope
  */
 -(SFGeometryEnvelope *) unionWithEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Determine if inclusively contains the provided envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ * @return true if contains
+ */
+-(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope;
 
 @end
