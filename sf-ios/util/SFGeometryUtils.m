@@ -641,7 +641,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     NSMutableArray<NSNumber *> *hierarchy = [[NSMutableArray alloc] init];
     
     enum SFGeometryType parentType = [self parentTypeOfType:geometryType];
-    while(parentType != SF_NONE){
+    while(parentType != SF_NONE && parentType >= 0){
         [hierarchy addObject:[NSNumber numberWithInt:parentType]];
         parentType = [self parentTypeOfType:parentType];
     }
