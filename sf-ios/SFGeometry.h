@@ -72,7 +72,10 @@
 -(int) dimension;
 
 /**
- * Get the mathematical centroid for this Geometry as a Point
+ * Get the mathematical centroid point of a 2 dimensional representation of
+ * the Geometry (balancing point of a 2d cutout of the geometry). Only the x
+ * and y coordinate of the resulting point are calculated and populated. The
+ * resulting SFPoint.z and SFPoint.m values will always be nil.
  *
  * @return centroid point
  */

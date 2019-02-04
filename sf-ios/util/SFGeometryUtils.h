@@ -42,7 +42,10 @@
 +(double) distanceBetweenPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
 
 /**
- * Get the centroid point of the Geometry
+ * Get the centroid point of a 2 dimensional representation of the Geometry
+ * (balancing point of a 2d cutout of the geometry). Only the x and y
+ * coordinate of the resulting point are calculated and populated. The
+ * resulting SFPoint.z and SFPoint.m values will always be nil.
  *
  * @param geometry
  *            geometry object
