@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 2.0.2 (TBD)
+## [2.0.2](https://github.com/ngageoint/simple-features-ios/releases/tag/2.0.2) (04-03-2019)
 
 * Geometry Type parent and child hierarchy utility methods
 * Encode and decode geometry utility methods
