@@ -124,7 +124,9 @@ NSString * const SF_NONE_NAME = @"NONE";
                                nil
                                ];
         NSNumber *enumValue = [types objectForKey:name];
-        value = (enum SFGeometryType)[enumValue intValue];
+        if(enumValue != nil){
+            value = (enum SFGeometryType)[enumValue intValue];
+        }
     }
     
     return value;
