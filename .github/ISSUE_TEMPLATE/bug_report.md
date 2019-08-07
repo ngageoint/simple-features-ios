@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Report an issue
+title: ''
+labels: bug
+assignees: ''
+
+---
+
 Please fill out as much known and relevant information as possible.
 
 #### Version Information:
@@ -7,7 +16,7 @@ Please fill out as much known and relevant information as possible.
   * CocoaPods Version:
   * Xcode Version:
   * Device or Emulator:
-  * iOS Version: 
+  * iOS Version:
   * Other Relevant Libraries:
 
 #### Expected Results:
