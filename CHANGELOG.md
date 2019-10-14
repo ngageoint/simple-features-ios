@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 2.0.3 (TBD)
+## [2.0.3](https://github.com/ngageoint/simple-features-ios/releases/tag/2.0.3) (10-14-2019)
 
 * Geometry Types fromName method returns SF_NONE for non matching names
 
