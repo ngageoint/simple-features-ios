@@ -66,6 +66,16 @@
     return [self initWithHasZ:hasZ andHasM:hasM andX:[[NSDecimalNumber alloc] initWithDouble:x] andY:[[NSDecimalNumber alloc] initWithDouble:y]];
 }
 
+-(void) setZ: (NSDecimalNumber *) z{
+    _z = z;
+    [self setHasZ:z != nil];
+}
+
+-(void) setM: (NSDecimalNumber *) m{
+    _m = m;
+    [self setHasM:m != nil];
+}
+
 -(void) setXValue: (double) x{
     self.x = [[NSDecimalNumber alloc] initWithDouble:x];
 }

@@ -11,11 +11,16 @@
 @implementation SFByteReader
 
 -(instancetype) initWithData: (NSData *) bytes{
+    self = [self initWithData:bytes andByteOrder:DEFAULT_READ_BYTE_ORDER];
+    return self;
+}
+
+-(instancetype) initWithData: (NSData *) bytes andByteOrder: (CFByteOrder) byteOrder{
     self = [super init];
     if(self != nil){
         self.bytes = bytes;
         self.nextByte = 0;
-        self.byteOrder = CFByteOrderBigEndian;
+        self.byteOrder = byteOrder;
     }
     return self;
 }
@@ -39,6 +44,13 @@
     self.nextByte++;
     free(buffer);
     return [NSNumber numberWithInt:value];
+}
+
+-(NSData *) readData: (int) num{
+    int rangeStart = self.nextByte;
+    NSData *data = [self.bytes subdataWithRange:NSMakeRange(rangeStart, num)];
+    self.nextByte += num;
+    return data;
 }
 
 -(NSNumber *) readInt{

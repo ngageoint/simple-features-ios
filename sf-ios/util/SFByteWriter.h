@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * Default write byte order
+ */
+static CFByteOrder DEFAULT_WRITE_BYTE_ORDER = CFByteOrderBigEndian;
+
+/**
  *  Write byte data
  */
 @interface SFByteWriter : NSObject
@@ -34,6 +39,15 @@
  *  @return new byte writer
  */
 -(instancetype) init;
+
+/**
+ *  Initialize
+ *
+ *  @param byteOrder byte order
+ *
+ *  @return new byte writer
+ */
+-(instancetype) initWithByteOrder: (CFByteOrder) byteOrder;
 
 /**
  *  Close the byte writer
@@ -67,6 +81,13 @@
  *  @param value byte
  */
 -(void) writeByte: (NSNumber *) value;
+
+/**
+ *  Write data
+ *
+ *  @param data data
+ */
+-(void) writeData: (NSData *) data;
 
 /**
  *  Write an integer

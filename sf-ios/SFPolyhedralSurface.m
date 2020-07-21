@@ -54,6 +54,7 @@
 
 -(void) addPolygon: (SFPolygon *) polygon{
     [self.polygons addObject:polygon];
+    [self updateZM:polygon];
 }
 
 -(void) addPatch: (SFPolygon *) patch{
@@ -61,7 +62,9 @@
 }
 
 -(void) addPolygons: (NSArray<SFPolygon *> *) polygons{
-    [self.polygons addObjectsFromArray:polygons];
+    for(SFPolygon *polygon in polygons){
+        [self addPolygon:polygon];
+    }
 }
 
 -(void) addPatches: (NSArray<SFPolygon *> *) patches{

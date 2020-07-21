@@ -16,28 +16,28 @@
 /**
  *  X coordinate range
  */
-@property (nonatomic, strong) NSDecimalNumber * minX;
-@property (nonatomic, strong) NSDecimalNumber * maxX;
+@property (nonatomic, strong) NSDecimalNumber *minX;
+@property (nonatomic, strong) NSDecimalNumber *maxX;
 
 /**
  *  Y coordinate range
  */
-@property (nonatomic, strong) NSDecimalNumber * minY;
-@property (nonatomic, strong) NSDecimalNumber * maxY;
+@property (nonatomic, strong) NSDecimalNumber *minY;
+@property (nonatomic, strong) NSDecimalNumber *maxY;
 
 /**
  * Has Z value and Z coordinate range
  */
 @property (nonatomic) BOOL hasZ;
-@property (nonatomic, strong) NSDecimalNumber * minZ;
-@property (nonatomic, strong) NSDecimalNumber * maxZ;
+@property (nonatomic, strong) NSDecimalNumber *minZ;
+@property (nonatomic, strong) NSDecimalNumber *maxZ;
 
 /**
  *  Has M value and M coordinate range
  */
 @property (nonatomic) BOOL hasM;
-@property (nonatomic, strong) NSDecimalNumber * minM;
-@property (nonatomic, strong) NSDecimalNumber * maxM;
+@property (nonatomic, strong) NSDecimalNumber *minM;
+@property (nonatomic, strong) NSDecimalNumber *maxM;
 
 /**
  *  Initialize with no z or m

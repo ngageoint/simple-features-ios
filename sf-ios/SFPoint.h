@@ -17,22 +17,22 @@
 /**
  *  X coordinate
  */
-@property (nonatomic, strong) NSDecimalNumber * x;
+@property (nonatomic, strong) NSDecimalNumber *x;
 
 /**
  *  Y coordinate
  */
-@property (nonatomic, strong) NSDecimalNumber * y;
+@property (nonatomic, strong) NSDecimalNumber *y;
 
 /**
  *  Z coordinate
  */
-@property (nonatomic, strong) NSDecimalNumber * z;
+@property (nonatomic, strong) NSDecimalNumber *z;
 
 /**
  *  M coordinate
  */
-@property (nonatomic, strong) NSDecimalNumber * m;
+@property (nonatomic, strong) NSDecimalNumber *m;
 
 /**
  *  Initialize

@@ -46,10 +46,13 @@
 
 -(void) addRing: (SFCurve *) ring{
     [self.rings addObject:ring];
+    [self updateZM:ring];
 }
 
 -(void) addRings: (NSArray<SFCurve *> *) rings{
-    [self.rings addObjectsFromArray:rings];
+    for(SFCurve *ring in rings){
+        [self addRing:ring];
+    }
 }
 
 -(int) numRings{

@@ -96,4 +96,12 @@
  */
 -(BOOL) isSimple;
 
+/**
+ * Update currently false hasZ and hasM values using the provided geometry
+ *
+ * @param geometry
+ *            geometry
+ */
+-(void) updateZM: (SFGeometry *) geometry;
+
 @end

@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * Default read byte order
+ */
+static CFByteOrder DEFAULT_READ_BYTE_ORDER = CFByteOrderBigEndian;
+
+/**
  *  Read through byte data
  */
 @interface SFByteReader : NSObject
@@ -38,11 +43,21 @@
 -(instancetype) initWithData: (NSData *) bytes;
 
 /**
+ *  Initialize
+ *
+ *  @param bytes byte data
+ *  @param byteOrder byte order
+ *
+ *  @return new byte reader
+ */
+-(instancetype) initWithData: (NSData *) bytes andByteOrder: (CFByteOrder) byteOrder;
+
+/**
  *  Read a String from the provided number of bytes
  *
  *  @param num number of bytes to read
  *
- *  @return string values
+ *  @return string value
  */
 -(NSString *) readString: (int) num;
 
@@ -52,6 +67,15 @@
  *  @return byte
  */
 -(NSNumber *) readByte;
+
+/**
+ *  Read Data with the provided number of bytes
+ *
+ *  @param num number of bytes to read
+ *
+ *  @return data value
+ */
+-(NSData *) readData: (int) num;
 
 /**
  *  Read an integer (4 bytes)

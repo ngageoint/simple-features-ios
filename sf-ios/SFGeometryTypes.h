@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- Geometry Type enumeration
+ * Geometry Type enumeration
  */
 enum SFGeometryType{
     SF_GEOMETRY = 0,

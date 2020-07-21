@@ -51,10 +51,13 @@
 
 -(void) addGeometry: (SFGeometry *) geometry{
     [self.geometries addObject:geometry];
+    [self updateZM:geometry];
 }
 
 -(void) addGeometries: (NSArray<SFGeometry *> *) geometries{
-    [self.geometries addObjectsFromArray:geometries];
+    for(SFGeometry *geometry in geometries){
+        [self addGeometry:geometry];
+    }
 }
 
 -(int) numGeometries{

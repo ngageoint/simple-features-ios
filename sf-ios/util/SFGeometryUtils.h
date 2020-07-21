@@ -56,13 +56,13 @@
 /**
  * Minimize the geometry using the shortest x distance between each connected set of points.
  * The resulting geometry point x values will be in the range: 
- *   (3 * min value <= x <= 3 * max value
+ *   (3 * min value &lt;= x &lt;= 3 * max value
  *
  * Example: For WGS84 provide a max x of 180.0.
- * Resulting x values will be in the range: -540.0 <= x <= 540.0
+ * Resulting x values will be in the range: -540.0 &lt;= x &lt;= 540.0
  *
  * Example: For web mercator provide a world width of 20037508.342789244.
- * Resulting x values will be in the range: -60112525.028367732 <= x <= 60112525.028367732
+ * Resulting x values will be in the range: -60112525.028367732 &lt;= x &lt;= 60112525.028367732
  *
  * @param geometry
  *            geometry
@@ -76,10 +76,10 @@
  * adjusted to fall within the range.
  *
  * Example: For WGS84 provide a max x of 180.0.
- * Resulting x values will be in the range: -180.0 <= x <= 180.0.
+ * Resulting x values will be in the range: -180.0 &lt;= x &lt;= 180.0.
  *
  * Example: For web mercator provide a world width of 20037508.342789244.
- * Resulting x values will be in the range: -20037508.342789244 <= x <= 20037508.342789244.
+ * Resulting x values will be in the range: -20037508.342789244 &lt;= x &lt;= 20037508.342789244.
  *
  * @param geometry
  *            geometry

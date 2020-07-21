@@ -39,10 +39,13 @@
 
 -(void) addPoint: (SFPoint *) point{
     [self.points addObject:point];
+    [self updateZM:point];
 }
 
 -(void) addPoints: (NSArray<SFPoint *> *) points{
-    [self.points addObjectsFromArray:points];
+    for(SFPoint *point in points){
+        [self addPoint:point];
+    }
 }
 
 -(int) numPoints{

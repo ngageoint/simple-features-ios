@@ -30,6 +30,11 @@
     
     [self buildEnvelope:envelope andGeometry:geometry];
     
+    if(envelope.minX == nil || envelope.maxX == nil
+       || envelope.minY == nil || envelope.maxY == nil){
+        envelope = nil;
+    }
+    
     return envelope;
 }
 

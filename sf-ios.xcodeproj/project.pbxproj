@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041F18CF24C75923001311E4 /* SFFiniteFilterTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 041F18CD24C75923001311E4 /* SFFiniteFilterTypes.h */; };
+		041F18D024C75923001311E4 /* SFFiniteFilterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F18CE24C75923001311E4 /* SFFiniteFilterTypes.m */; };
+		041F18D324C75D53001311E4 /* SFGeometryFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 041F18D124C75D53001311E4 /* SFGeometryFilter.h */; };
+		041F18D724C76747001311E4 /* SFPointFiniteFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 041F18D524C76747001311E4 /* SFPointFiniteFilter.h */; };
+		041F18D824C76747001311E4 /* SFPointFiniteFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F18D624C76747001311E4 /* SFPointFiniteFilter.m */; };
 		042FC6571B963FE500549A4B /* sf_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042FC64B1B963FE500549A4B /* sf_ios.framework */; };
 		042FC69F1B96421E00549A4B /* SFCircularString.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6681B96421E00549A4B /* SFCircularString.h */; };
 		042FC6A01B96421E00549A4B /* SFCircularString.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC6691B96421E00549A4B /* SFCircularString.m */; };
@@ -105,6 +110,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041F18CD24C75923001311E4 /* SFFiniteFilterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFFiniteFilterTypes.h; sourceTree = "<group>"; };
+		041F18CE24C75923001311E4 /* SFFiniteFilterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFFiniteFilterTypes.m; sourceTree = "<group>"; };
+		041F18D124C75D53001311E4 /* SFGeometryFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFGeometryFilter.h; sourceTree = "<group>"; };
+		041F18D524C76747001311E4 /* SFPointFiniteFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFPointFiniteFilter.h; sourceTree = "<group>"; };
+		041F18D624C76747001311E4 /* SFPointFiniteFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFPointFiniteFilter.m; sourceTree = "<group>"; };
 		042FC64B1B963FE500549A4B /* sf_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = sf_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		042FC64F1B963FE500549A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		042FC6561B963FE500549A4B /* sf_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sf_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +229,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041F18CC24C758F7001311E4 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				041F18CD24C75923001311E4 /* SFFiniteFilterTypes.h */,
+				041F18CE24C75923001311E4 /* SFFiniteFilterTypes.m */,
+				041F18D124C75D53001311E4 /* SFGeometryFilter.h */,
+				041F18D524C76747001311E4 /* SFPointFiniteFilter.h */,
+				041F18D624C76747001311E4 /* SFPointFiniteFilter.m */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
 		042FC6411B963FE500549A4B = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +353,7 @@
 		042FC6991B96421E00549A4B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				041F18CC24C758F7001311E4 /* filter */,
 				042FC6911B96421E00549A4B /* SFByteReader.h */,
 				042FC6921B96421E00549A4B /* SFByteReader.m */,
 				042FC6931B96421E00549A4B /* SFByteWriter.h */,
@@ -437,6 +460,7 @@
 				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
 				0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */,
 				0445CB2F1EA150D1008DC0D7 /* SFCentroidCurve.h in Headers */,
+				041F18D324C75D53001311E4 /* SFGeometryFilter.h in Headers */,
 				042FC6C31B96421E00549A4B /* SFTIN.h in Headers */,
 				042FC6A11B96421E00549A4B /* SFCompoundCurve.h in Headers */,
 				0496DB1B200813020068A2CE /* SFEventTypes.h in Headers */,
@@ -460,6 +484,8 @@
 				042FC6BD1B96421E00549A4B /* SFPolygon.h in Headers */,
 				0496DB1F200819110068A2CE /* SFEvent.h in Headers */,
 				042FC6BB1B96421E00549A4B /* SFPoint.h in Headers */,
+				041F18D724C76747001311E4 /* SFPointFiniteFilter.h in Headers */,
+				041F18CF24C75923001311E4 /* SFFiniteFilterTypes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +634,9 @@
 				042FC6AC1B96421E00549A4B /* SFGeometryEnvelope.m in Sources */,
 				042FC6A81B96421E00549A4B /* SFGeometry.m in Sources */,
 				04F455ED2090AC7B00FC299E /* SFLine.m in Sources */,
+				041F18D024C75923001311E4 /* SFFiniteFilterTypes.m in Sources */,
 				042FC6A21B96421E00549A4B /* SFCompoundCurve.m in Sources */,
+				041F18D824C76747001311E4 /* SFPointFiniteFilter.m in Sources */,
 				042FC6C81B96421E00549A4B /* SFByteReader.m in Sources */,
 				042FC6BA1B96421E00549A4B /* SFMultiSurface.m in Sources */,
 				042FC6C21B96421E00549A4B /* SFSurface.m in Sources */,

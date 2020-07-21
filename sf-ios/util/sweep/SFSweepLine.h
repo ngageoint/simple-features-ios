@@ -70,7 +70,7 @@
  *            point 1
  * @param point2
  *            point 2
- * @return NSOrderedDescending if p1 > p2, NSOrderedAscending if p1 < p2, NSOrderedSame if equal
+ * @return NSOrderedDescending if p1 &gt; p2, NSOrderedAscending if p1 &lt; p2, NSOrderedSame if equal
  */
 +(NSComparisonResult) xyOrderWithPoint: (SFPoint *) point1 andPoint: (SFPoint *) point2;
 

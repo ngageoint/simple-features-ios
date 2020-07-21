@@ -43,10 +43,13 @@
 
 -(void) addLineString: (SFLineString *) lineString{
     [self.lineStrings addObject:lineString];
+    [self updateZM:lineString];
 }
 
 -(void) addLineStrings: (NSArray<SFLineString *> *) lineStrings{
-    [self.lineStrings addObjectsFromArray:lineStrings];
+    for(SFLineString *lineString in lineStrings){
+        [self addLineString:lineString];
+    }
 }
 
 -(int) numLineStrings{

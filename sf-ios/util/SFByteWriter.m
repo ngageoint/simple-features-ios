@@ -11,11 +11,17 @@
 @implementation SFByteWriter
 
 -(instancetype) init{
+    self = [self initWithByteOrder:DEFAULT_WRITE_BYTE_ORDER];
+    return self;
+}
+
+-(instancetype) initWithByteOrder: (CFByteOrder) byteOrder{
     self = [super init];
     if(self != nil){
         self.nextByte = 0;
         self.os = [[NSOutputStream alloc] initToMemory];
         [self.os open];
+        self.byteOrder = byteOrder;
     }
     return self;
 }
@@ -43,6 +49,11 @@
     NSData *data = [NSData dataWithBytes:&byte length:1];
     [self.os write:[data bytes]  maxLength:1];
     self.nextByte++;
+}
+
+-(void) writeData: (NSData *) data{
+    [self.os write:[data bytes]  maxLength:data.length];
+    self.nextByte += (int)data.length;
 }
 
 -(void) writeInt: (NSNumber *) value{

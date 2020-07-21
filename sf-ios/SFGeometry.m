@@ -52,6 +52,15 @@
     return NO;
 }
 
+-(void) updateZM: (SFGeometry *) geometry{
+    if(!_hasZ){
+        [self setHasZ:geometry.hasZ];
+    }
+    if(!_hasM){
+        [self setHasM:geometry.hasM];
+    }
+}
+
 -(id) mutableCopyWithZone: (NSZone *) zone{
     [NSException raise:@"Abstract" format:@"Can not copy abstract geometry"];
     return nil;
