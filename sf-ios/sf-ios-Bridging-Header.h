@@ -47,5 +47,8 @@
 #import "SFSegment.h"
 #import "SFShamosHoey.h"
 #import "SFSweepLine.h"
+#import "SFFiniteFilterTypes.h"
+#import "SFGeometryFilter.h"
+#import "SFPointFiniteFilter.h"
 
 #endif /* sf_ios_Bridging_Header_h */
