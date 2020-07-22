@@ -76,7 +76,7 @@
  *
  * @param value
  *            double value
- * @return
+ * @return true if passes
  */
 -(BOOL) filterDouble: (double) value{
     BOOL passes = NO;
