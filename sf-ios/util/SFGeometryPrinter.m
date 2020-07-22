@@ -24,7 +24,7 @@
 
 @implementation SFGeometryPrinter
 
-+(NSString *) getGeometryString: (SFGeometry *) geometry{
++(NSString *) geometryString: (SFGeometry *) geometry{
     
     NSMutableString * message = [[NSMutableString alloc]init];
     
@@ -80,7 +80,7 @@
                 [message appendString:@"\n"];
                 [message appendFormat:@"%@", [SFGeometryTypes name:subGeometry.geometryType]];
                 [message appendString:@"\n"];
-                [message appendString:[self getGeometryString:subGeometry]];
+                [message appendString:[self geometryString:subGeometry]];
             }
         }
             break;
@@ -174,7 +174,7 @@
             [message appendFormat:@"Hole %d", i];
             [message appendString:@"\n"];
         }
-        [message appendString:[self getGeometryString:ring]];
+        [message appendString:[self geometryString:ring]];
     }
 }
 

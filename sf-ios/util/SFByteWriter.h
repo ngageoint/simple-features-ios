@@ -59,7 +59,7 @@ static CFByteOrder DEFAULT_WRITE_BYTE_ORDER = CFByteOrderBigEndian;
  *
  *  @return byte data
  */
--(NSData *) getData;
+-(NSData *) data;
 
 /**
  *  Get the current size in bytes written

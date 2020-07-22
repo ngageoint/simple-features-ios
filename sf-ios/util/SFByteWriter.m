@@ -30,7 +30,7 @@
     [self.os close];
 }
 
--(NSData *) getData{
+-(NSData *) data{
     return [self.os propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
 }
 

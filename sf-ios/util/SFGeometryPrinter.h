@@ -21,6 +21,6 @@
  *
  *  @return geometry string
  */
-+(NSString *) getGeometryString: (SFGeometry *) geometry;
++(NSString *) geometryString: (SFGeometry *) geometry;
 
 @end
