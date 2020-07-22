@@ -548,11 +548,11 @@
 			};
 			buildConfigurationList = 042FC6451B963FE500549A4B /* Build configuration list for PBXProject "sf-ios" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 042FC6411B963FE500549A4B;
 			productRefGroup = 042FC64C1B963FE500549A4B /* Products */;
