@@ -82,16 +82,13 @@
     BOOL passes = NO;
     switch (_type) {
         case SF_FF_FINITE:
-            // TODO
-            // passes = Double.isFinite(value);
+            passes = isfinite(value);
             break;
         case SF_FF_FINITE_AND_INFINITE:
-            // TODO
-            // passes = !Double.isNaN(value);
+            passes = !isnan(value);
             break;
         case SF_FF_FINITE_AND_NAN:
-            // TODO
-            // passes = !Double.isInfinite(value);
+            passes = !isinf(value);
             break;
         default:
             [NSException raise:@"Unsupported" format:@"Unsupported filter type: %u", _type];
