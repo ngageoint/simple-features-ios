@@ -50,5 +50,6 @@
 #import "SFFiniteFilterTypes.h"
 #import "SFGeometryFilter.h"
 #import "SFPointFiniteFilter.h"
+#import "SFTextReader.h"
 
 #endif /* sf_ios_Bridging_Header_h */

@@ -73,6 +73,8 @@
 		0445CB341EA150E3008DC0D7 /* SFCentroidSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */; };
 		0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */; };
 		0472B51B1C03590500496B87 /* sf-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */; };
+		0485564824D89B5B00810C6D /* SFTextReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485564624D89B5B00810C6D /* SFTextReader.h */; };
+		0485564924D89B5B00810C6D /* SFTextReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485564724D89B5B00810C6D /* SFTextReader.m */; };
 		0496DB1B200813020068A2CE /* SFEventTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB19200813020068A2CE /* SFEventTypes.h */; };
 		0496DB1C200813020068A2CE /* SFEventTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1A200813020068A2CE /* SFEventTypes.m */; };
 		0496DB1F200819110068A2CE /* SFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB1D200819110068A2CE /* SFEvent.h */; };
@@ -179,6 +181,8 @@
 		0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCentroidSurface.m; sourceTree = "<group>"; };
 		0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtilsTestCase.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		0485564624D89B5B00810C6D /* SFTextReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFTextReader.h; sourceTree = "<group>"; };
+		0485564724D89B5B00810C6D /* SFTextReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFTextReader.m; sourceTree = "<group>"; };
 		0496DB19200813020068A2CE /* SFEventTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEventTypes.h; sourceTree = "<group>"; };
 		0496DB1A200813020068A2CE /* SFEventTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEventTypes.m; sourceTree = "<group>"; };
 		0496DB1D200819110068A2CE /* SFEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEvent.h; sourceTree = "<group>"; };
@@ -353,7 +357,9 @@
 		042FC6991B96421E00549A4B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				0496DB172006AEAE0068A2CE /* centroid */,
 				041F18CC24C758F7001311E4 /* filter */,
+				0496DB182006B3680068A2CE /* sweep */,
 				042FC6911B96421E00549A4B /* SFByteReader.h */,
 				042FC6921B96421E00549A4B /* SFByteReader.m */,
 				042FC6931B96421E00549A4B /* SFByteWriter.h */,
@@ -364,8 +370,8 @@
 				042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */,
 				0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */,
 				0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */,
-				0496DB172006AEAE0068A2CE /* centroid */,
-				0496DB182006B3680068A2CE /* sweep */,
+				0485564624D89B5B00810C6D /* SFTextReader.h */,
+				0485564724D89B5B00810C6D /* SFTextReader.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */,
 				042FC6B31B96421E00549A4B /* SFMultiLineString.h in Headers */,
 				042FC6A91B96421E00549A4B /* SFGeometryCollection.h in Headers */,
+				0485564824D89B5B00810C6D /* SFTextReader.h in Headers */,
 				042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */,
 				042FC6AD1B96421E00549A4B /* SFGeometryTypes.h in Headers */,
 				042FC6B71B96421E00549A4B /* SFMultiPolygon.h in Headers */,
@@ -626,6 +633,7 @@
 				042FC6B41B96421E00549A4B /* SFMultiLineString.m in Sources */,
 				042FC6AE1B96421E00549A4B /* SFGeometryTypes.m in Sources */,
 				042FC6A61B96421E00549A4B /* SFCurvePolygon.m in Sources */,
+				0485564924D89B5B00810C6D /* SFTextReader.m in Sources */,
 				042FC6C61B96421E00549A4B /* SFTriangle.m in Sources */,
 				04C503092008FC6700862DA9 /* SFShamosHoey.m in Sources */,
 				0496DB1C200813020068A2CE /* SFEventTypes.m in Sources */,
