@@ -4,9 +4,13 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 2.0.4 (TBD)
+## 3.0.0 (TBD)
 
-* TBD
+* Geometry Filter interface and Point Finite Filter implementation
+* Manual and automatic z and m has value updates
+* Byte Reader/Writer interface updates
+* Method renames to drop "get" prefix
+* Text token reader
 
 ## [2.0.3](https://github.com/ngageoint/simple-features-ios/releases/tag/2.0.3) (10-14-2019)
 
