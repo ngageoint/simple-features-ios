@@ -64,7 +64,7 @@
 
                 // Append token characters
                 if ([self isTokenCharacter:character]) {
-                    [buildToken appendFormat:@"%hu", character];
+                    [buildToken appendFormat:@"%C", character];
                 } else {
                     break;
                 }
@@ -72,7 +72,7 @@
             } else if (![NSCharacterSet.whitespaceCharacterSet characterIsMember:character]) {
 
                 // First non whitespace character in the token
-                buildToken = [NSMutableString stringWithFormat:@"%hu", character];
+                buildToken = [NSMutableString stringWithFormat:@"%C", character];
 
                 // Complete token if a single character token
                 if(![self isTokenCharacter:character]){
@@ -106,7 +106,17 @@
     if (token == nil) {
         [NSException raise:@"Expected Double" format:@"Failed to read expected double value"];
     }
-    return [token doubleValue];
+    double value;
+    if([token caseInsensitiveCompare:@"NaN"] == NSOrderedSame){
+        value = NAN;
+    }else if([token caseInsensitiveCompare:@"infinity"] == NSOrderedSame){
+        value = INFINITY;
+    }else if([token caseInsensitiveCompare:@"-infinity"] == NSOrderedSame){
+        value = -INFINITY;
+    }else{
+        value = [token doubleValue];
+    }
+    return value;
 }
 
 /**
@@ -118,7 +128,7 @@
  */
 -(BOOL) isTokenCharacter: (unichar) c{
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-            || (c >= '0' && c <= '9') || c == '-' || c == '.';
+            || (c >= '0' && c <= '9') || c == '-' || c == '.' || c == '+';
 }
 
 @end
