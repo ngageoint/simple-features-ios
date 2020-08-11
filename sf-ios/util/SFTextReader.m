@@ -69,7 +69,7 @@
                     break;
                 }
 
-            } else if (![NSCharacterSet.whitespaceCharacterSet characterIsMember:character]) {
+            } else if (![NSCharacterSet.whitespaceAndNewlineCharacterSet characterIsMember:character]) {
 
                 // First non whitespace character in the token
                 buildToken = [NSMutableString stringWithFormat:@"%C", character];
