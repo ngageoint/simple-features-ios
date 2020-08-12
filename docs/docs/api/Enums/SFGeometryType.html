@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/objc/Enum/SFGeometryType" class="dashAnchor"></a>
     <a title="SFGeometryType Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">sf-ios Docs</a> (87% documented)</p>
+        <p><a href="../index.html">sf-ios 3.0.0 Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -71,6 +79,9 @@
                 <a href="../Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -119,6 +130,9 @@
                 <a href="../Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +154,9 @@
                 <a href="../Classes/SFTIN.html">SFTIN</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFTextReader.html">SFTextReader</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFTriangle.html">SFTriangle</a>
               </li>
             </ul>
@@ -147,6 +164,12 @@
           <li class="nav-group-name">
             <a href="../Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -213,7 +236,18 @@
                 <a href="../Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SFGeometryType.html">SFGeometryType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a>
               </li>
             </ul>
           </li>
@@ -225,12 +259,21 @@
             <h1>SFGeometryType</h1>
               <div class="declaration">
                 <div class="language">
+                  <p class="aside-title">Objective-C</p>
                   <pre class="highlight objective_c"><code><span class="k">enum</span> <span class="n">SFGeometryType</span> <span class="p">{}</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SFGeometryType</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">RawRepresentable</span></code></pre>
 
                 </div>
               </div>
             <p>Geometry Type enumeration</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L14-L34">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -260,7 +303,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -290,7 +333,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -320,7 +363,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -350,7 +393,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -380,7 +423,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -410,7 +453,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -440,7 +483,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -470,7 +513,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -500,7 +543,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -530,7 +573,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -560,7 +603,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -590,7 +633,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -620,7 +663,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -650,7 +693,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -680,7 +723,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -710,7 +753,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -740,7 +783,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -770,7 +813,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -800,7 +843,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFGeometryTypes.h#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -810,8 +853,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -8,13 +8,21 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="sf-ios  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">sf-ios Docs</a> (87% documented)</p>
+        <p><a href="index.html">sf-ios 3.0.0 Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-ios"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -70,6 +78,9 @@
                 <a href="Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -118,6 +129,9 @@
                 <a href="Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -139,6 +153,9 @@
                 <a href="Classes/SFTIN.html">SFTIN</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/SFTextReader.html">SFTextReader</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/SFTriangle.html">SFTriangle</a>
               </li>
             </ul>
@@ -146,6 +163,12 @@
           <li class="nav-group-name">
             <a href="Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -212,7 +235,18 @@
                 <a href="Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SFGeometryType.html">SFGeometryType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/SFGeometryFilter.html">SFGeometryFilter</a>
               </li>
             </ul>
           </li>
@@ -225,25 +259,29 @@
             <h1 id='simple-features-ios' class='heading'>Simple Features iOS</h1>
 <h4 id='simple-features-lib' class='heading'>Simple Features Lib</h4>
 
-<p>The Simple Features Libraries were developed at the <a href="http://www.nga.mil/">National Geospatial-Intelligence Agency (NGA)</a> in collaboration with <a href="http://www.bit-sys.com/">BIT Systems</a>. The government has <q>unlimited rights</q> and is releasing this software to increase the impact of government investments by providing developers with the opportunity to take things in new directions. The software use, modification, and distribution rights are stipulated within the <a href="http://choosealicense.com/licenses/mit/">MIT license</a>.</p>
+<p>The Simple Features Libraries were developed at the <a href="http://www.nga.mil/">National Geospatial-Intelligence Agency (NGA)</a> in collaboration with <a href="http://www.bit-sys.com/">BIT Systems</a>. The government has &ldquo;unlimited rights&rdquo; and is releasing this software to increase the impact of government investments by providing developers with the opportunity to take things in new directions. The software use, modification, and distribution rights are stipulated within the <a href="http://choosealicense.com/licenses/mit/">MIT license</a>.</p>
 <h3 id='pull-requests' class='heading'>Pull Requests</h3>
 
 <p>If you&rsquo;d like to contribute to this project, please make a pull request. We&rsquo;ll review the pull request and discuss the changes. All pull request contributions to this project will be released under the MIT license.</p>
 
-<p>Software source code previously released under an open source license and then modified by NGA staff is considered a <q>joint work</q> (see 17 USC § 101); it is partially copyrighted, partially public domain, and as a whole is protected by the copyrights of the non-government authors and must be released according to the terms of the original open source license.</p>
+<p>Software source code previously released under an open source license and then modified by NGA staff is considered a &ldquo;joint work&rdquo; (see 17 USC § 101); it is partially copyrighted, partially public domain, and as a whole is protected by the copyrights of the non-government authors and must be released according to the terms of the original open source license.</p>
 <h3 id='about' class='heading'>About</h3>
 
 <p><a href="http://ngageoint.github.io/simple-features-ios/">Simple Features</a> is an iOS library of geometry objects and utilities based upon the <a href="http://www.opengeospatial.org/standards/sfa">OGC Simple Feature Access</a> standard.</p>
 <h3 id='simple-feature-conversion-libraries' class='heading'>Simple Feature Conversion Libraries</h3>
 
 <ul>
-<li><a href="https://github.com/ngageoint/simple-features-wkb-ios">simple-features-wkb-ios</a> - Well Known Binary</li>
+<li><a href="https://github.com/ngageoint/simple-features-wkb-ios">simple-features-wkb-ios</a> - Well-Known Binary</li>
+<li><a href="https://github.com/ngageoint/simple-features-wkt-ios">simple-features-wkt-ios</a> - Well-Known Text</li>
+<li><a href="https://github.com/ngageoint/simple-features-geojson-ios">simple-features-geojson-ios</a> - GeoJSON</li>
 <li><a href="https://github.com/ngageoint/simple-features-proj-ios">simple-features-proj-ios</a> - Projection</li>
 </ul>
 <h3 id='usage' class='heading'>Usage</h3>
 
 <p>View the latest <a href="http://ngageoint.github.io/simple-features-ios/docs/api/">Appledoc</a></p>
 <h3 id='build' class='heading'>Build</h3>
+
+<p><a href="https://github.com/ngageoint/simple-features-ios/actions?query=workflow%3A%22Build+%26+Test%22"><img src="https://github.com/ngageoint/simple-features-ios/workflows/Build%20&%20Test/badge.svg" alt="Build &amp; Test"></a></p>
 
 <p>Build this repository using Xcode and/or CocoaPods:</p>
 <pre class="highlight plaintext"><code>pod repo update
@@ -262,12 +300,12 @@ pod install
 <p>Include this repository by specifying it in a Podfile using a supported option.</p>
 
 <p>Pull from <a href="https://cocoapods.org/pods/sf-ios">CocoaPods</a>:</p>
-<pre class="highlight plaintext"><code>pod 'sf-ios', '~&gt; 2.0.3'
+<pre class="highlight plaintext"><code>pod 'sf-ios', '~&gt; 3.0.0'
 </code></pre>
 
 <p>Pull from GitHub:</p>
 <pre class="highlight plaintext"><code>pod 'sf-ios', :git =&gt; 'https://github.com/ngageoint/simple-features-ios.git', :branch =&gt; 'master'
-pod 'sf-ios', :git =&gt; 'https://github.com/ngageoint/simple-features-ios.git', :tag =&gt; '2.0.3'
+pod 'sf-ios', :git =&gt; 'https://github.com/ngageoint/simple-features-ios.git', :tag =&gt; '3.0.0'
 </code></pre>
 
 <p>Include as local project:</p>
@@ -277,8 +315,8 @@ pod 'sf-ios', :git =&gt; 'https://github.com/ngageoint/simple-features-ios.git',
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

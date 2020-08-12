@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/objc/Class/SFPoint" class="dashAnchor"></a>
     <a title="SFPoint Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">sf-ios Docs</a> (87% documented)</p>
+        <p><a href="../index.html">sf-ios 3.0.0 Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -71,6 +79,9 @@
                 <a href="../Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -119,6 +130,9 @@
                 <a href="../Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +154,9 @@
                 <a href="../Classes/SFTIN.html">SFTIN</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFTextReader.html">SFTextReader</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFTriangle.html">SFTriangle</a>
               </li>
             </ul>
@@ -147,6 +164,12 @@
           <li class="nav-group-name">
             <a href="../Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -213,7 +236,18 @@
                 <a href="../Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SFGeometryType.html">SFGeometryType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a>
               </li>
             </ul>
           </li>
@@ -225,13 +259,22 @@
             <h1>SFPoint</h1>
               <div class="declaration">
                 <div class="language">
+                  <p class="aside-title">Objective-C</p>
                   <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SFPoint</span> <span class="p">:</span> <span class="nc"><a href="../Classes/SFGeometry.html">SFGeometry</a></span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SFPoint</span> <span class="p">:</span> <span class="kt"><a href="../Classes/SFGeometry.html">SFGeometry</a></span></code></pre>
 
                 </div>
               </div>
             <p>A single location in space. Each point has an X and Y coordinate. A point MAY
 optionally also have a Z and/or an M value.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L15-L185">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -256,7 +299,7 @@ optionally also have a Z and/or an M value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">x</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">x</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
@@ -266,7 +309,7 @@ optionally also have a Z and/or an M value.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L20">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -291,7 +334,7 @@ optionally also have a Z and/or an M value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">y</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
@@ -301,7 +344,7 @@ optionally also have a Z and/or an M value.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L25">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L25">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,7 +369,7 @@ optionally also have a Z and/or an M value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">z</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">z</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
@@ -336,7 +379,7 @@ optionally also have a Z and/or an M value.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L30">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -361,7 +404,7 @@ optionally also have a Z and/or an M value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">m</span><span class="p">;</span></code></pre>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="n">m</span><span class="p">;</span></code></pre>
 
                         </div>
                         <div class="language">
@@ -371,7 +414,7 @@ optionally also have a Z and/or an M value.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L35">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -410,7 +453,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L42">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +463,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithXValue:andYValue:"></a>
                     <a name="//apple_ref/objc/Method/-initWithXValue:andYValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:">-initWithXValue:andYValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:">-initWithXValue:<wbr>andYValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -480,7 +523,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L52">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -490,7 +533,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithX:andY:"></a>
                     <a name="//apple_ref/objc/Method/-initWithX:andY:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:">-initWithX:andY:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:">-initWithX:<wbr>andY:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -550,7 +593,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L62">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -560,7 +603,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithX:andY:andZ:"></a>
                     <a name="//apple_ref/objc/Method/-initWithX:andY:andZ:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:andZ:">-initWithX:andY:andZ:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:andZ:">-initWithX:<wbr>andY:<wbr>andZ:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -634,7 +677,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L73">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -644,7 +687,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:"></a>
                     <a name="//apple_ref/objc/Method/-initWithXValue:andYValue:andZ:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:">-initWithXValue:andYValue:andZ:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:">-initWithXValue:<wbr>andYValue:<wbr>andZ:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -718,7 +761,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L84">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -728,7 +771,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:"></a>
                     <a name="//apple_ref/objc/Method/-initWithXValue:andYValue:andZValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:">-initWithXValue:andYValue:andZValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:">-initWithXValue:<wbr>andYValue:<wbr>andZValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -802,7 +845,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L95">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -812,7 +855,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithX:andY:andZ:andM:"></a>
                     <a name="//apple_ref/objc/Method/-initWithX:andY:andZ:andM:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:andZ:andM:">-initWithX:andY:andZ:andM:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithX:andY:andZ:andM:">-initWithX:<wbr>andY:<wbr>andZ:<wbr>andM:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -899,7 +942,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L107">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L107">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -909,7 +952,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:andM:"></a>
                     <a name="//apple_ref/objc/Method/-initWithXValue:andYValue:andZ:andM:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:andM:">-initWithXValue:andYValue:andZ:andM:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZ:andM:">-initWithXValue:<wbr>andYValue:<wbr>andZ:<wbr>andM:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -996,7 +1039,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L119">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L119">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1006,7 +1049,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:andMValue:"></a>
                     <a name="//apple_ref/objc/Method/-initWithXValue:andYValue:andZValue:andMValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:andMValue:">-initWithXValue:andYValue:andZValue:andMValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithXValue:andYValue:andZValue:andMValue:">-initWithXValue:<wbr>andYValue:<wbr>andZValue:<wbr>andMValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1093,7 +1136,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L131">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L131">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1103,7 +1146,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andX:andY:"></a>
                     <a name="//apple_ref/objc/Method/-initWithHasZ:andHasM:andX:andY:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andX:andY:">-initWithHasZ:andHasM:andX:andY:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andX:andY:">-initWithHasZ:<wbr>andHasM:<wbr>andX:<wbr>andY:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1190,7 +1233,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L143">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L143">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1200,7 +1243,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andXValue:andYValue:"></a>
                     <a name="//apple_ref/objc/Method/-initWithHasZ:andHasM:andXValue:andYValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andXValue:andYValue:">-initWithHasZ:andHasM:andXValue:andYValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)initWithHasZ:andHasM:andXValue:andYValue:">-initWithHasZ:<wbr>andHasM:<wbr>andXValue:<wbr>andYValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1287,7 +1330,7 @@ optionally also have a Z and/or an M value.</p>
                         <p>new point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L155">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L155">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1297,7 +1340,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)setXValue:"></a>
                     <a name="//apple_ref/objc/Method/-setXValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)setXValue:">-setXValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)setXValue:">-setXValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1341,7 +1384,7 @@ optionally also have a Z and/or an M value.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L162">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L162">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1351,7 +1394,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)setYValue:"></a>
                     <a name="//apple_ref/objc/Method/-setYValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)setYValue:">-setYValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)setYValue:">-setYValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1395,7 +1438,7 @@ optionally also have a Z and/or an M value.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L169">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L169">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1405,7 +1448,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)setZValue:"></a>
                     <a name="//apple_ref/objc/Method/-setZValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)setZValue:">-setZValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)setZValue:">-setZValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1449,7 +1492,7 @@ optionally also have a Z and/or an M value.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L176">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1459,7 +1502,7 @@ optionally also have a Z and/or an M value.</p>
                     <code>
                     <a name="/c:objc(cs)SFPoint(im)setMValue:"></a>
                     <a name="//apple_ref/objc/Method/-setMValue:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFPoint(im)setMValue:">-setMValue:</a>
+                    <a class="token" href="#/c:objc(cs)SFPoint(im)setMValue:">-setMValue:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1503,7 +1546,7 @@ optionally also have a Z and/or an M value.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFPoint.h#L183">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFPoint.h#L183">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1513,8 +1556,8 @@ optionally also have a Z and/or an M value.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/objc/Class/SFGeometryUtils" class="dashAnchor"></a>
     <a title="SFGeometryUtils Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">sf-ios Docs</a> (87% documented)</p>
+        <p><a href="../index.html">sf-ios 3.0.0 Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -71,6 +79,9 @@
                 <a href="../Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -119,6 +130,9 @@
                 <a href="../Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +154,9 @@
                 <a href="../Classes/SFTIN.html">SFTIN</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFTextReader.html">SFTextReader</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFTriangle.html">SFTriangle</a>
               </li>
             </ul>
@@ -147,6 +164,12 @@
           <li class="nav-group-name">
             <a href="../Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -213,7 +236,18 @@
                 <a href="../Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SFGeometryType.html">SFGeometryType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a>
               </li>
             </ul>
           </li>
@@ -225,7 +259,13 @@
             <h1>SFGeometryUtils</h1>
               <div class="declaration">
                 <div class="language">
+                  <p class="aside-title">Objective-C</p>
                   <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SFGeometryUtils</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SFGeometryUtils</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
@@ -233,6 +273,9 @@
 
 <p>@author osbornb</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L21-L443">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -242,7 +285,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)dimensionOfGeometry:"></a>
                     <a name="//apple_ref/objc/Method/+dimensionOfGeometry:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)dimensionOfGeometry:">+dimensionOfGeometry:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)dimensionOfGeometry:">+dimensionOfGeometry:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -291,7 +334,7 @@
                         <p>dimension (0, 1, or 2)</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L31">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -301,7 +344,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)distanceBetweenPoint1:andPoint2:"></a>
                     <a name="//apple_ref/objc/Method/+distanceBetweenPoint1:andPoint2:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)distanceBetweenPoint1:andPoint2:">+distanceBetweenPoint1:andPoint2:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)distanceBetweenPoint1:andPoint2:">+distanceBetweenPoint1:<wbr>andPoint2:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -361,7 +404,7 @@
                         <p>distance</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L42">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -371,7 +414,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)centroidOfGeometry:"></a>
                     <a name="//apple_ref/objc/Method/+centroidOfGeometry:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)centroidOfGeometry:">+centroidOfGeometry:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)centroidOfGeometry:">+centroidOfGeometry:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -422,7 +465,7 @@
                         <p>centroid point</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L54">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L54">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -432,7 +475,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)minimizeGeometry:withMaxX:"></a>
                     <a name="//apple_ref/objc/Method/+minimizeGeometry:withMaxX:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)minimizeGeometry:withMaxX:">+minimizeGeometry:withMaxX:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)minimizeGeometry:withMaxX:">+minimizeGeometry:<wbr>withMaxX:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -496,7 +539,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L72">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -506,7 +549,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)normalizeGeometry:withMaxX:"></a>
                     <a name="//apple_ref/objc/Method/+normalizeGeometry:withMaxX:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)normalizeGeometry:withMaxX:">+normalizeGeometry:withMaxX:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)normalizeGeometry:withMaxX:">+normalizeGeometry:<wbr>withMaxX:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -569,7 +612,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L89">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -579,7 +622,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)simplifyPoints:withTolerance:"></a>
                     <a name="//apple_ref/objc/Method/+simplifyPoints:withTolerance:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)simplifyPoints:withTolerance:">+simplifyPoints:withTolerance:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)simplifyPoints:withTolerance:">+simplifyPoints:<wbr>withTolerance:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -642,7 +685,7 @@
                         <p>simplified points</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L102">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -652,7 +695,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)perpendicularDistanceBetweenPoint:lineStart:lineEnd:"></a>
                     <a name="//apple_ref/objc/Method/+perpendicularDistanceBetweenPoint:lineStart:lineEnd:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)perpendicularDistanceBetweenPoint:lineStart:lineEnd:">+perpendicularDistanceBetweenPoint:lineStart:lineEnd:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)perpendicularDistanceBetweenPoint:lineStart:lineEnd:">+perpendicularDistanceBetweenPoint:<wbr>lineStart:<wbr>lineEnd:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -727,7 +770,7 @@
                         <p>distance in meters</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L116">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L116">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -737,7 +780,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:">+point:inPolygon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:">+point:<wbr>inPolygon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -797,7 +840,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L127">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L127">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -807,7 +850,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygon:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:withEpsilon:">+point:inPolygon:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygon:withEpsilon:">+point:<wbr>inPolygon:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -881,7 +924,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L140">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -891,7 +934,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygonRing:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:">+point:inPolygonRing:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:">+point:<wbr>inPolygonRing:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -951,7 +994,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L151">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -961,7 +1004,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygonRing:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:withEpsilon:">+point:inPolygonRing:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonRing:withEpsilon:">+point:<wbr>inPolygonRing:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1035,7 +1078,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L164">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L164">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1045,7 +1088,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygonPoints:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:">+point:inPolygonPoints:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:">+point:<wbr>inPolygonPoints:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1105,7 +1148,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L175">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L175">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1115,7 +1158,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:inPolygonPoints:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:withEpsilon:">+point:inPolygonPoints:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:inPolygonPoints:withEpsilon:">+point:<wbr>inPolygonPoints:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1189,7 +1232,7 @@
                         <p>true if in the polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L188">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L188">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1199,7 +1242,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonEdge:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:">+point:onPolygonEdge:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:">+point:<wbr>onPolygonEdge:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1259,7 +1302,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L199">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1269,7 +1312,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonEdge:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:withEpsilon:">+point:onPolygonEdge:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonEdge:withEpsilon:">+point:<wbr>onPolygonEdge:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1343,7 +1386,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L212">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L212">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1353,7 +1396,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonRingEdge:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:">+point:onPolygonRingEdge:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:">+point:<wbr>onPolygonRingEdge:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1413,7 +1456,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L223">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L223">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1423,7 +1466,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonRingEdge:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:withEpsilon:">+point:onPolygonRingEdge:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonRingEdge:withEpsilon:">+point:<wbr>onPolygonRingEdge:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1497,7 +1540,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L236">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L236">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1507,7 +1550,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonPointsEdge:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:">+point:onPolygonPointsEdge:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:">+point:<wbr>onPolygonPointsEdge:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1567,7 +1610,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L247">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L247">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1577,7 +1620,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPolygonPointsEdge:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:withEpsilon:">+point:onPolygonPointsEdge:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPolygonPointsEdge:withEpsilon:">+point:<wbr>onPolygonPointsEdge:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1651,7 +1694,7 @@
                         <p>true if on the polygon edge</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L260">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L260">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1661,7 +1704,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)closedPolygon:"></a>
                     <a name="//apple_ref/objc/Method/+closedPolygon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygon:">+closedPolygon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygon:">+closedPolygon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1710,7 +1753,7 @@
                         <p>true if the first and last points are the same</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L270">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L270">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1720,7 +1763,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)closedPolygonRing:"></a>
                     <a name="//apple_ref/objc/Method/+closedPolygonRing:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygonRing:">+closedPolygonRing:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygonRing:">+closedPolygonRing:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1769,7 +1812,7 @@
                         <p>true if the first and last points are the same</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L280">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1779,7 +1822,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)closedPolygonPoints:"></a>
                     <a name="//apple_ref/objc/Method/+closedPolygonPoints:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygonPoints:">+closedPolygonPoints:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)closedPolygonPoints:">+closedPolygonPoints:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1828,7 +1871,7 @@
                         <p>true if the first and last points are the same</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L290">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L290">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1838,7 +1881,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onLine:"></a>
                     <a name="//apple_ref/objc/Method/+point:onLine:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLine:">+point:onLine:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLine:">+point:<wbr>onLine:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1898,7 +1941,7 @@
                         <p>true if on the line</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L301">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L301">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1908,7 +1951,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onLine:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onLine:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLine:withEpsilon:">+point:onLine:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLine:withEpsilon:">+point:<wbr>onLine:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1982,7 +2025,7 @@
                         <p>true if on the line</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L314">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L314">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1992,7 +2035,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:"></a>
                     <a name="//apple_ref/objc/Method/+point:onLinePoints:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:">+point:onLinePoints:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:">+point:<wbr>onLinePoints:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2052,7 +2095,7 @@
                         <p>true if on the line</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L325">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L325">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2062,7 +2105,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onLinePoints:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:withEpsilon:">+point:onLinePoints:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onLinePoints:withEpsilon:">+point:<wbr>onLinePoints:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2136,7 +2179,7 @@
                         <p>true if on the line</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L338">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L338">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2146,7 +2189,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPathPoint1:andPoint2:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:">+point:onPathPoint1:andPoint2:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:">+point:<wbr>onPathPoint1:<wbr>andPoint2:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2220,7 +2263,7 @@
                         <p>true if on the path</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L351">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L351">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2230,7 +2273,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:withEpsilon:"></a>
                     <a name="//apple_ref/objc/Method/+point:onPathPoint1:andPoint2:withEpsilon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:withEpsilon:">+point:onPathPoint1:andPoint2:withEpsilon:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)point:onPathPoint1:andPoint2:withEpsilon:">+point:<wbr>onPathPoint1:<wbr>andPoint2:<wbr>withEpsilon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2317,7 +2360,7 @@
                         <p>true if on the path</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L366">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L366">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2327,7 +2370,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)hasZ:"></a>
                     <a name="//apple_ref/objc/Method/+hasZ:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)hasZ:">+hasZ:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)hasZ:">+hasZ:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2375,7 +2418,7 @@
                         <p>true if has z</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L375">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L375">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2385,7 +2428,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)hasM:"></a>
                     <a name="//apple_ref/objc/Method/+hasM:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)hasM:">+hasM:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)hasM:">+hasM:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2433,7 +2476,7 @@
                         <p>true if has m</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L384">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L384">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2443,7 +2486,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)parentHierarchyOfType:"></a>
                     <a name="//apple_ref/objc/Method/+parentHierarchyOfType:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)parentHierarchyOfType:">+parentHierarchyOfType:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)parentHierarchyOfType:">+parentHierarchyOfType:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2494,7 +2537,7 @@
                         <p>list of increasing parent types</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L395">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L395">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2504,7 +2547,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)parentTypeOfType:"></a>
                     <a name="//apple_ref/objc/Method/+parentTypeOfType:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)parentTypeOfType:">+parentTypeOfType:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)parentTypeOfType:">+parentTypeOfType:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2553,7 +2596,7 @@
      type)</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L405">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L405">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2563,7 +2606,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)childHierarchyOfType:"></a>
                     <a name="//apple_ref/objc/Method/+childHierarchyOfType:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)childHierarchyOfType:">+childHierarchyOfType:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)childHierarchyOfType:">+childHierarchyOfType:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2612,7 +2655,7 @@
                         <p>child type hierarchy, null if no children</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L414">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L414">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2622,7 +2665,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)childTypesOfType:"></a>
                     <a name="//apple_ref/objc/Method/+childTypesOfType:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)childTypesOfType:">+childTypesOfType:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)childTypesOfType:">+childTypesOfType:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2670,7 +2713,7 @@
                         <p>child geometry types, empty list if no child types</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L423">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L423">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2680,7 +2723,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)encodeGeometry:"></a>
                     <a name="//apple_ref/objc/Method/+encodeGeometry:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)encodeGeometry:">+encodeGeometry:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)encodeGeometry:">+encodeGeometry:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2728,7 +2771,7 @@
                         <p>encoded dta</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L432">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L432">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2738,7 +2781,7 @@
                     <code>
                     <a name="/c:objc(cs)SFGeometryUtils(cm)decodeGeometry:"></a>
                     <a name="//apple_ref/objc/Method/+decodeGeometry:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)decodeGeometry:">+decodeGeometry:</a>
+                    <a class="token" href="#/c:objc(cs)SFGeometryUtils(cm)decodeGeometry:">+decodeGeometry:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2786,7 +2829,7 @@
                         <p>geometry</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/util/SFGeometryUtils.h#L441">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/util/SFGeometryUtils.h#L441">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2796,8 +2839,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/objc/Class/SFMultiPolygon" class="dashAnchor"></a>
     <a title="SFMultiPolygon Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">sf-ios Docs</a> (87% documented)</p>
+        <p><a href="../index.html">sf-ios 3.0.0 Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/ngageoint/simple-features-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -71,6 +79,9 @@
                 <a href="../Classes/SFExtendedGeometryCollection.html">SFExtendedGeometryCollection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)SFFiniteFilterTypes">SFFiniteFilterTypes</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFGeometry.html">SFGeometry</a>
               </li>
               <li class="nav-group-task">
@@ -119,6 +130,9 @@
                 <a href="../Classes/SFPoint.html">SFPoint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFPointFiniteFilter.html">SFPointFiniteFilter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFPolygon.html">SFPolygon</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +154,9 @@
                 <a href="../Classes/SFTIN.html">SFTIN</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/SFTextReader.html">SFTextReader</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/SFTriangle.html">SFTriangle</a>
               </li>
             </ul>
@@ -147,6 +164,12 @@
           <li class="nav-group-name">
             <a href="../Constants.html">Constants</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteReader.h@DEFAULT_READ_BYTE_ORDER">DEFAULT_READ_BYTE_ORDER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:SFByteWriter.h@DEFAULT_WRITE_BYTE_ORDER">DEFAULT_WRITE_BYTE_ORDER</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Constants.html#/c:@SF_CIRCULARSTRING_NAME">SF_CIRCULARSTRING_NAME</a>
               </li>
@@ -213,7 +236,18 @@
                 <a href="../Enums/SFEventType.html">SFEventType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/SFFiniteFilterType.html">SFFiniteFilterType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SFGeometryType.html">SFGeometryType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SFGeometryFilter.html">SFGeometryFilter</a>
               </li>
             </ul>
           </li>
@@ -225,13 +259,22 @@
             <h1>SFMultiPolygon</h1>
               <div class="declaration">
                 <div class="language">
+                  <p class="aside-title">Objective-C</p>
                   <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SFMultiPolygon</span> <span class="p">:</span> <span class="nc"><a href="../Classes/SFMultiSurface.html">SFMultiSurface</a></span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SFMultiPolygon</span> <span class="p">:</span> <span class="kt"><a href="../Classes/SFMultiSurface.html">SFMultiSurface</a></span></code></pre>
 
                 </div>
               </div>
             <p>A restricted form of MultiSurface where each Surface in the collection must
 be of type Polygon.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L16-L100">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -270,7 +313,7 @@ be of type Polygon.</p>
                         <p>new multi polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L23">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -280,7 +323,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)initWithHasZ:andHasM:"></a>
                     <a name="//apple_ref/objc/Method/-initWithHasZ:andHasM:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithHasZ:andHasM:">-initWithHasZ:andHasM:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithHasZ:andHasM:">-initWithHasZ:<wbr>andHasM:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -340,7 +383,7 @@ be of type Polygon.</p>
                         <p>new multi polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L33">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -350,7 +393,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)initWithPolygons:"></a>
                     <a name="//apple_ref/objc/Method/-initWithPolygons:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithPolygons:">-initWithPolygons:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithPolygons:">-initWithPolygons:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -398,7 +441,7 @@ be of type Polygon.</p>
                         <p>new multi polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L43">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -408,7 +451,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)initWithPolygon:"></a>
                     <a name="//apple_ref/objc/Method/-initWithPolygon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithPolygon:">-initWithPolygon:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)initWithPolygon:">-initWithPolygon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,7 +499,7 @@ be of type Polygon.</p>
                         <p>new multi polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L53">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -495,7 +538,7 @@ be of type Polygon.</p>
                         <p>polygons</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L60">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -505,7 +548,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)setPolygons:"></a>
                     <a name="//apple_ref/objc/Method/-setPolygons:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)setPolygons:">-setPolygons:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)setPolygons:">-setPolygons:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -549,7 +592,7 @@ be of type Polygon.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L67">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L67">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -559,7 +602,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)addPolygon:"></a>
                     <a name="//apple_ref/objc/Method/-addPolygon:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)addPolygon:">-addPolygon:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)addPolygon:">-addPolygon:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -603,7 +646,7 @@ be of type Polygon.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L74">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -613,7 +656,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)addPolygons:"></a>
                     <a name="//apple_ref/objc/Method/-addPolygons:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)addPolygons:">-addPolygons:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)addPolygons:">-addPolygons:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -657,7 +700,7 @@ be of type Polygon.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L82">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -696,7 +739,7 @@ be of type Polygon.</p>
                         <p>polygon count</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L89">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -706,7 +749,7 @@ be of type Polygon.</p>
                     <code>
                     <a name="/c:objc(cs)SFMultiPolygon(im)polygonAtIndex:"></a>
                     <a name="//apple_ref/objc/Method/-polygonAtIndex:" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)polygonAtIndex:">-polygonAtIndex:</a>
+                    <a class="token" href="#/c:objc(cs)SFMultiPolygon(im)polygonAtIndex:">-polygonAtIndex:<wbr></a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -754,7 +797,7 @@ be of type Polygon.</p>
                         <p>polygon</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/ngageoint/simple-features-ios/tree/2.0.3/sf-ios/SFMultiPolygon.h#L98">Show on GitHub</a>
+                        <a href="https://github.com/ngageoint/simple-features-ios/tree/3.0.0/sf-ios/SFMultiPolygon.h#L98">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -764,8 +807,8 @@ be of type Polygon.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2019-10-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2020-08-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
