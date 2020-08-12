@@ -121,7 +121,7 @@
 
 /**
  * Check if the character is a contiguous block token character: ( [a-z] |
- * [A-Z] | [0-9] | - | . )
+ * [A-Z] | [0-9] | - | . | + )
  *
  * @param c character
  * @return true if token character

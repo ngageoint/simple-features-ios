@@ -32,7 +32,7 @@
 /**
  * Read the next token. Ignores whitespace until a non whitespace character
  * is encountered. Returns a contiguous block of token characters ( [a-z] |
- * [A-Z] | [0-9] | - | . ) or a non whitespace single character.
+ * [A-Z] | [0-9] | - | . | +) or a non whitespace single character.
  *
  * @return token
  */
