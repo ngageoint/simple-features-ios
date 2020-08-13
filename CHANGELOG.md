@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 3.0.0 (TBD)
+## [3.0.0](https://github.com/ngageoint/simple-features-ios/releases/tag/3.0.0) (08-13-2020)
 
 * Geometry Filter interface and Point Finite Filter implementation
 * Manual and automatic z and m has value updates
