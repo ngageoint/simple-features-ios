@@ -88,6 +88,10 @@
     return lineString;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -97,7 +101,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _points = [decoder decodeObjectForKey:@"points"];
+        _points = [decoder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [SFPoint class], nil] forKey:@"points"];
     }
     return self;
 }

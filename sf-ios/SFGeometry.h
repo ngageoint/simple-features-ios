@@ -15,7 +15,7 @@
 /**
  *  The root of the geometry type hierarchy
  */
-@interface SFGeometry : NSObject <NSMutableCopying, NSCoding>
+@interface SFGeometry : NSObject <NSMutableCopying, NSSecureCoding>
 
 /**
  *  Geometry type

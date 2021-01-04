@@ -230,6 +230,10 @@
     return geometryCollection;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -239,7 +243,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _geometries = [decoder decodeObjectForKey:@"geometries"];
+        _geometries = [decoder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [SFGeometry class], nil] forKey:@"geometries"];
     }
     return self;
 }

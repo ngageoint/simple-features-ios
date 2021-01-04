@@ -104,6 +104,10 @@
     return polyhedralSurface;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -113,7 +117,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _polygons = [decoder decodeObjectForKey:@"polygons"];
+        _polygons = [decoder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [SFPolygon class], nil] forKey:@"polygons"];
     }
     return self;
 }

@@ -103,6 +103,10 @@
     return compoundCurve;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -112,7 +116,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _lineStrings = [decoder decodeObjectForKey:@"lineStrings"];
+        _lineStrings = [decoder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [SFLineString class], nil] forKey:@"lineStrings"];
     }
     return self;
 }

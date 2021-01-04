@@ -92,6 +92,10 @@
     return curevePolygon;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -101,7 +105,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _rings = [decoder decodeObjectForKey:@"rings"];
+        _rings = [decoder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [SFCurve class], nil] forKey:@"rings"];
     }
     return self;
 }

@@ -800,11 +800,21 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(NSData *) encodeGeometry: (SFGeometry *) geometry{
-    return [NSKeyedArchiver archivedDataWithRootObject:geometry];
+    NSError *error = nil;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:geometry requiringSecureCoding:YES error:&error];
+    if(error != nil){
+        [NSException raise:@"Encode Geometry" format:@"Failed to encode geometry with error: %@", error];
+    }
+    return data;
 }
 
 +(SFGeometry *) decodeGeometry: (NSData *) data{
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSError *error = nil;
+    SFGeometry *geometry = [NSKeyedUnarchiver unarchivedObjectOfClass:[SFGeometry class] fromData:data error:&error];
+    if(error != nil){
+        [NSException raise:@"Decode Geometry" format:@"Failed to decode geometry with error: %@", error];
+    }
+    return geometry;
 }
 
 @end

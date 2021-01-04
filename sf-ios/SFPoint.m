@@ -107,6 +107,10 @@
     return point;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [super encodeWithCoder:encoder];
     
@@ -119,10 +123,10 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _x = [decoder decodeObjectForKey:@"x"];
-        _y = [decoder decodeObjectForKey:@"y"];
-        _z = [decoder decodeObjectForKey:@"z"];
-        _m = [decoder decodeObjectForKey:@"m"];
+        _x = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"x"];
+        _y = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"y"];
+        _z = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"z"];
+        _m = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"m"];
     }
     return self;
 }

@@ -137,6 +137,10 @@
     return envelope;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.minX forKey:@"minX"];
     [encoder encodeObject:self.maxX forKey:@"maxX"];
@@ -151,14 +155,14 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
-        _minX = [decoder decodeObjectForKey:@"minX"];
-        _maxX = [decoder decodeObjectForKey:@"maxX"];
-        _minY = [decoder decodeObjectForKey:@"minY"];
-        _maxY = [decoder decodeObjectForKey:@"maxY"];
-        _minZ = [decoder decodeObjectForKey:@"minZ"];
-        _maxZ = [decoder decodeObjectForKey:@"maxZ"];
-        _minM = [decoder decodeObjectForKey:@"minM"];
-        _maxM = [decoder decodeObjectForKey:@"maxM"];
+        _minX = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"minX"];
+        _maxX = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"maxX"];
+        _minY = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"minY"];
+        _maxY = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"maxY"];
+        _minZ = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"minZ"];
+        _maxZ = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"maxZ"];
+        _minM = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"minM"];
+        _maxM = [decoder decodeObjectOfClass:[NSDecimalNumber class] forKey:@"maxM"];
     }
     return self;
 }

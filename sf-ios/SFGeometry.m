@@ -66,6 +66,10 @@
     return nil;
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeInt:(int)self.geometryType forKey:@"geometryType"];
     [encoder encodeBool:self.hasZ forKey:@"hasZ"];
