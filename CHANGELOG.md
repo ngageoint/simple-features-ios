@@ -6,7 +6,8 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.0.1 (TBD)
 
-* TBD
+* Geometry Coding modified to Secure Coding
+* iOS platform and deployment target 12.0
 
 ## [3.0.0](https://github.com/ngageoint/simple-features-ios/releases/tag/3.0.0) (08-13-2020)
 
