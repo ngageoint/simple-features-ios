@@ -39,7 +39,7 @@ Open sf-ios.xcworkspace in Xcode or build from command line:
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'sf-ios.xcworkspace' -scheme sf-ios -destination 'platform=iOS Simulator,name=iPhone 8'
+    xcodebuild test -workspace 'sf-ios.xcworkspace' -scheme sf-ios -destination 'platform=iOS Simulator,name=iPhone 12'
 
 ### Include Library ###
 
@@ -47,12 +47,12 @@ Include this repository by specifying it in a Podfile using a supported option.
 
 Pull from [CocoaPods](https://cocoapods.org/pods/sf-ios):
 
-    pod 'sf-ios', '~> 3.0.0'
+    pod 'sf-ios', '~> 4.0.0'
 
 Pull from GitHub:
 
     pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :branch => 'master'
-    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :tag => '3.0.0'
+    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :tag => '4.0.0'
 
 Include as local project:
 
