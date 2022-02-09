@@ -138,7 +138,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     SFPoint * point = [SFGeometryUtils centroidOfGeometry:geometry];
     
-    SFGeometryEnvelope * envelope = [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:geometry];
+    SFGeometryEnvelope * envelope = [geometry envelope];
     
     if(geometry.geometryType == SF_POINT){
         [SFTestUtils assertEqualDoubleWithValue:[envelope.minX doubleValue] andValue2:[point.x doubleValue]];
@@ -151,6 +151,11 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFTestUtils assertTrue:[point.x doubleValue] <= [envelope.maxX doubleValue]];
     [SFTestUtils assertTrue:[point.y doubleValue] >= [envelope.minY doubleValue]];
     [SFTestUtils assertTrue:[point.y doubleValue] <= [envelope.maxY doubleValue]];
+    
+    SFPoint *envelopeCentroid1 = [SFGeometryUtils centroidOfGeometry:[SFGeometryEnvelopeBuilder buildGeometryWithEnvelope:envelope]];
+    SFPoint *envelopeCentroid2 = [SFGeometryUtils centroidOfEnvelope:envelope];
+    [SFTestUtils assertEqualDoubleWithValue:[envelopeCentroid1.x doubleValue] andValue2:[envelopeCentroid2.x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:[envelopeCentroid1.y doubleValue] andValue2:[envelopeCentroid2.y doubleValue] andDelta:0.0000000000001];
     
     return point;
 }
@@ -518,6 +523,76 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
              [self testChildHierarchyWithType:childType andHierarchy:[SFGeometryUtils childHierarchyOfType:childType]];
         }
     }
+}
+
+/**
+ * Test centroid and degrees centroid
+ */
+-(void) testCentroid{
+
+    SFPoint *point = [[SFPoint alloc] initWithXValue:15 andYValue:35];
+
+    SFPoint *centroid = [point centroid];
+
+    [SFTestUtils assertEqualDoubleWithValue:15.0 andValue2:[centroid.x doubleValue]];
+    [SFTestUtils assertEqualDoubleWithValue:35.0 andValue2:[centroid.y doubleValue]];
+
+    SFPoint *degreesCentroid = [point degreesCentroid];
+
+    [SFTestUtils assertEqualDoubleWithValue:15.0 andValue2:[degreesCentroid.x doubleValue]];
+    [SFTestUtils assertEqualDoubleWithValue:35.0 andValue2:[degreesCentroid.y doubleValue]];
+
+    SFLineString *lineString = [[SFLineString alloc] init];
+    [lineString addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:5]];
+    [lineString addPoint:point];
+    
+    centroid = [lineString centroid];
+
+    [SFTestUtils assertEqualDoubleWithValue:7.5 andValue2:[centroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:20.0 andValue2:[centroid.y doubleValue] andDelta:0.000001];
+
+    degreesCentroid = [lineString degreesCentroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:6.764392425440724 andValue2:[degreesCentroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:20.157209770845522 andValue2:[degreesCentroid.y doubleValue] andDelta:0.000001];
+
+    [lineString addPoint:[[SFPoint alloc] initWithXValue:2 andYValue:65]];
+
+    centroid = [lineString centroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:7.993617921179541 andValue2:[centroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:34.808537635386266 andValue2:[centroid.y doubleValue] andDelta:0.000001];
+
+    degreesCentroid = [lineString degreesCentroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:5.85897989020252 andValue2:[degreesCentroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:35.20025371999032 andValue2:[degreesCentroid.y doubleValue] andDelta:0.000001];
+
+    SFPolygon *polygon = [[SFPolygon alloc] initWithRing:lineString];
+
+    centroid = [polygon centroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:5.666666666666667 andValue2:[centroid.x doubleValue]];
+    [SFTestUtils assertEqualDoubleWithValue:35.0 andValue2:[centroid.y doubleValue]];
+
+    degreesCentroid = [polygon degreesCentroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:5.85897989020252 andValue2:[degreesCentroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:35.20025371999032 andValue2:[degreesCentroid.y doubleValue] andDelta:0.000001];
+
+    [lineString addPoint:[[SFPoint alloc] initWithXValue:-20 andYValue:40]];
+    [lineString addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:5]];
+
+    centroid = [polygon centroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-1.3554502369668247 andValue2:[centroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:36.00315955766193 andValue2:[centroid.y doubleValue] andDelta:0.000001];
+
+    degreesCentroid = [polygon degreesCentroid];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-0.6891904581641471 andValue2:[degreesCentroid.x doubleValue] andDelta:0.000001];
+    [SFTestUtils assertEqualDoubleWithValue:37.02524099014426 andValue2:[degreesCentroid.y doubleValue] andDelta:0.000001];
+
 }
 
 @end
