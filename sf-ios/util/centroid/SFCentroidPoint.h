@@ -12,8 +12,6 @@
 /**
  * Calculate the centroid from point based geometries. Implementation based on
  * the JTS (Java Topology Suite) CentroidPoint.
- *
- * @author osbornb
  */
 @interface SFCentroidPoint : NSObject
 

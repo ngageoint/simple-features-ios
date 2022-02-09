@@ -12,8 +12,6 @@
 /**
  * Calculate the centroid from curve based geometries. Implementation based on
  * the JTS (Java Topology Suite) CentroidLine.
- *
- * @author osbornb
  */
 @interface SFCentroidCurve : NSObject
 

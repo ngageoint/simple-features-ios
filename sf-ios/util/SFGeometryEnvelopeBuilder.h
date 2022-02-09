@@ -32,4 +32,14 @@
  */
 +(void) buildEnvelope: (SFGeometryEnvelope *) envelope andGeometry: (SFGeometry *) geometry;
 
+/**
+ * Build a geometry representation of the geometry envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ *
+ * @return geometry, polygon or point
+ */
++(SFGeometry *) buildGeometryWithEnvelope: (SFGeometryEnvelope *) envelope;
+
 @end

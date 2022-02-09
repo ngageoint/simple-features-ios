@@ -81,6 +81,34 @@
     return _hasM;
 }
 
+-(double) xRange{
+    return [_maxX doubleValue] - [_minX doubleValue];
+}
+
+-(double) yRange{
+    return [_maxY doubleValue] - [_minY doubleValue];
+}
+
+-(NSDecimalNumber *) zRange{
+    NSDecimalNumber *range = nil;
+    if(_minZ != nil && _maxZ != nil){
+        range = [_maxZ decimalNumberBySubtracting:_minZ];
+    }
+    return range;
+}
+
+-(NSDecimalNumber *) mRange{
+    NSDecimalNumber *range = nil;
+    if(_minM != nil && _maxM != nil){
+        range = [_maxM decimalNumberBySubtracting:_minM];
+    }
+    return range;
+}
+
+-(BOOL) isPoint{
+    return [_minX compare:_maxX] == NSOrderedSame && [_minY compare:_maxY] == NSOrderedSame;
+}
+
 -(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope{
     return [self overlapWithEnvelope:envelope] != nil;
 }

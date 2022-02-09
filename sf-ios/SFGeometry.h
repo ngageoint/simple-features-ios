@@ -65,6 +65,14 @@
 -(SFGeometryEnvelope *) envelope;
 
 /**
+ * Expand the envelope with the minimum bounding box for this Geometry
+ *
+ * @param envelope
+ *            geometry envelope to expand
+ */
+-(void) expandEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
  * Get the inherent dimension (0, 1, or 2) for this Geometry
  *
  * @return dimension
@@ -80,6 +88,16 @@
  * @return centroid point
  */
 -(SFPoint *) centroid;
+
+/**
+ * Get the geographic centroid point of a 2 dimensional representation of
+ * the degree unit Geometry. Only the x and y coordinate of the resulting
+ * point are calculated and populated. The resulting SFPoint.z and
+ * SFPoint.m values will always be nil.
+ *
+ * @return centroid point
+ */
+-(SFPoint *) degreesCentroid;
 
 /**
  * Is the Geometry empty

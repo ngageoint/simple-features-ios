@@ -223,4 +223,21 @@
     }
 }
 
++(SFGeometry *) buildGeometryWithEnvelope: (SFGeometryEnvelope *) envelope{
+    SFGeometry *geometry = nil;
+    if([envelope isPoint]){
+        geometry = [[SFPoint alloc] initWithX:envelope.minX andY:envelope.minY];
+    }else{
+        SFPolygon *polygon = [[SFPolygon alloc] init];
+        SFLineString *ring = [[SFLineString alloc] init];
+        [ring addPoint:[[SFPoint alloc] initWithX:envelope.minX andY:envelope.minY]];
+        [ring addPoint:[[SFPoint alloc] initWithX:envelope.maxX andY:envelope.minY]];
+        [ring addPoint:[[SFPoint alloc] initWithX:envelope.maxX andY:envelope.maxY]];
+        [ring addPoint:[[SFPoint alloc] initWithX:envelope.minX andY:envelope.maxY]];
+        [polygon addRing:ring];
+        geometry = polygon;
+    }
+    return geometry;
+}
+
 @end

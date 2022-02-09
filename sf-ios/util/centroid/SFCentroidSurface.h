@@ -12,8 +12,6 @@
 /**
  * Calculate the centroid from surface based geometries. Implementation based on
  * the JTS (Java Topology Suite) CentroidArea.
- *
- * @author osbornb
  */
 @interface SFCentroidSurface : NSObject
 

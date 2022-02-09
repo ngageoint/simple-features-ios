@@ -143,6 +143,41 @@
 -(BOOL) isMeasured;
 
 /**
+ * Get the x range
+ *
+ * @return x range
+ */
+-(double) xRange;
+
+/**
+ * Get the y range
+ *
+ * @return y range
+ */
+-(double) yRange;
+
+/**
+ * Get the z range
+ *
+ * @return z range
+ */
+-(NSDecimalNumber *) zRange;
+
+/**
+ * Get the m range
+ *
+ * @return m range
+ */
+-(NSDecimalNumber *) mRange;
+
+/**
+ * Determine if the envelope is of a single point
+ *
+ * @return true if a single point bounds
+ */
+-(BOOL) isPoint;
+
+/**
  * Determine if intersects with the provided envelope
  *
  * @param envelope

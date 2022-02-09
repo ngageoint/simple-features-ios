@@ -15,8 +15,6 @@
 
 /**
  * Utilities for Geometry objects
- *
- * @author osbornb
  */
 @interface SFGeometryUtils : NSObject
 
@@ -52,6 +50,27 @@
  * @return centroid point
  */
 +(SFPoint *) centroidOfGeometry: (SFGeometry *) geometry;
+
+/**
+ * Get the geographic centroid point of a 2 dimensional representation of
+ * the degree unit Geometry. Only the x and y coordinate of the resulting
+ * point are calculated and populated. The resulting SFPoint.z and
+ * SFPoint.m values will always be nil.
+ *
+ * @param geometry
+ *            geometry object
+ * @return centroid point
+ */
++(SFPoint *) degreesCentroidOfGeometry: (SFGeometry *) geometry;
+
+/**
+ * Get the envelope centroid point
+ *
+ * @param envelope
+ *            geometry envelope
+ * @return centroid point
+ */
++(SFPoint *) centroidOfEnvelope: (SFGeometryEnvelope *) envelope;
 
 /**
  * Minimize the geometry using the shortest x distance between each connected set of points.

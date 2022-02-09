@@ -51,5 +51,6 @@
 #import "SFGeometryFilter.h"
 #import "SFPointFiniteFilter.h"
 #import "SFTextReader.h"
+#import "SFDegreesCentroid.h"
 
 #endif /* sf_ios_Bridging_Header_h */

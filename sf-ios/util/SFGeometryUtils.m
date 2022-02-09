@@ -19,6 +19,7 @@
 #import "SFCircularString.h"
 #import "SFTriangle.h"
 #import "SFMultiPoint.h"
+#import "SFDegreesCentroid.h"
 
 @implementation SFGeometryUtils
 
@@ -102,6 +103,14 @@ static float DEFAULT_EPSILON = 0.000000000000001;
             break;
     }
     return centroid;
+}
+
++(SFPoint *) degreesCentroidOfGeometry: (SFGeometry *) geometry{
+    return [SFDegreesCentroid centroidOfGeometry:geometry];
+}
+
++(SFPoint *) centroidOfEnvelope: (SFGeometryEnvelope *) envelope{
+    return [[SFPoint alloc] initWithXValue:([envelope.minX doubleValue] + [envelope.maxX doubleValue]) / 2.0 andYValue:([envelope.minY doubleValue] + [envelope.maxY doubleValue]) / 2.0];
 }
 
 +(void) minimizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX{

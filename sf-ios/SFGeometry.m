@@ -34,12 +34,20 @@
     return [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:self];
 }
 
+-(void) expandEnvelope: (SFGeometryEnvelope *) envelope{
+    [SFGeometryEnvelopeBuilder buildEnvelope:envelope andGeometry:self];
+}
+
 -(int) dimension{
     return [SFGeometryUtils dimensionOfGeometry:self];
 }
 
 -(SFPoint *) centroid{
     return [SFGeometryUtils centroidOfGeometry:self];
+}
+
+-(SFPoint *) degreesCentroid{
+    return [SFGeometryUtils degreesCentroidOfGeometry:self];
 }
 
 -(BOOL) isEmpty{

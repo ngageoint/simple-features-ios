@@ -83,6 +83,8 @@
 		0496DB242008EC740068A2CE /* SFEventQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB222008EC740068A2CE /* SFEventQueue.m */; };
 		0496DB272008F5FD0068A2CE /* SFSweepLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB252008F5FD0068A2CE /* SFSweepLine.h */; };
 		0496DB282008F5FD0068A2CE /* SFSweepLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB262008F5FD0068A2CE /* SFSweepLine.m */; };
+		049D955D27B4479B003C8046 /* SFDegreesCentroid.h in Headers */ = {isa = PBXBuildFile; fileRef = 049D955B27B4479B003C8046 /* SFDegreesCentroid.h */; };
+		049D955E27B4479B003C8046 /* SFDegreesCentroid.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D955C27B4479B003C8046 /* SFDegreesCentroid.m */; };
 		04AB919E1BF29F9A00894999 /* SFTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB919D1BF29F9A00894999 /* SFTestUtils.m */; };
 		04AB91A11BF2A05200894999 /* SFGeometryTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AB91A01BF2A05200894999 /* SFGeometryTestUtils.m */; };
 		04B23E9221C18863004080AF /* SFGeometryCodingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B23E9121C18863004080AF /* SFGeometryCodingTestCase.m */; };
@@ -191,6 +193,8 @@
 		0496DB222008EC740068A2CE /* SFEventQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEventQueue.m; sourceTree = "<group>"; };
 		0496DB252008F5FD0068A2CE /* SFSweepLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFSweepLine.h; sourceTree = "<group>"; };
 		0496DB262008F5FD0068A2CE /* SFSweepLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFSweepLine.m; sourceTree = "<group>"; };
+		049D955B27B4479B003C8046 /* SFDegreesCentroid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFDegreesCentroid.h; sourceTree = "<group>"; };
+		049D955C27B4479B003C8046 /* SFDegreesCentroid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFDegreesCentroid.m; sourceTree = "<group>"; };
 		04AB919C1BF29F9A00894999 /* SFTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTestUtils.h; sourceTree = "<group>"; };
 		04AB919D1BF29F9A00894999 /* SFTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTestUtils.m; sourceTree = "<group>"; };
 		04AB919F1BF2A05200894999 /* SFGeometryTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryTestUtils.h; sourceTree = "<group>"; };
@@ -385,6 +389,8 @@
 				0445CB2A1EA1448C008DC0D7 /* SFCentroidPoint.m */,
 				0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */,
 				0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */,
+				049D955B27B4479B003C8046 /* SFDegreesCentroid.h */,
+				049D955C27B4479B003C8046 /* SFDegreesCentroid.m */,
 			);
 			path = centroid;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				042FC6AF1B96421E00549A4B /* SFLineString.h in Headers */,
 				04F455EC2090AC7B00FC299E /* SFLine.h in Headers */,
 				042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */,
+				049D955D27B4479B003C8046 /* SFDegreesCentroid.h in Headers */,
 				042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */,
 				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
 				0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */,
@@ -617,6 +624,7 @@
 			files = (
 				042FC6AA1B96421E00549A4B /* SFGeometryCollection.m in Sources */,
 				04F455F62090C10100FC299E /* SFExtendedGeometryCollection.m in Sources */,
+				049D955E27B4479B003C8046 /* SFDegreesCentroid.m in Sources */,
 				042FC6A01B96421E00549A4B /* SFCircularString.m in Sources */,
 				0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */,
 				042FC6B21B96421E00549A4B /* SFMultiCurve.m in Sources */,
