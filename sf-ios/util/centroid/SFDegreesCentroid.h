@@ -23,4 +23,20 @@
  */
 +(SFPoint *) centroidOfGeometry: (SFGeometry *) geometry;
 
+/**
+ * Initialize
+ *
+ * @param geometry
+ *            geometry
+ * @return new instance
+ */
+-(instancetype) initWithGeometry: (SFGeometry *) geometry;
+
+/**
+ * Get the centroid point
+ *
+ * @return centroid point
+ */
+-(SFPoint *) centroid;
+
 @end
