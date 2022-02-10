@@ -4,9 +4,12 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 4.0.1 (TBD)
+## [4.0.1](https://github.com/ngageoint/simple-features-ios/releases/tag/4.0.1) (02-10-2022)
 
-* TBD
+* Geometry Envelope range and point check utilities
+* Geometry expand envelope method
+* Centroid geometry utility for geometries in degrees
+* Build geometries from envelope utility
 
 ## [4.0.0](https://github.com/ngageoint/simple-features-ios/releases/tag/4.0.0) (03-01-2021)
 
