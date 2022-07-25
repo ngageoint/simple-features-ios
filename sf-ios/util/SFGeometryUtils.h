@@ -12,6 +12,12 @@
 #import "SFLineString.h"
 #import "SFPolygon.h"
 #import "SFGeometryTypes.h"
+#import "SFLine.h"
+#import "SFMultiPoint.h"
+#import "SFCircularString.h"
+#import "SFCompoundCurve.h"
+#import "SFTIN.h"
+#import "SFTriangle.h"
 
 /**
  * Utilities for Geometry objects
@@ -40,6 +46,90 @@
 +(double) distanceBetweenPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
 
 /**
+ * Get the Pythagorean theorem distance between the line end points
+ *
+ * @param line
+ *            line
+ * @return distance
+ */
++(double) distanceOfLine: (SFLine *) line;
+
+/**
+ * Get the bearing heading in degrees between two points in degrees
+ *
+ * @param point1
+ *            point 1
+ * @param point2
+ *            point 2
+ * @return bearing angle in degrees between 0 and 360
+ */
++(double) bearingBetweenPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
+
+/**
+ * Get the bearing heading in degrees between line end points in degrees
+ *
+ * @param line
+ *            line
+ * @return bearing angle in degrees between 0 inclusively and 360
+ *         exclusively
+ */
++(double) bearingOfLine: (SFLine *) line;
+
+/**
+ * Determine if the bearing is in any north direction
+ *
+ * @param bearing
+ *            bearing angle in degrees
+ * @return true if north bearing
+ */
++(BOOL) isNorthBearing: (double) bearing;
+
+/**
+ * Determine if the bearing is in any east direction
+ *
+ * @param bearing
+ *            bearing angle in degrees
+ * @return true if east bearing
+ */
++(BOOL) isEastBearing: (double) bearing;
+
+/**
+ * Determine if the bearing is in any south direction
+ *
+ * @param bearing
+ *            bearing angle in degrees
+ * @return true if south bearing
+ */
++(BOOL) isSouthBearing: (double) bearing;
+
+/**
+ * Determine if the bearing is in any west direction
+ *
+ * @param bearing
+ *            bearing angle in degrees
+ * @return true if west bearing
+ */
++(BOOL) isWestBearing: (double) bearing;
+
+/**
+ * Convert degrees to radians
+ *
+ * @param degrees
+ *            degrees
+ * @return radians
+ */
++(double) degreesToRadians: (double) degrees;
+
+/**
+ * Convert radians to degrees
+ *
+ * @param radians
+ *            radians
+ * @return degrees
+ */
++(double) radiansToDegrees: (double) radians;
+    
+/**
  * Get the centroid point of a 2 dimensional representation of the Geometry
  * (balancing point of a 2d cutout of the geometry). Only the x and y
  * coordinate of the resulting point are calculated and populated. The
@@ -64,24 +154,38 @@
 +(SFPoint *) degreesCentroidOfGeometry: (SFGeometry *) geometry;
 
 /**
- * Get the envelope centroid point
+ * Minimize the WGS84 geometry using the shortest x distance between each
+ * connected set of points. Resulting x values will be in the range: -540.0
+ * &lt;= x &lt;= 540.0
  *
- * @param envelope
- *            geometry envelope
- * @return centroid point
+ * @param geometry
+ *            geometry
  */
-+(SFPoint *) centroidOfEnvelope: (SFGeometryEnvelope *) envelope;
++(void) minimizeWGS84Geometry: (SFGeometry *) geometry;
 
 /**
- * Minimize the geometry using the shortest x distance between each connected set of points.
- * The resulting geometry point x values will be in the range: 
- *   (3 * min value &lt;= x &lt;= 3 * max value
+ * Minimize the Web Mercator geometry using the shortest x distance between
+ * each connected set of points. Resulting x values will be in the range:
+ * -60112525.028367732 &lt;= x &lt;= 60112525.028367732
  *
- * Example: For WGS84 provide a max x of 180.0.
- * Resulting x values will be in the range: -540.0 &lt;= x &lt;= 540.0
+ * @param geometry
+ *            geometry
+ */
++(void) minimizeWebMercatorGeometry: (SFGeometry *) geometry;
+
+/**
+ * Minimize the geometry using the shortest x distance between each
+ * connected set of points. The resulting geometry point x values will be in
+ * the range: (3 * min value &lt;= x &lt;= 3 * max value
  *
- * Example: For web mercator provide a world width of 20037508.342789244.
- * Resulting x values will be in the range: -60112525.028367732 &lt;= x &lt;= 60112525.028367732
+ * Example: For WGS84 provide a max x of
+ * GeometryConstants.WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
+ * will be in the range: -540.0 &lt;= x &lt;= 540.0
+ *
+ * Example: For web mercator provide a world width of
+ * GeometryConstants.WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
+ * values will be in the range: -60112525.028367732 &lt;= x &lt;=
+ * 60112525.028367732
  *
  * @param geometry
  *            geometry
@@ -91,14 +195,37 @@
 +(void) minimizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX;
 
 /**
- * Normalize the geometry so all points outside of the min and max value range are
- * adjusted to fall within the range.
+ * Normalize the WGS84 geometry using the shortest x distance between each
+ * connected set of points. Resulting x values will be in the range: -180.0
+ * &lt;= x &lt;= 180.0
  *
- * Example: For WGS84 provide a max x of 180.0.
- * Resulting x values will be in the range: -180.0 &lt;= x &lt;= 180.0.
+ * @param geometry
+ *            geometry
+ */
++(void) normalizeWGS84Geometry: (SFGeometry *) geometry;
+
+/**
+ * Normalize the Web Mercator geometry using the shortest x distance between
+ * each connected set of points. Resulting x values will be in the range:
+ * -20037508.342789244 &lt;= x &lt;= 20037508.342789244
  *
- * Example: For web mercator provide a world width of 20037508.342789244.
- * Resulting x values will be in the range: -20037508.342789244 &lt;= x &lt;= 20037508.342789244.
+ * @param geometry
+ *            geometry
+ */
++(void) normalizeWebMercatorGeometry: (SFGeometry *) geometry;
+
+/**
+ * Normalize the geometry so all points outside of the min and max value
+ * range are adjusted to fall within the range.
+ *
+ * Example: For WGS84 provide a max x of
+ * GeometryConstants.WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
+ * will be in the range: -180.0 &lt;= x &lt;= 180.0
+ *
+ * Example: For web mercator provide a world width of
+ * GeometryConstants.WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
+ * values will be in the range: -20037508.342789244 &lt;= x &lt;=
+ * 20037508.342789244
  *
  * @param geometry
  *            geometry
@@ -383,6 +510,653 @@
  * @return true if on the path
  */
 +(BOOL) point: (SFPoint *) point onPathPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 withEpsilon: (double) epsilon;
+
+/**
+ * Get the point intersection between two lines
+ *
+ * @param line1
+ *            first line
+ * @param line2
+ *            second line
+ * @return intersection point or null if no intersection
+ */
++(SFPoint *) intersectionBetweenLine1: (SFLine *) line1 andLine2: (SFLine *) line2;
+
+/**
+ * Get the point intersection between end points of two lines
+ *
+ * @param line1Point1
+ *            first point of the first line
+ * @param line1Point2
+ *            second point of the first line
+ * @param line2Point1
+ *            first point of the second line
+ * @param line2Point2
+ *            second point of the second line
+ * @return intersection point or null if no intersection
+ */
++(SFPoint *) intersectionBetweenLine1Point1: (SFPoint *) line1Point1 andLine1Point2: (SFPoint *) line1Point2 andLine2Point1: (SFPoint *) line2Point1 andLine2Point2: (SFPoint *) line2Point2;
+
+/**
+ * Convert a geometry in degrees to a geometry in meters
+ *
+ * @param geometry
+ *            geometry in degrees
+ * @return geometry in meters
+ */
++(SFGeometry *) degreesToMetersWithGeometry: (SFGeometry *) geometry;
+
+/**
+ * Convert a point in degrees to a point in meters
+ *
+ * @param point
+ *            point in degrees
+ * @return point in meters
+ */
++(SFPoint *) degreesToMetersWithPoint: (SFPoint *) point;
+
+/**
+ * Convert a coordinate in degrees to a point in meters
+ *
+ * @param x
+ *            x value in degrees
+ * @param y
+ *            y value in degrees
+ * @return point in meters
+ */
++(SFPoint *) degreesToMetersWithX: (double) x andY: (double) y;
+
+/**
+ * Convert a multi point in degrees to a multi point in meters
+ *
+ * @param multiPoint
+ *            multi point in degrees
+ * @return multi point in meters
+ */
++(SFMultiPoint *) degreesToMetersWithMultiPoint: (SFMultiPoint *) multiPoint;
+
+/**
+ * Convert a line string in degrees to a line string in meters
+ *
+ * @param lineString
+ *            line string in degrees
+ * @return line string in meters
+ */
++(SFLineString *) degreesToMetersWithLineString: (SFLineString *) lineString;
+
+/**
+ * Convert a line in degrees to a line in meters
+ *
+ * @param line
+ *            line in degrees
+ * @return line in meters
+ */
++(SFLine *) degreesToMetersWithLine: (SFLine *) line;
+
+/**
+ * Convert a multi line string in degrees to a multi line string in meters
+ *
+ * @param multiLineString
+ *            multi line string in degrees
+ * @return multi line string in meters
+ */
++(SFMultiLineString *) degreesToMetersWithMultiLineString: (SFMultiLineString *) multiLineString;
+
+/**
+ * Convert a polygon in degrees to a polygon in meters
+ *
+ * @param polygon
+ *            polygon in degrees
+ * @return polygon in meters
+ */
++(SFPolygon *) degreesToMetersWithPolygon: (SFPolygon *) polygon;
+
+/**
+ * Convert a multi polygon in degrees to a multi polygon in meters
+ *
+ * @param multiPolygon
+ *            multi polygon in degrees
+ * @return multi polygon in meters
+ */
++(SFMultiPolygon *) degreesToMetersWithMultiPolygon: (SFMultiPolygon *) multiPolygon;
+
+/**
+ * Convert a circular string in degrees to a circular string in meters
+ *
+ * @param circularString
+ *            circular string in degrees
+ * @return circular string in meters
+ */
++(SFCircularString *) degreesToMetersWithCircularString: (SFCircularString *) circularString;
+
+/**
+ * Convert a compound curve in degrees to a compound curve in meters
+ *
+ * @param compoundCurve
+ *            compound curve in degrees
+ * @return compound curve in meters
+ */
++(SFCompoundCurve *) degreesToMetersWithCompoundCurve: (SFCompoundCurve *) compoundCurve;
+
+/**
+ * Convert a curve polygon in degrees to a curve polygon in meters
+ *
+ * @param curvePolygon
+ *            curve polygon in degrees
+ * @return curve polygon in meters
+ */
++(SFCurvePolygon *) degreesToMetersWithCurvePolygon: (SFCurvePolygon *) curvePolygon;
+
+/**
+ * Convert a polyhedral surface in degrees to a polyhedral surface in meters
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface in degrees
+ * @return polyhedral surface in meters
+ */
++(SFPolyhedralSurface *) degreesToMetersWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface;
+
+/**
+ * Convert a TIN in degrees to a TIN in meters
+ *
+ * @param tin
+ *            TIN in degrees
+ * @return TIN in meters
+ */
++(SFTIN *) degreesToMetersWithTIN: (SFTIN *) tin;
+
+/**
+ * Convert a triangle in degrees to a triangle in meters
+ *
+ * @param triangle
+ *            triangle in degrees
+ * @return triangle in meters
+ */
++(SFTriangle *) degreesToMetersWithTriangle: (SFTriangle *) triangle;
+
+/**
+ * Convert a geometry in meters to a geometry in degrees
+ *
+ * @param geometry
+ *            geometry in meters
+ * @return geometry in degrees
+ */
++(SFGeometry *) metersToDegreesWithGeometry: (SFGeometry *) geometry;
+
+/**
+ * Convert a point in meters to a point in degrees
+ *
+ * @param point
+ *            point in meters
+ * @return point in degrees
+ */
++(SFPoint *) metersToDegreesWithPoint: (SFPoint *) point;
+
+/**
+ * Convert a coordinate in meters to a point in degrees
+ *
+ * @param x
+ *            x value in meters
+ * @param y
+ *            y value in meters
+ * @return point in degrees
+ */
++(SFPoint *) metersToDegreesWithX: (double) x andY: (double) y;
+
+/**
+ * Convert a multi point in meters to a multi point in degrees
+ *
+ * @param multiPoint
+ *            multi point in meters
+ * @return multi point in degrees
+ */
++(SFMultiPoint *) metersToDegreesWithMultiPoint: (SFMultiPoint *) multiPoint;
+
+/**
+ * Convert a line string in meters to a line string in degrees
+ *
+ * @param lineString
+ *            line string in meters
+ * @return line string in degrees
+ */
++(SFLineString *) metersToDegreesWithLineString: (SFLineString *) lineString;
+
+/**
+ * Convert a line in meters to a line in degrees
+ *
+ * @param line
+ *            line in meters
+ * @return line in degrees
+ */
++(SFLine *) metersToDegreesWithLine: (SFLine *) line;
+
+/**
+ * Convert a multi line string in meters to a multi line string in degrees
+ *
+ * @param multiLineString
+ *            multi line string in meters
+ * @return multi line string in degrees
+ */
++(SFMultiLineString *) metersToDegreesWithMultiLineString: (SFMultiLineString *) multiLineString;
+
+/**
+ * Convert a polygon in meters to a polygon in degrees
+ *
+ * @param polygon
+ *            polygon in meters
+ * @return polygon in degrees
+ */
++(SFPolygon *) metersToDegreesWithPolygon: (SFPolygon *) polygon;
+
+/**
+ * Convert a multi polygon in meters to a multi polygon in degrees
+ *
+ * @param multiPolygon
+ *            multi polygon in meters
+ * @return multi polygon in degrees
+ */
++(SFMultiPolygon *) metersToDegreesWithMultiPolygon: (SFMultiPolygon *) multiPolygon;
+
+/**
+ * Convert a circular string in meters to a circular string in degrees
+ *
+ * @param circularString
+ *            circular string in meters
+ * @return circular string in degrees
+ */
++(SFCircularString *) metersToDegreesWithCircularString: (SFCircularString *) circularString;
+
+/**
+ * Convert a compound curve in meters to a compound curve in degrees
+ *
+ * @param compoundCurve
+ *            compound curve in meters
+ * @return compound curve in degrees
+ */
++(SFCompoundCurve *) metersToDegreesWithCompoundCurve: (SFCompoundCurve *) compoundCurve;
+
+/**
+ * Convert a curve polygon in meters to a curve polygon in degrees
+ *
+ * @param curvePolygon
+ *            curve polygon in meters
+ * @return curve polygon in degrees
+ */
++(SFCurvePolygon *) metersToDegreesWithCurvePolygon: (SFCurvePolygon *) curvePolygon;
+
+/**
+ * Convert a polyhedral surface in meters to a polyhedral surface in degrees
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface in meters
+ * @return polyhedral surface in degrees
+ */
++(SFPolyhedralSurface *) metersToDegreesWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface;
+
+/**
+ * Convert a TIN in meters to a TIN in degrees
+ *
+ * @param tin
+ *            TIN in meters
+ * @return TIN in degrees
+ */
++(SFTIN *) metersToDegreesWithTIN: (SFTIN *) tin;
+
+/**
+ * Convert a triangle in meters to a triangle in degrees
+ *
+ * @param triangle
+ *            triangle in meters
+ * @return triangle in degrees
+ */
++(SFTriangle *) metersToDegreesWithTriangle: (SFTriangle *) triangle;
+
+/**
+ * Get a WGS84 bounded geometry envelope
+ *
+ * @return geometry envelope
+ */
++(SFGeometryEnvelope *) wgs84Envelope;
+
+/**
+ * Get a WGS84 bounded geometry envelope used for projection transformations
+ * (degrees to meters)
+ *
+ * @return geometry envelope
+ */
++(SFGeometryEnvelope *) wgs84TransformableEnvelope;
+
+/**
+ * Get a Web Mercator bounded geometry envelope
+ *
+ * @return geometry envelope
+ */
++(SFGeometryEnvelope *) webMercatorEnvelope;
+
+/**
+ * Get a WGS84 geometry envelope with Web Mercator bounds
+ *
+ * @return geometry envelope
+ */
++(SFGeometryEnvelope *) wgs84EnvelopeWithWebMercator;
+
+/**
+ * Crop the geometry in meters by web mercator world bounds. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param geometry
+ *            geometry in meters
+ * @return cropped geometry in meters or null
+ */
++(SFGeometry *) cropWebMercatorGeometry: (SFGeometry *) geometry;
+
+/**
+ * Crop the geometry in meters by the envelope bounds in meters. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param geometry
+ *            geometry in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped geometry in meters or null
+ */
++(SFGeometry *) cropGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the point by the envelope bounds.
+ *
+ * @param point
+ *            point
+ * @param envelope
+ *            envelope
+ * @return cropped point or null
+ */
++(SFPoint *) cropPoint: (SFPoint *) point withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the list of consecutive points in meters by the envelope bounds in
+ * meters. Cropping removes points outside the envelope and creates new
+ * points on the line intersections with the envelope.
+ *
+ * @param points
+ *            consecutive points
+ * @param envelope
+ *            envelope in meters
+ * @return cropped points in meters or null
+ */
++(NSMutableArray<SFPoint *> *) cropPoints: (NSArray<SFPoint *> *) points withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the multi point by the envelope bounds.
+ *
+ * @param multiPoint
+ *            multi point
+ * @param envelope
+ *            envelope
+ * @return cropped multi point or null
+ */
++(SFMultiPoint *) cropMultiPoint: (SFMultiPoint *) multiPoint withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the line string in meters by the envelope bounds in meters. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param lineString
+ *            line string in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped line string in meters or null
+ */
++(SFLineString *) cropLineString: (SFLineString *) lineString withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the line in meters by the envelope bounds in meters. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param line
+ *            line in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped line in meters or null
+ */
++(SFLine *) cropLine: (SFLine *) line withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the multi line string in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param multiLineString
+ *            multi line string in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped multi line string in meters or null
+ */
++(SFMultiLineString *) cropMultiLineString: (SFMultiLineString *) multiLineString withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the polygon in meters by the envelope bounds in meters. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param polygon
+ *            polygon in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped polygon in meters or null
+ */
++(SFPolygon *) cropPolygon: (SFPolygon *) polygon withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the multi polygon in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param multiPolygon
+ *            multi polygon in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped multi polygon in meters or null
+ */
++(SFMultiPolygon *) cropMultiPolygon: (SFMultiPolygon *) multiPolygon withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the circular string in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param circularString
+ *            circular string in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped circular string in meters or null
+ */
++(SFCircularString *) cropCircularString: (SFCircularString *) circularString withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the compound curve in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param compoundCurve
+ *            compound curve in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped compound curve in meters or null
+ */
++(SFCompoundCurve *) cropCompoundCurve: (SFCompoundCurve *) compoundCurve withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the curve polygon in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param curvePolygon
+ *            curve polygon in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped curve polygon in meters or null
+ */
++(SFCurvePolygon *) cropCurvePolygon: (SFCurvePolygon *) curvePolygon withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the polyhedral surface in meters by the envelope bounds in meters.
+ * Cropping removes points outside the envelope and creates new points on
+ * the line intersections with the envelope.
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped polyhedral surface in meters or null
+ */
++(SFPolyhedralSurface *) cropPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the TIN in meters by the envelope bounds in meters. Cropping removes
+ * points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param tin
+ *            TIN in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped TIN in meters or null
+ */
++(SFTIN *) cropTIN: (SFTIN *) tin withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Crop the triangle in meters by the envelope bounds in meters. Cropping
+ * removes points outside the envelope and creates new points on the line
+ * intersections with the envelope.
+ *
+ * @param triangle
+ *            triangle in meters
+ * @param envelope
+ *            envelope in meters
+ * @return cropped triangle in meters or null
+ */
++(SFTriangle *) cropTriangle: (SFTriangle *) triangle withEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Determine if the points are equal within the default tolerance of
+ * GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact equality, use
+ * {@link Point#equals(Object)}.
+ *
+ * @param point1
+ *            point 1
+ * @param point2
+ *            point 2
+ * @return true if equal
+ */
++(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
+
+/**
+ * Determine if the points are equal within the tolerance. For exact
+ * equality, use {@link Point#equals(Object)}.
+ *
+ * @param point1
+ *            point 1
+ * @param point2
+ *            point 2
+ * @param epsilon
+ *            epsilon equality tolerance
+ * @return true if equal
+ */
++(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andEpsilon: (double) epsilon;
+
+/**
+ * Determine if the envelope contains the point within the default tolerance
+ * of GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact equality,
+ * use {@link GeometryEnvelope#contains(Point)}.
+ *
+ * @param envelope
+ *            envelope
+ * @param point
+ *            point
+ * @return true if contains
+ */
++(BOOL) containsPoint: (SFPoint *) point withinEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Determine if envelope 1 contains the envelope 2 within the default
+ * tolerance of GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact
+ * equality, use {@link GeometryEnvelope#contains(GeometryEnvelope)}.
+ *
+ * @param envelope1
+ *            envelope 1
+ * @param envelope2
+ *            envelope 2
+ * @return true if contains
+ */
++(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope2 withinEnvelope: (SFGeometryEnvelope *) envelope1;
+
+/**
+ * Bound all points in the geometry to be within WGS84 limits.
+ *
+ * To perform a geometry crop using line intersections, see
+ * {@link #degreesToMeters(Geometry)} and
+ * {@link #crop(Geometry, GeometryEnvelope)}.
+ *
+ * @param geometry
+ *            geometry
+ */
++(void) boundWGS84Geometry: (SFGeometry *) geometry;
+
+/**
+ * Bound all points in the geometry to be within WGS84 projection
+ * transformable (degrees to meters) limits.
+ *
+ * To perform a geometry crop using line intersections, see
+ * {@link #degreesToMeters(Geometry)} and
+ * {@link #crop(Geometry, GeometryEnvelope)}.
+ *
+ * @param geometry
+ *            geometry
+ */
++(void) boundWGS84TransformableGeometry: (SFGeometry *) geometry;
+
+/**
+ * Bound all points in the geometry to be within Web Mercator limits.
+ *
+ * To perform a geometry crop using line intersections, see
+ * {@link #cropWebMercator(Geometry)}.
+ *
+ * @param geometry
+ *            geometry
+ */
++(void) boundWebMercatorGeometry: (SFGeometry *) geometry;
+
+/**
+ * Bound all points in the WGS84 geometry to be within degree Web Mercator
+ * limits.
+ *
+ * To perform a geometry crop using line intersections, see
+ * {@link #degreesToMeters(Geometry)} and
+ * {@link #cropWebMercator(Geometry)}.
+ *
+ * @param geometry
+ *            geometry
+ */
++(void) boundWGS84WithWebMercatorGeometry: (SFGeometry *) geometry;
+
+/**
+ * Bound all points in the geometry to be within the geometry envelope.
+ * Point x and y values are bounded by the min and max envelope values.
+ *
+ * To perform a geometry crop using line intersections, see
+ * {@link #crop(Geometry, GeometryEnvelope)} (requires geometry in meters).
+ *
+ * @param geometry
+ *            geometry
+ * @param envelope
+ *            geometry envelope
+ */
++(void) boundGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope;
 
 /**
  * Determine if the geometries contain a Z value

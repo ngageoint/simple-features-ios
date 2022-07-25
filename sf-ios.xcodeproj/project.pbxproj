@@ -72,6 +72,8 @@
 		0445CB331EA150E3008DC0D7 /* SFCentroidSurface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */; };
 		0445CB341EA150E3008DC0D7 /* SFCentroidSurface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */; };
 		0445CB361EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */; };
+		0454956C288EB5A000A6331F /* SFGeometryConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0454956A288EB5A000A6331F /* SFGeometryConstants.h */; };
+		0454956D288EB5A000A6331F /* SFGeometryConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454956B288EB5A000A6331F /* SFGeometryConstants.m */; };
 		0472B51B1C03590500496B87 /* sf-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */; };
 		0485564824D89B5B00810C6D /* SFTextReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485564624D89B5B00810C6D /* SFTextReader.h */; };
 		0485564924D89B5B00810C6D /* SFTextReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485564724D89B5B00810C6D /* SFTextReader.m */; };
@@ -182,6 +184,8 @@
 		0445CB311EA150E3008DC0D7 /* SFCentroidSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidSurface.h; sourceTree = "<group>"; };
 		0445CB321EA150E3008DC0D7 /* SFCentroidSurface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCentroidSurface.m; sourceTree = "<group>"; };
 		0445CB351EA4FE5C008DC0D7 /* SFGeometryUtilsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtilsTestCase.m; sourceTree = "<group>"; };
+		0454956A288EB5A000A6331F /* SFGeometryConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFGeometryConstants.h; sourceTree = "<group>"; };
+		0454956B288EB5A000A6331F /* SFGeometryConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFGeometryConstants.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		0485564624D89B5B00810C6D /* SFTextReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFTextReader.h; sourceTree = "<group>"; };
 		0485564724D89B5B00810C6D /* SFTextReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFTextReader.m; sourceTree = "<group>"; };
@@ -368,6 +372,8 @@
 				042FC6921B96421E00549A4B /* SFByteReader.m */,
 				042FC6931B96421E00549A4B /* SFByteWriter.h */,
 				042FC6941B96421E00549A4B /* SFByteWriter.m */,
+				0454956A288EB5A000A6331F /* SFGeometryConstants.h */,
+				0454956B288EB5A000A6331F /* SFGeometryConstants.m */,
 				042FC69A1B96421E00549A4B /* SFGeometryEnvelopeBuilder.h */,
 				042FC69B1B96421E00549A4B /* SFGeometryEnvelopeBuilder.m */,
 				042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */,
@@ -480,6 +486,7 @@
 				042FC6A71B96421E00549A4B /* SFGeometry.h in Headers */,
 				0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */,
 				042FC6B31B96421E00549A4B /* SFMultiLineString.h in Headers */,
+				0454956C288EB5A000A6331F /* SFGeometryConstants.h in Headers */,
 				042FC6A91B96421E00549A4B /* SFGeometryCollection.h in Headers */,
 				0485564824D89B5B00810C6D /* SFTextReader.h in Headers */,
 				042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */,
@@ -648,6 +655,7 @@
 				042FC6B61B96421E00549A4B /* SFMultiPoint.m in Sources */,
 				042FC6BC1B96421E00549A4B /* SFPoint.m in Sources */,
 				042FC6AC1B96421E00549A4B /* SFGeometryEnvelope.m in Sources */,
+				0454956D288EB5A000A6331F /* SFGeometryConstants.m in Sources */,
 				042FC6A81B96421E00549A4B /* SFGeometry.m in Sources */,
 				04F455ED2090AC7B00FC299E /* SFLine.m in Sources */,
 				041F18D024C75923001311E4 /* SFFiniteFilterTypes.m in Sources */,

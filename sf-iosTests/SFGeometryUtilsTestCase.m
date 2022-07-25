@@ -136,7 +136,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(SFPoint *) geometryCentroidTesterWithGeometry: (SFGeometry *) geometry{
     
-    SFPoint * point = [SFGeometryUtils centroidOfGeometry:geometry];
+    SFPoint * point = [geometry centroid];
     
     SFGeometryEnvelope * envelope = [geometry envelope];
     
@@ -152,8 +152,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFTestUtils assertTrue:[point.y doubleValue] >= [envelope.minY doubleValue]];
     [SFTestUtils assertTrue:[point.y doubleValue] <= [envelope.maxY doubleValue]];
     
-    SFPoint *envelopeCentroid1 = [SFGeometryUtils centroidOfGeometry:[SFGeometryEnvelopeBuilder buildGeometryWithEnvelope:envelope]];
-    SFPoint *envelopeCentroid2 = [SFGeometryUtils centroidOfEnvelope:envelope];
+    SFPoint *envelopeCentroid1 = [[envelope buildGeometry] centroid];
+    SFPoint *envelopeCentroid2 = [envelope centroid];
     [SFTestUtils assertEqualDoubleWithValue:[envelopeCentroid1.x doubleValue] andValue2:[envelopeCentroid2.x doubleValue] andDelta:0.0000000000001];
     [SFTestUtils assertEqualDoubleWithValue:[envelopeCentroid1.y doubleValue] andValue2:[envelopeCentroid2.y doubleValue] andDelta:0.0000000000001];
     

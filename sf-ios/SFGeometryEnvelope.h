@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class SFPoint;
+@class SFLine;
+@class SFGeometry;
+
 /**
  *  Geometry envelope containing x and y range with optional z and m range
  */
-@interface SFGeometryEnvelope : NSObject <NSMutableCopying, NSCoding>
+@interface SFGeometryEnvelope : NSObject <NSMutableCopying, NSSecureCoding>
 
 /**
  *  X coordinate range
@@ -178,6 +182,90 @@
 -(BOOL) isPoint;
 
 /**
+ * Get the top left point
+ *
+ * @return top left point
+ */
+-(SFPoint *) topLeft;
+
+/**
+ * Get the bottom left point
+ *
+ * @return bottom left point
+ */
+-(SFPoint *) bottomLeft;
+
+/**
+ * Get the bottom right point
+ *
+ * @return bottom right point
+ */
+-(SFPoint *) bottomRight;
+
+/**
+ * Get the top right point
+ *
+ * @return top right point
+ */
+-(SFPoint *) topRight;
+
+/**
+ * Get the left line
+ *
+ * @return left line
+ */
+-(SFLine *) left;
+
+/**
+ * Get the bottom line
+ *
+ * @return bottom line
+ */
+-(SFLine *) bottom;
+
+/**
+ * Get the right line
+ *
+ * @return right line
+ */
+-(SFLine *) right;
+
+/**
+ * Get the top line
+ *
+ * @return top line
+ */
+-(SFLine *) top;
+
+/**
+ * Get the envelope mid x
+ *
+ * @return mid x
+ */
+-(double) midX;
+
+/**
+ * Get the envelope mid y
+ *
+ * @return mid y
+ */
+-(double) midY;
+
+/**
+ * Get the envelope centroid point
+ *
+ * @return centroid point
+ */
+-(SFPoint *) centroid;
+
+/**
+ * Determine if the envelope is empty
+ *
+ * @return true if empty
+ */
+-(BOOL) isEmpty;
+
+/**
  * Determine if intersects with the provided envelope
  *
  * @param envelope
@@ -227,6 +315,50 @@
 -(SFGeometryEnvelope *) unionWithEnvelope: (SFGeometryEnvelope *) envelope;
 
 /**
+ * Determine if contains the point
+ *
+ * @param point
+ *            point
+ * @return true if contains
+ */
+-(BOOL) containsPoint: (SFPoint *) point;
+
+/**
+ * Determine if contains the point
+ *
+ * @param point
+ *            point
+ * @param epsilon
+ *            epsilon equality tolerance
+ * @return true if contains
+ */
+-(BOOL) containsPoint: (SFPoint *) point withEpsilon: (double) epsilon;
+
+/**
+ * Determine if contains the coordinate
+ *
+ * @param x
+ *            x value
+ * @param y
+ *            y value
+ * @return true if contains
+ */
+-(BOOL) containsX: (double) x andY: (double) y;
+
+/**
+ * Determine if contains the coordinate
+ *
+ * @param x
+ *            x value
+ * @param y
+ *            y value
+ * @param epsilon
+ *            epsilon equality tolerance
+ * @return true if contains
+ */
+-(BOOL) containsX: (double) x andY: (double) y withEpsilon: (double) epsilon;
+
+/**
  * Determine if inclusively contains the provided envelope
  *
  * @param envelope
@@ -234,5 +366,23 @@
  * @return true if contains
  */
 -(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope;
+
+/**
+ * Determine if inclusively contains the provided envelope
+ *
+ * @param envelope
+ *            geometry envelope
+ * @param epsilon
+ *            epsilon equality tolerance
+ * @return true if contains
+ */
+-(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope withEpsilon: (double) epsilon;
+
+/**
+ * Build a geometry representation of the geometry envelope
+ *
+ * @return geometry, polygon or point
+ */
+-(SFGeometry *) buildGeometry;
 
 @end

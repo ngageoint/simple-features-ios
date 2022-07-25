@@ -7,6 +7,10 @@
 //
 
 #import "SFGeometryEnvelope.h"
+#import "SFPoint.h"
+#import "SFLine.h"
+#import "SFGeometry.h"
+#import "SFGeometryEnvelopeBuilder.h"
 
 @implementation SFGeometryEnvelope
 
@@ -109,6 +113,54 @@
     return [_minX compare:_maxX] == NSOrderedSame && [_minY compare:_maxY] == NSOrderedSame;
 }
 
+-(SFPoint *) topLeft{
+    return [[SFPoint alloc] initWithX:_minX andY:_maxY];
+}
+
+-(SFPoint *) bottomLeft{
+    return [[SFPoint alloc] initWithX:_minX andY:_minY];
+}
+
+-(SFPoint *) bottomRight{
+    return [[SFPoint alloc] initWithX:_maxX andY:_minY];
+}
+
+-(SFPoint *) topRight{
+    return [[SFPoint alloc] initWithX:_maxX andY:_maxY];
+}
+
+-(SFLine *) left{
+    return [[SFLine alloc] initWithPoint1:[self topLeft] andPoint2:[self bottomLeft]];
+}
+
+-(SFLine *) bottom{
+    return [[SFLine alloc] initWithPoint1:[self bottomLeft] andPoint2:[self bottomRight]];
+}
+
+-(SFLine *) right{
+    return [[SFLine alloc] initWithPoint1:[self bottomRight] andPoint2:[self topRight]];
+}
+
+-(SFLine *) top{
+    return [[SFLine alloc] initWithPoint1:[self topRight] andPoint2:[self topLeft]];
+}
+
+-(double) midX{
+    return ([_minX doubleValue] + [_maxX doubleValue]) / 2.0;
+}
+
+-(double) midY{
+    return ([_minY doubleValue] + [_maxY doubleValue]) / 2.0;
+}
+
+-(SFPoint *) centroid{
+    return [[SFPoint alloc] initWithXValue:[self midX] andYValue:[self midY]];
+}
+
+-(BOOL) isEmpty{
+    return [self xRange] <= 0.0 || [self yRange] <= 0.0;
+}
+ 
 -(BOOL) intersectsWithEnvelope: (SFGeometryEnvelope *) envelope{
     return [self overlapWithEnvelope:envelope] != nil;
 }
@@ -153,11 +205,36 @@
     return unionEnvelope;
 }
 
+-(BOOL) containsPoint: (SFPoint *) point{
+    return [self containsPoint:point withEpsilon:0.0];
+}
+
+-(BOOL) containsPoint: (SFPoint *) point withEpsilon: (double) epsilon{
+    return [self containsX:[point.x doubleValue] andY:[point.y doubleValue] withEpsilon:epsilon];
+}
+
+-(BOOL) containsX: (double) x andY: (double) y{
+    return [self containsX:x andY:y withEpsilon:0.0];
+}
+
+-(BOOL) containsX: (double) x andY: (double) y withEpsilon: (double) epsilon{
+    return x >= [_minX doubleValue] - epsilon && x <= [_maxX doubleValue] + epsilon
+        && y >= [_minY doubleValue] - epsilon && y <= [_maxY doubleValue] + epsilon;
+}
+
 -(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope{
-    return [self.minX doubleValue] <= [envelope.minX doubleValue]
-        && [self.maxX doubleValue] >= [envelope.maxX doubleValue]
-        && [self.minY doubleValue] <= [envelope.minY doubleValue]
-        && [self.maxY doubleValue] >= [envelope.maxY doubleValue];
+    return [self containsEnvelope:envelope withEpsilon:0.0];
+}
+
+-(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope withEpsilon: (double) epsilon{
+    return [_minX doubleValue] - epsilon <= [envelope.minX doubleValue]
+        && [_maxX doubleValue] + epsilon >= [envelope.maxX doubleValue]
+        && [_minY doubleValue] - epsilon <= [envelope.minY doubleValue]
+        && [_maxY doubleValue] + epsilon >= [envelope.maxY doubleValue];
+}
+
+-(SFGeometry *) buildGeometry{
+    return [SFGeometryEnvelopeBuilder buildGeometryWithEnvelope:self];
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{

@@ -13,6 +13,7 @@
 #import "SFGeometryCollection.h"
 #import "SFCompoundCurve.h"
 #import "SFPolyhedralSurface.h"
+#import "SFGeometryUtils.h"
 
 @interface SFDegreesCentroid()
 
@@ -45,16 +46,6 @@
 
 @implementation SFDegreesCentroid
 
-/**
- * Radians to Degrees conversion
- */
-static float RADIANS_TO_DEGREES = 180.0 / M_PI;
-
-/**
- * Degrees to Radians conversion
- */
-static float DEGREES_TO_RADIANS = M_PI / 180.0;
-
 +(SFPoint *) centroidOfGeometry: (SFGeometry *) geometry{
     return [[SFDegreesCentroid alloc] initWithGeometry:geometry].centroid;
 }
@@ -84,7 +75,7 @@ static float DEGREES_TO_RADIANS = M_PI / 180.0;
         double centroidLongitude = atan2(_y, _x);
         double centroidLatitude = atan2(_z, sqrt(_x * _x + _y * _y));
 
-        centroid = [[SFPoint alloc] initWithXValue:centroidLongitude * RADIANS_TO_DEGREES andYValue:centroidLatitude * RADIANS_TO_DEGREES];
+        centroid = [[SFPoint alloc] initWithXValue:[SFGeometryUtils radiansToDegrees:centroidLongitude] andYValue:[SFGeometryUtils radiansToDegrees:centroidLatitude]];
     }
 
     return centroid;
@@ -151,8 +142,8 @@ static float DEGREES_TO_RADIANS = M_PI / 180.0;
  *            Point
  */
 -(void) calculatePoint: (SFPoint *) point{
-    double latitude = [point.y doubleValue] * DEGREES_TO_RADIANS;
-    double longitude = [point.x doubleValue] * DEGREES_TO_RADIANS;
+    double latitude = [SFGeometryUtils degreesToRadians:[point.y doubleValue]];
+    double longitude = [SFGeometryUtils degreesToRadians:[point.x doubleValue]];
     double cosLatitude = cos(latitude);
     _x += cosLatitude * cos(longitude);
     _y += cosLatitude * sin(longitude);

@@ -28,6 +28,15 @@
     return self;
 }
 
+-(instancetype) initWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
+    self = [self initWithHasZ:point1.hasZ || point2.hasZ andHasM:point1.hasM || point2.hasM];
+    if(self != nil){
+        [self addPoint:point1];
+        [self addPoint:point2];
+    }
+    return self;
+}
+
 -(void) setPoints:(NSMutableArray<SFPoint *> *)points{
     [super setPoints:points];
     if(![self isEmpty] && [self numPoints] != 2){

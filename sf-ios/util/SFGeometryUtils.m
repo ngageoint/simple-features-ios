@@ -20,13 +20,9 @@
 #import "SFTriangle.h"
 #import "SFMultiPoint.h"
 #import "SFDegreesCentroid.h"
+#import "SFGeometryConstants.h"
 
 @implementation SFGeometryUtils
-
-/**
- * Default epsilon for line tolerance
- */
-static float DEFAULT_EPSILON = 0.000000000000001;
 
 +(int) dimensionOfGeometry: (SFGeometry *) geometry{
     
@@ -73,10 +69,51 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 +(double) distanceBetweenPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
     double diffX = [point1.x doubleValue] - [point2.x doubleValue];
     double diffY = [point1.y doubleValue] - [point2.y doubleValue];
-    
-    double distance = sqrt(diffX * diffX + diffY * diffY);
-    
-    return distance;
+    return sqrt(diffX * diffX + diffY * diffY);
+}
+
++(double) distanceOfLine: (SFLine *) line{
+    return [self distanceBetweenPoint1:[line startPoint] andPoint2:[line endPoint]];
+}
+
++(double) bearingBetweenPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
+    double y1 = [self degreesToRadians:[point1.y doubleValue]];
+    double y2 = [self degreesToRadians:[point2.y doubleValue]];
+    double xDiff = [self degreesToRadians:[point2.x doubleValue] - [point1.x doubleValue]];
+    double y = sin(xDiff) * cos(y2);
+    double x = cos(y1) * sin(y2) - sin(y1) * cos(y2) * cos(xDiff);
+    return fmod([self radiansToDegrees:atan2(y, x)] + 360, 360);
+}
+
++(double) bearingOfLine: (SFLine *) line{
+    return [self bearingBetweenPoint1:[line startPoint] andPoint2:[line endPoint]];
+}
+
++(BOOL) isNorthBearing: (double) bearing{
+    bearing = fmod(bearing, 360.0);
+    return bearing < SF_BEARING_EAST || bearing > SF_BEARING_WEST;
+}
+
++(BOOL) isEastBearing: (double) bearing{
+    bearing = fmod(bearing, 360.0);
+    return bearing > SF_BEARING_NORTH && bearing < SF_BEARING_SOUTH;
+}
+
++(BOOL) isSouthBearing: (double) bearing{
+    bearing = fmod(bearing, 360.0);
+    return bearing > SF_BEARING_EAST && bearing < SF_BEARING_WEST;
+}
+
++(BOOL) isWestBearing: (double) bearing{
+    return fmod(bearing, 360.0) > SF_BEARING_SOUTH;
+}
+
++(double) degreesToRadians: (double) degrees{
+    return degrees * SF_DEGREES_TO_RADIANS;
+}
+
++(double) radiansToDegrees: (double) radians{
+    return radians * SF_RADIANS_TO_DEGREES;
 }
 
 +(SFPoint *) centroidOfGeometry: (SFGeometry *) geometry{
@@ -109,8 +146,12 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     return [SFDegreesCentroid centroidOfGeometry:geometry];
 }
 
-+(SFPoint *) centroidOfEnvelope: (SFGeometryEnvelope *) envelope{
-    return [[SFPoint alloc] initWithXValue:([envelope.minX doubleValue] + [envelope.maxX doubleValue]) / 2.0 andYValue:([envelope.minY doubleValue] + [envelope.maxY doubleValue]) / 2.0];
++(void) minimizeWGS84Geometry: (SFGeometry *) geometry{
+    [self minimizeGeometry:geometry withMaxX:SF_WGS84_HALF_WORLD_LON_WIDTH];
+}
+
++(void) minimizeWebMercatorGeometry: (SFGeometry *) geometry{
+    [self minimizeGeometry:geometry withMaxX:SF_WEB_MERCATOR_HALF_WORLD_WIDTH];
 }
 
 +(void) minimizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX{
@@ -229,6 +270,14 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     }
 }
 
++(void) normalizeWGS84Geometry: (SFGeometry *) geometry{
+    [self normalizeGeometry:geometry withMaxX:SF_WGS84_HALF_WORLD_LON_WIDTH];
+}
+
++(void) normalizeWebMercatorGeometry: (SFGeometry *) geometry{
+    [self normalizeGeometry:geometry withMaxX:SF_WEB_MERCATOR_HALF_WORLD_WIDTH];
+}
+
 +(void) normalizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX{
     
     enum SFGeometryType geometryType = geometry.geometryType;
@@ -288,12 +337,16 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(void) normalizePoint: (SFPoint *) point withMaxX: (double) maxX{
-    
-    if([point.x doubleValue] < -maxX){
-        [point setX:[point.x decimalNumberByAdding:[[NSDecimalNumber alloc] initWithDouble: maxX * 2.0]]];
-    }else if([point.x doubleValue] > maxX){
-        [point setX:[point.x decimalNumberBySubtracting:[[NSDecimalNumber alloc] initWithDouble: maxX * 2.0]]];
+    [point setX:[[NSDecimalNumber alloc] initWithDouble:[self normalizeX:[point.x doubleValue] withMaxX:maxX]]];
+}
+
++(double) normalizeX: (double) x withMaxX: (double) maxX{
+    if(x < -maxX){
+        x = x + (maxX * 2.0);
+    }else if (x > maxX){
+        x = x - (maxX * 2.0);
     }
+    return x;
 }
 
 +(void) normalizeMultiPoint: (SFMultiPoint *) multiPoint withMaxX: (double) maxX{
@@ -431,7 +484,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point inPolygon: (SFPolygon *) polygon{
-    return [self point:point inPolygon:polygon withEpsilon:DEFAULT_EPSILON];
+    return [self point:point inPolygon:polygon withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point inPolygon: (SFPolygon *) polygon withEpsilon: (double) epsilon{
@@ -455,7 +508,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point inPolygonRing: (SFLineString *) ring{
-    return [self point:point inPolygonRing:ring withEpsilon:DEFAULT_EPSILON];
+    return [self point:point inPolygonRing:ring withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point inPolygonRing: (SFLineString *) ring withEpsilon: (double) epsilon{
@@ -463,7 +516,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point inPolygonPoints: (NSArray<SFPoint *> *) points{
-    return [self point:point inPolygonPoints:points withEpsilon:DEFAULT_EPSILON];
+    return [self point:point inPolygonPoints:points withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point inPolygonPoints: (NSArray<SFPoint *> *) points withEpsilon: (double) epsilon{
@@ -510,7 +563,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonEdge: (SFPolygon *) polygon{
-    return [self point:point onPolygonEdge:polygon withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onPolygonEdge:polygon withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonEdge: (SFPolygon *) polygon withEpsilon: (double) epsilon{
@@ -518,7 +571,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonRingEdge: (SFLineString *) ring{
-    return [self point:point onPolygonRingEdge:ring withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onPolygonRingEdge:ring withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonRingEdge: (SFLineString *) ring withEpsilon: (double) epsilon{
@@ -526,7 +579,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonPointsEdge: (NSArray<SFPoint *> *) points{
-    return [self point:point onPolygonPointsEdge:points withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onPolygonPointsEdge:points withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onPolygonPointsEdge: (NSArray<SFPoint *> *) points withEpsilon: (double) epsilon{
@@ -552,7 +605,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onLine: (SFLineString *) line{
-    return [self point:point onLine:line withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onLine:line withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onLine: (SFLineString *) line withEpsilon: (double) epsilon{
@@ -560,7 +613,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onLinePoints: (NSArray<SFPoint *> *) points{
-    return [self point:point onLinePoints:points withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onLinePoints:points withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onLinePoints: (NSArray<SFPoint *> *) points withEpsilon: (double) epsilon{
@@ -568,7 +621,7 @@ static float DEFAULT_EPSILON = 0.000000000000001;
 }
 
 +(BOOL) point: (SFPoint *) point onPathPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
-    return [self point:point onPathPoint1:point1 andPoint2:point2 withEpsilon:DEFAULT_EPSILON];
+    return [self point:point onPathPoint1:point1 andPoint2:point2 withEpsilon:SF_DEFAULT_LINE_EPSILON];
 }
 
 +(BOOL) point: (SFPoint *) point onPathPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 withEpsilon: (double) epsilon{
@@ -621,6 +674,456 @@ static float DEFAULT_EPSILON = 0.000000000000001;
     }
     
     return onPath;
+}
+
++(SFPoint *) intersectionBetweenLine1: (SFLine *) line1 andLine2: (SFLine *) line2{
+    return [self intersectionBetweenLine1Point1:[line1 startPoint] andLine1Point2:[line1 endPoint] andLine2Point1:[line2 startPoint] andLine2Point2:[line2 endPoint]];
+}
+
++(SFPoint *) intersectionBetweenLine1Point1: (SFPoint *) line1Point1 andLine1Point2: (SFPoint *) line1Point2 andLine2Point1: (SFPoint *) line2Point1 andLine2Point2: (SFPoint *) line2Point2{
+
+    SFPoint *intersection = nil;
+
+    double a1 = [line1Point2.y doubleValue] - [line1Point1.y doubleValue];
+    double b1 = [line1Point1.x doubleValue] - [line1Point2.x doubleValue];
+    double c1 = a1 * [line1Point1.x doubleValue] + b1 * [line1Point1.y doubleValue];
+
+    double a2 = [line2Point2.y doubleValue] - [line2Point1.y doubleValue];
+    double b2 = [line2Point1.x doubleValue] - [line2Point2.x doubleValue];
+    double c2 = a2 * [line2Point1.x doubleValue] + b2 * [line2Point1.y doubleValue];
+
+    double determinant = a1 * b2 - a2 * b1;
+
+    if (determinant != 0) {
+        double x = (b2 * c1 - b1 * c2) / determinant;
+        double y = (a1 * c2 - a2 * c1) / determinant;
+        intersection = [[SFPoint alloc] initWithXValue:x andYValue:y];
+    }
+
+    return intersection;
+}
+
++(SFGeometry *) degreesToMetersWithGeometry: (SFGeometry *) geometry{
+    
+    SFGeometry *meters = nil;
+    
+    switch (geometry.geometryType) {
+        case SF_POINT:
+            meters = [self degreesToMetersWithPoint:(SFPoint *) geometry];
+            break;
+        case SF_LINESTRING:
+            meters = [self degreesToMetersWithLineString:(SFLineString *) geometry];
+            break;
+        case SF_POLYGON:
+            meters = [self degreesToMetersWithPolygon:(SFPolygon *) geometry];
+            break;
+        case SF_MULTIPOINT:
+            meters = [self degreesToMetersWithMultiPoint:(SFMultiPoint *) geometry];
+            break;
+        case SF_MULTILINESTRING:
+            meters = [self degreesToMetersWithMultiLineString:(SFMultiLineString *) geometry];
+            break;
+        case SF_MULTIPOLYGON:
+            meters = [self degreesToMetersWithMultiPolygon:(SFMultiPolygon *) geometry];
+            break;
+        case SF_CIRCULARSTRING:
+            meters = [self degreesToMetersWithCircularString:(SFCircularString *) geometry];
+            break;
+        case SF_COMPOUNDCURVE:
+            meters = [self degreesToMetersWithCompoundCurve:(SFCompoundCurve *) geometry];
+            break;
+        case SF_CURVEPOLYGON:
+            meters = [self degreesToMetersWithCurvePolygon:(SFCurvePolygon *) geometry];
+            break;
+        case SF_POLYHEDRALSURFACE:
+            meters = [self degreesToMetersWithPolyhedralSurface:(SFPolyhedralSurface *) geometry];
+            break;
+        case SF_TIN:
+            meters = [self degreesToMetersWithTIN:(SFTIN *) geometry];
+            break;
+        case SF_TRIANGLE:
+            meters = [self degreesToMetersWithTriangle:(SFTriangle *) geometry];
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
+        {
+            SFGeometryCollection *metersCollection = [[SFGeometryCollection alloc] init];
+            SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+            for (SFGeometry *subGeometry in geomCollection.geometries) {
+                [metersCollection addGeometry:[self degreesToMetersWithGeometry:subGeometry]];
+            }
+            meters = metersCollection;
+        }
+            break;
+        default:
+            break;
+            
+    }
+    
+    return meters;
+}
+
++(SFPoint *) degreesToMetersWithPoint: (SFPoint *) point{
+    SFPoint *value = [self degreesToMetersWithX:[point.x doubleValue] andY:[point.y doubleValue]];
+    [value setZ:point.z];
+    [value setM:point.m];
+    return value;
+}
+
++(SFPoint *) degreesToMetersWithX: (double) x andY: (double) y{
+    x = [self normalizeX:x withMaxX:SF_WGS84_HALF_WORLD_LON_WIDTH];
+    y = MIN(y, SF_WGS84_HALF_WORLD_LAT_HEIGHT);
+    y = MAX(y, SF_DEGREES_TO_METERS_MIN_LAT);
+    double xValue = x * SF_WEB_MERCATOR_HALF_WORLD_WIDTH
+            / SF_WGS84_HALF_WORLD_LON_WIDTH;
+    double yValue = log(tan(
+            (SF_WGS84_HALF_WORLD_LAT_HEIGHT + y) * M_PI
+                    / (2 * SF_WGS84_HALF_WORLD_LON_WIDTH)))
+            / (M_PI / SF_WGS84_HALF_WORLD_LON_WIDTH);
+    yValue = yValue * SF_WEB_MERCATOR_HALF_WORLD_WIDTH
+            / SF_WGS84_HALF_WORLD_LON_WIDTH;
+    return [[SFPoint alloc] initWithXValue:xValue andYValue:yValue];
+}
+
++(SFMultiPoint *) degreesToMetersWithMultiPoint: (SFMultiPoint *) multiPoint{
+    SFMultiPoint *meters = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+    for(SFPoint *point in [multiPoint points]){
+        [meters addPoint:[self degreesToMetersWithPoint:point]];
+    }
+    return meters;
+}
+
++(SFLineString *) degreesToMetersWithLineString: (SFLineString *) lineString{
+    SFLineString *meters = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    for(SFPoint *point in [lineString points]){
+        [meters addPoint:[self degreesToMetersWithPoint:point]];
+    }
+    return meters;
+}
+
++(SFLine *) degreesToMetersWithLine: (SFLine *) line{
+    SFLine *meters = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+    for(SFPoint *point in [line points]){
+        [meters addPoint:[self degreesToMetersWithPoint:point]];
+    }
+    return meters;
+}
+
++(SFMultiLineString *) degreesToMetersWithMultiLineString: (SFMultiLineString *) multiLineString{
+    SFMultiLineString *meters = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+    for(SFLineString *lineString in [multiLineString lineStrings]){
+        [meters addLineString:[self degreesToMetersWithLineString:lineString]];
+    }
+    return meters;
+}
+
++(SFPolygon *) degreesToMetersWithPolygon: (SFPolygon *) polygon{
+    SFPolygon *meters = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    for(SFLineString *ring in [polygon rings]){
+        [meters addRing:[self degreesToMetersWithLineString:ring]];
+    }
+    return meters;
+}
+
++(SFMultiPolygon *) degreesToMetersWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
+    SFMultiPolygon *meters = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+    for(SFPolygon *polygon in [multiPolygon polygons]){
+        [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
+    }
+    return meters;
+}
+
++(SFCircularString *) degreesToMetersWithCircularString: (SFCircularString *) circularString{
+    SFCircularString *meters = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+    for(SFPoint *point in [circularString points]){
+        [meters addPoint:[self degreesToMetersWithPoint:point]];
+    }
+    return meters;
+}
+
++(SFCompoundCurve *) degreesToMetersWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
+    SFCompoundCurve *meters = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+    for(SFLineString *lineString in [compoundCurve lineStrings]){
+        [meters addLineString:[self degreesToMetersWithLineString:lineString]];
+    }
+    return meters;
+}
+
++(SFCurvePolygon *) degreesToMetersWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
+    SFCurvePolygon *meters = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+    for(SFCurve *ring in [curvePolygon rings]){
+        [meters addRing:(SFCurve *)[self degreesToMetersWithGeometry:ring]];
+    }
+    return meters;
+}
+
++(SFPolyhedralSurface *) degreesToMetersWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
+    SFPolyhedralSurface *meters = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+    for(SFPolygon *polygon in [polyhedralSurface polygons]){
+        [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
+    }
+    return meters;
+}
+
++(SFTIN *) degreesToMetersWithTIN: (SFTIN *) tin{
+    SFTIN *meters = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+    for(SFPolygon *polygon in [tin polygons]){
+        [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
+    }
+    return meters;
+}
+
++(SFTriangle *) degreesToMetersWithTriangle: (SFTriangle *) triangle{
+    SFTriangle *meters = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+    for(SFLineString *ring in [triangle rings]){
+        [meters addRing:[self degreesToMetersWithLineString:ring]];
+    }
+    return meters;
+}
+
++(SFGeometry *) metersToDegreesWithGeometry: (SFGeometry *) geometry{
+    
+    SFGeometry *degrees = nil;
+    
+    switch (geometry.geometryType) {
+        case SF_POINT:
+            degrees = [self metersToDegreesWithPoint:(SFPoint *) geometry];
+            break;
+        case SF_LINESTRING:
+            degrees = [self metersToDegreesWithLineString:(SFLineString *) geometry];
+            break;
+        case SF_POLYGON:
+            degrees = [self metersToDegreesWithPolygon:(SFPolygon *) geometry];
+            break;
+        case SF_MULTIPOINT:
+            degrees = [self metersToDegreesWithMultiPoint:(SFMultiPoint *) geometry];
+            break;
+        case SF_MULTILINESTRING:
+            degrees = [self metersToDegreesWithMultiLineString:(SFMultiLineString *) geometry];
+            break;
+        case SF_MULTIPOLYGON:
+            degrees = [self metersToDegreesWithMultiPolygon:(SFMultiPolygon *) geometry];
+            break;
+        case SF_CIRCULARSTRING:
+            degrees = [self metersToDegreesWithCircularString:(SFCircularString *) geometry];
+            break;
+        case SF_COMPOUNDCURVE:
+            degrees = [self metersToDegreesWithCompoundCurve:(SFCompoundCurve *) geometry];
+            break;
+        case SF_CURVEPOLYGON:
+            degrees = [self metersToDegreesWithCurvePolygon:(SFCurvePolygon *) geometry];
+            break;
+        case SF_POLYHEDRALSURFACE:
+            degrees = [self metersToDegreesWithPolyhedralSurface:(SFPolyhedralSurface *) geometry];
+            break;
+        case SF_TIN:
+            degrees = [self metersToDegreesWithTIN:(SFTIN *) geometry];
+            break;
+        case SF_TRIANGLE:
+            degrees = [self metersToDegreesWithTriangle:(SFTriangle *) geometry];
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
+        {
+            SFGeometryCollection *degreesCollection = [[SFGeometryCollection alloc] init];
+            SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+            for (SFGeometry *subGeometry in geomCollection.geometries) {
+                [degreesCollection addGeometry:[self metersToDegreesWithGeometry:subGeometry]];
+            }
+            degrees = degreesCollection;
+        }
+            break;
+        default:
+            break;
+            
+    }
+    
+    return degrees;
+}
+
++(SFPoint *) metersToDegreesWithPoint: (SFPoint *) point{
+    SFPoint *value = [self metersToDegreesWithX:[point.x doubleValue] andY:[point.y doubleValue]];
+    [value setZ:point.z];
+    [value setM:point.m];
+    return value;
+}
+
++(SFPoint *) metersToDegreesWithX: (double) x andY: (double) y{
+    double xValue = x * SF_WGS84_HALF_WORLD_LON_WIDTH
+            / SF_WEB_MERCATOR_HALF_WORLD_WIDTH;
+    double yValue = y * SF_WGS84_HALF_WORLD_LON_WIDTH
+            / SF_WEB_MERCATOR_HALF_WORLD_WIDTH;
+    yValue = atan(exp(yValue
+            * (M_PI / SF_WGS84_HALF_WORLD_LON_WIDTH)))
+            / M_PI * (2 * SF_WGS84_HALF_WORLD_LON_WIDTH)
+            - SF_WGS84_HALF_WORLD_LAT_HEIGHT;
+    return [[SFPoint alloc] initWithXValue:xValue andYValue:yValue];
+}
+
++(SFMultiPoint *) metersToDegreesWithMultiPoint: (SFMultiPoint *) multiPoint{
+    return nil; // TODO
+}
+
++(SFLineString *) metersToDegreesWithLineString: (SFLineString *) lineString{
+    return nil; // TODO
+}
+
++(SFLine *) metersToDegreesWithLine: (SFLine *) line{
+    return nil; // TODO
+}
+
++(SFMultiLineString *) metersToDegreesWithMultiLineString: (SFMultiLineString *) multiLineString{
+    return nil; // TODO
+}
+
++(SFPolygon *) metersToDegreesWithPolygon: (SFPolygon *) polygon{
+    return nil; // TODO
+}
+
++(SFMultiPolygon *) metersToDegreesWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
+    return nil; // TODO
+}
+
++(SFCircularString *) metersToDegreesWithCircularString: (SFCircularString *) circularString{
+    return nil; // TODO
+}
+
++(SFCompoundCurve *) metersToDegreesWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
+    return nil; // TODO
+}
+
++(SFCurvePolygon *) metersToDegreesWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
+    return nil; // TODO
+}
+
++(SFPolyhedralSurface *) metersToDegreesWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
+    return nil; // TODO
+}
+
++(SFTIN *) metersToDegreesWithTIN: (SFTIN *) tin{
+    return nil; // TODO
+}
+
++(SFTriangle *) metersToDegreesWithTriangle: (SFTriangle *) triangle{
+    return nil; // TODO
+}
+
++(SFGeometryEnvelope *) wgs84Envelope{
+    return nil; // TODO
+}
+
++(SFGeometryEnvelope *) wgs84TransformableEnvelope{
+    return nil; // TODO
+}
+
++(SFGeometryEnvelope *) webMercatorEnvelope{
+    return nil; // TODO
+}
+
++(SFGeometryEnvelope *) wgs84EnvelopeWithWebMercator{
+    return nil; // TODO
+}
+
++(SFGeometry *) cropWebMercatorGeometry: (SFGeometry *) geometry{
+    return nil; // TODO
+}
+
++(SFGeometry *) cropGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFPoint *) cropPoint: (SFPoint *) point withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(NSMutableArray<SFPoint *> *) cropPoints: (NSArray<SFPoint *> *) points withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFMultiPoint *) cropMultiPoint: (SFMultiPoint *) multiPoint withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFLineString *) cropLineString: (SFLineString *) lineString withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFLine *) cropLine: (SFLine *) line withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFMultiLineString *) cropMultiLineString: (SFMultiLineString *) multiLineString withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFPolygon *) cropPolygon: (SFPolygon *) polygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFMultiPolygon *) cropMultiPolygon: (SFMultiPolygon *) multiPolygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFCircularString *) cropCircularString: (SFCircularString *) circularString withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFCompoundCurve *) cropCompoundCurve: (SFCompoundCurve *) compoundCurve withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFCurvePolygon *) cropCurvePolygon: (SFCurvePolygon *) curvePolygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFPolyhedralSurface *) cropPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFTIN *) cropTIN: (SFTIN *) tin withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(SFTriangle *) cropTriangle: (SFTriangle *) triangle withEnvelope: (SFGeometryEnvelope *) envelope{
+    return nil; // TODO
+}
+
++(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
+    return NO; // TODO
+}
+
++(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andEpsilon: (double) epsilon{
+    return NO; // TODO
+}
+
++(BOOL) containsPoint: (SFPoint *) point withinEnvelope: (SFGeometryEnvelope *) envelope{
+    return NO; // TODO
+}
+
++(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope2 withinEnvelope: (SFGeometryEnvelope *) envelope1{
+    return NO; // TODO
+}
+
++(void) boundWGS84Geometry: (SFGeometry *) geometry{
+    // TODO
+}
+
++(void) boundWGS84TransformableGeometry: (SFGeometry *) geometry{
+    // TODO
+}
+
++(void) boundWebMercatorGeometry: (SFGeometry *) geometry{
+    // TODO
+}
+
++(void) boundWGS84WithWebMercatorGeometry: (SFGeometry *) geometry{
+    // TODO
+}
+
++(void) boundGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope{
+    // TODO
 }
 
 +(BOOL) hasZ: (NSArray<SFGeometry *> *) geometries{

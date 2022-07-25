@@ -16,7 +16,7 @@
 /**
  *  Initialize
  *
- *  @return new linear ring
+ *  @return new line
  */
 -(instancetype) init;
 
@@ -26,7 +26,7 @@
  *  @param hasZ has z values
  *  @param hasM has m values
  *
- *  @return new linear ring
+ *  @return new line
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
@@ -36,8 +36,18 @@
  * @param points
  *            list of points
  *
- *  @return new linear ring
+ *  @return new line
  */
 -(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ *  Initialize
+ *
+ *  @param point1 first point
+ *  @param point2 second point
+ *
+ *  @return new line
+ */
+-(instancetype) initWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
 
 @end
