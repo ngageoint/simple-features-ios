@@ -279,7 +279,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
         
         [SFTestUtils assertEqualDoubleWithValue:[point.y doubleValue] andValue2:[point2.y doubleValue]];
         [SFTestUtils assertEqualDoubleWithValue:[point.y doubleValue] andValue2:[point3.y doubleValue]];
-        [SFTestUtils assertEqualDoubleWithValue:[point.x doubleValue] andValue2:[point3.x doubleValue]];
+        [SFTestUtils assertEqualDoubleWithValue:[point.x doubleValue] andValue2:[point3.x doubleValue] andDelta:.0000000001];
         if(i < 2){
             [SFTestUtils assertEqualDoubleWithValue:[point.x doubleValue] andValue2:[point2.x doubleValue]];
         }else{
