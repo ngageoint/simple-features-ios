@@ -30,7 +30,7 @@
     int rangeStart = self.nextByte;
     [self.bytes getBytes:buffer range:NSMakeRange(rangeStart, num)];
     buffer[num] = '\0';
-    NSString * value = [NSString stringWithUTF8String:buffer];
+    NSString *value = [NSString stringWithUTF8String:buffer];
     self.nextByte += num;
     free(buffer);
     return value;

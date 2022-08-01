@@ -20,7 +20,7 @@
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:SF_COMPOUNDCURVE andHasZ:hasZ andHasM:hasM];
     if(self != nil){
-        self.lineStrings = [[NSMutableArray alloc] init];
+        self.lineStrings = [NSMutableArray array];
     }
     return self;
 }

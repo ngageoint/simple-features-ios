@@ -28,12 +28,12 @@
 
 -(void) testMultiPoint {
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     for(int i = 0; i < 5; i++){
         [points addObject:[SFGeometryTestUtils createPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
     }
     
-    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:points];
     
     SFMultiPoint *multiPoint = [[SFMultiPoint alloc] initWithPoints:points];
@@ -74,12 +74,12 @@
 
 -(void) testMultiLineString {
     
-    NSMutableArray<SFLineString *> *lineStrings = [[NSMutableArray alloc] init];
+    NSMutableArray<SFLineString *> *lineStrings = [NSMutableArray array];
     for(int i = 0; i < 5; i++){
         [lineStrings addObject:[SFGeometryTestUtils createLineStringWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
     }
     
-    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:lineStrings];
     
     SFMultiLineString *multiLineString = [[SFMultiLineString alloc] initWithLineStrings:lineStrings];
@@ -125,11 +125,11 @@
 
 -(void) testMultiPolygon {
     
-    NSMutableArray<SFPolygon *> *polygons = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPolygon *> *polygons = [NSMutableArray array];
     for(int i = 0; i < 5; i++){
         [polygons addObject:[SFGeometryTestUtils createPolygonWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
     }
-    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:polygons];
     
     SFMultiPolygon *multiPolygon = [[SFMultiPolygon alloc] initWithPolygons:polygons];
@@ -175,7 +175,7 @@
 
 -(void) testMultiCurve {
     
-    NSMutableArray<SFCurve *> *curves = [[NSMutableArray alloc] init];
+    NSMutableArray<SFCurve *> *curves = [NSMutableArray array];
     for(int i = 0; i < 5; i++){
         if(i % 2 == 0){
             [curves addObject:[SFGeometryTestUtils createCompoundCurveWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
@@ -184,7 +184,7 @@
         }
     }
     
-    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:curves];
     
     SFGeometryCollection *multiCurve = [[SFGeometryCollection alloc] initWithGeometries:(NSMutableArray<SFGeometry *> *)curves];
@@ -228,7 +228,7 @@
 
 -(void) testMultiSurface {
 
-    NSMutableArray<SFSurface *> *surfaces = [[NSMutableArray alloc] init];
+    NSMutableArray<SFSurface *> *surfaces = [NSMutableArray array];
     for(int i = 0; i < 5; i++){
         if(i % 2 == 0){
             [surfaces addObject:[SFGeometryTestUtils createCurvePolygonWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]]];
@@ -237,7 +237,7 @@
         }
     }
     
-    NSMutableArray<SFGeometry *> *geometries = [[NSMutableArray alloc] init];
+    NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:surfaces];
     
     SFGeometryCollection *multiSurface = [[SFGeometryCollection alloc] initWithGeometries:(NSMutableArray<SFGeometry *> *)surfaces];

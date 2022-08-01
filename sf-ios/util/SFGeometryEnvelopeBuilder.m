@@ -26,7 +26,7 @@
 
 +(SFGeometryEnvelope *) buildEnvelopeWithGeometry: (SFGeometry *) geometry{
     
-    SFGeometryEnvelope * envelope = [[SFGeometryEnvelope alloc] init];
+    SFGeometryEnvelope *envelope = [[SFGeometryEnvelope alloc] init];
     
     [self buildEnvelope:envelope andGeometry:geometry];
     
@@ -83,9 +83,8 @@
         case SF_MULTISURFACE:
             {
                 [self updateHasZandMWithEnvelope:envelope andGeometry:geometry];
-                SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-                NSArray * geometries = geomCollection.geometries;
-                for (SFGeometry * subGeometry in geometries) {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [self buildEnvelope:envelope andGeometry:subGeometry];
                 }
             }
@@ -110,8 +109,8 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:point];
     
-    NSDecimalNumber * x = point.x;
-    NSDecimalNumber * y = point.y;
+    NSDecimalNumber *x = point.x;
+    NSDecimalNumber *y = point.y;
     if(envelope.minX == nil || [x compare:envelope.minX] == NSOrderedAscending){
         [envelope setMinX:x];
     }
@@ -125,7 +124,7 @@
         [envelope setMaxY:y];
     }
     if (point.hasZ) {
-        NSDecimalNumber * z = point.z;
+        NSDecimalNumber *z = point.z;
         if (z != nil) {
             if (envelope.minZ == nil || [z compare:envelope.minZ] == NSOrderedAscending) {
                 [envelope setMinZ:z];
@@ -136,7 +135,7 @@
         }
     }
     if (point.hasM) {
-        NSDecimalNumber * m = point.m;
+        NSDecimalNumber *m = point.m;
         if (m != nil) {
             if (envelope.minM == nil || [m compare:envelope.minM] == NSOrderedAscending) {
                 [envelope setMinM:m];
@@ -152,8 +151,8 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiPoint];
     
-    NSArray * points = [multiPoint points];
-    for(SFPoint * point in points){
+    NSArray *points = [multiPoint points];
+    for(SFPoint *point in points){
         [self addPoint:point andEnvelope:envelope];
     }
 }
@@ -162,7 +161,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:lineString];
     
-    for(SFPoint * point in lineString.points){
+    for(SFPoint *point in lineString.points){
         [self addPoint:point andEnvelope:envelope];
     }
 }
@@ -171,8 +170,8 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiLineString];
     
-    NSArray * lineStrings = [multiLineString lineStrings];
-    for(SFLineString * lineString in lineStrings){
+    NSArray *lineStrings = [multiLineString lineStrings];
+    for(SFLineString *lineString in lineStrings){
         [self addLineString:lineString andEnvelope:envelope];
     }
 }
@@ -181,7 +180,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:polygon];
     
-    for(SFLineString * ring in polygon.rings){
+    for(SFLineString *ring in polygon.rings){
         [self addLineString:ring andEnvelope:envelope];
     }
 }
@@ -190,8 +189,8 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:multiPolygon];
     
-    NSArray * polygons = [multiPolygon polygons];
-    for(SFPolygon * polygon in polygons){
+    NSArray *polygons = [multiPolygon polygons];
+    for(SFPolygon *polygon in polygons){
         [self addPolygon:polygon andEnvelope:envelope];
     }
 }
@@ -200,7 +199,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:compoundCurve];
     
-    for(SFLineString * lineString in compoundCurve.lineStrings){
+    for(SFLineString *lineString in compoundCurve.lineStrings){
         [self addLineString:lineString andEnvelope:envelope];
     }
 }
@@ -209,7 +208,7 @@
  
     [self updateHasZandMWithEnvelope:envelope andGeometry:curvePolygon];
     
-    for(SFCurve * ring in curvePolygon.rings){
+    for(SFCurve *ring in curvePolygon.rings){
         [self buildEnvelope:envelope andGeometry:ring];
     }
 }
@@ -218,7 +217,7 @@
     
     [self updateHasZandMWithEnvelope:envelope andGeometry:polyhedralSurface];
     
-    for(SFPolygon * polygon in polyhedralSurface.polygons){
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
         [self addPolygon:polygon andEnvelope:envelope];
     }
 }

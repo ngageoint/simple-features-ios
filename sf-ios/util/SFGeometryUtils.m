@@ -52,9 +52,8 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-                NSArray * geometries = geomCollection.geometries;
-                for (SFGeometry * subGeometry in geometries) {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
                     dimension = MAX(dimension, [self dimensionOfGeometry:subGeometry]);
                 }
             }
@@ -117,24 +116,24 @@
 }
 
 +(SFPoint *) centroidOfGeometry: (SFGeometry *) geometry{
-    SFPoint * centroid = nil;
+    SFPoint *centroid = nil;
     int dimension = [self dimensionOfGeometry:geometry];
     switch (dimension) {
         case 0:
             {
-                SFCentroidPoint * point = [[SFCentroidPoint alloc] initWithGeometry: geometry];
+                SFCentroidPoint *point = [[SFCentroidPoint alloc] initWithGeometry: geometry];
                 centroid = [point centroid];
             }
             break;
         case 1:
             {
-                SFCentroidCurve * curve = [[SFCentroidCurve alloc] initWithGeometry: geometry];
+                SFCentroidCurve *curve = [[SFCentroidCurve alloc] initWithGeometry: geometry];
                 centroid = [curve centroid];
             }
             break;
         case 2:
             {
-                SFCentroidSurface * surface = [[SFCentroidSurface alloc] initWithGeometry: geometry];
+                SFCentroidSurface *surface = [[SFCentroidSurface alloc] initWithGeometry: geometry];
                 centroid = [surface centroid];
             }
             break;
@@ -191,13 +190,12 @@
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-        {
-            SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-            NSArray * geometries = geomCollection.geometries;
-            for (SFGeometry * subGeometry in geometries) {
-                [self minimizeGeometry:subGeometry withMaxX:maxX];
+            {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
+                    [self minimizeGeometry:subGeometry withMaxX:maxX];
+                }
             }
-        }
             break;
         default:
             break;
@@ -208,7 +206,7 @@
 
 +(void) minimizeLineString: (SFLineString *) lineString withMaxX: (double) maxX{
     
-    NSMutableArray * points = lineString.points;
+    NSMutableArray *points = lineString.points;
     if(points.count > 1){
         SFPoint *point = [points objectAtIndex:0];
         for(int i = 1; i < points.count; i++){
@@ -228,44 +226,44 @@
 
 +(void) minimizeMultiLineString: (SFMultiLineString *) multiLineString withMaxX: (double) maxX{
     
-    NSArray * lineStrings = [multiLineString lineStrings];
-    for(SFLineString * lineString in lineStrings){
+    NSArray *lineStrings = [multiLineString lineStrings];
+    for(SFLineString *lineString in lineStrings){
         [self minimizeLineString:lineString withMaxX:maxX];
     }
 }
 
 +(void) minimizePolygon: (SFPolygon *) polygon withMaxX: (double) maxX{
     
-    for(SFLineString * ring in polygon.rings){
+    for(SFLineString *ring in polygon.rings){
         [self minimizeLineString:ring withMaxX:maxX];
     }
 }
 
 +(void) minimizeMultiPolygon: (SFMultiPolygon *) multiPolygon withMaxX: (double) maxX{
     
-    NSArray * polygons = [multiPolygon polygons];
-    for(SFPolygon * polygon in polygons){
+    NSArray *polygons = [multiPolygon polygons];
+    for(SFPolygon *polygon in polygons){
         [self minimizePolygon:polygon withMaxX:maxX];
     }
 }
 
 +(void) minimizeCompoundCurve: (SFCompoundCurve *) compoundCurve withMaxX: (double) maxX{
     
-    for(SFLineString * lineString in compoundCurve.lineStrings){
+    for(SFLineString *lineString in compoundCurve.lineStrings){
         [self minimizeLineString:lineString withMaxX:maxX];
     }
 }
 
 +(void) minimizeCurvePolygon: (SFCurvePolygon *) curvePolygon withMaxX: (double) maxX{
     
-    for(SFCurve * ring in curvePolygon.rings){
+    for(SFCurve *ring in curvePolygon.rings){
         [self minimizeGeometry:ring withMaxX:maxX];
     }
 }
 
 +(void) minimizePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withMaxX: (double) maxX{
     
-    for(SFPolygon * polygon in polyhedralSurface.polygons){
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
         [self minimizePolygon:polygon withMaxX:maxX];
     }
 }
@@ -321,13 +319,12 @@
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-        {
-            SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-            NSArray * geometries = geomCollection.geometries;
-            for (SFGeometry * subGeometry in geometries) {
-                [self normalizeGeometry:subGeometry withMaxX:maxX];
+            {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
+                    [self normalizeGeometry:subGeometry withMaxX:maxX];
+                }
             }
-        }
             break;
         default:
             break;
@@ -351,59 +348,59 @@
 
 +(void) normalizeMultiPoint: (SFMultiPoint *) multiPoint withMaxX: (double) maxX{
     
-    NSArray * points = [multiPoint points];
-    for(SFPoint * point in points){
+    NSArray *points = [multiPoint points];
+    for(SFPoint *point in points){
         [self normalizePoint:point withMaxX:maxX];
     }
 }
 
 +(void) normalizeLineString: (SFLineString *) lineString withMaxX: (double) maxX{
     
-    for(SFPoint * point in lineString.points){
+    for(SFPoint *point in lineString.points){
         [self normalizePoint:point withMaxX:maxX];
     }
 }
 
 +(void) normalizeMultiLineString: (SFMultiLineString *) multiLineString withMaxX: (double) maxX{
     
-    NSArray * lineStrings = [multiLineString lineStrings];
-    for(SFLineString * lineString in lineStrings){
+    NSArray *lineStrings = [multiLineString lineStrings];
+    for(SFLineString *lineString in lineStrings){
         [self normalizeLineString:lineString withMaxX:maxX];
     }
 }
 
 +(void) normalizePolygon: (SFPolygon *) polygon withMaxX: (double) maxX{
     
-    for(SFLineString * ring in polygon.rings){
+    for(SFLineString *ring in polygon.rings){
         [self normalizeLineString:ring withMaxX:maxX];
     }
 }
 
 +(void) normalizeMultiPolygon: (SFMultiPolygon *) multiPolygon withMaxX: (double) maxX{
     
-    NSArray * polygons = [multiPolygon polygons];
-    for(SFPolygon * polygon in polygons){
+    NSArray *polygons = [multiPolygon polygons];
+    for(SFPolygon *polygon in polygons){
         [self normalizePolygon:polygon withMaxX:maxX];
     }
 }
 
 +(void) normalizeCompoundCurve: (SFCompoundCurve *) compoundCurve withMaxX: (double) maxX{
     
-    for(SFLineString * lineString in compoundCurve.lineStrings){
+    for(SFLineString *lineString in compoundCurve.lineStrings){
         [self normalizeLineString:lineString withMaxX:maxX];
     }
 }
 
 +(void) normalizeCurvePolygon: (SFCurvePolygon *) curvePolygon withMaxX: (double) maxX{
     
-    for(SFCurve * ring in curvePolygon.rings){
+    for(SFCurve *ring in curvePolygon.rings){
         [self normalizeGeometry:ring withMaxX:maxX];
     }
 }
 
 +(void) normalizePolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withMaxX: (double) maxX{
     
-    for(SFPolygon * polygon in polyhedralSurface.polygons){
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
         [self normalizePolygon:polygon withMaxX:maxX];
     }
 }
@@ -435,14 +432,14 @@
     
     if (dmax > tolerance) {
         
-        NSArray * recResults1 = [self simplifyPoints:points withTolerance:tolerance andStartIndex:startIndex andEndIndex:index];
-        NSArray * recResults2 = [self simplifyPoints:points withTolerance:tolerance andStartIndex:index andEndIndex:endIndex];
+        NSArray *recResults1 = [self simplifyPoints:points withTolerance:tolerance andStartIndex:startIndex andEndIndex:index];
+        NSArray *recResults2 = [self simplifyPoints:points withTolerance:tolerance andStartIndex:index andEndIndex:endIndex];
         
         result = [recResults1 subarrayWithRange:NSMakeRange(0, recResults1.count - 1)];
         result = [result arrayByAddingObjectsFromArray:recResults2];
         
     }else{
-        result = [[NSArray alloc] initWithObjects:startPoint, endPoint, nil];
+        result = [NSArray arrayWithObjects:startPoint, endPoint, nil];
     }
     
     return result;
@@ -747,14 +744,14 @@
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-        {
-            SFGeometryCollection *metersCollection = [[SFGeometryCollection alloc] init];
-            SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
-            for (SFGeometry *subGeometry in geomCollection.geometries) {
-                [metersCollection addGeometry:[self degreesToMetersWithGeometry:subGeometry]];
+            {
+                SFGeometryCollection *metersCollection = [[SFGeometryCollection alloc] init];
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
+                    [metersCollection addGeometry:[self degreesToMetersWithGeometry:subGeometry]];
+                }
+                meters = metersCollection;
             }
-            meters = metersCollection;
-        }
             break;
         default:
             break;
@@ -926,14 +923,14 @@
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-        {
-            SFGeometryCollection *degreesCollection = [[SFGeometryCollection alloc] init];
-            SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
-            for (SFGeometry *subGeometry in geomCollection.geometries) {
-                [degreesCollection addGeometry:[self metersToDegreesWithGeometry:subGeometry]];
+            {
+                SFGeometryCollection *degreesCollection = [[SFGeometryCollection alloc] init];
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
+                    [degreesCollection addGeometry:[self metersToDegreesWithGeometry:subGeometry]];
+                }
+                degrees = degreesCollection;
             }
-            degrees = degreesCollection;
-        }
             break;
         default:
             break;
@@ -963,167 +960,677 @@
 }
 
 +(SFMultiPoint *) metersToDegreesWithMultiPoint: (SFMultiPoint *) multiPoint{
-    return nil; // TODO
+    SFMultiPoint *degrees = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+    for(SFPoint *point in [multiPoint points]){
+        [degrees addPoint:[self metersToDegreesWithPoint:point]];
+    }
+    return degrees;
 }
 
 +(SFLineString *) metersToDegreesWithLineString: (SFLineString *) lineString{
-    return nil; // TODO
+    SFLineString *degrees = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    for(SFPoint *point in lineString.points){
+        [degrees addPoint:[self metersToDegreesWithPoint:point]];
+    }
+    return degrees;
 }
 
 +(SFLine *) metersToDegreesWithLine: (SFLine *) line{
-    return nil; // TODO
+    SFLine *degrees = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+    for(SFPoint *point in line.points){
+        [degrees addPoint:[self metersToDegreesWithPoint:point]];
+    }
+    return degrees;
 }
 
 +(SFMultiLineString *) metersToDegreesWithMultiLineString: (SFMultiLineString *) multiLineString{
-    return nil; // TODO
+    SFMultiLineString *degrees = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+    for(SFLineString *lineString in [multiLineString lineStrings]){
+        [degrees addLineString:[self metersToDegreesWithLineString:lineString]];
+    }
+    return degrees;
 }
 
 +(SFPolygon *) metersToDegreesWithPolygon: (SFPolygon *) polygon{
-    return nil; // TODO
+    SFPolygon *degrees = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    for(SFLineString *ring in polygon.rings){
+        [degrees addRing:[self metersToDegreesWithLineString:ring]];
+    }
+    return degrees;
 }
 
 +(SFMultiPolygon *) metersToDegreesWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
-    return nil; // TODO
+    SFMultiPolygon *degrees = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+    for(SFPolygon *polygon in [multiPolygon polygons]){
+        [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
+    }
+    return degrees;
 }
 
 +(SFCircularString *) metersToDegreesWithCircularString: (SFCircularString *) circularString{
-    return nil; // TODO
+    SFCircularString *degrees = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+    for(SFPoint *point in circularString.points){
+        [degrees addPoint:[self metersToDegreesWithPoint:point]];
+    }
+    return degrees;
 }
 
 +(SFCompoundCurve *) metersToDegreesWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
-    return nil; // TODO
+    SFCompoundCurve *degrees = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+    for(SFLineString *lineString in compoundCurve.lineStrings){
+        [degrees addLineString:[self metersToDegreesWithLineString:lineString]];
+    }
+    return degrees;
 }
 
 +(SFCurvePolygon *) metersToDegreesWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
-    return nil; // TODO
+    SFCurvePolygon *degrees = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+    for(SFCurve *ring in curvePolygon.rings){
+        [degrees addRing:(SFCurve *) [self metersToDegreesWithGeometry:ring]];
+    }
+    return degrees;
 }
 
 +(SFPolyhedralSurface *) metersToDegreesWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
-    return nil; // TODO
+    SFPolyhedralSurface *degrees = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
+        [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
+    }
+    return degrees;
 }
 
 +(SFTIN *) metersToDegreesWithTIN: (SFTIN *) tin{
-    return nil; // TODO
+    SFTIN *degrees = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+    for(SFPolygon *polygon in tin.polygons){
+        [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
+    }
+    return degrees;
 }
 
 +(SFTriangle *) metersToDegreesWithTriangle: (SFTriangle *) triangle{
-    return nil; // TODO
+    SFTriangle *degrees = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+    for(SFLineString *ring in triangle.rings){
+        [degrees addRing:[self metersToDegreesWithLineString:ring]];
+    }
+    return degrees;
 }
 
 +(SFGeometryEnvelope *) wgs84Envelope{
-    return nil; // TODO
+    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:-SF_WGS84_HALF_WORLD_LAT_HEIGHT andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
 }
 
 +(SFGeometryEnvelope *) wgs84TransformableEnvelope{
-    return nil; // TODO
+    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:SF_DEGREES_TO_METERS_MIN_LAT andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
 }
 
 +(SFGeometryEnvelope *) webMercatorEnvelope{
-    return nil; // TODO
+    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMinYDouble:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxXDouble:SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxYDouble:SF_WEB_MERCATOR_HALF_WORLD_WIDTH];
 }
 
 +(SFGeometryEnvelope *) wgs84EnvelopeWithWebMercator{
-    return nil; // TODO
+    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:SF_WEB_MERCATOR_MIN_LAT_RANGE andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WEB_MERCATOR_MAX_LAT_RANGE];
 }
 
 +(SFGeometry *) cropWebMercatorGeometry: (SFGeometry *) geometry{
-    return nil; // TODO
+    return [self cropGeometry:geometry withEnvelope:[self webMercatorEnvelope]];
 }
 
 +(SFGeometry *) cropGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    
+    SFGeometry *crop = nil;
+    
+    if([self containsEnvelope:geometry.envelope withinEnvelope:envelope]){
+        crop = geometry;
+    }else{
+    
+        switch (geometry.geometryType) {
+            case SF_POINT:
+                crop = [self cropPoint:(SFPoint *) geometry withEnvelope:envelope];
+                break;
+            case SF_LINESTRING:
+                crop = [self cropLineString:(SFLineString *) geometry withEnvelope:envelope];
+                break;
+            case SF_POLYGON:
+                crop = [self cropPolygon:(SFPolygon *) geometry withEnvelope:envelope];
+                break;
+            case SF_MULTIPOINT:
+                crop = [self cropMultiPoint:(SFMultiPoint *) geometry withEnvelope:envelope];
+                break;
+            case SF_MULTILINESTRING:
+                crop = [self cropMultiLineString:(SFMultiLineString *) geometry withEnvelope:envelope];
+                break;
+            case SF_MULTIPOLYGON:
+                crop = [self cropMultiPolygon:(SFMultiPolygon *) geometry withEnvelope:envelope];
+                break;
+            case SF_CIRCULARSTRING:
+                crop = [self cropCircularString:(SFCircularString *) geometry withEnvelope:envelope];
+                break;
+            case SF_COMPOUNDCURVE:
+                crop = [self cropCompoundCurve:(SFCompoundCurve *) geometry withEnvelope:envelope];
+                break;
+            case SF_CURVEPOLYGON:
+                crop = [self cropCurvePolygon:(SFCurvePolygon *) geometry withEnvelope:envelope];
+                break;
+            case SF_POLYHEDRALSURFACE:
+                crop = [self cropPolyhedralSurface:(SFPolyhedralSurface *) geometry withEnvelope:envelope];
+                break;
+            case SF_TIN:
+                crop = [self cropTIN:(SFTIN *) geometry withEnvelope:envelope];
+                break;
+            case SF_TRIANGLE:
+                crop = [self cropTriangle:(SFTriangle *) geometry withEnvelope:envelope];
+                break;
+            case SF_GEOMETRYCOLLECTION:
+            case SF_MULTICURVE:
+            case SF_MULTISURFACE:
+                {
+                    SFGeometryCollection *cropCollection = [[SFGeometryCollection alloc] init];
+                    SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                    for (SFGeometry *subGeometry in geomCollection.geometries) {
+                        [cropCollection addGeometry:[self cropGeometry:subGeometry withEnvelope:envelope]];
+                    }
+                    crop = cropCollection;
+                }
+                break;
+            default:
+                break;
+                
+        }
+    }
+    
+    return crop;
 }
 
 +(SFPoint *) cropPoint: (SFPoint *) point withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFPoint *crop = nil;
+    if([self containsPoint:point withinEnvelope:envelope]){
+        crop = [point mutableCopy];
+    }
+    return crop;
 }
 
 +(NSMutableArray<SFPoint *> *) cropPoints: (NSArray<SFPoint *> *) points withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    
+    NSMutableArray<SFPoint *> *crop = [NSMutableArray array];
+    
+    SFLine *left = [envelope left];
+    SFLine *bottom = [envelope bottom];
+    SFLine *right = [envelope right];
+    SFLine *top = [envelope top];
+    
+    SFPoint *previousPoint = nil;
+    BOOL previousContains = NO;
+    for(SFPoint *point in points){
+        BOOL contains = [self containsPoint:point withinEnvelope:envelope];
+        
+        if(previousPoint != nil && (!contains || !previousContains)){
+            
+            SFLine *line = [[SFLine alloc] initWithPoint1:previousPoint andPoint2:point];
+            double bearing = [self bearingOfLine:[self metersToDegreesWithLine:line]];
+            
+            BOOL westBearing = [self isWestBearing:bearing];
+            BOOL eastBearing = [self isEastBearing:bearing];
+            BOOL southBearing = [self isSouthBearing:bearing];
+            BOOL northBearing = [self isNorthBearing:bearing];
+            
+            SFLine *vertLine = nil;
+            if([point.x doubleValue] > [envelope.maxX doubleValue]){
+                if(eastBearing){
+                    vertLine = right;
+                }
+            }else if([point.x doubleValue] < [envelope.minX doubleValue]){
+                if(westBearing){
+                    vertLine = left;
+                }
+            }else if(eastBearing){
+                vertLine = left;
+            }else if(westBearing){
+                vertLine = right;
+            }
+            
+            SFLine *horizLine = nil;
+            if([point.y doubleValue] > [envelope.maxY doubleValue]){
+                if(northBearing){
+                    horizLine = top;
+                }
+            }else if([point.y doubleValue] < [envelope.minY doubleValue]){
+                if(southBearing){
+                    horizLine = bottom;
+                }
+            }else if(northBearing){
+                horizLine = bottom;
+            }else if(southBearing){
+                horizLine = top;
+            }
+            
+            SFPoint *vertIntersection = nil;
+            if(vertLine != nil){
+                vertIntersection = [self intersectionBetweenLine1:line andLine2:vertLine];
+                if(vertIntersection != nil && ![self containsPoint:vertIntersection withinEnvelope:envelope]){
+                    vertIntersection = nil;
+                }
+            }
+            
+            SFPoint *horizIntersection = nil;
+            if(horizLine != nil){
+                horizIntersection = [self intersectionBetweenLine1:line andLine2:horizLine];
+                if(horizIntersection != nil && ![self containsPoint:horizIntersection withinEnvelope:envelope]){
+                    horizIntersection = nil;
+                }
+            }
+            
+            SFPoint *intersection1 = nil;
+            SFPoint *intersection2 = nil;
+            if(vertIntersection != nil && horizIntersection != nil){
+                double vertDistance = [self distanceBetweenPoint1:previousPoint andPoint2:vertIntersection];
+                double horizDistance = [self distanceBetweenPoint1:previousPoint andPoint2:horizIntersection];
+                if(vertDistance <= horizDistance){
+                    intersection1 = vertIntersection;
+                    intersection2 = horizIntersection;
+                }else{
+                    intersection1 = horizIntersection;
+                    intersection2 = vertIntersection;
+                }
+            }else if(vertIntersection != nil){
+                intersection1 = vertIntersection;
+            }else{
+                intersection1 = horizIntersection;
+            }
+            
+            if(intersection1 != nil && ![self isEqualWithPoint1:intersection1 andPoint2:point] && ![self isEqualWithPoint1:intersection1 andPoint2:previousPoint]){
+                
+                [crop addObject:intersection1];
+                
+                if(!contains && !previousContains && intersection2 != nil && ![self isEqualWithPoint1:intersection2 andPoint2:intersection1]){
+                    [crop addObject:intersection2];
+                }
+            }
+            
+        }
+        
+        if(contains){
+            [crop addObject:point];
+        }
+        
+        previousPoint = point;
+        previousContains = contains;
+    }
+    
+    if(crop.count == 0){
+        crop = nil;
+    }else if(crop.count > 1){
+        
+        if([[points firstObject] isEqual:[points lastObject]] && ![[crop firstObject] isEqual:[crop lastObject]] ){
+            [crop addObject:[[crop firstObject] mutableCopy]];
+        }
+        
+        if(crop.count > 2){
+            
+            NSMutableArray<SFPoint *> *simplified = [NSMutableArray array];
+            [simplified addObject:[crop firstObject]];
+            for(int i = 1; i < crop.count - 1; i++){
+                SFPoint *previous = [simplified lastObject];
+                SFPoint *point = [crop objectAtIndex:i];
+                SFPoint *next = [crop objectAtIndex:i + 1];
+                if(![self point:point onPathPoint1:previous andPoint2:next]){
+                    [simplified addObject:point];
+                }
+            }
+            [simplified addObject:[crop lastObject]];
+            crop = simplified;
+            
+        }
+        
+    }
+    
+    return crop;
 }
 
 +(SFMultiPoint *) cropMultiPoint: (SFMultiPoint *) multiPoint withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFMultiPoint *crop = nil;
+    NSMutableArray<SFPoint *> *cropPoints = [NSMutableArray array];
+    for(SFPoint *point in [multiPoint points]){
+        SFPoint *cropPoint = [self cropPoint:point withEnvelope:envelope];
+        if(cropPoint != nil){
+            [cropPoints addObject:cropPoint];
+        }
+    }
+    if(cropPoints.count != 0){
+        crop = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+        [crop setPoints:cropPoints];
+    }
+    return crop;
 }
 
 +(SFLineString *) cropLineString: (SFLineString *) lineString withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFLineString *crop = nil;
+    NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:lineString.points withEnvelope:envelope];
+    if(cropPoints != nil){
+        crop = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+        [crop setPoints:cropPoints];
+    }
+    return crop;
 }
 
 +(SFLine *) cropLine: (SFLine *) line withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFLine *crop = nil;
+    NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:line.points withEnvelope:envelope];
+    if(cropPoints != nil){
+        crop = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+        [crop setPoints:cropPoints];
+    }
+    return crop;
 }
 
 +(SFMultiLineString *) cropMultiLineString: (SFMultiLineString *) multiLineString withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFMultiLineString *crop = nil;
+    NSMutableArray<SFLineString *> *cropLineStrings = [NSMutableArray array];
+    for(SFLineString *lineString in [multiLineString lineStrings]){
+        SFLineString *cropLineString = [self cropLineString:lineString withEnvelope:envelope];
+        if(cropLineString != nil){
+            [cropLineStrings addObject:cropLineString];
+        }
+    }
+    if(cropLineStrings.count != 0){
+        crop = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+        [crop setLineStrings:cropLineStrings];
+    }
+    return crop;
 }
 
 +(SFPolygon *) cropPolygon: (SFPolygon *) polygon withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFPolygon *crop = nil;
+    NSMutableArray<SFLineString *> *cropRings = [NSMutableArray array];
+    for(SFLineString *ring in polygon.rings){
+        NSMutableArray<SFPoint *> *points = ring.points;
+        if(![ring isClosed]){
+            [points addObject:[[points firstObject] mutableCopy]];
+        }
+        NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:points withEnvelope:envelope];
+        if(cropPoints != nil){
+            SFLineString *cropRing = [[SFLineString alloc] initWithHasZ:ring.hasZ andHasM:ring.hasM];
+            [cropRing setPoints:cropPoints];
+            [cropRings addObject:cropRing];
+        }
+    }
+    if(cropRings.count != 0){
+        crop = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+        [crop setRings:cropRings];
+    }
+    return crop;
 }
 
 +(SFMultiPolygon *) cropMultiPolygon: (SFMultiPolygon *) multiPolygon withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFMultiPolygon *crop = nil;
+    NSMutableArray<SFPolygon *> *cropPolygons = [NSMutableArray array];
+    for(SFPolygon *polygon in [multiPolygon polygons]){
+        SFPolygon *cropPolygon = [self cropPolygon:polygon withEnvelope:envelope];
+        if(cropPolygon != nil){
+            [cropPolygons addObject:cropPolygon];
+        }
+    }
+    if(cropPolygons.count != 0){
+        crop = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+        [crop setPolygons:cropPolygons];
+    }
+    return crop;
 }
 
 +(SFCircularString *) cropCircularString: (SFCircularString *) circularString withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFCircularString *crop = nil;
+    NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:circularString.points withEnvelope:envelope];
+    if(cropPoints != nil){
+        crop = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+        [crop setPoints:cropPoints];
+    }
+    return crop;
 }
 
 +(SFCompoundCurve *) cropCompoundCurve: (SFCompoundCurve *) compoundCurve withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFCompoundCurve *crop = nil;
+    NSMutableArray<SFLineString *> *cropLineStrings = [NSMutableArray array];
+    for(SFLineString *lineString in compoundCurve.lineStrings){
+        SFLineString *cropLineString = [self cropLineString:lineString withEnvelope:envelope];
+        if(cropLineString != nil){
+            [cropLineStrings addObject:cropLineString];
+        }
+    }
+    if(cropLineStrings.count != 0){
+        crop = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+        [crop setLineStrings:cropLineStrings];
+    }
+    return crop;
 }
 
 +(SFCurvePolygon *) cropCurvePolygon: (SFCurvePolygon *) curvePolygon withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFCurvePolygon *crop = nil;
+    NSMutableArray<SFCurve *> *cropRings = [NSMutableArray array];
+    for(SFCurve *ring in curvePolygon.rings){
+        SFGeometry *cropRing = [self cropGeometry:ring withEnvelope:envelope];
+        if(cropRing != nil){
+            [cropRings addObject:(SFCurve *) cropRing];
+        }
+    }
+    if(cropRings.count != 0){
+        crop = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+        [crop setRings:cropRings];
+    }
+    return crop;
 }
 
 +(SFPolyhedralSurface *) cropPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFPolyhedralSurface *crop = nil;
+    NSMutableArray<SFPolygon *> *cropPolygons = [NSMutableArray array];
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
+        SFPolygon *cropPolygon = [self cropPolygon:polygon withEnvelope:envelope];
+        if(cropPolygon != nil){
+            [cropPolygons addObject:cropPolygon];
+        }
+    }
+    if(cropPolygons.count != 0){
+        crop = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+        [crop setPolygons:cropPolygons];
+    }
+    return crop;
 }
 
 +(SFTIN *) cropTIN: (SFTIN *) tin withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFTIN *crop = nil;
+    NSMutableArray<SFPolygon *> *cropPolygons = [NSMutableArray array];
+    for(SFPolygon *polygon in tin.polygons){
+        SFPolygon *cropPolygon = [self cropPolygon:polygon withEnvelope:envelope];
+        if(cropPolygon != nil){
+            [cropPolygons addObject:cropPolygon];
+        }
+    }
+    if(cropPolygons.count != 0){
+        crop = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+        [crop setPolygons:cropPolygons];
+    }
+    return crop;
 }
 
 +(SFTriangle *) cropTriangle: (SFTriangle *) triangle withEnvelope: (SFGeometryEnvelope *) envelope{
-    return nil; // TODO
+    SFTriangle *crop = nil;
+    NSMutableArray<SFLineString *> *cropRings = [NSMutableArray array];
+    for(SFLineString *ring in triangle.rings){
+        NSMutableArray<SFPoint *> *points = ring.points;
+        if(![ring isClosed]){
+            [points addObject:[[points firstObject] mutableCopy]];
+        }
+        NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:points withEnvelope:envelope];
+        if(cropPoints != nil){
+            SFLineString *cropRing = [[SFLineString alloc] initWithHasZ:ring.hasZ andHasM:ring.hasM];
+            [cropRing setPoints:cropPoints];
+            [cropRings addObject:cropRing];
+        }
+    }
+    if(cropRings.count != 0){
+        crop = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+        [crop setRings:cropRings];
+    }
+    return crop;
 }
 
 +(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
-    return NO; // TODO
+    return [self isEqualWithPoint1:point1 andPoint2:point2 andEpsilon:SF_DEFAULT_EQUAL_EPSILON];
 }
 
 +(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andEpsilon: (double) epsilon{
-    return NO; // TODO
+    BOOL equal = fabs([point1.x doubleValue] - [point2.x doubleValue]) <= epsilon && fabs([point1.y doubleValue] - [point2.y doubleValue]) <= epsilon && point1.hasZ == point2.hasZ && point1.hasM && point2.hasM;
+    if(equal){
+        if(point1.hasZ){
+            equal = fabs([point1.z doubleValue] - [point2.z doubleValue]) <= epsilon;
+        }
+        if(equal && point1.hasM){
+            equal = fabs([point1.m doubleValue] - [point2.m doubleValue]) <= epsilon;
+        }
+    }
+    return equal;
 }
 
 +(BOOL) containsPoint: (SFPoint *) point withinEnvelope: (SFGeometryEnvelope *) envelope{
-    return NO; // TODO
+    return [envelope containsPoint:point withEpsilon:SF_DEFAULT_EQUAL_EPSILON];
 }
 
 +(BOOL) containsEnvelope: (SFGeometryEnvelope *) envelope2 withinEnvelope: (SFGeometryEnvelope *) envelope1{
-    return NO; // TODO
+    return [envelope1 containsEnvelope:envelope2 withEpsilon:SF_DEFAULT_EQUAL_EPSILON];
 }
 
 +(void) boundWGS84Geometry: (SFGeometry *) geometry{
-    // TODO
+    [self boundGeometry:geometry withEnvelope:[self wgs84Envelope]];
 }
 
 +(void) boundWGS84TransformableGeometry: (SFGeometry *) geometry{
-    // TODO
+    [self boundGeometry:geometry withEnvelope:[self wgs84TransformableEnvelope]];
 }
 
 +(void) boundWebMercatorGeometry: (SFGeometry *) geometry{
-    // TODO
+    [self boundGeometry:geometry withEnvelope:[self webMercatorEnvelope]];
 }
 
 +(void) boundWGS84WithWebMercatorGeometry: (SFGeometry *) geometry{
-    // TODO
+    [self boundGeometry:geometry withEnvelope:[self wgs84EnvelopeWithWebMercator]];
 }
 
 +(void) boundGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope{
-    // TODO
+
+    enum SFGeometryType geometryType = geometry.geometryType;
+    switch (geometryType) {
+        case SF_POINT:
+            [self boundPoint:(SFPoint *)geometry withEnvelope:envelope];
+            break;
+        case SF_LINESTRING:
+            [self boundLineString:(SFLineString *)geometry withEnvelope:envelope];
+            break;
+        case SF_POLYGON:
+            [self boundPolygon:(SFPolygon *)geometry withEnvelope:envelope];
+            break;
+        case SF_MULTIPOINT:
+            [self boundMultiPoint:(SFMultiPoint *)geometry withEnvelope:envelope];
+            break;
+        case SF_MULTILINESTRING:
+            [self boundMultiLineString:(SFMultiLineString *)geometry withEnvelope:envelope];
+            break;
+        case SF_MULTIPOLYGON:
+            [self boundMultiPolygon:(SFMultiPolygon *)geometry withEnvelope:envelope];
+            break;
+        case SF_CIRCULARSTRING:
+            [self boundLineString:(SFCircularString *)geometry withEnvelope:envelope];
+            break;
+        case SF_COMPOUNDCURVE:
+            [self boundCompoundCurve:(SFCompoundCurve *)geometry withEnvelope:envelope];
+            break;
+        case SF_CURVEPOLYGON:
+            [self boundCurvePolygon:(SFCurvePolygon *)geometry withEnvelope:envelope];
+            break;
+        case SF_POLYHEDRALSURFACE:
+            [self boundPolyhedralSurface:(SFPolyhedralSurface *)geometry withEnvelope:envelope];
+            break;
+        case SF_TIN:
+            [self boundPolyhedralSurface:(SFTIN *)geometry withEnvelope:envelope];
+            break;
+        case SF_TRIANGLE:
+            [self boundPolygon:(SFTriangle *)geometry withEnvelope:envelope];
+            break;
+        case SF_GEOMETRYCOLLECTION:
+        case SF_MULTICURVE:
+        case SF_MULTISURFACE:
+            {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
+                    [self boundGeometry:subGeometry withEnvelope:envelope];
+                }
+            }
+            break;
+        default:
+            break;
+            
+    }
+    
+}
+
++(void) boundPoint: (SFPoint *) point withEnvelope: (SFGeometryEnvelope *) envelope{
+    double x = [point.x doubleValue];
+    double y = [point.y doubleValue];
+    if(x < [envelope.minX doubleValue]){
+        [point setX:envelope.minX];
+    }else if(x > [envelope.maxX doubleValue]){
+        [point setX:envelope.maxX];
+    }
+    if(y < [envelope.minY doubleValue]){
+        [point setY:envelope.minY];
+    }else if(y > [envelope.maxY doubleValue]){
+        [point setY:envelope.maxY];
+    }
+}
+
++(void) boundMultiPoint: (SFMultiPoint *) multiPoint withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFPoint *point in [multiPoint points]){
+        [self boundPoint:point withEnvelope:envelope];
+    }
+}
+
++(void) boundLineString: (SFLineString *) lineString withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFPoint *point in lineString.points){
+        [self boundPoint:point withEnvelope:envelope];
+    }
+}
+
++(void) boundMultiLineString: (SFMultiLineString *) multiLineString withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFLineString *lineString in [multiLineString lineStrings]){
+        [self boundLineString:lineString withEnvelope:envelope];
+    }
+}
+
++(void) boundPolygon: (SFPolygon *) polygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFLineString *ring in polygon.rings){
+        [self boundLineString:ring withEnvelope:envelope];
+    }
+}
+
++(void) boundMultiPolygon: (SFMultiPolygon *) multiPolygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFPolygon *polygon in [multiPolygon polygons]){
+        [self boundPolygon:polygon withEnvelope:envelope];
+    }
+}
+
++(void) boundCompoundCurve: (SFCompoundCurve *) compoundCurve withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFLineString *lineString in compoundCurve.lineStrings){
+        [self boundLineString:lineString withEnvelope:envelope];
+    }
+}
+
++(void) boundCurvePolygon: (SFCurvePolygon *) curvePolygon withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFCurve *ring in curvePolygon.rings){
+        [self boundGeometry:ring withEnvelope:envelope];
+    }
+}
+
++(void) boundPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface withEnvelope: (SFGeometryEnvelope *) envelope{
+    for(SFPolygon *polygon in polyhedralSurface.polygons){
+        [self boundPolygon:polygon withEnvelope:envelope];
+    }
 }
 
 +(BOOL) hasZ: (NSArray<SFGeometry *> *) geometries{
@@ -1150,7 +1657,7 @@
 
 +(NSArray<NSNumber *> *) parentHierarchyOfType: (enum SFGeometryType) geometryType{
     
-    NSMutableArray<NSNumber *> *hierarchy = [[NSMutableArray alloc] init];
+    NSMutableArray<NSNumber *> *hierarchy = [NSMutableArray array];
     
     enum SFGeometryType parentType = [self parentTypeOfType:geometryType];
     while(parentType != SF_NONE && parentType >= 0){
@@ -1230,7 +1737,7 @@
 
 +(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (enum SFGeometryType) geometryType{
     
-    NSMutableDictionary<NSNumber *, NSDictionary *> *hierarchy = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary<NSNumber *, NSDictionary *> *hierarchy = [NSMutableDictionary dictionary];
     
     NSArray<NSNumber *> *childTypes = [self childTypesOfType:geometryType];
     
@@ -1247,7 +1754,7 @@
 
 +(NSArray<NSNumber *> *) childTypesOfType: (enum SFGeometryType) geometryType{
     
-    NSMutableArray<NSNumber *> *childTypes = [[NSMutableArray alloc] init];
+    NSMutableArray<NSNumber *> *childTypes = [NSMutableArray array];
     
     switch (geometryType) {
             

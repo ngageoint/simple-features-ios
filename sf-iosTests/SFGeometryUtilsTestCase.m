@@ -32,7 +32,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a point
-        SFPoint * point = [SFGeometryTestUtils createPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
+        SFPoint *point = [SFGeometryTestUtils createPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
         [SFTestUtils assertEqualIntWithValue:0 andValue2:[SFGeometryUtils dimensionOfGeometry:point]];
         [self geometryCentroidTesterWithGeometry:point];
     }
@@ -43,7 +43,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a line string
-        SFLineString * lineString = [SFGeometryTestUtils createLineStringWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
+        SFLineString *lineString = [SFGeometryTestUtils createLineStringWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
         [SFTestUtils assertEqualIntWithValue:1 andValue2:[SFGeometryUtils dimensionOfGeometry:lineString]];
         [self geometryCentroidTesterWithGeometry:lineString];
     }
@@ -54,7 +54,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a polygon
-        SFPolygon * polygon = [self createPolygon];
+        SFPolygon *polygon = [self createPolygon];
         [SFTestUtils assertEqualIntWithValue:2 andValue2:[SFGeometryUtils dimensionOfGeometry:polygon]];
         [self geometryCentroidTesterWithGeometry:polygon];
     }
@@ -65,7 +65,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a multi point
-        SFMultiPoint * multiPoint = [SFGeometryTestUtils createMultiPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
+        SFMultiPoint *multiPoint = [SFGeometryTestUtils createMultiPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
         [SFTestUtils assertEqualIntWithValue:0 andValue2:[SFGeometryUtils dimensionOfGeometry:multiPoint]];
         [self geometryCentroidTesterWithGeometry:multiPoint];
     }
@@ -76,7 +76,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a multi line string
-        SFMultiLineString * multiLineString = [SFGeometryTestUtils createMultiLineStringWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
+        SFMultiLineString *multiLineString = [SFGeometryTestUtils createMultiLineStringWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
         [SFTestUtils assertEqualIntWithValue:1 andValue2:[SFGeometryUtils dimensionOfGeometry:multiLineString]];
         [self geometryCentroidTesterWithGeometry:multiLineString];
     }
@@ -87,7 +87,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a multi polygon
-        SFMultiPolygon * multiPolygon = [self createMultiPolygon];
+        SFMultiPolygon *multiPolygon = [self createMultiPolygon];
         [SFTestUtils assertEqualIntWithValue:2 andValue2:[SFGeometryUtils dimensionOfGeometry:multiPolygon]];
         [self geometryCentroidTesterWithGeometry:multiPolygon];
     }
@@ -98,7 +98,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a geometry collection
-        SFGeometryCollection * geometryCollection = [self createGeometryCollectionWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
+        SFGeometryCollection *geometryCollection = [self createGeometryCollectionWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
         [self geometryCentroidTesterWithGeometry:geometryCollection];
     }
     
@@ -106,8 +106,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testPolygonCentroidWithAndWithoutHole {
     
-    SFPolygon * polygon = [[SFPolygon alloc] init];
-    SFLineString * lineString = [[SFLineString alloc] init];
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *lineString = [[SFLineString alloc] init];
     [lineString addPoint:[[SFPoint alloc] initWithXValue:-90 andYValue:45]];
     [lineString addPoint:[[SFPoint alloc] initWithXValue:-90 andYValue:-45]];
     [lineString addPoint:[[SFPoint alloc] initWithXValue:90 andYValue:-45]];
@@ -115,12 +115,12 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [polygon addRing:lineString];
     
     [SFTestUtils assertEqualIntWithValue:2 andValue2:[SFGeometryUtils dimensionOfGeometry:polygon]];
-    SFPoint * centroid = [self geometryCentroidTesterWithGeometry:polygon];
+    SFPoint *centroid = [self geometryCentroidTesterWithGeometry:polygon];
     
     [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[centroid.x doubleValue]];
     [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[centroid.y doubleValue]];
     
-    SFLineString * holeLineString = [[SFLineString alloc] init];
+    SFLineString *holeLineString = [[SFLineString alloc] init];
     [holeLineString addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:45]];
     [holeLineString addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:0]];
     [holeLineString addPoint:[[SFPoint alloc] initWithXValue:90 andYValue:0]];
@@ -136,9 +136,9 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(SFPoint *) geometryCentroidTesterWithGeometry: (SFGeometry *) geometry{
     
-    SFPoint * point = [geometry centroid];
+    SFPoint *point = [geometry centroid];
     
-    SFGeometryEnvelope * envelope = [geometry envelope];
+    SFGeometryEnvelope *envelope = [geometry envelope];
     
     if(geometry.geometryType == SF_POINT){
         [SFTestUtils assertEqualDoubleWithValue:[envelope.minX doubleValue] andValue2:[point.x doubleValue]];
@@ -162,15 +162,15 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(SFPolygon *) createPolygon{
     
-    SFPolygon * polygon = [[SFPolygon alloc] init];
-    SFLineString * lineString = [[SFLineString alloc] init];
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *lineString = [[SFLineString alloc] init];
     [lineString addPoint:[self createPointWithMinX:-180.0 andMinY:45.0 andXRange:90.0 andYRange:45.0]];
     [lineString addPoint:[self createPointWithMinX:-180.0 andMinY:-90.0 andXRange:90.0 andYRange:45.0]];
     [lineString addPoint:[self createPointWithMinX:90.0 andMinY:-90.0 andXRange:90.0 andYRange:45.0]];
     [lineString addPoint:[self createPointWithMinX:90.0 andMinY:45.0 andXRange:90.0 andYRange:45.0]];
     [polygon addRing:lineString];
     
-    SFLineString * holeLineString = [[SFLineString alloc] init];
+    SFLineString *holeLineString = [[SFLineString alloc] init];
     [holeLineString addPoint:[self createPointWithMinX:-90.0 andMinY:0.0 andXRange:90.0 andYRange:45.0]];
     [holeLineString addPoint:[self createPointWithMinX:-90.0 andMinY:-45.0 andXRange:90.0 andYRange:45.0]];
     [holeLineString addPoint:[self createPointWithMinX:0.0 andMinY:-45.0 andXRange:90.0 andYRange:45.0]];
@@ -185,14 +185,14 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     double x = minX + ([SFTestUtils randomDouble] * xRange);
     double y = minY + ([SFTestUtils randomDouble] * yRange);
     
-    SFPoint * point = [[SFPoint alloc] initWithXValue:x andYValue:y];
+    SFPoint *point = [[SFPoint alloc] initWithXValue:x andYValue:y];
     
     return point;
 }
 
 -(SFMultiPolygon *) createMultiPolygon{
     
-    SFMultiPolygon * multiPolygon = [[SFMultiPolygon alloc] init];
+    SFMultiPolygon *multiPolygon = [[SFMultiPolygon alloc] init];
     
     int num = 1 + ((int) ([SFTestUtils randomDouble] * 5));
     
@@ -205,13 +205,13 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(SFGeometryCollection *) createGeometryCollectionWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
 
-    SFGeometryCollection * geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
     
     int num = 1 + ((int) ([SFTestUtils randomDouble] * 5));
     
     for (int i = 0; i < num; i++) {
         
-        SFGeometry * geometry = nil;
+        SFGeometry *geometry = nil;
         int randomGeometry = (int) ([SFTestUtils randomDouble] * 6);
         
         switch (randomGeometry) {
@@ -243,8 +243,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testCopyMinimizeAndNormalize{
     
-    SFPolygon * polygon = [[SFPolygon alloc] init];
-    SFLineString * ring = [[SFLineString alloc] init];
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *ring = [[SFLineString alloc] init];
     double random = [SFTestUtils randomDouble];
     if(random < .5){
         [ring addPoint:[self createPointWithMinX:90.0 andMinY:0.0 andXRange:90.0 andYRange:90.0]];
@@ -259,10 +259,10 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     }
     [polygon addRing:ring];
     
-    SFPolygon * polygon2 = [polygon mutableCopy];
+    SFPolygon *polygon2 = [polygon mutableCopy];
     [SFGeometryUtils minimizeGeometry:polygon2 withMaxX:180.0];
     
-    SFPolygon * polygon3 = [polygon2 mutableCopy];
+    SFPolygon *polygon3 = [polygon2 mutableCopy];
     [SFGeometryUtils normalizeGeometry:polygon3 withMaxX:180.0];
     
     NSArray *points = ring.points;
@@ -299,8 +299,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     
     double halfWorldWidth = 20037508.342789244;
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
-    NSMutableArray<NSDecimalNumber *> *distances = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
+    NSMutableArray<NSDecimalNumber *> *distances = [NSMutableArray array];
     
     double x = ([SFTestUtils randomDouble] * halfWorldWidth * 2) - halfWorldWidth;
     double y = ([SFTestUtils randomDouble] * halfWorldWidth * 2) - halfWorldWidth;
@@ -363,7 +363,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testPointInPolygon{
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     [points addObject:[[SFPoint alloc] initWithXValue:0 andYValue:5]];
     [points addObject:[[SFPoint alloc] initWithXValue:5 andYValue:0]];
     [points addObject:[[SFPoint alloc] initWithXValue:10 andYValue:5]];
@@ -423,7 +423,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testClosePolygon{
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     [points addObject:[[SFPoint alloc] initWithXValue:0.1 andYValue:0.2]];
     [points addObject:[[SFPoint alloc] initWithXValue:5.3 andYValue:0.4]];
     [points addObject:[[SFPoint alloc] initWithXValue:5.5 andYValue:5.6]];
@@ -438,7 +438,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testPointOnLine{
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     [points addObject:[[SFPoint alloc] initWithXValue:0 andYValue:0]];
     [points addObject:[[SFPoint alloc] initWithXValue:5 andYValue:0]];
     [points addObject:[[SFPoint alloc] initWithXValue:5 andYValue:5]];

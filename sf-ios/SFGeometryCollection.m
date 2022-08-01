@@ -44,7 +44,7 @@
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
-        self.geometries = [[NSMutableArray alloc] init];
+        self.geometries = [NSMutableArray array];
     }
     return self;
 }

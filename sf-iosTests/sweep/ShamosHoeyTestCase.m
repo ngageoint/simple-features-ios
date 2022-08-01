@@ -26,7 +26,7 @@
 
 - (void)testSimple {
 
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:1 andY:0];
@@ -77,7 +77,7 @@
 
 - (void)testNonSimple {
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     
@@ -136,7 +136,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -151,7 +151,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints = [NSMutableArray array];
     
     [self addPoint:holePoints withX:1 andY:1];
     [self addPoint:holePoints withX:9 andY:1];
@@ -173,7 +173,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -188,7 +188,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints = [NSMutableArray array];
     
     [self addPoint:holePoints withX:1 andY:1];
     [self addPoint:holePoints withX:9 andY:1];
@@ -211,7 +211,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -226,7 +226,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints = [NSMutableArray array];
     
     [self addPoint:holePoints withX:1 andY:1];
     [self addPoint:holePoints withX:9 andY:1];
@@ -248,7 +248,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -263,7 +263,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints1 = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints1 = [NSMutableArray array];
     
     [self addPoint:holePoints1 withX:1 andY:1];
     [self addPoint:holePoints1 withX:9 andY:1];
@@ -279,7 +279,7 @@
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints2 = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints2 = [NSMutableArray array];
     
     [self addPoint:holePoints2 withX:5.0 andY:0.1];
     [self addPoint:holePoints2 withX:6.0 andY:0.1];
@@ -302,7 +302,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -317,7 +317,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints1 = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints1 = [NSMutableArray array];
     
     [self addPoint:holePoints1 withX:1 andY:1];
     [self addPoint:holePoints1 withX:9 andY:1];
@@ -333,7 +333,7 @@
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] ];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
 
-    NSMutableArray<SFPoint *> *holePoints2 = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints2 = [NSMutableArray array];
     
     [self addPoint:holePoints2 withX:2 andY:2];
     [self addPoint:holePoints2 withX:8 andY:2];
@@ -356,7 +356,7 @@
     
     SFPolygon *polygon = [[SFPolygon alloc] init];
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
     [self addPoint:points withX:10 andY:0];
@@ -371,7 +371,7 @@
     [SFTestUtils assertEqualIntWithValue:1 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     
-    NSMutableArray<SFPoint *> *holePoints = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *holePoints = [NSMutableArray array];
     
     [self addPoint:holePoints withX:-1 andY:1];
     [self addPoint:holePoints withX:-1 andY:3];
@@ -396,7 +396,7 @@
     double x = -radius + increment;
     double y = 0;
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     while (x <= radius) {
         if (x <= 0) {
@@ -431,7 +431,7 @@
     double x = -radius + increment;
     double y = 0;
     
-    NSMutableArray<SFPoint *> *points = [[NSMutableArray alloc] init];
+    NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     while (x <= radius) {
         if (x <= 0) {

@@ -24,7 +24,7 @@
 /**
  * Mapping between ring, edges, and segments
  */
-@property NSMutableDictionary<NSNumber *, NSMutableDictionary<NSNumber *, SFSegment *> *> * segments;
+@property NSMutableDictionary<NSNumber *, NSMutableDictionary<NSNumber *, SFSegment *> *> *segments;
 
 @end
 
@@ -35,7 +35,7 @@
     if(self != nil){
         self.rings = rings;
         self.tree = [[NSMutableOrderedSet alloc] init];
-        self.segments = [[NSMutableDictionary alloc] init];
+        self.segments = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -64,7 +64,7 @@
     NSNumber *ringNumber = [NSNumber numberWithInt:segment.ring];
     NSMutableDictionary<NSNumber *, SFSegment *> *edgeDictionary = [self.segments objectForKey:ringNumber];
     if (edgeDictionary == nil) {
-        edgeDictionary = [[NSMutableDictionary alloc] init];
+        edgeDictionary = [NSMutableDictionary dictionary];
         [self.segments setObject:edgeDictionary forKey:ringNumber];
     }
     [edgeDictionary setObject:segment forKey:[NSNumber numberWithInt:segment.edge]];
@@ -83,7 +83,7 @@
  */
 -(int) locationOfSegment: (SFSegment *) segment atX: (double) x{
     
-    NSUInteger insertLocation = [self.tree indexOfObject:segment inSortedRange:NSMakeRange(0, self.tree.count) options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult(SFSegment * segment1, SFSegment * segment2){
+    NSUInteger insertLocation = [self.tree indexOfObject:segment inSortedRange:NSMakeRange(0, self.tree.count) options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult(SFSegment *segment1, SFSegment *segment2){
         
         double y1 = [self yValueAtX:x forSegment:segment1];
         double y2 = [self yValueAtX:x forSegment:segment2];
@@ -119,7 +119,7 @@
  * @return lower segment
  */
 -(SFSegment *) lowerSegment: (int) location{
-    SFSegment * lower = nil;
+    SFSegment *lower = nil;
     if(location - 1 > 0){
         lower = [self.tree objectAtIndex:location - 1];
     }
@@ -134,7 +134,7 @@
  * @return higher segment
  */
 -(SFSegment *) higherSegment: (int) location{
-    SFSegment * higher = nil;
+    SFSegment *higher = nil;
     if(location + 1 < self.tree.count){
         higher = [self.tree objectAtIndex:location + 1];
     }

@@ -26,7 +26,7 @@
 
 +(NSString *) geometryString: (SFGeometry *) geometry{
     
-    NSMutableString * message = [[NSMutableString alloc]init];
+    NSMutableString *message = [NSMutableString string];
     
     enum SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
@@ -69,20 +69,20 @@
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
-        {
-            SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-            [message appendFormat:@"Geometries: %d", [geomCollection numGeometries]];
-            NSArray * geometries = geomCollection.geometries;
-            for(int i = 0; i < geometries.count; i++){
-                SFGeometry * subGeometry = [geometries objectAtIndex:i];
-                [message appendString:@"\n\n"];
-                [message appendFormat:@"Geometry %d", (i+1)];
-                [message appendString:@"\n"];
-                [message appendFormat:@"%@", [SFGeometryTypes name:subGeometry.geometryType]];
-                [message appendString:@"\n"];
-                [message appendString:[self geometryString:subGeometry]];
+            {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                [message appendFormat:@"Geometries: %d", [geomCollection numGeometries]];
+                NSArray *geometries = geomCollection.geometries;
+                for(int i = 0; i < geometries.count; i++){
+                    SFGeometry *subGeometry = [geometries objectAtIndex:i];
+                    [message appendString:@"\n\n"];
+                    [message appendFormat:@"Geometry %d", (i+1)];
+                    [message appendString:@"\n"];
+                    [message appendFormat:@"%@", [SFGeometryTypes name:subGeometry.geometryType]];
+                    [message appendString:@"\n"];
+                    [message appendString:[self geometryString:subGeometry]];
+                }
             }
-        }
             break;
         default:
             break;
@@ -99,9 +99,9 @@
 
 +(void) addMultiPoint: (SFMultiPoint *) multiPoint toMessage: (NSMutableString *) message{
     [message appendFormat:@"Points: %d", [multiPoint numPoints]];
-    NSArray * points = [multiPoint points];
+    NSArray *points = [multiPoint points];
     for(int i = 0; i < points.count; i++){
-        SFPoint * point = [points objectAtIndex:i];
+        SFPoint *point = [points objectAtIndex:i];
         [message appendString:@"\n\n"];
         [message appendFormat:@"Point %d", (i+1)];
         [message appendString:@"\n"];
@@ -111,7 +111,7 @@
 
 +(void) addLineString: (SFLineString *) lineString toMessage: (NSMutableString *) message{
     [message appendFormat:@"Points: %d", [lineString numPoints]];
-    for(SFPoint * point in lineString.points){
+    for(SFPoint *point in lineString.points){
         [message appendString:@"\n\n"];
         [self addPoint:point toMessage:message];
     }
@@ -119,9 +119,9 @@
 
 +(void) addMultiLineString: (SFMultiLineString *) multiLineString toMessage: (NSMutableString *) message{
     [message appendFormat:@"LineStrings: %d", [multiLineString numLineStrings]];
-    NSArray * lineStrings = [multiLineString lineStrings];
+    NSArray *lineStrings = [multiLineString lineStrings];
     for(int i = 0; i < lineStrings.count; i++){
-        SFLineString * lineString = [lineStrings objectAtIndex:i];
+        SFLineString *lineString = [lineStrings objectAtIndex:i];
         [message appendString:@"\n\n"];
         [message appendFormat:@"LineString %d", (i+1)];
         [message appendString:@"\n"];
@@ -132,7 +132,7 @@
 +(void) addPolygon: (SFPolygon *) polygon toMessage: (NSMutableString *) message{
     [message appendFormat:@"Rings: %d", [polygon numRings]];
     for(int i = 0; i < polygon.rings.count; i++){
-        SFLineString * ring = [polygon ringAtIndex:i];
+        SFLineString *ring = [polygon ringAtIndex:i];
         [message appendString:@"\n\n"];
         if(i > 0){
             [message appendFormat:@"Hole %d", i];
@@ -144,9 +144,9 @@
 
 +(void) addMultiPolygon: (SFMultiPolygon *) multiPolygon toMessage: (NSMutableString *) message{
     [message appendFormat:@"Polygons: %d", [multiPolygon numPolygons]];
-    NSArray * polygons = [multiPolygon polygons];
+    NSArray *polygons = [multiPolygon polygons];
     for(int i = 0; i < polygons.count; i++){
-        SFPolygon * polygon = [polygons objectAtIndex:i];
+        SFPolygon *polygon = [polygons objectAtIndex:i];
         [message appendString:@"\n\n"];
         [message appendFormat:@"Polygon %d", (i+1)];
         [message appendString:@"\n"];
@@ -157,7 +157,7 @@
 +(void) addCompoundCurve: (SFCompoundCurve *) compoundCurve toMessage: (NSMutableString *) message{
     [message appendFormat:@"LineStrings: %d", [compoundCurve numLineStrings]];
     for(int i = 0; i < compoundCurve.lineStrings.count; i++){
-        SFLineString * lineString = [compoundCurve.lineStrings objectAtIndex:i];
+        SFLineString *lineString = [compoundCurve.lineStrings objectAtIndex:i];
         [message appendString:@"\n\n"];
         [message appendFormat:@"LineString %d", (i+1)];
         [message appendString:@"\n"];
@@ -168,7 +168,7 @@
 +(void) addCurvePolygon: (SFCurvePolygon *) curvePolygon toMessage: (NSMutableString *) message{
     [message appendFormat:@"Rings: %d", [curvePolygon numRings]];
     for(int i = 0; i < curvePolygon.rings.count; i++){
-        SFCurve * ring = [curvePolygon.rings objectAtIndex:i];
+        SFCurve *ring = [curvePolygon.rings objectAtIndex:i];
         [message appendString:@"\n\n"];
         if(i > 0){
             [message appendFormat:@"Hole %d", i];
@@ -181,7 +181,7 @@
 +(void) addPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface toMessage: (NSMutableString *) message{
     [message appendFormat:@"Polygons: %d", [polyhedralSurface numPolygons]];
     for(int i = 0; i < polyhedralSurface.polygons.count; i++){
-        SFPolygon * polygon = [polyhedralSurface.polygons objectAtIndex:i];
+        SFPolygon *polygon = [polyhedralSurface.polygons objectAtIndex:i];
         [message appendString:@"\n\n"];
         [message appendFormat:@"Polygon %d", (i+1)];
         [message appendString:@"\n"];

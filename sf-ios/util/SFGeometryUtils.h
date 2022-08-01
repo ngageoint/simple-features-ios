@@ -179,11 +179,11 @@
  * the range: (3 * min value &lt;= x &lt;= 3 * max value
  *
  * Example: For WGS84 provide a max x of
- * GeometryConstants.WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
+ * SF_WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
  * will be in the range: -540.0 &lt;= x &lt;= 540.0
  *
  * Example: For web mercator provide a world width of
- * GeometryConstants.WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
+ * SF_WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
  * values will be in the range: -60112525.028367732 &lt;= x &lt;=
  * 60112525.028367732
  *
@@ -219,11 +219,11 @@
  * range are adjusted to fall within the range.
  *
  * Example: For WGS84 provide a max x of
- * GeometryConstants.WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
+ * SF_WGS84_HALF_WORLD_LON_WIDTH. Resulting x values
  * will be in the range: -180.0 &lt;= x &lt;= 180.0
  *
  * Example: For web mercator provide a world width of
- * GeometryConstants.WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
+ * SF_WEB_MERCATOR_HALF_WORLD_WIDTH. Resulting x
  * values will be in the range: -20037508.342789244 &lt;= x &lt;=
  * 20037508.342789244
  *
@@ -1044,8 +1044,7 @@
 
 /**
  * Determine if the points are equal within the default tolerance of
- * GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact equality, use
- * {@link Point#equals(Object)}.
+ * SF_DEFAULT_EQUAL_EPSILON. For exact equality, use SFPoint.isEqual(id).
  *
  * @param point1
  *            point 1
@@ -1057,7 +1056,7 @@
 
 /**
  * Determine if the points are equal within the tolerance. For exact
- * equality, use {@link Point#equals(Object)}.
+ * equality, use SFPoint.isEqual(id).
  *
  * @param point1
  *            point 1
@@ -1071,8 +1070,8 @@
 
 /**
  * Determine if the envelope contains the point within the default tolerance
- * of GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact equality,
- * use {@link GeometryEnvelope#contains(Point)}.
+ * of SF_DEFAULT_EQUAL_EPSILON. For exact equality,
+ * use SFGeometryEnvelope.containsPoint(SFPoint).
  *
  * @param envelope
  *            envelope
@@ -1084,8 +1083,8 @@
 
 /**
  * Determine if envelope 1 contains the envelope 2 within the default
- * tolerance of GeometryConstants.DEFAULT_EQUAL_EPSILON. For exact
- * equality, use {@link GeometryEnvelope#contains(GeometryEnvelope)}.
+ * tolerance of SF_DEFAULT_EQUAL_EPSILON. For exact
+ * equality, use SFGeometryEnvelope.containsEnvelope(SFGeometryEnvelope).
  *
  * @param envelope1
  *            envelope 1
@@ -1099,8 +1098,8 @@
  * Bound all points in the geometry to be within WGS84 limits.
  *
  * To perform a geometry crop using line intersections, see
- * {@link #degreesToMeters(Geometry)} and
- * {@link #crop(Geometry, GeometryEnvelope)}.
+ * degreesToMetersWithGeometry(SFGeometry) and
+ * cropGeometry(SFGeometry)withEnvelope:(SFGeometryEnvelope).
  *
  * @param geometry
  *            geometry
@@ -1112,8 +1111,8 @@
  * transformable (degrees to meters) limits.
  *
  * To perform a geometry crop using line intersections, see
- * {@link #degreesToMeters(Geometry)} and
- * {@link #crop(Geometry, GeometryEnvelope)}.
+ * degreesToMetersWithGeometry(SFGeometry) and
+ * cropGeometry(SFGeometry)withEnvelope:(SFGeometryEnvelope).
  *
  * @param geometry
  *            geometry
@@ -1124,7 +1123,7 @@
  * Bound all points in the geometry to be within Web Mercator limits.
  *
  * To perform a geometry crop using line intersections, see
- * {@link #cropWebMercator(Geometry)}.
+ * cropWebMercatorGeometry(SFGeometry).
  *
  * @param geometry
  *            geometry
@@ -1136,8 +1135,8 @@
  * limits.
  *
  * To perform a geometry crop using line intersections, see
- * {@link #degreesToMeters(Geometry)} and
- * {@link #cropWebMercator(Geometry)}.
+ * degreesToMetersWithGeometry(SFGeometry) and
+ * cropWebMercatorGeometry(SFGeometry).
  *
  * @param geometry
  *            geometry
@@ -1149,7 +1148,7 @@
  * Point x and y values are bounded by the min and max envelope values.
  *
  * To perform a geometry crop using line intersections, see
- * {@link #crop(Geometry, GeometryEnvelope)} (requires geometry in meters).
+ * cropGeometry(SFGeometry)withEnvelope:(SFGeometryEnvelope) (requires geometry in meters).
  *
  * @param geometry
  *            geometry

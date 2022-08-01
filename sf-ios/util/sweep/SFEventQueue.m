@@ -18,13 +18,13 @@
 @implementation SFEventQueue
 
 -(instancetype) initWithRing: (SFLineString *) ring{
-    return [self initWithRings:[[NSArray alloc] initWithObjects:ring, nil]];
+    return [self initWithRings:[NSArray arrayWithObjects:ring, nil]];
 }
 
 -(instancetype) initWithRings: (NSArray<SFLineString *> *) rings{
     self = [super init];
     if(self != nil){
-        NSMutableArray<SFEvent *> *buildEvents = [[NSMutableArray alloc] init];
+        NSMutableArray<SFEvent *> *buildEvents = [NSMutableArray array];
         for(int i = 0; i < rings.count; i++){
             SFLineString *ring = [rings objectAtIndex:i];
             [self addRing:ring withIndex:i toEvents:buildEvents];

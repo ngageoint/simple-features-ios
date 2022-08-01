@@ -62,7 +62,7 @@
 }
 
 -(BOOL) isSimple{
-    NSSet<SFPoint *> *points = [[NSSet alloc] initWithArray:[self points]];
+    NSSet<SFPoint *> *points = [NSSet setWithArray:[self points]];
     return points.count == [self numPoints];
 }
 

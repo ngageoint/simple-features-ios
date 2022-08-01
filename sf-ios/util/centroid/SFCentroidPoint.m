@@ -19,7 +19,7 @@
 /**
  * Sum of point locations
  */
-@property (nonatomic, strong) SFPoint * sum;
+@property (nonatomic, strong) SFPoint *sum;
 
 @end
 
@@ -47,8 +47,8 @@
             break;
         case SF_MULTIPOINT:
             {
-                SFMultiPoint * multiPoint = (SFMultiPoint *) geometry;
-                for(SFPoint * point in [multiPoint points]){
+                SFMultiPoint *multiPoint = (SFMultiPoint *) geometry;
+                for(SFPoint *point in [multiPoint points]){
                     [self addPoint:point];
                 }
             }
@@ -57,9 +57,8 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-                NSArray * geometries = geomCollection.geometries;
-                for (SFGeometry * subGeometry in geometries) {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [self addGeometry:subGeometry];
                 }
             
@@ -83,7 +82,7 @@
 }
 
 -(SFPoint *) centroid{
-    SFPoint * centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / self.count) andYValue:([self.sum.y doubleValue] / self.count)];
+    SFPoint *centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / self.count) andYValue:([self.sum.y doubleValue] / self.count)];
     return centroid;
 }
 

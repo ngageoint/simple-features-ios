@@ -39,7 +39,7 @@
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
-        self.rings = [[NSMutableArray alloc] init];
+        self.rings = [NSMutableArray array];
     }
     return self;
 }

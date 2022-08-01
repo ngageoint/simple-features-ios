@@ -26,7 +26,7 @@ static CFByteOrder DEFAULT_WRITE_BYTE_ORDER = CFByteOrderBigEndian;
 /**
  *  Output stream to write bytes to
  */
-@property (nonatomic, strong) NSOutputStream * os;
+@property (nonatomic, strong) NSOutputStream *os;
 
 /**
  *  Byte order used to write, little or big endian

@@ -17,7 +17,7 @@
 /**
  * Sum of curve point locations
  */
-@property (nonatomic, strong) SFPoint * sum;
+@property (nonatomic, strong) SFPoint *sum;
 
 /**
  * Total length of curves
@@ -59,9 +59,8 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-                NSArray * geometries = geomCollection.geometries;
-                for (SFGeometry * subGeometry in geometries) {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [self addGeometry:subGeometry];
                 }
             
@@ -83,7 +82,7 @@
  *            line strings
  */
 -(void) addLineStrings: (NSArray *) lineStrings{
-    for(SFLineString * lineString in lineStrings){
+    for(SFLineString *lineString in lineStrings){
         [self addLineString:lineString];
     }
 }
@@ -106,8 +105,8 @@
  */
 -(void) addPoints: (NSArray *) points{
     for(int i = 0; i < points.count - 1; i++){
-        SFPoint * point = [points objectAtIndex:i];
-        SFPoint * nextPoint = [points objectAtIndex:i + 1];
+        SFPoint *point = [points objectAtIndex:i];
+        SFPoint *nextPoint = [points objectAtIndex:i + 1];
         
         double length = [SFGeometryUtils distanceBetweenPoint1:point andPoint2:nextPoint];
         self.totalLength += length;
@@ -120,7 +119,7 @@
 }
 
 -(SFPoint *) centroid{
-    SFPoint * centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / self.totalLength) andYValue:([self.sum.y doubleValue] / self.totalLength)];
+    SFPoint *centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / self.totalLength) andYValue:([self.sum.y doubleValue] / self.totalLength)];
     return centroid;
 }
 

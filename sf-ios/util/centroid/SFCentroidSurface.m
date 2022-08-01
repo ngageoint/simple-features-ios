@@ -19,7 +19,7 @@
 /**
  * Base point for triangles
  */
-@property (nonatomic, strong) SFPoint * base;
+@property (nonatomic, strong) SFPoint *base;
 
 /**
  * Area sum
@@ -29,7 +29,7 @@
 /**
  * Sum of surface point locations
  */
-@property (nonatomic, strong) SFPoint * sum;
+@property (nonatomic, strong) SFPoint *sum;
 
 @end
 
@@ -70,9 +70,8 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection * geomCollection = (SFGeometryCollection *) geometry;
-                NSArray * geometries = geomCollection.geometries;
-                for (SFGeometry * subGeometry in geometries) {
+                SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
+                for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [self addGeometry:subGeometry];
                 }
             
@@ -98,7 +97,7 @@
  *            polygons
  */
 -(void) addPolygons: (NSArray *) polygons{
-    for(SFPolygon * polygon in polygons){
+    for(SFPolygon *polygon in polygons){
         [self addPolygon:polygon];
     }
 }
@@ -110,7 +109,7 @@
  *            polygon
  */
 -(void) addPolygon: (SFPolygon *) polygon{
-    NSArray * rings = polygon.rings;
+    NSArray *rings = polygon.rings;
     [self addLineString:[rings objectAtIndex:0]];
     for(int i = 1; i < rings.count; i++){
         [self addHoleLineString: [rings objectAtIndex: i]];
@@ -125,15 +124,15 @@
  */
 -(void) addCurvePolygon: (SFCurvePolygon *) curvePolygon{
     
-    NSArray * rings = curvePolygon.rings;
+    NSArray *rings = curvePolygon.rings;
     
-    SFCurve * curve = [rings objectAtIndex:0];
+    SFCurve *curve = [rings objectAtIndex:0];
     enum SFGeometryType curveGeometryType = curve.geometryType;
     switch(curveGeometryType){
         case SF_COMPOUNDCURVE:
             {
-                SFCompoundCurve * compoundCurve = (SFCompoundCurve *) curve;
-                for(SFLineString * lineString in compoundCurve.lineStrings){
+                SFCompoundCurve *compoundCurve = (SFCompoundCurve *) curve;
+                for(SFLineString *lineString in compoundCurve.lineStrings){
                     [self addLineString:lineString];
                 }
                 break;
@@ -147,13 +146,13 @@
     }
     
     for(int i = 1; i < rings.count; i++){
-        SFCurve * curveHole = [rings objectAtIndex:i];
+        SFCurve *curveHole = [rings objectAtIndex:i];
         enum SFGeometryType curveHoleGeometryType = curveHole.geometryType;
         switch(curveHoleGeometryType){
             case SF_COMPOUNDCURVE:
                 {
-                    SFCompoundCurve * compoundCurveHole = (SFCompoundCurve *) curveHole;
-                    for(SFLineString * lineStringHole in compoundCurveHole.lineStrings){
+                    SFCompoundCurve *compoundCurveHole = (SFCompoundCurve *) curveHole;
+                    for(SFLineString *lineStringHole in compoundCurveHole.lineStrings){
                         [self addHoleLineString:lineStringHole];
                     }
                     break;
@@ -197,17 +196,17 @@
  *            line string
  */
 -(void) addWithPositive: (BOOL) positive andLineString: (SFLineString *) lineString{
-    NSArray * points = lineString.points;
-    SFPoint * firstPoint = [points objectAtIndex:0];
+    NSArray *points = lineString.points;
+    SFPoint *firstPoint = [points objectAtIndex:0];
     if(self.base == nil){
         self.base = firstPoint;
     }
     for(int i = 0; i < points.count - 1; i++){
-        SFPoint * point = [points objectAtIndex:i];
-        SFPoint * nextPoint = [points objectAtIndex:i + 1];
+        SFPoint *point = [points objectAtIndex:i];
+        SFPoint *nextPoint = [points objectAtIndex:i + 1];
         [self addTriangleWithPositive:positive andPoint1:self.base andPoint2:point andPoint3:nextPoint];
     }
-    SFPoint * lastPoint = [points objectAtIndex:points.count - 1];
+    SFPoint *lastPoint = [points objectAtIndex:points.count - 1];
     if([firstPoint.x doubleValue] != [lastPoint.x doubleValue] || [firstPoint.y doubleValue] != [lastPoint.y doubleValue]){
         [self addTriangleWithPositive:positive andPoint1:self.base andPoint2:lastPoint andPoint3:firstPoint];
     }
@@ -227,7 +226,7 @@
  */
 -(void) addTriangleWithPositive: (BOOL) positive andPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andPoint3: (SFPoint *) point3{
     double sign = (positive) ? 1.0 : -1.0;
-    SFPoint * triangleCenter3 = [self centroid3WithPoint1:point1 andPoint2:point2 andPoint3:point3];
+    SFPoint *triangleCenter3 = [self centroid3WithPoint1:point1 andPoint2:point2 andPoint3:point3];
     double area2 = [self area2WithPoint1:point1 andPoint2:point2 andPoint3:point3];
     [self.sum setX:[self.sum.x decimalNumberByAdding:[[NSDecimalNumber alloc] initWithDouble:sign * area2 * [triangleCenter3.x doubleValue]]]];
     [self.sum setY:[self.sum.y decimalNumberByAdding:[[NSDecimalNumber alloc] initWithDouble:sign * area2 * [triangleCenter3.y doubleValue]]]];
@@ -248,7 +247,7 @@
 -(SFPoint *) centroid3WithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andPoint3: (SFPoint *) point3{
     double x = [point1.x doubleValue] + [point2.x doubleValue] + [point3.x doubleValue];
     double y = [point1.y doubleValue] + [point2.y doubleValue] + [point3.y doubleValue];
-    SFPoint * point = [[SFPoint alloc] initWithXValue:x andYValue:y];
+    SFPoint *point = [[SFPoint alloc] initWithXValue:x andYValue:y];
     return point;
 }
 
@@ -271,7 +270,7 @@
 }
 
 -(SFPoint *) centroid{
-    SFPoint * centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / 3 / self.area) andYValue:([self.sum.y doubleValue] / 3 / self.area)];
+    SFPoint *centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / 3 / self.area) andYValue:([self.sum.y doubleValue] / 3 / self.area)];
     return centroid;
 }
 

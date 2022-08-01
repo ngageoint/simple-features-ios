@@ -31,7 +31,7 @@ NSString * const SF_NONE_NAME = @"NONE";
 @implementation SFGeometryTypes
 
 +(NSString *) name: (enum SFGeometryType) geometryType{
-    NSString * name = nil;
+    NSString *name = nil;
     
     switch(geometryType){
         case SF_GEOMETRY:
