@@ -11,6 +11,7 @@
 #import "SFGeometryTestUtils.h"
 #import "SFGeometryUtils.h"
 #import "SFGeometryEnvelopeBuilder.h"
+#import "SFGeometryConstants.h"
 
 @interface SFGeometryUtilsTestCase : XCTestCase
 
@@ -260,10 +261,10 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [polygon addRing:ring];
     
     SFPolygon *polygon2 = [polygon mutableCopy];
-    [SFGeometryUtils minimizeGeometry:polygon2 withMaxX:180.0];
+    [SFGeometryUtils minimizeWGS84Geometry:polygon2];
     
     SFPolygon *polygon3 = [polygon2 mutableCopy];
-    [SFGeometryUtils normalizeGeometry:polygon3 withMaxX:180.0];
+    [SFGeometryUtils normalizeWGS84Geometry:polygon3];
     
     NSArray *points = ring.points;
     SFLineString *ring2 = [polygon2 ringAtIndex:0];
@@ -297,7 +298,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 
 -(void) testSimplifyPoints{
     
-    double halfWorldWidth = 20037508.342789244;
+    double halfWorldWidth = SF_WEB_MERCATOR_HALF_WORLD_WIDTH;
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     NSMutableArray<NSDecimalNumber *> *distances = [NSMutableArray array];
@@ -456,6 +457,548 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFTestUtils assertFalse:[SFGeometryUtils point:[[SFPoint alloc] initWithXValue:-0.000000000000001 andYValue:0] onLinePoints:points]];
     [SFTestUtils assertTrue:[SFGeometryUtils point:[[SFPoint alloc] initWithXValue:5 andYValue:5.0000000000000001] onLinePoints:points]];
     [SFTestUtils assertFalse:[SFGeometryUtils point:[[SFPoint alloc] initWithXValue:5 andYValue:5.000000000000001] onLinePoints:points]];
+    
+}
+
+/**
+ * Test line intersection
+ */
+-(void) testIntersection{
+    
+    SFLine *line1 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-40.0 andYValue:-40.0] andPoint2:[[SFPoint alloc] initWithXValue:40.0 andYValue:40.0]];
+    SFLine *line2 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-40.0 andYValue:40.0] andPoint2:[[SFPoint alloc] initWithXValue:40.0 andYValue:-40.0]];
+    
+    SFPoint *point = [SFGeometryUtils intersectionBetweenLine1:line1 andLine2:line2];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[point.x doubleValue]];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[point.y doubleValue]];
+    
+    line1 = [[SFLine alloc] initWithPoints:[SFGeometryUtils degreesToMetersWithLine:line1].points];
+    line2 = [[SFLine alloc] initWithPoints:[SFGeometryUtils degreesToMetersWithLine:line2].points];
+    
+    point = [SFGeometryUtils intersectionBetweenLine1:line1 andLine2:line2];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[point.x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[point.y doubleValue] andDelta:0.00000001];
+    
+    line1 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-40.0 andYValue:-10.0] andPoint2:[[SFPoint alloc] initWithXValue:20.0 andYValue:70.0]];
+    line2 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-40.0 andYValue:70.0] andPoint2:[[SFPoint alloc] initWithXValue:20.0 andYValue:-10.0]];
+    
+    point = [SFGeometryUtils intersectionBetweenLine1:line1 andLine2:line2];
+    [SFTestUtils assertEqualDoubleWithValue:-10.0 andValue2:[point.x doubleValue]];
+    [SFTestUtils assertEqualDoubleWithValue:30.0 andValue2:[point.y doubleValue]];
+    
+    line1 = [SFGeometryUtils degreesToMetersWithLine:line1];
+    line2 = [SFGeometryUtils degreesToMetersWithLine:line2];
+    
+    point = [SFGeometryUtils intersectionBetweenLine1:line1 andLine2:line2];
+    [SFTestUtils assertEqualDoubleWithValue:-1113194.9079327362 andValue2:[point.x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:4974912.842260765 andValue2:[point.y doubleValue] andDelta:0.00000001];
+    
+    point = [SFGeometryUtils metersToDegreesWithPoint:point];
+    [SFTestUtils assertEqualDoubleWithValue:-10.0 andValue2:[point.x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:40.745756618323014 andValue2:[point.y doubleValue] andDelta:0.0000000000001];
+    
+    line1 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andYValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH / 2] andPoint2:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH / 2 andYValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH]];
+    line2 = [[SFLine alloc] initWithPoint1:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andYValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH] andPoint2:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH / 2 andYValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH / 2]];
+    
+    point = [SFGeometryUtils intersectionBetweenLine1:line1 andLine2:line2];
+    [SFTestUtils assertEqualDoubleWithValue:0.75 * -SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[point.x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:0.75 * SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[point.y doubleValue] andDelta:0.00000001];
+    
+    point = [SFGeometryUtils metersToDegreesWithPoint:point];
+    [SFTestUtils assertEqualDoubleWithValue:-135.0 andValue2:[point.x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:79.17133464081945 andValue2:[point.y doubleValue] andDelta:0.0000000000001];
+    
+}
+
+/**
+ * Test point conversion
+ */
+-(void) testConversion{
+    
+    SFPoint *point = [[SFPoint alloc] initWithXValue:-112.500003 andYValue:21.943049];
+    
+    SFPoint *point2 = [SFGeometryUtils degreesToMetersWithPoint:point];
+    [SFTestUtils assertEqualDoubleWithValue:-12523443.048201751 andValue2:[point2.x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:2504688.958883909 andValue2:[point2.y doubleValue] andDelta:0.00000001];
+    
+    SFPoint *point3 = [SFGeometryUtils metersToDegreesWithPoint:point2];
+    [SFTestUtils assertEqualDoubleWithValue:-112.500003 andValue2:[point3.x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:21.943049 andValue2:[point3.y doubleValue] andDelta:0.0000000000001];
+    
+}
+
+/**
+ * Test crop
+ */
+-(void) testCrop{
+    
+    double side = 40;
+    double sideC = sqrt(2 * pow(side, 2));
+
+    double min = 10;
+    double max = min + side;
+    double mid = (min + max) / 2;
+
+    double extraWidth = (sideC - side) / 2;
+    double starLength = 11.7157287525381;
+
+    // Test with two squares forming a star (Star of Lakshmi)
+    // Polygon as the diamond, square as the crop bounds
+    
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min - extraWidth andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:min - extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max + extraWidth andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:max + extraWidth]];
+    [polygon addRing:ring];
+    
+    SFGeometryEnvelope *envelope = [[SFGeometryEnvelope alloc] initWithMinXDouble:min andMinYDouble:min andMaxXDouble:max andMaxYDouble:max];
+    
+    SFPolygon *crop = [SFGeometryUtils cropPolygon:polygon withEnvelope:envelope];
+    
+    SFLineString *cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:9 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min + starLength andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:min + starLength andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max - starLength andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min + starLength andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max - starLength andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max - starLength andValue2:[[cropRing pointAtIndex:5].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:min + starLength andValue2:[[cropRing pointAtIndex:6].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:7].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max - starLength andValue2:[[cropRing pointAtIndex:7].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:8].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min + starLength andValue2:[[cropRing pointAtIndex:8].y doubleValue] andDelta:0.00000000001];
+    
+    crop = [SFGeometryUtils cropPolygon:[SFGeometryUtils degreesToMetersWithPolygon:polygon] withEnvelope:[[SFGeometryUtils degreesToMetersWithGeometry:[envelope buildGeometry]] envelope]];
+    crop = [SFGeometryUtils metersToDegreesWithPolygon:crop];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:9 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:22.181521688501903 andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:22.077332337134834 andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:37.922667662865166 andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:22.181521688501903 andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:39.74197667744292 andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:39.88507567296453 andValue2:[[cropRing pointAtIndex:5].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:20.114924327035485 andValue2:[[cropRing pointAtIndex:6].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:7].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:39.74197667744289 andValue2:[[cropRing pointAtIndex:7].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:8].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:22.181521688501903 andValue2:[[cropRing pointAtIndex:8].y doubleValue] andDelta:0.00000000001];
+    
+    // Test with a diamond fully fitting within the crop bounds
+    
+    polygon = [[SFPolygon alloc] init];
+    ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:min]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:max]];
+    [polygon addRing:ring];
+    
+    crop = [SFGeometryUtils cropPolygon:polygon withEnvelope:envelope];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.0];
+    
+    crop = [SFGeometryUtils cropPolygon:[SFGeometryUtils degreesToMetersWithPolygon:polygon] withEnvelope:[[SFGeometryUtils degreesToMetersWithGeometry:[envelope buildGeometry]] envelope]];
+    crop = [SFGeometryUtils metersToDegreesWithPolygon:crop];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:mid andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.0];
+    
+    // Test with a star (Star of Lakshmi outer border) polygon and square as
+    // the crop bounds
+    
+    polygon = [[SFPolygon alloc] init];
+    ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min - extraWidth andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min andYValue:min + extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min andYValue:min]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min + extraWidth andYValue:min]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:min - extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max - extraWidth andYValue:min]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max andYValue:min]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max andYValue:min + extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max + extraWidth andYValue:mid]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max andYValue:max - extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max andYValue:max]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:max - extraWidth andYValue:max]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:mid andYValue:max + extraWidth]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min + extraWidth andYValue:max]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min andYValue:max]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:min andYValue:max - extraWidth]];
+    [polygon addRing:ring];
+    
+    crop = [SFGeometryUtils cropPolygon:polygon withEnvelope:envelope];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:10 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min + extraWidth andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.0000000000001];
+    
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:5].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:6].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:7].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:7].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:8].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:8].y doubleValue] andDelta:0.0000000000001];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:9].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:min + extraWidth andValue2:[[cropRing pointAtIndex:9].y doubleValue] andDelta:0.0000000000001];
+    
+    crop = [SFGeometryUtils cropPolygon:[SFGeometryUtils degreesToMetersWithPolygon:polygon] withEnvelope:[[SFGeometryUtils degreesToMetersWithGeometry:[envelope buildGeometry]] envelope]];
+    crop = [SFGeometryUtils metersToDegreesWithPolygon:crop];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:9 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min + extraWidth andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.0000000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.0000000000001];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min + extraWidth andValue2:[[cropRing pointAtIndex:5].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:6].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max andValue2:[[cropRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:7].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:max - extraWidth andValue2:[[cropRing pointAtIndex:7].y doubleValue] andDelta:0.0000000000001];
+    
+    [SFTestUtils assertEqualDoubleWithValue:min andValue2:[[cropRing pointAtIndex:8].x doubleValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:min + extraWidth andValue2:[[cropRing pointAtIndex:8].y doubleValue] andDelta:0.0000000000001];
+    
+}
+
+/**
+ * Test crop over the international date line
+ */
+-(void) testCropIDL{
+    
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-168.967 andYValue:67.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-168.967 andYValue:90.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.0000000001 andYValue:90.0000001148]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.0000000001 andYValue:67.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-168.967 andYValue:67.0]];
+    [polygon addRing:ring];
+    
+    SFPolygon *meters = [SFGeometryUtils degreesToMetersWithPolygon:polygon];
+    SFPolygon *crop = (SFPolygon *) [SFGeometryUtils cropWebMercatorGeometry:meters];
+    SFPolygon *degrees = [SFGeometryUtils metersToDegreesWithPolygon:crop];
+    [SFGeometryUtils minimizeWGS84Geometry:degrees];
+    
+    SFLineString *cropRing = [degrees ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-168.967 andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:67.0 andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-168.967 andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MAX_LAT_RANGE andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-180.0000000001 andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MAX_LAT_RANGE andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-180.0000000001 andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:67.0 andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-168.967 andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:67.0 andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.00000000001];
+    
+    polygon = [[SFPolygon alloc] init];
+    ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-18809320.400867056 andYValue:10156058.722522344]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-18809320.400867056 andYValue:238107693.26496765]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-20037508.342800375 andYValue:238107693.26496765]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-20037508.342800375 andYValue:10156058.722522344]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-18809320.400867056 andYValue:10156058.722522344]];
+    [polygon addRing:ring];
+    
+    SFGeometryEnvelope *envelope = [SFGeometryUtils webMercatorEnvelope];
+    [envelope setMinX:[[NSDecimalNumber alloc] initWithDouble:-20037508.342800375]];
+
+    crop = [SFGeometryUtils cropPolygon:polygon withEnvelope:envelope];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-18809320.400867056 andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.0000001];
+    [SFTestUtils assertEqualDoubleWithValue:10156058.722522344 andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.0000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-18809320.400867056 andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.0000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.00000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-20037508.342800375 andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-20037508.342800375 andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:10156058.722522344 andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.0000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-18809320.400867056 andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.0000001];
+    [SFTestUtils assertEqualDoubleWithValue:10156058.722522344 andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.0000001];
+    
+    polygon = [[SFPolygon alloc] init];
+    ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-120.0 andYValue:-90.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-120.0 andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.0 andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.0 andYValue:-90.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-120.0 andYValue:-90.0]];
+    [polygon addRing:ring];
+    
+    meters = [SFGeometryUtils degreesToMetersWithPolygon:polygon];
+    crop = (SFPolygon *) [SFGeometryUtils cropWebMercatorGeometry:meters];
+    degrees = [SFGeometryUtils metersToDegreesWithPolygon:crop];
+    [SFGeometryUtils minimizeWGS84Geometry:degrees];
+    
+    cropRing = [degrees ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-120.0 andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-120.0 andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-180.0 andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-180.0 andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-120.0 andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.00000000001];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.00000000001];
+    
+    polygon = [[SFPolygon alloc] init];
+    ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-13358338.89519283 andYValue:-233606567.09255272]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-13358338.89519283 andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andYValue:-233606567.09255272]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-13358338.89519283 andYValue:-233606567.09255272]];
+    [polygon addRing:ring];
+
+    crop = (SFPolygon *)[SFGeometryUtils cropWebMercatorGeometry:polygon];
+    
+    cropRing = [crop ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:[cropRing numPoints]];
+    [SFTestUtils assertTrue:[cropRing isClosed]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-13358338.89519283 andValue2:[[cropRing pointAtIndex:0].x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:0].y doubleValue] andDelta:0.00000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-13358338.89519283 andValue2:[[cropRing pointAtIndex:1].x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[cropRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:2].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[cropRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:3].y doubleValue] andDelta:0.00000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:-13358338.89519283 andValue2:[[cropRing pointAtIndex:4].x doubleValue] andDelta:0.00000001];
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andValue2:[[cropRing pointAtIndex:4].y doubleValue] andDelta:0.00000001];
+    
+}
+
+/**
+ * Test bound
+ */
+-(void) testBound{
+    
+    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFLineString *ring = [[SFLineString alloc] init];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.01 andYValue:90.01]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-90.0 andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-181.0 andYValue:-91.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:-45.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:180.00000000001 andYValue:-90.00000000001]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:90.0 andYValue:0.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:180.0 andYValue:90.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:0 andYValue:45.0]];
+    [ring addPoint:[[SFPoint alloc] initWithXValue:-180.01 andYValue:90.01]];
+    [polygon addRing:ring];
+    
+    [SFTestUtils assertFalse:[[SFGeometryUtils wgs84Envelope] containsEnvelope:[polygon envelope]]];
+    
+    SFPolygon *bounded = (SFPolygon *) [polygon mutableCopy];
+    
+    [SFGeometryUtils boundWGS84Geometry:bounded];
+    
+    SFLineString *boundedRing = [bounded ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:[ring numPoints] andValue2:[boundedRing numPoints]];
+    [SFTestUtils assertTrue:[boundedRing isClosed]];
+    [SFTestUtils assertTrue:[[SFGeometryUtils wgs84Envelope] containsEnvelope:[bounded envelope]]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:0].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LAT_HEIGHT andValue2:[[boundedRing pointAtIndex:0].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-90.0 andValue2:[[boundedRing pointAtIndex:1].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:2].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LAT_HEIGHT andValue2:[[boundedRing pointAtIndex:2].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:-45.0 andValue2:[[boundedRing pointAtIndex:3].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:4].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LAT_HEIGHT andValue2:[[boundedRing pointAtIndex:4].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertEqualDoubleWithValue:90.0 andValue2:[[boundedRing pointAtIndex:5].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:6].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LAT_HEIGHT andValue2:[[boundedRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:7].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:45.0 andValue2:[[boundedRing pointAtIndex:7].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:8].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LAT_HEIGHT andValue2:[[boundedRing pointAtIndex:8].y doubleValue] andDelta:0.0];
+    
+    [SFTestUtils assertFalse:[[SFGeometryUtils wgs84EnvelopeWithWebMercator] containsEnvelope:[polygon envelope]]];
+    
+    bounded = (SFPolygon *) [polygon mutableCopy];
+    
+    [SFGeometryUtils boundWGS84WithWebMercatorGeometry:bounded];
+    
+    boundedRing = [bounded ringAtIndex:0];
+    [SFTestUtils assertEqualIntWithValue:[ring numPoints] andValue2:[boundedRing numPoints]];
+    [SFTestUtils assertTrue:[boundedRing isClosed]];
+    [SFTestUtils assertTrue:[[SFGeometryUtils wgs84EnvelopeWithWebMercator] containsEnvelope:[bounded envelope]]];
+    
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:0].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MAX_LAT_RANGE andValue2:[[boundedRing pointAtIndex:0].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-90.0 andValue2:[[boundedRing pointAtIndex:1].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:1].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:2].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andValue2:[[boundedRing pointAtIndex:2].y doubleValue] andDelta:0.00000000001];
+
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:3].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:-45.0 andValue2:[[boundedRing pointAtIndex:3].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:4].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andValue2:[[boundedRing pointAtIndex:4].y doubleValue] andDelta:0.00000000001];
+    
+    [SFTestUtils assertEqualDoubleWithValue:90.0 andValue2:[[boundedRing pointAtIndex:5].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:5].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:6].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MAX_LAT_RANGE andValue2:[[boundedRing pointAtIndex:6].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:0.0 andValue2:[[boundedRing pointAtIndex:7].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:45.0 andValue2:[[boundedRing pointAtIndex:7].y doubleValue] andDelta:0.0];
+
+    [SFTestUtils assertEqualDoubleWithValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andValue2:[[boundedRing pointAtIndex:8].x doubleValue] andDelta:0.0];
+    [SFTestUtils assertEqualDoubleWithValue:SF_WEB_MERCATOR_MAX_LAT_RANGE andValue2:[[boundedRing pointAtIndex:8].y doubleValue] andDelta:0.0];
     
 }
 
