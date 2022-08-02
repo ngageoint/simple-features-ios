@@ -537,7 +537,7 @@
         double p1y = [point1.y doubleValue];
         
         // Shortcut check if polygon contains the point within tolerance
-        if(ABS(p1x - px) <= epsilon && ABS(p1y - py) <= epsilon){
+        if(fabs(p1x - px) <= epsilon && fabs(p1y - py) <= epsilon){
             contains = YES;
             break;
         }
@@ -644,7 +644,7 @@
         double length21 = x21 * x21 + y21 * y21;
         
         if(lengthP1 <= length21){
-            contains = ABS(dp * dp - lengthP1 * length21) <= epsilon;
+            contains = fabs(dp * dp - lengthP1 * length21) <= epsilon;
         }
     }
     
@@ -1477,7 +1477,7 @@
 }
 
 +(BOOL) isEqualWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andEpsilon: (double) epsilon{
-    BOOL equal = fabs([point1.x doubleValue] - [point2.x doubleValue]) <= epsilon && fabs([point1.y doubleValue] - [point2.y doubleValue]) <= epsilon && point1.hasZ == point2.hasZ && point1.hasM && point2.hasM;
+    BOOL equal = fabs([point1.x doubleValue] - [point2.x doubleValue]) <= epsilon && fabs([point1.y doubleValue] - [point2.y doubleValue]) <= epsilon && point1.hasZ == point2.hasZ && point1.hasM == point2.hasM;
     if(equal){
         if(point1.hasZ){
             equal = fabs([point1.z doubleValue] - [point2.z doubleValue]) <= epsilon;
