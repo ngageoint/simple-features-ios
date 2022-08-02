@@ -12,6 +12,22 @@
 
 @implementation SFCompoundCurve
 
++(SFCompoundCurve *) compoundCurve{
+    return [[SFCompoundCurve alloc] init];
+}
+
++(SFCompoundCurve *) compoundCurveWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFCompoundCurve alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFCompoundCurve *) compoundCurveWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings{
+    return [[SFCompoundCurve alloc] initWithLineStrings:lineStrings];
+}
+
++(SFCompoundCurve *) compoundCurveWithLineString: (SFLineString *) lineString{
+    return [[SFCompoundCurve alloc] initWithLineString:lineString];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -96,7 +112,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCompoundCurve *compoundCurve = [[SFCompoundCurve alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFCompoundCurve *compoundCurve = [SFCompoundCurve compoundCurveWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFLineString *lineString in self.lineStrings){
         [compoundCurve addLineString:[lineString mutableCopy]];
     }

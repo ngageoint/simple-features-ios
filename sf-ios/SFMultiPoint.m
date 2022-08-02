@@ -11,6 +11,22 @@
 
 @implementation SFMultiPoint
 
++(SFMultiPoint *) multiPoint{
+    return [[SFMultiPoint alloc] init];
+}
+
++(SFMultiPoint *) multiPointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFMultiPoint alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFMultiPoint *) multiPointWithPoints: (NSMutableArray<SFPoint *> *) points{
+    return [[SFMultiPoint alloc] initWithPoints:points];
+}
+
++(SFMultiPoint *) multiPointWithPoint: (SFPoint *) point{
+    return [[SFMultiPoint alloc] initWithPoint:point];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -67,7 +83,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiPoint *multiPoint = [[SFMultiPoint alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFMultiPoint *multiPoint = [SFMultiPoint multiPointWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPoint *point in self.geometries){
         [multiPoint addPoint:[point mutableCopy]];
     }

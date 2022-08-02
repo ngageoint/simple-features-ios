@@ -11,6 +11,22 @@
 
 @implementation SFPolyhedralSurface
 
++(SFPolyhedralSurface *) polyhedralSurface{
+    return [[SFPolyhedralSurface alloc] init];
+}
+
++(SFPolyhedralSurface *) polyhedralSurfaceWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFPolyhedralSurface alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolygons: (NSMutableArray<SFPolygon *> *) polygons{
+    return [[SFPolyhedralSurface alloc] initWithPolygons:polygons];
+}
+
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolygon: (SFPolygon *) polygon{
+    return [[SFPolyhedralSurface alloc] initWithPolygon:polygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -97,7 +113,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPolyhedralSurface *polyhedralSurface = [[SFPolyhedralSurface alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFPolyhedralSurface *polyhedralSurface = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPolygon *polygon in self.polygons){
         [polyhedralSurface addPolygon:[polygon mutableCopy]];
     }

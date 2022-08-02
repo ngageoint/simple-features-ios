@@ -16,6 +16,43 @@
 @interface SFMultiPoint : SFGeometryCollection
 
 /**
+ *  Create
+ *
+ *  @return new multi point
+ */
++(SFMultiPoint *) multiPoint;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new multi point
+ */
++(SFMultiPoint *) multiPointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new multi point
+ */
++(SFMultiPoint *) multiPointWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ * Create
+ *
+ * @param point
+ *            point
+ *
+ *  @return new multi point
+ */
++(SFMultiPoint *) multiPointWithPoint: (SFPoint *) point;
+
+/**
  *  Initialize
  *
  *  @return new multi point

@@ -12,6 +12,22 @@
 
 @implementation SFTriangle
 
++(SFTriangle *) triangle{
+    return [[SFTriangle alloc] init];
+}
+
++(SFTriangle *) triangleWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFTriangle alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFTriangle *) triangleWithRings: (NSMutableArray<SFLineString *> *) rings{
+    return [[SFTriangle alloc] initWithRings:rings];
+}
+
++(SFTriangle *) triangleWithRing: (SFLineString *) ring{
+    return [[SFTriangle alloc] initWithRing:ring];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -39,7 +55,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFTriangle *triangle = [[SFTriangle alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFTriangle *triangle = [SFTriangle triangleWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFLineString *ring in self.rings){
         [triangle addRing:[ring mutableCopy]];
     }

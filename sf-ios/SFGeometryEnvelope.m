@@ -14,6 +14,68 @@
 
 @implementation SFGeometryEnvelope
 
++(SFGeometryEnvelope *) envelope{
+    return [[SFGeometryEnvelope alloc] init];
+}
+
++(SFGeometryEnvelope *) envelopeWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFGeometryEnvelope alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY{
+    return [[SFGeometryEnvelope alloc] initWithMinX:minX andMinY:minY andMaxX:maxX andMaxY:maxY];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY{
+    return [[SFGeometryEnvelope alloc] initWithMinXValue:minX andMinYValue:minY andMaxXValue:maxX andMaxYValue:maxY];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ{
+    return [[SFGeometryEnvelope alloc] initWithMinX:minX andMinY:minY andMinZ:minZ andMaxX:maxX andMaxY:maxY andMaxZ:maxZ];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ{
+    return [[SFGeometryEnvelope alloc] initWithMinXValue:minX andMinYValue:minY andMinZValue:minZ andMaxXValue:maxX andMaxYValue:maxY andMaxZValue:maxZ];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMinM: (NSDecimalNumber *) minM
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ
+                     andMaxM: (NSDecimalNumber *) maxM{
+    return [[SFGeometryEnvelope alloc] initWithMinX:minX andMinY:minY andMinZ:minZ andMinM:minM andMaxX:maxX andMaxY:maxY andMaxZ:maxZ andMaxM:maxM];
+}
+
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMinMValue: (double) minM
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ
+                                 andMaxMValue: (double) maxM{
+    return [[SFGeometryEnvelope alloc] initWithMinXValue:minX andMinYValue:minY andMinZValue:minZ andMinMValue:minM andMaxXValue:maxX andMaxYValue:maxY andMaxZValue:maxZ andMaxMValue:maxM];
+}
+
 -(instancetype) init{
     return [self initWithHasZ:false andHasM:false];
 }
@@ -34,10 +96,10 @@
     return [self initWithMinX:minX andMinY:minY andMinZ:nil andMinM:nil andMaxX:maxX andMaxY:maxY andMaxZ:nil andMaxM:nil];
 }
 
--(instancetype) initWithMinXDouble: (double) minX
-                     andMinYDouble: (double) minY
-                     andMaxXDouble: (double) maxX
-                     andMaxYDouble: (double) maxY{
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY{
     return [self initWithMinX:[[NSDecimalNumber alloc] initWithDouble:minX]
                        andMinY:[[NSDecimalNumber alloc] initWithDouble:minY]
                       andMaxX:[[NSDecimalNumber alloc] initWithDouble:maxX]
@@ -51,6 +113,20 @@
                      andMaxY: (NSDecimalNumber *) maxY
                      andMaxZ: (NSDecimalNumber *) maxZ{
     return [self initWithMinX:minX andMinY:minY andMinZ:minZ andMinM:nil andMaxX:maxX andMaxY:maxY andMaxZ:maxZ andMaxM:nil];
+}
+
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ{
+    return [self initWithMinX:[[NSDecimalNumber alloc] initWithDouble:minX]
+                       andMinY:[[NSDecimalNumber alloc] initWithDouble:minY]
+                      andMinZ:[[NSDecimalNumber alloc] initWithDouble:minZ]
+                      andMaxX:[[NSDecimalNumber alloc] initWithDouble:maxX]
+                       andMaxY:[[NSDecimalNumber alloc] initWithDouble:maxY]
+                      andMaxZ:[[NSDecimalNumber alloc] initWithDouble:maxZ]];
 }
 
 -(instancetype) initWithMinX: (NSDecimalNumber *) minX
@@ -75,6 +151,56 @@
         self.hasM = minM != nil || maxM != nil;
     }
     return self;
+}
+
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMinMValue: (double) minM
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ
+                     andMaxMValue: (double) maxM{
+    return [self initWithMinX:[[NSDecimalNumber alloc] initWithDouble:minX]
+                       andMinY:[[NSDecimalNumber alloc] initWithDouble:minY]
+                      andMinZ:[[NSDecimalNumber alloc] initWithDouble:minZ]
+                      andMinM:[[NSDecimalNumber alloc] initWithDouble:minM]
+                      andMaxX:[[NSDecimalNumber alloc] initWithDouble:maxX]
+                       andMaxY:[[NSDecimalNumber alloc] initWithDouble:maxY]
+                      andMaxZ:[[NSDecimalNumber alloc] initWithDouble:maxZ]
+                      andMaxM:[[NSDecimalNumber alloc] initWithDouble:maxM]];
+}
+
+-(void) setMinXValue: (double) x{
+    [self setMinX:[[NSDecimalNumber alloc] initWithDouble:x]];
+}
+
+-(void) setMaxXValue: (double) x{
+    [self setMaxX:[[NSDecimalNumber alloc] initWithDouble:x]];
+}
+
+-(void) setMinYValue: (double) y{
+    [self setMinY:[[NSDecimalNumber alloc] initWithDouble:y]];
+}
+
+-(void) setMaxYValue: (double) y{
+    [self setMaxY:[[NSDecimalNumber alloc] initWithDouble:y]];
+}
+
+-(void) setMinZValue: (double) z{
+    [self setMinZ:[[NSDecimalNumber alloc] initWithDouble:z]];
+}
+
+-(void) setMaxZValue: (double) z{
+    [self setMaxZ:[[NSDecimalNumber alloc] initWithDouble:z]];
+}
+
+-(void) setMinMValue: (double) m{
+    [self setMinM:[[NSDecimalNumber alloc] initWithDouble:m]];
+}
+
+-(void) setMaxMValue: (double) m{
+    [self setMaxM:[[NSDecimalNumber alloc] initWithDouble:m]];
 }
 
 -(BOOL) is3D{
@@ -114,35 +240,35 @@
 }
 
 -(SFPoint *) topLeft{
-    return [[SFPoint alloc] initWithX:_minX andY:_maxY];
+    return [SFPoint pointWithX:_minX andY:_maxY];
 }
 
 -(SFPoint *) bottomLeft{
-    return [[SFPoint alloc] initWithX:_minX andY:_minY];
+    return [SFPoint pointWithX:_minX andY:_minY];
 }
 
 -(SFPoint *) bottomRight{
-    return [[SFPoint alloc] initWithX:_maxX andY:_minY];
+    return [SFPoint pointWithX:_maxX andY:_minY];
 }
 
 -(SFPoint *) topRight{
-    return [[SFPoint alloc] initWithX:_maxX andY:_maxY];
+    return [SFPoint pointWithX:_maxX andY:_maxY];
 }
 
 -(SFLine *) left{
-    return [[SFLine alloc] initWithPoint1:[self topLeft] andPoint2:[self bottomLeft]];
+    return [SFLine lineWithPoint1:[self topLeft] andPoint2:[self bottomLeft]];
 }
 
 -(SFLine *) bottom{
-    return [[SFLine alloc] initWithPoint1:[self bottomLeft] andPoint2:[self bottomRight]];
+    return [SFLine lineWithPoint1:[self bottomLeft] andPoint2:[self bottomRight]];
 }
 
 -(SFLine *) right{
-    return [[SFLine alloc] initWithPoint1:[self bottomRight] andPoint2:[self topRight]];
+    return [SFLine lineWithPoint1:[self bottomRight] andPoint2:[self topRight]];
 }
 
 -(SFLine *) top{
-    return [[SFLine alloc] initWithPoint1:[self topRight] andPoint2:[self topLeft]];
+    return [SFLine lineWithPoint1:[self topRight] andPoint2:[self topLeft]];
 }
 
 -(double) midX{
@@ -154,7 +280,7 @@
 }
 
 -(SFPoint *) centroid{
-    return [[SFPoint alloc] initWithXValue:[self midX] andYValue:[self midY]];
+    return [SFPoint pointWithXValue:[self midX] andYValue:[self midY]];
 }
 
 -(BOOL) isEmpty{
@@ -183,7 +309,7 @@
     SFGeometryEnvelope *overlap = nil;
     
     if((minX < maxX && minY < maxY) || (allowEmpty && minX <= maxX && minY <= maxY)){
-        overlap = [[SFGeometryEnvelope alloc] initWithMinXDouble:minX andMinYDouble:minY andMaxXDouble:maxX andMaxYDouble:maxY];
+        overlap = [SFGeometryEnvelope envelopeWithMinXValue:minX andMinYValue:minY andMaxXValue:maxX andMaxYValue:maxY];
     }
     
     return overlap;
@@ -199,7 +325,7 @@
     SFGeometryEnvelope *unionEnvelope = nil;
     
     if(minX < maxX && minY < maxY){
-        unionEnvelope = [[SFGeometryEnvelope alloc] initWithMinXDouble:minX andMinYDouble:minY andMaxXDouble:maxX andMaxYDouble:maxY];
+        unionEnvelope = [SFGeometryEnvelope envelopeWithMinXValue:minX andMinYValue:minY andMaxXValue:maxX andMaxYValue:maxY];
     }
     
     return unionEnvelope;
@@ -238,7 +364,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryEnvelope *envelope = [[SFGeometryEnvelope alloc] initWithMinX:self.minX andMinY:self.minY andMinZ:self.minZ andMinM:self.minM andMaxX:self.maxX andMaxY:self.maxY andMaxZ:self.maxZ andMaxM:self.maxM];
+    SFGeometryEnvelope *envelope = [SFGeometryEnvelope envelopeWithMinX:self.minX andMinY:self.minY andMinZ:self.minZ andMinM:self.minM andMaxX:self.maxX andMaxY:self.maxY andMaxZ:self.maxZ andMaxM:self.maxM];
     return envelope;
 }
 

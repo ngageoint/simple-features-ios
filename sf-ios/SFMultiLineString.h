@@ -16,6 +16,43 @@
 @interface SFMultiLineString : SFMultiCurve
 
 /**
+ *  Create
+ *
+ *  @return new multi line string
+ */
++(SFMultiLineString *) multiLineString;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new multi line string
+ */
++(SFMultiLineString *) multiLineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param lineStrings
+ *            list of line strings
+ *
+ *  @return new multi line string
+ */
++(SFMultiLineString *) multiLineStringWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings;
+
+/**
+ * Create
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new multi line string
+ */
++(SFMultiLineString *) multiLineStringWithLineString: (SFLineString *) lineString;
+
+/**
  *  Initialize
  *
  *  @return new multi line string

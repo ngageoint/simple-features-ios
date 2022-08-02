@@ -14,6 +14,43 @@
 @interface SFLine : SFLineString
 
 /**
+ *  Create
+ *
+ *  @return new line
+ */
++(SFLine *) line;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new line
+ */
++(SFLine *) lineWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new line
+ */
++(SFLine *) lineWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ *  Create
+ *
+ *  @param point1 first point
+ *  @param point2 second point
+ *
+ *  @return new line
+ */
++(SFLine *) lineWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
+
+/**
  *  Initialize
  *
  *  @return new line

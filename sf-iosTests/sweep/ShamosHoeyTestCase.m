@@ -134,7 +134,7 @@
 
 - (void)testSimpleHole {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -142,7 +142,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -157,7 +157,7 @@
     [self addPoint:holePoints withX:9 andY:1];
     [self addPoint:holePoints withX:5 andY:9];
     
-    SFLineString *hole = [[SFLineString alloc] init];
+    SFLineString *hole = [SFLineString lineString];
     hole.points = holePoints;
     
     [polygon addRing:hole];
@@ -171,7 +171,7 @@
 
 - (void)testNonSimpleHole {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -179,7 +179,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -195,7 +195,7 @@
     [self addPoint:holePoints withX:5 andY:9];
     [self addPoint:holePoints withX:5.000001 andY:9];
     
-    SFLineString *hole = [[SFLineString alloc] init];
+    SFLineString *hole = [SFLineString lineString];
     hole.points = holePoints;
     
     [polygon addRing:hole];
@@ -209,7 +209,7 @@
 
 - (void)testIntersectingHole {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -217,7 +217,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -232,7 +232,7 @@
     [self addPoint:holePoints withX:9 andY:1];
     [self addPoint:holePoints withX:5 andY:10];
     
-    SFLineString *hole = [[SFLineString alloc] init];
+    SFLineString *hole = [SFLineString lineString];
     hole.points = holePoints;
     
     [polygon addRing:hole];
@@ -246,7 +246,7 @@
 
 - (void)testIntersectingHoles {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -254,7 +254,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -269,7 +269,7 @@
     [self addPoint:holePoints1 withX:9 andY:1];
     [self addPoint:holePoints1 withX:5 andY:9];
     
-    SFLineString *hole1 = [[SFLineString alloc] init];
+    SFLineString *hole1 = [SFLineString lineString];
     hole1.points = holePoints1;
     
     [polygon addRing:hole1];
@@ -285,7 +285,7 @@
     [self addPoint:holePoints2 withX:6.0 andY:0.1];
     [self addPoint:holePoints2 withX:5.5 andY:1.00001];
     
-    SFLineString *hole2 = [[SFLineString alloc] init];
+    SFLineString *hole2 = [SFLineString lineString];
     hole2.points = holePoints2;
     
     [polygon addRing:hole2];
@@ -300,7 +300,7 @@
 
 - (void)testHoleInsideHole {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -308,7 +308,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -323,7 +323,7 @@
     [self addPoint:holePoints1 withX:9 andY:1];
     [self addPoint:holePoints1 withX:5 andY:9];
     
-    SFLineString *hole1 = [[SFLineString alloc] init];
+    SFLineString *hole1 = [SFLineString lineString];
     hole1.points = holePoints1;
     
     [polygon addRing:hole1];
@@ -339,7 +339,7 @@
     [self addPoint:holePoints2 withX:8 andY:2];
     [self addPoint:holePoints2 withX:5 andY:8];
     
-    SFLineString *hole2 = [[SFLineString alloc] init];
+    SFLineString *hole2 = [SFLineString lineString];
     hole2.points = holePoints2;
     
     [polygon addRing:hole2];
@@ -354,7 +354,7 @@
 
 - (void)testExternalHole {
     
-    SFPolygon *polygon = [[SFPolygon alloc] init];
+    SFPolygon *polygon = [SFPolygon polygon];
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -362,7 +362,7 @@
     [self addPoint:points withX:10 andY:0];
     [self addPoint:points withX:5 andY:10];
     
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     ring.points = points;
     
     [polygon addRing:ring];
@@ -377,7 +377,7 @@
     [self addPoint:holePoints withX:-1 andY:3];
     [self addPoint:holePoints withX:-2 andY:1];
     
-    SFLineString *hole = [[SFLineString alloc] init];
+    SFLineString *hole = [SFLineString lineString];
     hole.points = holePoints;
     
     [polygon addRing:hole];
@@ -471,7 +471,7 @@
 }
 
 -(void) addPoint: (NSMutableArray<SFPoint *> *) points withX: (double) x andY: (double) y{
-    [points addObject:[[SFPoint alloc] initWithXValue:x andYValue:y]];
+    [points addObject:[SFPoint pointWithXValue:x andYValue:y]];
 }
 
 @end

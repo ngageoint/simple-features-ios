@@ -11,6 +11,22 @@
 
 @implementation SFMultiPolygon
 
++(SFMultiPolygon *) multiPolygon{
+    return [[SFMultiPolygon alloc] init];
+}
+
++(SFMultiPolygon *) multiPolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFMultiPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFMultiPolygon *) multiPolygonWithPolygons: (NSMutableArray<SFPolygon *> *) polygons{
+    return [[SFMultiPolygon alloc] initWithPolygons:polygons];
+}
+
++(SFMultiPolygon *) multiPolygonWithPolygon: (SFPolygon *) polygon{
+    return [[SFMultiPolygon alloc] initWithPolygon:polygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -62,7 +78,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiPolygon *multiPolygon = [[SFMultiPolygon alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFMultiPolygon *multiPolygon = [SFMultiPolygon multiPolygonWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPolygon *polygon in self.geometries){
         [multiPolygon addPolygon:[polygon mutableCopy]];
     }

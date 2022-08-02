@@ -15,6 +15,43 @@
 @interface SFTIN : SFPolyhedralSurface
 
 /**
+ *  Create
+ *
+ *  @return new tin
+ */
++(SFTIN *) tin;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new tin
+ */
++(SFTIN *) tinWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new tin
+ */
++(SFTIN *) tinWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Create
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new tin
+ */
++(SFTIN *) tinWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Initialize
  *
  *  @return new tin

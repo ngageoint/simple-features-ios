@@ -694,7 +694,7 @@
     if (determinant != 0) {
         double x = (b2 * c1 - b1 * c2) / determinant;
         double y = (a1 * c2 - a2 * c1) / determinant;
-        intersection = [[SFPoint alloc] initWithXValue:x andYValue:y];
+        intersection = [SFPoint pointWithXValue:x andYValue:y];
     }
 
     return intersection;
@@ -745,7 +745,7 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection *metersCollection = [[SFGeometryCollection alloc] init];
+                SFGeometryCollection *metersCollection = [SFGeometryCollection geometryCollection];
                 SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
                 for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [metersCollection addGeometry:[self degreesToMetersWithGeometry:subGeometry]];
@@ -780,11 +780,11 @@
             / (M_PI / SF_WGS84_HALF_WORLD_LON_WIDTH);
     yValue = yValue * SF_WEB_MERCATOR_HALF_WORLD_WIDTH
             / SF_WGS84_HALF_WORLD_LON_WIDTH;
-    return [[SFPoint alloc] initWithXValue:xValue andYValue:yValue];
+    return [SFPoint pointWithXValue:xValue andYValue:yValue];
 }
 
 +(SFMultiPoint *) degreesToMetersWithMultiPoint: (SFMultiPoint *) multiPoint{
-    SFMultiPoint *meters = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+    SFMultiPoint *meters = [SFMultiPoint multiPointWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
     for(SFPoint *point in [multiPoint points]){
         [meters addPoint:[self degreesToMetersWithPoint:point]];
     }
@@ -792,7 +792,7 @@
 }
 
 +(SFLineString *) degreesToMetersWithLineString: (SFLineString *) lineString{
-    SFLineString *meters = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    SFLineString *meters = [SFLineString lineStringWithHasZ:lineString.hasZ andHasM:lineString.hasM];
     for(SFPoint *point in [lineString points]){
         [meters addPoint:[self degreesToMetersWithPoint:point]];
     }
@@ -800,7 +800,7 @@
 }
 
 +(SFLine *) degreesToMetersWithLine: (SFLine *) line{
-    SFLine *meters = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+    SFLine *meters = [SFLine lineWithHasZ:line.hasZ andHasM:line.hasM];
     for(SFPoint *point in [line points]){
         [meters addPoint:[self degreesToMetersWithPoint:point]];
     }
@@ -808,7 +808,7 @@
 }
 
 +(SFMultiLineString *) degreesToMetersWithMultiLineString: (SFMultiLineString *) multiLineString{
-    SFMultiLineString *meters = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+    SFMultiLineString *meters = [SFMultiLineString multiLineStringWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
     for(SFLineString *lineString in [multiLineString lineStrings]){
         [meters addLineString:[self degreesToMetersWithLineString:lineString]];
     }
@@ -816,7 +816,7 @@
 }
 
 +(SFPolygon *) degreesToMetersWithPolygon: (SFPolygon *) polygon{
-    SFPolygon *meters = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    SFPolygon *meters = [SFPolygon polygonWithHasZ:polygon.hasZ andHasM:polygon.hasM];
     for(SFLineString *ring in [polygon rings]){
         [meters addRing:[self degreesToMetersWithLineString:ring]];
     }
@@ -824,7 +824,7 @@
 }
 
 +(SFMultiPolygon *) degreesToMetersWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
-    SFMultiPolygon *meters = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+    SFMultiPolygon *meters = [SFMultiPolygon multiPolygonWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
     for(SFPolygon *polygon in [multiPolygon polygons]){
         [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
     }
@@ -832,7 +832,7 @@
 }
 
 +(SFCircularString *) degreesToMetersWithCircularString: (SFCircularString *) circularString{
-    SFCircularString *meters = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+    SFCircularString *meters = [SFCircularString circularStringWithHasZ:circularString.hasZ andHasM:circularString.hasM];
     for(SFPoint *point in [circularString points]){
         [meters addPoint:[self degreesToMetersWithPoint:point]];
     }
@@ -840,7 +840,7 @@
 }
 
 +(SFCompoundCurve *) degreesToMetersWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
-    SFCompoundCurve *meters = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+    SFCompoundCurve *meters = [SFCompoundCurve compoundCurveWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
     for(SFLineString *lineString in [compoundCurve lineStrings]){
         [meters addLineString:[self degreesToMetersWithLineString:lineString]];
     }
@@ -848,7 +848,7 @@
 }
 
 +(SFCurvePolygon *) degreesToMetersWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
-    SFCurvePolygon *meters = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+    SFCurvePolygon *meters = [SFCurvePolygon curvePolygonWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
     for(SFCurve *ring in [curvePolygon rings]){
         [meters addRing:(SFCurve *)[self degreesToMetersWithGeometry:ring]];
     }
@@ -856,7 +856,7 @@
 }
 
 +(SFPolyhedralSurface *) degreesToMetersWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
-    SFPolyhedralSurface *meters = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+    SFPolyhedralSurface *meters = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
     for(SFPolygon *polygon in [polyhedralSurface polygons]){
         [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
     }
@@ -864,7 +864,7 @@
 }
 
 +(SFTIN *) degreesToMetersWithTIN: (SFTIN *) tin{
-    SFTIN *meters = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+    SFTIN *meters = [SFTIN tinWithHasZ:tin.hasZ andHasM:tin.hasM];
     for(SFPolygon *polygon in [tin polygons]){
         [meters addPolygon:[self degreesToMetersWithPolygon:polygon]];
     }
@@ -872,7 +872,7 @@
 }
 
 +(SFTriangle *) degreesToMetersWithTriangle: (SFTriangle *) triangle{
-    SFTriangle *meters = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+    SFTriangle *meters = [SFTriangle triangleWithHasZ:triangle.hasZ andHasM:triangle.hasM];
     for(SFLineString *ring in [triangle rings]){
         [meters addRing:[self degreesToMetersWithLineString:ring]];
     }
@@ -924,7 +924,7 @@
         case SF_MULTICURVE:
         case SF_MULTISURFACE:
             {
-                SFGeometryCollection *degreesCollection = [[SFGeometryCollection alloc] init];
+                SFGeometryCollection *degreesCollection = [SFGeometryCollection geometryCollection];
                 SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
                 for (SFGeometry *subGeometry in geomCollection.geometries) {
                     [degreesCollection addGeometry:[self metersToDegreesWithGeometry:subGeometry]];
@@ -956,11 +956,11 @@
             * (M_PI / SF_WGS84_HALF_WORLD_LON_WIDTH)))
             / M_PI * (2 * SF_WGS84_HALF_WORLD_LON_WIDTH)
             - SF_WGS84_HALF_WORLD_LAT_HEIGHT;
-    return [[SFPoint alloc] initWithXValue:xValue andYValue:yValue];
+    return [SFPoint pointWithXValue:xValue andYValue:yValue];
 }
 
 +(SFMultiPoint *) metersToDegreesWithMultiPoint: (SFMultiPoint *) multiPoint{
-    SFMultiPoint *degrees = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+    SFMultiPoint *degrees = [SFMultiPoint multiPointWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
     for(SFPoint *point in [multiPoint points]){
         [degrees addPoint:[self metersToDegreesWithPoint:point]];
     }
@@ -968,7 +968,7 @@
 }
 
 +(SFLineString *) metersToDegreesWithLineString: (SFLineString *) lineString{
-    SFLineString *degrees = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    SFLineString *degrees = [SFLineString lineStringWithHasZ:lineString.hasZ andHasM:lineString.hasM];
     for(SFPoint *point in lineString.points){
         [degrees addPoint:[self metersToDegreesWithPoint:point]];
     }
@@ -976,7 +976,7 @@
 }
 
 +(SFLine *) metersToDegreesWithLine: (SFLine *) line{
-    SFLine *degrees = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+    SFLine *degrees = [SFLine lineWithHasZ:line.hasZ andHasM:line.hasM];
     for(SFPoint *point in line.points){
         [degrees addPoint:[self metersToDegreesWithPoint:point]];
     }
@@ -984,7 +984,7 @@
 }
 
 +(SFMultiLineString *) metersToDegreesWithMultiLineString: (SFMultiLineString *) multiLineString{
-    SFMultiLineString *degrees = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+    SFMultiLineString *degrees = [SFMultiLineString multiLineStringWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
     for(SFLineString *lineString in [multiLineString lineStrings]){
         [degrees addLineString:[self metersToDegreesWithLineString:lineString]];
     }
@@ -992,7 +992,7 @@
 }
 
 +(SFPolygon *) metersToDegreesWithPolygon: (SFPolygon *) polygon{
-    SFPolygon *degrees = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    SFPolygon *degrees = [SFPolygon polygonWithHasZ:polygon.hasZ andHasM:polygon.hasM];
     for(SFLineString *ring in polygon.rings){
         [degrees addRing:[self metersToDegreesWithLineString:ring]];
     }
@@ -1000,7 +1000,7 @@
 }
 
 +(SFMultiPolygon *) metersToDegreesWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
-    SFMultiPolygon *degrees = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+    SFMultiPolygon *degrees = [SFMultiPolygon multiPolygonWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
     for(SFPolygon *polygon in [multiPolygon polygons]){
         [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
     }
@@ -1008,7 +1008,7 @@
 }
 
 +(SFCircularString *) metersToDegreesWithCircularString: (SFCircularString *) circularString{
-    SFCircularString *degrees = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+    SFCircularString *degrees = [SFCircularString circularStringWithHasZ:circularString.hasZ andHasM:circularString.hasM];
     for(SFPoint *point in circularString.points){
         [degrees addPoint:[self metersToDegreesWithPoint:point]];
     }
@@ -1016,7 +1016,7 @@
 }
 
 +(SFCompoundCurve *) metersToDegreesWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
-    SFCompoundCurve *degrees = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+    SFCompoundCurve *degrees = [SFCompoundCurve compoundCurveWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
     for(SFLineString *lineString in compoundCurve.lineStrings){
         [degrees addLineString:[self metersToDegreesWithLineString:lineString]];
     }
@@ -1024,7 +1024,7 @@
 }
 
 +(SFCurvePolygon *) metersToDegreesWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
-    SFCurvePolygon *degrees = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+    SFCurvePolygon *degrees = [SFCurvePolygon curvePolygonWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
     for(SFCurve *ring in curvePolygon.rings){
         [degrees addRing:(SFCurve *) [self metersToDegreesWithGeometry:ring]];
     }
@@ -1032,7 +1032,7 @@
 }
 
 +(SFPolyhedralSurface *) metersToDegreesWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
-    SFPolyhedralSurface *degrees = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+    SFPolyhedralSurface *degrees = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
     for(SFPolygon *polygon in polyhedralSurface.polygons){
         [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
     }
@@ -1040,7 +1040,7 @@
 }
 
 +(SFTIN *) metersToDegreesWithTIN: (SFTIN *) tin{
-    SFTIN *degrees = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+    SFTIN *degrees = [SFTIN tinWithHasZ:tin.hasZ andHasM:tin.hasM];
     for(SFPolygon *polygon in tin.polygons){
         [degrees addPolygon:[self metersToDegreesWithPolygon:polygon]];
     }
@@ -1048,7 +1048,7 @@
 }
 
 +(SFTriangle *) metersToDegreesWithTriangle: (SFTriangle *) triangle{
-    SFTriangle *degrees = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+    SFTriangle *degrees = [SFTriangle triangleWithHasZ:triangle.hasZ andHasM:triangle.hasM];
     for(SFLineString *ring in triangle.rings){
         [degrees addRing:[self metersToDegreesWithLineString:ring]];
     }
@@ -1056,19 +1056,19 @@
 }
 
 +(SFGeometryEnvelope *) wgs84Envelope{
-    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:-SF_WGS84_HALF_WORLD_LAT_HEIGHT andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
+    return [SFGeometryEnvelope envelopeWithMinXValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYValue:-SF_WGS84_HALF_WORLD_LAT_HEIGHT andMaxXValue:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYValue:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
 }
 
 +(SFGeometryEnvelope *) wgs84TransformableEnvelope{
-    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:SF_DEGREES_TO_METERS_MIN_LAT andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
+    return [SFGeometryEnvelope envelopeWithMinXValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYValue:SF_DEGREES_TO_METERS_MIN_LAT andMaxXValue:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYValue:SF_WGS84_HALF_WORLD_LAT_HEIGHT];
 }
 
 +(SFGeometryEnvelope *) webMercatorEnvelope{
-    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMinYDouble:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxXDouble:SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxYDouble:SF_WEB_MERCATOR_HALF_WORLD_WIDTH];
+    return [SFGeometryEnvelope envelopeWithMinXValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMinYValue:-SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxXValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH andMaxYValue:SF_WEB_MERCATOR_HALF_WORLD_WIDTH];
 }
 
 +(SFGeometryEnvelope *) wgs84EnvelopeWithWebMercator{
-    return [[SFGeometryEnvelope alloc] initWithMinXDouble:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYDouble:SF_WEB_MERCATOR_MIN_LAT_RANGE andMaxXDouble:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYDouble:SF_WEB_MERCATOR_MAX_LAT_RANGE];
+    return [SFGeometryEnvelope envelopeWithMinXValue:-SF_WGS84_HALF_WORLD_LON_WIDTH andMinYValue:SF_WEB_MERCATOR_MIN_LAT_RANGE andMaxXValue:SF_WGS84_HALF_WORLD_LON_WIDTH andMaxYValue:SF_WEB_MERCATOR_MAX_LAT_RANGE];
 }
 
 +(SFGeometry *) cropWebMercatorGeometry: (SFGeometry *) geometry{
@@ -1124,7 +1124,7 @@
             case SF_MULTICURVE:
             case SF_MULTISURFACE:
                 {
-                    SFGeometryCollection *cropCollection = [[SFGeometryCollection alloc] init];
+                    SFGeometryCollection *cropCollection = [SFGeometryCollection geometryCollection];
                     SFGeometryCollection *geomCollection = (SFGeometryCollection *) geometry;
                     for (SFGeometry *subGeometry in geomCollection.geometries) {
                         [cropCollection addGeometry:[self cropGeometry:subGeometry withEnvelope:envelope]];
@@ -1165,7 +1165,7 @@
         
         if(previousPoint != nil && (!contains || !previousContains)){
             
-            SFLine *line = [[SFLine alloc] initWithPoint1:previousPoint andPoint2:point];
+            SFLine *line = [SFLine lineWithPoint1:previousPoint andPoint2:point];
             double bearing = [self bearingOfLine:[self metersToDegreesWithLine:line]];
             
             BOOL westBearing = [self isWestBearing:bearing];
@@ -1296,7 +1296,7 @@
         }
     }
     if(cropPoints.count != 0){
-        crop = [[SFMultiPoint alloc] initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+        crop = [SFMultiPoint multiPointWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
         [crop setPoints:cropPoints];
     }
     return crop;
@@ -1306,7 +1306,7 @@
     SFLineString *crop = nil;
     NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:lineString.points withEnvelope:envelope];
     if(cropPoints != nil){
-        crop = [[SFLineString alloc] initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+        crop = [SFLineString lineStringWithHasZ:lineString.hasZ andHasM:lineString.hasM];
         [crop setPoints:cropPoints];
     }
     return crop;
@@ -1316,7 +1316,7 @@
     SFLine *crop = nil;
     NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:line.points withEnvelope:envelope];
     if(cropPoints != nil){
-        crop = [[SFLine alloc] initWithHasZ:line.hasZ andHasM:line.hasM];
+        crop = [SFLine lineWithHasZ:line.hasZ andHasM:line.hasM];
         [crop setPoints:cropPoints];
     }
     return crop;
@@ -1332,7 +1332,7 @@
         }
     }
     if(cropLineStrings.count != 0){
-        crop = [[SFMultiLineString alloc] initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+        crop = [SFMultiLineString multiLineStringWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
         [crop setLineStrings:cropLineStrings];
     }
     return crop;
@@ -1348,13 +1348,13 @@
         }
         NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:points withEnvelope:envelope];
         if(cropPoints != nil){
-            SFLineString *cropRing = [[SFLineString alloc] initWithHasZ:ring.hasZ andHasM:ring.hasM];
+            SFLineString *cropRing = [SFLineString lineStringWithHasZ:ring.hasZ andHasM:ring.hasM];
             [cropRing setPoints:cropPoints];
             [cropRings addObject:cropRing];
         }
     }
     if(cropRings.count != 0){
-        crop = [[SFPolygon alloc] initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+        crop = [SFPolygon polygonWithHasZ:polygon.hasZ andHasM:polygon.hasM];
         [crop setRings:cropRings];
     }
     return crop;
@@ -1370,7 +1370,7 @@
         }
     }
     if(cropPolygons.count != 0){
-        crop = [[SFMultiPolygon alloc] initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+        crop = [SFMultiPolygon multiPolygonWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
         [crop setPolygons:cropPolygons];
     }
     return crop;
@@ -1380,7 +1380,7 @@
     SFCircularString *crop = nil;
     NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:circularString.points withEnvelope:envelope];
     if(cropPoints != nil){
-        crop = [[SFCircularString alloc] initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+        crop = [SFCircularString circularStringWithHasZ:circularString.hasZ andHasM:circularString.hasM];
         [crop setPoints:cropPoints];
     }
     return crop;
@@ -1396,7 +1396,7 @@
         }
     }
     if(cropLineStrings.count != 0){
-        crop = [[SFCompoundCurve alloc] initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+        crop = [SFCompoundCurve compoundCurveWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
         [crop setLineStrings:cropLineStrings];
     }
     return crop;
@@ -1412,7 +1412,7 @@
         }
     }
     if(cropRings.count != 0){
-        crop = [[SFCurvePolygon alloc] initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+        crop = [SFCurvePolygon curvePolygonWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
         [crop setRings:cropRings];
     }
     return crop;
@@ -1428,7 +1428,7 @@
         }
     }
     if(cropPolygons.count != 0){
-        crop = [[SFPolyhedralSurface alloc] initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+        crop = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
         [crop setPolygons:cropPolygons];
     }
     return crop;
@@ -1444,7 +1444,7 @@
         }
     }
     if(cropPolygons.count != 0){
-        crop = [[SFTIN alloc] initWithHasZ:tin.hasZ andHasM:tin.hasM];
+        crop = [SFTIN tinWithHasZ:tin.hasZ andHasM:tin.hasM];
         [crop setPolygons:cropPolygons];
     }
     return crop;
@@ -1460,13 +1460,13 @@
         }
         NSMutableArray<SFPoint *> *cropPoints = [self cropPoints:points withEnvelope:envelope];
         if(cropPoints != nil){
-            SFLineString *cropRing = [[SFLineString alloc] initWithHasZ:ring.hasZ andHasM:ring.hasM];
+            SFLineString *cropRing = [SFLineString lineStringWithHasZ:ring.hasZ andHasM:ring.hasM];
             [cropRing setPoints:cropPoints];
             [cropRings addObject:cropRing];
         }
     }
     if(cropRings.count != 0){
-        crop = [[SFTriangle alloc] initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+        crop = [SFTriangle triangleWithHasZ:triangle.hasZ andHasM:triangle.hasM];
         [crop setRings:cropRings];
     }
     return crop;

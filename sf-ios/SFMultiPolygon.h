@@ -16,6 +16,43 @@
 @interface SFMultiPolygon : SFMultiSurface
 
 /**
+ *  Create
+ *
+ *  @return new multi polygon
+ */
++(SFMultiPolygon *) multiPolygon;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new multi polygon
+ */
++(SFMultiPolygon *) multiPolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new multi polygon
+ */
++(SFMultiPolygon *) multiPolygonWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Create
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new multi polygon
+ */
++(SFMultiPolygon *) multiPolygonWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Initialize
  *
  *  @return new multi polygon

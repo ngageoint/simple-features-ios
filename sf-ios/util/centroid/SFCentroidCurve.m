@@ -35,7 +35,7 @@
 -(instancetype) initWithGeometry: (SFGeometry *) geometry{
     self = [super init];
     if(self != nil){
-        self.sum = [[SFPoint alloc] init];
+        self.sum = [SFPoint point];
         self.totalLength = 0;
         [self addGeometry:geometry];
     }
@@ -119,7 +119,7 @@
 }
 
 -(SFPoint *) centroid{
-    SFPoint *centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / self.totalLength) andYValue:([self.sum.y doubleValue] / self.totalLength)];
+    SFPoint *centroid = [SFPoint pointWithXValue:([self.sum.x doubleValue] / self.totalLength) andYValue:([self.sum.y doubleValue] / self.totalLength)];
     return centroid;
 }
 

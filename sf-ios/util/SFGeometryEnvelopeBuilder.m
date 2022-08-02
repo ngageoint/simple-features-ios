@@ -26,7 +26,7 @@
 
 +(SFGeometryEnvelope *) buildEnvelopeWithGeometry: (SFGeometry *) geometry{
     
-    SFGeometryEnvelope *envelope = [[SFGeometryEnvelope alloc] init];
+    SFGeometryEnvelope *envelope = [SFGeometryEnvelope envelope];
     
     [self buildEnvelope:envelope andGeometry:geometry];
     
@@ -225,14 +225,14 @@
 +(SFGeometry *) buildGeometryWithEnvelope: (SFGeometryEnvelope *) envelope{
     SFGeometry *geometry = nil;
     if([envelope isPoint]){
-        geometry = [[SFPoint alloc] initWithX:envelope.minX andY:envelope.minY];
+        geometry = [SFPoint pointWithX:envelope.minX andY:envelope.minY];
     }else{
-        SFPolygon *polygon = [[SFPolygon alloc] init];
-        SFLineString *ring = [[SFLineString alloc] init];
-        [ring addPoint:[[SFPoint alloc] initWithX:envelope.minX andY:envelope.minY]];
-        [ring addPoint:[[SFPoint alloc] initWithX:envelope.maxX andY:envelope.minY]];
-        [ring addPoint:[[SFPoint alloc] initWithX:envelope.maxX andY:envelope.maxY]];
-        [ring addPoint:[[SFPoint alloc] initWithX:envelope.minX andY:envelope.maxY]];
+        SFPolygon *polygon = [SFPolygon polygon];
+        SFLineString *ring = [SFLineString lineString];
+        [ring addPoint:[SFPoint pointWithX:envelope.minX andY:envelope.minY]];
+        [ring addPoint:[SFPoint pointWithX:envelope.maxX andY:envelope.minY]];
+        [ring addPoint:[SFPoint pointWithX:envelope.maxX andY:envelope.maxY]];
+        [ring addPoint:[SFPoint pointWithX:envelope.minX andY:envelope.maxY]];
         [polygon addRing:ring];
         geometry = polygon;
     }

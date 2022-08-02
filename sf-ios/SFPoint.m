@@ -10,6 +10,50 @@
 
 @implementation SFPoint
 
++(SFPoint *) point{
+    return [[SFPoint alloc] init];
+}
+
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y{
+    return [[SFPoint alloc] initWithXValue:x andYValue:y];
+}
+
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y{
+    return [[SFPoint alloc] initWithX:x andY:y];
+}
+
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z{
+    return [[SFPoint alloc] initWithX:x andY:y andZ:z];
+}
+
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z{
+    return [[SFPoint alloc] initWithXValue:x andYValue:y andZ:z];
+}
+
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZValue: (double) z{
+    return [[SFPoint alloc] initWithXValue:x andYValue:y andZValue:z];
+}
+
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m{
+    return [[SFPoint alloc] initWithX:x andY:y andZ:z andM:m];
+}
+
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m{
+    return [[SFPoint alloc] initWithXValue:x andYValue:y andZ:z andM:m];
+}
+
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZValue: (double) z andMValue: (double) m{
+    return [[SFPoint alloc] initWithXValue:x andYValue:y andZValue:z andMValue:m];
+}
+
++(SFPoint *) pointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y{
+    return [[SFPoint alloc] initWithHasZ:hasZ andHasM:hasM andX:x andY:y];
+}
+
++(SFPoint *) pointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y{
+    return [[SFPoint alloc] initWithHasZ:hasZ andHasM:hasM andXValue:x andYValue:y];
+}
+
 -(instancetype) init{
     return [self initWithXValue:0.0 andYValue:0.0];
 }
@@ -101,7 +145,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPoint *point = [[SFPoint alloc] initWithHasZ:self.hasZ andHasM:self.hasM andX:self.x andY:self.y];
+    SFPoint *point = [SFPoint pointWithHasZ:self.hasZ andHasM:self.hasM andX:self.x andY:self.y];
     [point setZ:self.z];
     [point setM:self.m];
     return point;

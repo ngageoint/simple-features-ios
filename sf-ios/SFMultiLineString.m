@@ -11,6 +11,22 @@
 
 @implementation SFMultiLineString
 
++(SFMultiLineString *) multiLineString{
+    return [[SFMultiLineString alloc] init];
+}
+
++(SFMultiLineString *) multiLineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFMultiLineString alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFMultiLineString *) multiLineStringWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings{
+    return [[SFMultiLineString alloc] initWithLineStrings:lineStrings];
+}
+
++(SFMultiLineString *) multiLineStringWithLineString: (SFLineString *) lineString{
+    return [[SFMultiLineString alloc] initWithLineString:lineString];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -62,7 +78,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiLineString *multiLineString = [[SFMultiLineString alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFMultiLineString *multiLineString = [SFMultiLineString multiLineStringWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFLineString *lineString in self.geometries){
         [multiLineString addLineString:[lineString mutableCopy]];
     }

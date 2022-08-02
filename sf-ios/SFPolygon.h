@@ -16,6 +16,43 @@
 @interface SFPolygon : SFCurvePolygon
 
 /**
+ *  Create
+ *
+ *  @return new polygon
+ */
++(SFPolygon *) polygon;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new polygon
+ */
++(SFPolygon *) polygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new polygon
+ */
++(SFPolygon *) polygonWithRings: (NSMutableArray<SFLineString *> *) rings;
+
+/**
+ * Create
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new polygon
+ */
++(SFPolygon *) polygonWithRing: (SFLineString *) ring;
+
+/**
  *  Initialize
  *
  *  @return new polygon

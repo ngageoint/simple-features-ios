@@ -21,6 +21,43 @@
 @property (nonatomic, strong) NSMutableArray<SFCurve *> *rings;
 
 /**
+ *  Create
+ *
+ *  @return new curve polygon
+ */
++(SFCurvePolygon *) curvePolygon;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new curve polygon
+ */
++(SFCurvePolygon *) curvePolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new curve polygon
+ */
++(SFCurvePolygon *) curvePolygonWithRings: (NSMutableArray<SFCurve *> *) rings;
+
+/**
+ * Create
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new curve polygon
+ */
++(SFCurvePolygon *) curvePolygonWithRing: (SFCurve *) ring;
+
+/**
  *  Initialize
  *
  *  @return new curve polygon

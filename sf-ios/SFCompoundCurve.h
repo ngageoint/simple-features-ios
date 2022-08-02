@@ -20,6 +20,43 @@
 @property (nonatomic, strong) NSMutableArray<SFLineString *> *lineStrings;
 
 /**
+ *  Create
+ *
+ *  @return new compound curve
+ */
++(SFCompoundCurve *) compoundCurve;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new compound curve
+ */
++(SFCompoundCurve *) compoundCurveWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param lineStrings
+ *            list of line strings
+ *
+ *  @return new compound curve
+ */
++(SFCompoundCurve *) compoundCurveWithLineStrings: (NSMutableArray<SFLineString *> *) lineStrings;
+
+/**
+ * Create
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new compound curve
+ */
++(SFCompoundCurve *) compoundCurveWithLineString: (SFLineString *) lineString;
+
+/**
  *  Initialize
  *
  *  @return new compound curve

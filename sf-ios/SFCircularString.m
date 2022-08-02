@@ -11,6 +11,18 @@
 
 @implementation SFCircularString
 
++(SFCircularString *) circularString{
+    return [[SFCircularString alloc] init];
+}
+
++(SFCircularString *) circularStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFCircularString alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFCircularString *) circularStringWithPoints: (NSMutableArray<SFPoint *> *) points{
+    return [[SFCircularString alloc] initWithPoints:points];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -30,7 +42,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCircularString *circularString = [[SFCircularString alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFCircularString *circularString = [SFCircularString circularStringWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPoint *point in self.points){
         [circularString addPoint:[point mutableCopy]];
     }

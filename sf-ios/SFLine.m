@@ -11,6 +11,22 @@
 
 @implementation SFLine
 
++(SFLine *) line{
+    return [[SFLine alloc] init];
+}
+
++(SFLine *) lineWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFLine alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFLine *) lineWithPoints: (NSMutableArray<SFPoint *> *) points{
+    return [[SFLine alloc] initWithPoints:points];
+}
+
++(SFLine *) lineWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2{
+    return [[SFLine alloc] initWithPoint1:point1 andPoint2:point2];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -45,7 +61,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFLine *line = [[SFLine alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFLine *line = [SFLine lineWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPoint *point in self.points){
         [line addPoint:[point mutableCopy]];
     }

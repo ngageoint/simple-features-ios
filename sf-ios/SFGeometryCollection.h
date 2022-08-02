@@ -25,6 +25,43 @@
 @property (nonatomic, strong) NSMutableArray<SFGeometry *> *geometries;
 
 /**
+ *  Create
+ *
+ *  @return new geometry collection
+ */
++(SFGeometryCollection *) geometryCollection;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new geometry collection
+ */
++(SFGeometryCollection *) geometryCollectionWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param geometries
+ *            list of geometries
+ *
+ *  @return new geometry collection
+ */
++(SFGeometryCollection *) geometryCollectionWithGeometries: (NSMutableArray<SFGeometry *> *) geometries;
+
+/**
+ * Create
+ *
+ * @param geometry
+ *            geometry
+ *
+ *  @return new geometry collection
+ */
++(SFGeometryCollection *) geometryCollectionWithGeometry: (SFGeometry *) geometry;
+
+/**
  *  Initialize
  *
  *  @return new geometry collection

@@ -44,9 +44,140 @@
 @property (nonatomic, strong) NSDecimalNumber *maxM;
 
 /**
+ *  Create with no z or m
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelope;
+
+/**
+ *  Create with the has z and m values
+ *
+ *  @param hasZ geometry has z
+ *  @param hasM geometry has m
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ *  Create with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY;
+
+/**
+ *  Create with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY;
+
+/**
+ *  Create with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ;
+
+/**
+ *  Create with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ;
+
+/**
+ *  Create with number range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param minM minimum m
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *  @param maxM maximum m
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinX: (NSDecimalNumber *) minX
+                     andMinY: (NSDecimalNumber *) minY
+                     andMinZ: (NSDecimalNumber *) minZ
+                     andMinM: (NSDecimalNumber *) minM
+                     andMaxX: (NSDecimalNumber *) maxX
+                     andMaxY: (NSDecimalNumber *) maxY
+                     andMaxZ: (NSDecimalNumber *) maxZ
+                     andMaxM: (NSDecimalNumber *) maxM;
+
+/**
+ *  Create with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param minM minimum m
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *  @param maxM maximum m
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) envelopeWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMinMValue: (double) minM
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ
+                     andMaxMValue: (double) maxM;
+
+/**
  *  Initialize with no z or m
  *
- *  @return new instance
+ *  @return new geometry envelope
  */
 -(instancetype) init;
 
@@ -71,9 +202,9 @@
  *  @return new geometry envelope
  */
 -(instancetype) initWithMinX: (NSDecimalNumber *) minX
-                      andMinY: (NSDecimalNumber *) minY
+                     andMinY: (NSDecimalNumber *) minY
                      andMaxX: (NSDecimalNumber *) maxX
-                      andMaxY: (NSDecimalNumber *) maxY;
+                     andMaxY: (NSDecimalNumber *) maxY;
 
 /**
  *  Initialize with double range
@@ -85,10 +216,10 @@
  *
  *  @return new geometry envelope
  */
--(instancetype) initWithMinXDouble: (double) minX
-                      andMinYDouble: (double) minY
-                     andMaxXDouble: (double) maxX
-                      andMaxYDouble: (double) maxY;
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY;
 
 /**
  *  Initialize with number range
@@ -108,6 +239,25 @@
                      andMaxX: (NSDecimalNumber *) maxX
                      andMaxY: (NSDecimalNumber *) maxY
                      andMaxZ: (NSDecimalNumber *) maxZ;
+
+/**
+ *  Initialize with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ;
 
 /**
  *  Initialize with number range
@@ -131,6 +281,85 @@
                      andMaxY: (NSDecimalNumber *) maxY
                      andMaxZ: (NSDecimalNumber *) maxZ
                      andMaxM: (NSDecimalNumber *) maxM;
+
+/**
+ *  Initialize with double range
+ *
+ *  @param minX minimum x
+ *  @param minY minimum y
+ *  @param minZ minimum z
+ *  @param minM minimum m
+ *  @param maxX maximum x
+ *  @param maxY maximum y
+ *  @param maxZ maximum z
+ *  @param maxM maximum m
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithMinXValue: (double) minX
+                     andMinYValue: (double) minY
+                     andMinZValue: (double) minZ
+                     andMinMValue: (double) minM
+                     andMaxXValue: (double) maxX
+                     andMaxYValue: (double) maxY
+                     andMaxZValue: (double) maxZ
+                     andMaxMValue: (double) maxM;
+
+/**
+ *  Set the min x value
+ *
+ *  @param x   x coordinate
+ */
+-(void) setMinXValue: (double) x;
+
+/**
+ *  Set the max x value
+ *
+ *  @param x   x coordinate
+ */
+-(void) setMaxXValue: (double) x;
+
+/**
+ *  Set the min y value
+ *
+ *  @param y   y coordinate
+ */
+-(void) setMinYValue: (double) y;
+
+/**
+ *  Set the max y value
+ *
+ *  @param y   y coordinate
+ */
+-(void) setMaxYValue: (double) y;
+
+/**
+ *  Set the min z value
+ *
+ *  @param z   z coordinate
+ */
+-(void) setMinZValue: (double) z;
+
+/**
+ *  Set the max z value
+ *
+ *  @param z   z coordinate
+ */
+-(void) setMaxZValue: (double) z;
+
+/**
+ *  Set the min m value
+ *
+ *  @param m   m coordinate
+ */
+-(void) setMinMValue: (double) m;
+
+/**
+ *  Set the max m value
+ *
+ *  @param m   m coordinate
+ */
+-(void) setMaxMValue: (double) m;
 
 /**
  * True if has Z coordinates

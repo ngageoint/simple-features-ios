@@ -36,8 +36,8 @@
     NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:points];
     
-    SFMultiPoint *multiPoint = [[SFMultiPoint alloc] initWithPoints:points];
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    SFMultiPoint *multiPoint = [SFMultiPoint multiPointWithPoints:points];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:geometries];
 
     [SFTestUtils assertEqualIntWithValue:[multiPoint numPoints] andValue2:[geometryCollection numGeometries]];
     [SFTestUtils assertEqualIntWithValue:[multiPoint numGeometries] andValue2:[geometryCollection numGeometries]];
@@ -82,8 +82,8 @@
     NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:lineStrings];
     
-    SFMultiLineString *multiLineString = [[SFMultiLineString alloc] initWithLineStrings:lineStrings];
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    SFMultiLineString *multiLineString = [SFMultiLineString multiLineStringWithLineStrings:lineStrings];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:geometries];
     
     [SFTestUtils assertEqualIntWithValue:[multiLineString numLineStrings] andValue2:[geometryCollection numGeometries]];
     [SFTestUtils assertEqualIntWithValue:[multiLineString numGeometries] andValue2:[geometryCollection numGeometries]];
@@ -132,8 +132,8 @@
     NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:polygons];
     
-    SFMultiPolygon *multiPolygon = [[SFMultiPolygon alloc] initWithPolygons:polygons];
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    SFMultiPolygon *multiPolygon = [SFMultiPolygon multiPolygonWithPolygons:polygons];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:geometries];
     
     [SFTestUtils assertEqualIntWithValue:[multiPolygon numPolygons] andValue2:[geometryCollection numGeometries]];
     [SFTestUtils assertEqualIntWithValue:[multiPolygon numGeometries] andValue2:[geometryCollection numGeometries]];
@@ -187,8 +187,8 @@
     NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:curves];
     
-    SFGeometryCollection *multiCurve = [[SFGeometryCollection alloc] initWithGeometries:(NSMutableArray<SFGeometry *> *)curves];
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    SFGeometryCollection *multiCurve = [SFGeometryCollection geometryCollectionWithGeometries:(NSMutableArray<SFGeometry *> *)curves];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:geometries];
     
     [SFTestUtils assertEqualIntWithValue:[multiCurve numGeometries] andValue2:[geometryCollection numGeometries]];
     [SFTestUtils assertEqualWithValue:multiCurve.geometries andValue2:geometryCollection.geometries];
@@ -240,8 +240,8 @@
     NSMutableArray<SFGeometry *> *geometries = [NSMutableArray array];
     [geometries addObjectsFromArray:surfaces];
     
-    SFGeometryCollection *multiSurface = [[SFGeometryCollection alloc] initWithGeometries:(NSMutableArray<SFGeometry *> *)surfaces];
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:geometries];
+    SFGeometryCollection *multiSurface = [SFGeometryCollection geometryCollectionWithGeometries:(NSMutableArray<SFGeometry *> *)surfaces];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:geometries];
     
     [SFTestUtils assertEqualIntWithValue:[multiSurface numGeometries] andValue2:[geometryCollection numGeometries]];
     [SFTestUtils assertEqualWithValue:multiSurface.geometries andValue2:geometryCollection.geometries];

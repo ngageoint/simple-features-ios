@@ -20,6 +20,33 @@
 @property (nonatomic, strong) NSMutableArray<SFPoint *> *points;
 
 /**
+ *  Create
+ *
+ *  @return new line string
+ */
++(SFLineString *) lineString;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new line string
+ */
++(SFLineString *) lineStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new line string
+ */
++(SFLineString *) lineStringWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
  *  Initialize
  *
  *  @return new line string

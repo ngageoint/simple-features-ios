@@ -75,7 +75,7 @@
         double centroidLongitude = atan2(_y, _x);
         double centroidLatitude = atan2(_z, sqrt(_x * _x + _y * _y));
 
-        centroid = [[SFPoint alloc] initWithXValue:[SFGeometryUtils radiansToDegrees:centroidLongitude] andYValue:[SFGeometryUtils radiansToDegrees:centroidLatitude]];
+        centroid = [SFPoint pointWithXValue:[SFGeometryUtils radiansToDegrees:centroidLongitude] andYValue:[SFGeometryUtils radiansToDegrees:centroidLatitude]];
     }
 
     return centroid;

@@ -13,6 +13,22 @@
 
 @implementation SFPolygon
 
++(SFPolygon *) polygon{
+    return [[SFPolygon alloc] init];
+}
+
++(SFPolygon *) polygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFPolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFPolygon *) polygonWithRings: (NSMutableArray<SFLineString *> *) rings{
+    return [[SFPolygon alloc] initWithRings:rings];
+}
+
++(SFPolygon *) polygonWithRing: (SFLineString *) ring{
+    return [[SFPolygon alloc] initWithRing:ring];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -68,7 +84,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPolygon *polygon = [[SFPolygon alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFPolygon *polygon = [SFPolygon polygonWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFLineString *ring in self.rings){
         [polygon addRing:[ring mutableCopy]];
     }

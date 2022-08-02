@@ -14,6 +14,33 @@
 @interface SFCircularString : SFLineString
 
 /**
+ *  Create
+ *
+ *  @return new circular string
+ */
++(SFCircularString *) circularString;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new circular string
+ */
++(SFCircularString *) circularStringWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new circular string
+ */
++(SFCircularString *) circularStringWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
  *  Initialize
  *
  *  @return new circular string

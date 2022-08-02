@@ -16,6 +16,22 @@
 
 @implementation SFGeometryCollection
 
++(SFGeometryCollection *) geometryCollection{
+    return [[SFGeometryCollection alloc] init];
+}
+
++(SFGeometryCollection *) geometryCollectionWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFGeometryCollection alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFGeometryCollection *) geometryCollectionWithGeometries: (NSMutableArray<SFGeometry *> *) geometries{
+    return [[SFGeometryCollection alloc] initWithGeometries:geometries];
+}
+
++(SFGeometryCollection *) geometryCollectionWithGeometry: (SFGeometry *) geometry{
+    return [[SFGeometryCollection alloc] initWithGeometry:geometry];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -112,7 +128,7 @@
     if([self isKindOfClass:[SFMultiPoint class]]){
         multiPoint = (SFMultiPoint *) self;
     }else{
-        multiPoint = [[SFMultiPoint alloc] initWithPoints:(NSMutableArray<SFPoint *> *)self.geometries];
+        multiPoint = [SFMultiPoint multiPointWithPoints:(NSMutableArray<SFPoint *> *)self.geometries];
     }
     return multiPoint;
 }
@@ -130,7 +146,7 @@
     if([self isKindOfClass:[SFMultiLineString class]]){
         multiLineString = (SFMultiLineString*) self;
     }else{
-        multiLineString = [[SFMultiLineString alloc] initWithLineStrings:(NSMutableArray<SFLineString *> *)self.geometries];
+        multiLineString = [SFMultiLineString multiLineStringWithLineStrings:(NSMutableArray<SFLineString *> *)self.geometries];
     }
     return multiLineString;
 }
@@ -148,7 +164,7 @@
     if([self isKindOfClass:[SFMultiPolygon class]]){
         multiPolygon = (SFMultiPolygon*) self;
     }else{
-        multiPolygon = [[SFMultiPolygon alloc] initWithPolygons:(NSMutableArray<SFPolygon *> *)self.geometries];
+        multiPolygon = [SFMultiPolygon multiPolygonWithPolygons:(NSMutableArray<SFPolygon *> *)self.geometries];
     }
     return multiPolygon;
 }
@@ -164,7 +180,7 @@
 -(SFGeometryCollection *) asMultiCurve{
     SFGeometryCollection *multiCurve;
     if ([self isKindOfClass:[SFMultiLineString class]]) {
-        multiCurve = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+        multiCurve = [SFGeometryCollection geometryCollectionWithGeometries:self.geometries];
     } else {
         multiCurve = self;
     }
@@ -182,7 +198,7 @@
 -(SFGeometryCollection *) asMultiSurface{
     SFGeometryCollection *multiSurface;
     if ([self isKindOfClass:[SFMultiPolygon class]]) {
-        multiSurface = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+        multiSurface = [SFGeometryCollection geometryCollectionWithGeometries:self.geometries];
     } else {
         multiSurface = self;
     }
@@ -194,7 +210,7 @@
     if([[self class] isMemberOfClass:[SFGeometryCollection class]]){
         geometryCollection = self;
     } else {
-        geometryCollection = [[SFGeometryCollection alloc] initWithGeometries:self.geometries];
+        geometryCollection = [SFGeometryCollection geometryCollectionWithGeometries:self.geometries];
     }
     return geometryCollection;
 }
@@ -223,7 +239,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFGeometry *geometry in self.geometries){
         [geometryCollection addGeometry:[geometry mutableCopy]];
     }

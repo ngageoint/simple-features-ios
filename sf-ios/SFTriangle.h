@@ -14,6 +14,43 @@
 @interface SFTriangle : SFPolygon
 
 /**
+ *  Create
+ *
+ *  @return new triangle
+ */
++(SFTriangle *) triangle;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new triangle
+ */
++(SFTriangle *) triangleWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param rings
+ *            list of rings
+ *
+ *  @return new triangle
+ */
++(SFTriangle *) triangleWithRings: (NSMutableArray<SFLineString *> *) rings;
+
+/**
+ * Create
+ *
+ * @param ring
+ *            ring
+ *
+ *  @return new triangle
+ */
++(SFTriangle *) triangleWithRing: (SFLineString *) ring;
+
+/**
  *  Initialize
  *
  *  @return new triangle

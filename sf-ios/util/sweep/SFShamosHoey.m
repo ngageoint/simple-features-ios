@@ -18,7 +18,7 @@
 }
 
 +(BOOL) simplePolygonPoints: (NSArray<SFPoint *> *) points{
-    SFLineString *ring = [[SFLineString alloc] init];
+    SFLineString *ring = [SFLineString lineString];
     [ring.points addObjectsFromArray:points];
     return [self simplePolygonRing:ring];
 }
@@ -26,7 +26,7 @@
 +(BOOL) simplePolygonRingPoints: (NSArray<NSArray<SFPoint *>*> *) pointRings{
     NSMutableArray<SFLineString *> *rings = [NSMutableArray array];
     for(NSArray<SFPoint *> *points in pointRings){
-        SFLineString *ring = [[SFLineString alloc] init];
+        SFLineString *ring = [SFLineString lineString];
         [ring.points addObjectsFromArray:points];
         [rings addObject:ring];
     }
@@ -49,7 +49,7 @@
         SFLineString *ring = [rings objectAtIndex:i];
         
         // Copy the ring
-        SFLineString *ringCopy = [[SFLineString alloc] init];
+        SFLineString *ringCopy = [SFLineString lineString];
         [ringCopy.points addObjectsFromArray:ring.points];
         [ringCopies addObject:ringCopy];
         

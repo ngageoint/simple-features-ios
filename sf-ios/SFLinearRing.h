@@ -14,6 +14,33 @@
 @interface SFLinearRing : SFLineString
 
 /**
+ *  Create
+ *
+ *  @return new linear ring
+ */
++(SFLinearRing *) linearRing;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new linear ring
+ */
++(SFLinearRing *) linearRingWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param points
+ *            list of points
+ *
+ *  @return new linear ring
+ */
++(SFLinearRing *) linearRingWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
  *  Initialize
  *
  *  @return new linear ring

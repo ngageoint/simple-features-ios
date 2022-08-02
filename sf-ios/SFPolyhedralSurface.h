@@ -20,6 +20,43 @@
 @property (nonatomic, strong) NSMutableArray<SFPolygon *> *polygons;
 
 /**
+ *  Create
+ *
+ *  @return new polyhedral surface
+ */
++(SFPolyhedralSurface *) polyhedralSurface;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z values
+ *  @param hasM has m values
+ *
+ *  @return new polyhedral surface
+ */
++(SFPolyhedralSurface *) polyhedralSurfaceWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Create
+ *
+ * @param polygons
+ *            list of polygons
+ *
+ *  @return new polyhedral surface
+ */
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolygons: (NSMutableArray<SFPolygon *> *) polygons;
+
+/**
+ * Create
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new polyhedral surface
+ */
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Initialize
  *
  *  @return new polyhedral surface

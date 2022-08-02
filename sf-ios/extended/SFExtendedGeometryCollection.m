@@ -56,7 +56,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryCollection *geometryCollection = [[SFGeometryCollection alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFGeometry *geometry in self.geometries){
         [geometryCollection addGeometry:[geometry mutableCopy]];
     }

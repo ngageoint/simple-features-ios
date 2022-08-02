@@ -35,6 +35,126 @@
 @property (nonatomic, strong) NSDecimalNumber *m;
 
 /**
+ *  Create
+ *
+ *  @return new point
+ */
++(SFPoint *) point;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZValue: (double) z;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZ: (NSDecimalNumber *) z andM: (NSDecimalNumber *) m;
+
+/**
+ *  Create
+ *
+ *  @param x x coordinate
+ *  @param y y coordinate
+ *  @param z z coordinate
+ *  @param m m coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithXValue: (double) x andYValue: (double) y andZValue: (double) z andMValue: (double) m;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z coordinate
+ *  @param hasM has m coordinate
+ *  @param x    x coordinate
+ *  @param y    y coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andX: (NSDecimalNumber *) x andY: (NSDecimalNumber *) y;
+
+/**
+ *  Create
+ *
+ *  @param hasZ has z coordinate
+ *  @param hasM has m coordinate
+ *  @param x    x coordinate
+ *  @param y    y coordinate
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y;
+
+/**
  *  Initialize
  *
  *  @return new point

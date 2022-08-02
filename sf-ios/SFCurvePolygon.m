@@ -11,6 +11,22 @@
 
 @implementation SFCurvePolygon
 
++(SFCurvePolygon *) curvePolygon{
+    return [[SFCurvePolygon alloc] init];
+}
+
++(SFCurvePolygon *) curvePolygonWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFCurvePolygon alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFCurvePolygon *) curvePolygonWithRings: (NSMutableArray<SFCurve *> *) rings{
+    return [[SFCurvePolygon alloc] initWithRings:rings];
+}
+
++(SFCurvePolygon *) curvePolygonWithRing: (SFCurve *) ring{
+    return [[SFCurvePolygon alloc] initWithRing:ring];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -85,7 +101,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCurvePolygon *curevePolygon = [[SFCurvePolygon alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFCurvePolygon *curevePolygon = [SFCurvePolygon curvePolygonWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFCurve *ring in self.rings){
         [curevePolygon addRing:[ring mutableCopy]];
     }

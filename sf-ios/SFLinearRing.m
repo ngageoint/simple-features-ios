@@ -11,6 +11,18 @@
 
 @implementation SFLinearRing
 
++(SFLinearRing *) linearRing{
+    return [[SFLinearRing alloc] init];
+}
+
++(SFLinearRing *) linearRingWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFLinearRing alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFLinearRing *) linearRingWithPoints: (NSMutableArray<SFPoint *> *) points{
+    return [[SFLinearRing alloc] initWithPoints:points];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -41,7 +53,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFLinearRing *linearRing = [[SFLinearRing alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFLinearRing *linearRing = [SFLinearRing linearRingWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPoint *point in self.points){
         [linearRing addPoint:[point mutableCopy]];
     }

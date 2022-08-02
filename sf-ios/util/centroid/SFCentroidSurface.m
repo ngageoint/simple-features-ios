@@ -43,7 +43,7 @@
     self = [super init];
     if(self != nil){
         self.area = 0;
-        self.sum = [[SFPoint alloc] init];
+        self.sum = [SFPoint point];
         [self addGeometry:geometry];
     }
     return self;
@@ -247,7 +247,7 @@
 -(SFPoint *) centroid3WithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2 andPoint3: (SFPoint *) point3{
     double x = [point1.x doubleValue] + [point2.x doubleValue] + [point3.x doubleValue];
     double y = [point1.y doubleValue] + [point2.y doubleValue] + [point3.y doubleValue];
-    SFPoint *point = [[SFPoint alloc] initWithXValue:x andYValue:y];
+    SFPoint *point = [SFPoint pointWithXValue:x andYValue:y];
     return point;
 }
 
@@ -270,7 +270,7 @@
 }
 
 -(SFPoint *) centroid{
-    SFPoint *centroid = [[SFPoint alloc] initWithXValue:([self.sum.x doubleValue] / 3 / self.area) andYValue:([self.sum.y doubleValue] / 3 / self.area)];
+    SFPoint *centroid = [SFPoint pointWithXValue:([self.sum.x doubleValue] / 3 / self.area) andYValue:([self.sum.y doubleValue] / 3 / self.area)];
     return centroid;
 }
 

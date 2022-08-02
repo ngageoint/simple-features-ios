@@ -11,6 +11,22 @@
 
 @implementation SFTIN
 
++(SFTIN *) tin{
+    return [[SFTIN alloc] init];
+}
+
++(SFTIN *) tinWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+    return [[SFTIN alloc] initWithHasZ:hasZ andHasM:hasM];
+}
+
++(SFTIN *) tinWithPolygons: (NSMutableArray<SFPolygon *> *) polygons{
+    return [[SFTIN alloc] initWithPolygons:polygons];
+}
+
++(SFTIN *) tinWithPolygon: (SFPolygon *) polygon{
+    return [[SFTIN alloc] initWithPolygon:polygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -38,7 +54,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFTIN *tin = [[SFTIN alloc] initWithHasZ:self.hasZ andHasM:self.hasM];
+    SFTIN *tin = [SFTIN tinWithHasZ:self.hasZ andHasM:self.hasM];
     for(SFPolygon *polygon in self.polygons){
         [tin addPolygon:[polygon mutableCopy]];
     }
