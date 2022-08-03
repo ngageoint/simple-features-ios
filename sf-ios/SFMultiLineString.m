@@ -27,6 +27,10 @@
     return [[SFMultiLineString alloc] initWithLineString:lineString];
 }
 
++(SFMultiLineString *) multiLineStringWithMultiLineString: (SFMultiLineString *) multiLineString{
+    return [[SFMultiLineString alloc] initWithMultiLineString:multiLineString];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -49,6 +53,16 @@
     self = [self initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
     if(self != nil){
         [self addLineString:lineString];
+    }
+    return self;
+}
+
+-(instancetype) initWithMultiLineString: (SFMultiLineString *) multiLineString{
+    self = [self initWithHasZ:multiLineString.hasZ andHasM:multiLineString.hasM];
+    if(self != nil){
+        for(SFLineString *lineString in multiLineString.geometries){
+            [self addLineString:[lineString mutableCopy]];
+        }
     }
     return self;
 }
@@ -78,11 +92,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiLineString *multiLineString = [SFMultiLineString multiLineStringWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFLineString *lineString in self.geometries){
-        [multiLineString addLineString:[lineString mutableCopy]];
-    }
-    return multiLineString;
+    return [SFMultiLineString multiLineStringWithMultiLineString:self];
 }
 
 @end

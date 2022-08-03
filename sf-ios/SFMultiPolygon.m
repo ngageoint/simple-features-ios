@@ -27,6 +27,10 @@
     return [[SFMultiPolygon alloc] initWithPolygon:polygon];
 }
 
++(SFMultiPolygon *) multiPolygonWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
+    return [[SFMultiPolygon alloc] initWithMultiPolygon:multiPolygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -49,6 +53,16 @@
     self = [self initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
     if(self != nil){
         [self addPolygon:polygon];
+    }
+    return self;
+}
+
+-(instancetype) initWithMultiPolygon: (SFMultiPolygon *) multiPolygon{
+    self = [self initWithHasZ:multiPolygon.hasZ andHasM:multiPolygon.hasM];
+    if(self != nil){
+        for(SFPolygon *polygon in multiPolygon.geometries){
+            [multiPolygon addPolygon:[polygon mutableCopy]];
+        }
     }
     return self;
 }
@@ -78,11 +92,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiPolygon *multiPolygon = [SFMultiPolygon multiPolygonWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPolygon *polygon in self.geometries){
-        [multiPolygon addPolygon:[polygon mutableCopy]];
-    }
-    return multiPolygon;
+    return [SFMultiPolygon multiPolygonWithMultiPolygon:self];
 }
 
 @end

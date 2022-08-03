@@ -41,6 +41,15 @@
 +(SFCircularString *) circularStringWithPoints: (NSMutableArray<SFPoint *> *) points;
 
 /**
+ *  Create
+ *
+ *  @param circularString circular string
+ *
+ *  @return new circular string
+ */
++(SFCircularString *) circularStringWithCircularString: (SFCircularString *) circularString;
+
+/**
  *  Initialize
  *
  *  @return new circular string
@@ -66,5 +75,14 @@
  *  @return new circular string
  */
 -(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ *  Initialize
+ *
+ *  @param circularString circular string
+ *
+ *  @return new circular string
+ */
+-(instancetype) initWithCircularString: (SFCircularString *) circularString;
 
 @end

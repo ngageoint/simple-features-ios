@@ -27,6 +27,10 @@
     return [[SFCurvePolygon alloc] initWithRing:ring];
 }
 
++(SFCurvePolygon *) curvePolygonWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
+    return [[SFCurvePolygon alloc] initWithCurvePolygon:curvePolygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -56,6 +60,16 @@
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.rings = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(instancetype) initWithCurvePolygon: (SFCurvePolygon *) curvePolygon{
+    self = [self initWithHasZ:curvePolygon.hasZ andHasM:curvePolygon.hasM];
+    if(self != nil){
+        for(SFCurve *ring in curvePolygon.rings){
+            [self addRing:[ring mutableCopy]];
+        }
     }
     return self;
 }
@@ -101,11 +115,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCurvePolygon *curevePolygon = [SFCurvePolygon curvePolygonWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFCurve *ring in self.rings){
-        [curevePolygon addRing:[ring mutableCopy]];
-    }
-    return curevePolygon;
+    return [SFCurvePolygon curvePolygonWithCurvePolygon:self];
 }
 
 + (BOOL) supportsSecureCoding {

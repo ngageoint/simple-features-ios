@@ -23,6 +23,10 @@
     return [[SFCircularString alloc] initWithPoints:points];
 }
 
++(SFCircularString *) circularStringWithCircularString: (SFCircularString *) circularString{
+    return [[SFCircularString alloc] initWithCircularString:circularString];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -41,12 +45,18 @@
     return self;
 }
 
--(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCircularString *circularString = [SFCircularString circularStringWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPoint *point in self.points){
-        [circularString addPoint:[point mutableCopy]];
+-(instancetype) initWithCircularString: (SFCircularString *) circularString{
+    self = [self initWithHasZ:circularString.hasZ andHasM:circularString.hasM];
+    if(self != nil){
+        for(SFPoint *point in circularString.points){
+            [self addPoint:[point mutableCopy]];
+        }
     }
-    return circularString;
+    return self;
+}
+
+-(id) mutableCopyWithZone: (NSZone *) zone{
+    return [SFCircularString circularStringWithCircularString:self];
 }
 
 @end

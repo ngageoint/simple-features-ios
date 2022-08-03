@@ -57,6 +57,16 @@
 +(SFCompoundCurve *) compoundCurveWithLineString: (SFLineString *) lineString;
 
 /**
+ * Create
+ *
+ * @param compoundCurve
+ *            compound curve
+ *
+ *  @return new compound curve
+ */
++(SFCompoundCurve *) compoundCurveWithCompoundCurve: (SFCompoundCurve *) compoundCurve;
+
+/**
  *  Initialize
  *
  *  @return new compound curve
@@ -92,6 +102,16 @@
  *  @return new compound curve
  */
 -(instancetype) initWithLineString: (SFLineString *) lineString;
+
+/**
+ * Initialize
+ *
+ * @param compoundCurve
+ *            compound curve
+ *
+ *  @return new compound curve
+ */
+-(instancetype) initWithCompoundCurve: (SFCompoundCurve *) compoundCurve;
 
 /**
  *  Add a line string

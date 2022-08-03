@@ -19,6 +19,14 @@
 
 @implementation SFExtendedGeometryCollection
 
++(SFExtendedGeometryCollection *) extendedGeometryCollectionWithGeometryCollection: (SFGeometryCollection *) geometryCollection{
+    return [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
+}
+
++(SFExtendedGeometryCollection *) extendedGeometryCollectionWithExtendedGeometryCollection: (SFExtendedGeometryCollection *) extendedGeometryCollection{
+    return [[SFExtendedGeometryCollection alloc] initWithExtendedGeometryCollection:extendedGeometryCollection];
+}
+
 -(instancetype) initWithGeometryCollection: (SFGeometryCollection *) geometryCollection{
     self = [super initWithType:SF_GEOMETRYCOLLECTION andHasZ:geometryCollection.hasZ andHasM:geometryCollection.hasM];
     if(self != nil){
@@ -26,6 +34,15 @@
         self.extendedGeometryType = SF_GEOMETRYCOLLECTION;
         [self updateGeometryType];
     }
+    return self;
+}
+
+-(instancetype) initWithExtendedGeometryCollection: (SFExtendedGeometryCollection *) extendedGeometryCollection{
+    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:extendedGeometryCollection.hasZ andHasM:extendedGeometryCollection.hasM];
+    for(SFGeometry *geometry in extendedGeometryCollection.geometries){
+        [geometryCollection addGeometry:[geometry mutableCopy]];
+    }
+    self = [self initWithGeometryCollection:geometryCollection];
     return self;
 }
 
@@ -56,12 +73,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFGeometry *geometry in self.geometries){
-        [geometryCollection addGeometry:[geometry mutableCopy]];
-    }
-    SFExtendedGeometryCollection *extendedGeometryCollection = [[SFExtendedGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
-    return extendedGeometryCollection;
+    return [SFExtendedGeometryCollection extendedGeometryCollectionWithExtendedGeometryCollection:self];
 }
 
 + (BOOL) supportsSecureCoding {

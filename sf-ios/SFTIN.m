@@ -27,6 +27,10 @@
     return [[SFTIN alloc] initWithPolygon:polygon];
 }
 
++(SFTIN *) tinWithTIN: (SFTIN *) tin{
+    return [[SFTIN alloc] initWithTIN:tin];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -53,12 +57,18 @@
     return self;
 }
 
--(id) mutableCopyWithZone: (NSZone *) zone{
-    SFTIN *tin = [SFTIN tinWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPolygon *polygon in self.polygons){
-        [tin addPolygon:[polygon mutableCopy]];
+-(instancetype) initWithTIN: (SFTIN *) tin{
+    self = [self initWithHasZ:tin.hasZ andHasM:tin.hasM];
+    if(self != nil){
+        for(SFPolygon *polygon in tin.polygons){
+            [self addPolygon:[polygon mutableCopy]];
+        }
     }
-    return tin;
+    return self;
+}
+
+-(id) mutableCopyWithZone: (NSZone *) zone{
+    return [SFTIN tinWithTIN:self];
 }
 
 @end

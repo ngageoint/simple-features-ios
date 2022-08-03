@@ -28,6 +28,10 @@
     return [[SFTriangle alloc] initWithRing:ring];
 }
 
++(SFTriangle *) triangleWithTriangle: (SFTriangle *) triangle{
+    return [[SFTriangle alloc] initWithTriangle:triangle];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -54,12 +58,18 @@
     return self;
 }
 
--(id) mutableCopyWithZone: (NSZone *) zone{
-    SFTriangle *triangle = [SFTriangle triangleWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFLineString *ring in self.rings){
-        [triangle addRing:[ring mutableCopy]];
+-(instancetype) initWithTriangle: (SFTriangle *) triangle{
+    self = [self initWithHasZ:triangle.hasZ andHasM:triangle.hasM];
+    if(self != nil){
+        for(SFLineString *ring in triangle.rings){
+            [self addRing:[ring mutableCopy]];
+        }
     }
-    return triangle;
+    return self;
+}
+
+-(id) mutableCopyWithZone: (NSZone *) zone{
+    return [SFTriangle triangleWithTriangle:self];
 }
 
 @end

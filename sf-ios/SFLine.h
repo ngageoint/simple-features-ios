@@ -51,6 +51,15 @@
 +(SFLine *) lineWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
 
 /**
+ *  Create
+ *
+ *  @param line line
+ *
+ *  @return new line
+ */
++(SFLine *) lineWithLine: (SFLine *) line;
+
+/**
  *  Initialize
  *
  *  @return new line
@@ -86,5 +95,14 @@
  *  @return new line
  */
 -(instancetype) initWithPoint1: (SFPoint *) point1 andPoint2: (SFPoint *) point2;
+
+/**
+ *  Initialize
+ *
+ *  @param line line
+ *
+ *  @return new line
+ */
+-(instancetype) initWithLine: (SFLine *) line;
 
 @end

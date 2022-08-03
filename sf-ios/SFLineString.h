@@ -47,6 +47,16 @@
 +(SFLineString *) lineStringWithPoints: (NSMutableArray<SFPoint *> *) points;
 
 /**
+ * Create
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new line string
+ */
++(SFLineString *) lineStringWithLineString: (SFLineString *) lineString;
+
+/**
  *  Initialize
  *
  *  @return new line string
@@ -83,6 +93,16 @@
  *  @return new line string
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Initialize
+ *
+ * @param lineString
+ *            line string
+ *
+ *  @return new line string
+ */
+-(instancetype) initWithLineString: (SFLineString *) lineString;
 
 /**
  *  Add a point

@@ -53,6 +53,16 @@
 +(SFMultiLineString *) multiLineStringWithLineString: (SFLineString *) lineString;
 
 /**
+ * Create
+ *
+ * @param multiLineString
+ *            multi line string
+ *
+ *  @return new multi line string
+ */
++(SFMultiLineString *) multiLineStringWithMultiLineString: (SFMultiLineString *) multiLineString;
+
+/**
  *  Initialize
  *
  *  @return new multi line string
@@ -88,6 +98,16 @@
  *  @return new multi line string
  */
 -(instancetype) initWithLineString: (SFLineString *) lineString;
+
+/**
+ * Initialize
+ *
+ * @param multiLineString
+ *            multi line string
+ *
+ *  @return new multi line string
+ */
+-(instancetype) initWithMultiLineString: (SFMultiLineString *) multiLineString;
 
 /**
  *  Get the line strings

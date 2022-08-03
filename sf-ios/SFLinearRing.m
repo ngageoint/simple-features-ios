@@ -23,6 +23,10 @@
     return [[SFLinearRing alloc] initWithPoints:points];
 }
 
++(SFLinearRing *) linearRingWithLinearRing: (SFLinearRing *) linearRing{
+    return [[SFLinearRing alloc] initWithLinearRing:linearRing];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -40,6 +44,16 @@
     return self;
 }
 
+-(instancetype) initWithLinearRing: (SFLinearRing *) linearRing{
+    self = [self initWithHasZ:linearRing.hasZ andHasM:linearRing.hasM];
+    if(self != nil){
+        for(SFPoint *point in linearRing.points){
+            [self addPoint:[point mutableCopy]];
+        }
+    }
+    return self;
+}
+
 -(void) setPoints:(NSMutableArray<SFPoint *> *)points{
     [super setPoints:points];
     if(![self isEmpty]){
@@ -53,11 +67,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFLinearRing *linearRing = [SFLinearRing linearRingWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPoint *point in self.points){
-        [linearRing addPoint:[point mutableCopy]];
-    }
-    return linearRing;
+    return [SFLinearRing linearRingWithLinearRing:self];
 }
 
 @end

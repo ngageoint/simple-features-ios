@@ -27,6 +27,10 @@
     return [[SFPolyhedralSurface alloc] initWithPolygon:polygon];
 }
 
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
+    return [[SFPolyhedralSurface alloc] initWithPolyhedralSurface:polyhedralSurface];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -56,6 +60,16 @@
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.polygons = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(instancetype) initWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface{
+    self = [self initWithHasZ:polyhedralSurface.hasZ andHasM:polyhedralSurface.hasM];
+    if(self != nil){
+        for(SFPolygon *polygon in polyhedralSurface.polygons){
+            [self addPolygon:[polygon mutableCopy]];
+        }
     }
     return self;
 }
@@ -113,11 +127,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPolyhedralSurface *polyhedralSurface = [SFPolyhedralSurface polyhedralSurfaceWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPolygon *polygon in self.polygons){
-        [polyhedralSurface addPolygon:[polygon mutableCopy]];
-    }
-    return polyhedralSurface;
+    return [SFPolyhedralSurface polyhedralSurfaceWithPolyhedralSurface:self];
 }
 
 + (BOOL) supportsSecureCoding {

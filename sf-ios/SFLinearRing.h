@@ -41,6 +41,16 @@
 +(SFLinearRing *) linearRingWithPoints: (NSMutableArray<SFPoint *> *) points;
 
 /**
+ * Create
+ *
+ * @param linearRing
+ *            linear ring
+ *
+ *  @return new linear ring
+ */
++(SFLinearRing *) linearRingWithLinearRing: (SFLinearRing *) linearRing;
+
+/**
  *  Initialize
  *
  *  @return new linear ring
@@ -66,5 +76,15 @@
  *  @return new linear ring
  */
 -(instancetype) initWithPoints: (NSMutableArray<SFPoint *> *) points;
+
+/**
+ * Initialize
+ *
+ * @param linearRing
+ *            linear ring
+ *
+ *  @return new linear ring
+ */
+-(instancetype) initWithLinearRing: (SFLinearRing *) linearRing;
 
 @end

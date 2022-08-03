@@ -175,6 +175,15 @@
                      andMaxMValue: (double) maxM;
 
 /**
+ *  Create
+ *
+ *  @param geometryEnvelope geometry envelope
+ *
+ *  @return new geometry envelope
+ */
++(SFGeometryEnvelope *) geometryEnvelopeWithGeometryEnvelope: (SFGeometryEnvelope *) geometryEnvelope;
+
+/**
  *  Initialize with no z or m
  *
  *  @return new geometry envelope
@@ -304,6 +313,15 @@
                      andMaxYValue: (double) maxY
                      andMaxZValue: (double) maxZ
                      andMaxMValue: (double) maxM;
+
+/**
+ *  Initialize
+ *
+ *  @param geometryEnvelope geometry envelope
+ *
+ *  @return new geometry envelope
+ */
+-(instancetype) initWithGeometryEnvelope: (SFGeometryEnvelope *) geometryEnvelope;
 
 /**
  *  Set the min x value

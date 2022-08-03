@@ -52,6 +52,16 @@
 +(SFTIN *) tinWithPolygon: (SFPolygon *) polygon;
 
 /**
+ * Create
+ *
+ * @param tin
+ *            tin
+ *
+ *  @return new tin
+ */
++(SFTIN *) tinWithTIN: (SFTIN *) tin;
+
+/**
  *  Initialize
  *
  *  @return new tin
@@ -87,5 +97,15 @@
  *  @return new tin
  */
 -(instancetype) initWithPolygon: (SFPolygon *) polygon;
+
+/**
+ * Initialize
+ *
+ * @param tin
+ *            tin
+ *
+ *  @return new tin
+ */
+-(instancetype) initWithTIN: (SFTIN *) tin;
 
 @end

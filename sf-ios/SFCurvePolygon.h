@@ -58,6 +58,16 @@
 +(SFCurvePolygon *) curvePolygonWithRing: (SFCurve *) ring;
 
 /**
+ * Create
+ *
+ * @param curvePolygon
+ *            curve polygon
+ *
+ *  @return new curve polygon
+ */
++(SFCurvePolygon *) curvePolygonWithCurvePolygon: (SFCurvePolygon *) curvePolygon;
+
+/**
  *  Initialize
  *
  *  @return new curve polygon
@@ -104,6 +114,16 @@
  *  @return new curve polygon
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Initialize
+ *
+ * @param curvePolygon
+ *            curve polygon
+ *
+ *  @return new curve polygon
+ */
+-(instancetype) initWithCurvePolygon: (SFCurvePolygon *) curvePolygon;
 
 /**
  *  Add a ring

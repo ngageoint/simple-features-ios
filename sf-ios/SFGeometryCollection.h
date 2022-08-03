@@ -62,6 +62,16 @@
 +(SFGeometryCollection *) geometryCollectionWithGeometry: (SFGeometry *) geometry;
 
 /**
+ * Create
+ *
+ * @param geometryCollection
+ *            geometry ollection
+ *
+ *  @return new geometry collection
+ */
++(SFGeometryCollection *) geometryCollectionWithGeometryCollection: (SFGeometryCollection *) geometryCollection;
+
+/**
  *  Initialize
  *
  *  @return new geometry collection
@@ -108,6 +118,16 @@
  *  @return new geometry collection
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Initialize
+ *
+ * @param geometryCollection
+ *            geometry ollection
+ *
+ *  @return new geometry collection
+ */
+-(instancetype) initWithGeometryCollection: (SFGeometryCollection *) geometryCollection;
 
 /**
  *  Add geometry

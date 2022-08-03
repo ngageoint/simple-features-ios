@@ -27,6 +27,10 @@
     return [[SFMultiPoint alloc] initWithPoint:point];
 }
 
++(SFMultiPoint *) multiPointWithMultiPoint: (SFMultiPoint *) multiPoint{
+    return [[SFMultiPoint alloc] initWithMultiPoint:multiPoint];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -49,6 +53,16 @@
     self = [self initWithHasZ:point.hasZ andHasM:point.hasM];
     if(self != nil){
         [self addPoint:point];
+    }
+    return self;
+}
+
+-(instancetype) initWithMultiPoint: (SFMultiPoint *) multiPoint{
+    self = [self initWithHasZ:multiPoint.hasZ andHasM:multiPoint.hasM];
+    if(self != nil){
+        for(SFPoint *point in multiPoint.geometries){
+            [self addPoint:[point mutableCopy]];
+        }
     }
     return self;
 }
@@ -83,11 +97,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFMultiPoint *multiPoint = [SFMultiPoint multiPointWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPoint *point in self.geometries){
-        [multiPoint addPoint:[point mutableCopy]];
-    }
-    return multiPoint;
+    return [SFMultiPoint multiPointWithMultiPoint:self];
 }
 
 @end

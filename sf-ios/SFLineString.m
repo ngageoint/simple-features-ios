@@ -24,6 +24,10 @@
     return [[SFLineString alloc] initWithPoints:points];
 }
 
++(SFLineString *) lineStringWithLineString: (SFLineString *) lineString{
+    return [[SFLineString alloc] initWithLineString:lineString];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -45,6 +49,16 @@
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.points = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(instancetype) initWithLineString: (SFLineString *) lineString{
+    self = [self initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
+    if(self != nil){
+        for(SFPoint *point in lineString.points){
+            [self addPoint:[point mutableCopy]];
+        }
     }
     return self;
 }
@@ -93,11 +107,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFLineString *lineString = [SFLineString lineStringWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPoint *point in self.points){
-        [lineString addPoint:[point mutableCopy]];
-    }
-    return lineString;
+    return [SFLineString lineStringWithLineString:self];
 }
 
 + (BOOL) supportsSecureCoding {

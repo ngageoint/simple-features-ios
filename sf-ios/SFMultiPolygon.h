@@ -53,6 +53,16 @@
 +(SFMultiPolygon *) multiPolygonWithPolygon: (SFPolygon *) polygon;
 
 /**
+ * Create
+ *
+ * @param multiPolygon
+ *            multi polygon
+ *
+ *  @return new multi polygon
+ */
++(SFMultiPolygon *) multiPolygonWithMultiPolygon: (SFMultiPolygon *) multiPolygon;
+
+/**
  *  Initialize
  *
  *  @return new multi polygon
@@ -88,6 +98,16 @@
  *  @return new multi polygon
  */
 -(instancetype) initWithPolygon: (SFPolygon *) polygon;
+
+/**
+ * Initialize
+ *
+ * @param multiPolygon
+ *            multi polygon
+ *
+ *  @return new multi polygon
+ */
+-(instancetype) initWithMultiPolygon: (SFMultiPolygon *) multiPolygon;
 
 /**
  *  Get the polygons

@@ -53,6 +53,16 @@
 +(SFPolygon *) polygonWithRing: (SFLineString *) ring;
 
 /**
+ * Create
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new polygon
+ */
++(SFPolygon *) polygonWithPolygon: (SFPolygon *) polygon;
+
+/**
  *  Initialize
  *
  *  @return new polygon
@@ -99,6 +109,16 @@
  *  @return new polygon
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Initialize
+ *
+ * @param polygon
+ *            polygon
+ *
+ *  @return new polygon
+ */
+-(instancetype) initWithPolygon: (SFPolygon *) polygon;
 
 /**
  * Get the line string rings

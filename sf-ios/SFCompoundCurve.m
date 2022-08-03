@@ -28,6 +28,10 @@
     return [[SFCompoundCurve alloc] initWithLineString:lineString];
 }
 
++(SFCompoundCurve *) compoundCurveWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
+    return [[SFCompoundCurve alloc] initWithCompoundCurve:compoundCurve];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -53,6 +57,16 @@
     self = [self initWithHasZ:lineString.hasZ andHasM:lineString.hasM];
     if(self != nil){
         [self addLineString:lineString];
+    }
+    return self;
+}
+
+-(instancetype) initWithCompoundCurve: (SFCompoundCurve *) compoundCurve{
+    self = [self initWithHasZ:compoundCurve.hasZ andHasM:compoundCurve.hasM];
+    if(self != nil){
+        for(SFLineString *lineString in compoundCurve.lineStrings){
+            [self addLineString:[lineString mutableCopy]];
+        }
     }
     return self;
 }
@@ -112,11 +126,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFCompoundCurve *compoundCurve = [SFCompoundCurve compoundCurveWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFLineString *lineString in self.lineStrings){
-        [compoundCurve addLineString:[lineString mutableCopy]];
-    }
-    return compoundCurve;
+    return [SFCompoundCurve compoundCurveWithCompoundCurve:self];
 }
 
 + (BOOL) supportsSecureCoding {

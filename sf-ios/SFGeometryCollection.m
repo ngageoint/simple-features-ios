@@ -32,6 +32,10 @@
     return [[SFGeometryCollection alloc] initWithGeometry:geometry];
 }
 
++(SFGeometryCollection *) geometryCollectionWithGeometryCollection: (SFGeometryCollection *) geometryCollection{
+    return [[SFGeometryCollection alloc] initWithGeometryCollection:geometryCollection];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -61,6 +65,16 @@
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.geometries = [NSMutableArray array];
+    }
+    return self;
+}
+
+-(instancetype) initWithGeometryCollection: (SFGeometryCollection *) geometryCollection{
+    self = [self initWithHasZ:geometryCollection.hasZ andHasM:geometryCollection.hasM];
+    if(self != nil){
+        for(SFGeometry *geometry in geometryCollection.geometries){
+            [self addGeometry:[geometry mutableCopy]];
+        }
     }
     return self;
 }
@@ -239,11 +253,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryCollection *geometryCollection = [SFGeometryCollection geometryCollectionWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFGeometry *geometry in self.geometries){
-        [geometryCollection addGeometry:[geometry mutableCopy]];
-    }
-    return geometryCollection;
+    return [SFGeometryCollection geometryCollectionWithGeometryCollection:self];
 }
 
 + (BOOL) supportsSecureCoding {

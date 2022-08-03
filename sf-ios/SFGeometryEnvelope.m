@@ -76,6 +76,10 @@
     return [[SFGeometryEnvelope alloc] initWithMinXValue:minX andMinYValue:minY andMinZValue:minZ andMinMValue:minM andMaxXValue:maxX andMaxYValue:maxY andMaxZValue:maxZ andMaxMValue:maxM];
 }
 
++(SFGeometryEnvelope *) geometryEnvelopeWithGeometryEnvelope: (SFGeometryEnvelope *) geometryEnvelope{
+    return [[SFGeometryEnvelope alloc] initWithGeometryEnvelope:geometryEnvelope];
+}
+
 -(instancetype) init{
     return [self initWithHasZ:false andHasM:false];
 }
@@ -169,6 +173,11 @@
                        andMaxY:[[NSDecimalNumber alloc] initWithDouble:maxY]
                       andMaxZ:[[NSDecimalNumber alloc] initWithDouble:maxZ]
                       andMaxM:[[NSDecimalNumber alloc] initWithDouble:maxM]];
+}
+
+-(instancetype) initWithGeometryEnvelope: (SFGeometryEnvelope *) geometryEnvelope{
+    self = [self initWithMinX:geometryEnvelope.minX andMinY:geometryEnvelope.minY andMinZ:geometryEnvelope.minZ andMinM:geometryEnvelope.minM andMaxX:geometryEnvelope.maxX andMaxY:geometryEnvelope.maxY andMaxZ:geometryEnvelope.maxZ andMaxM:geometryEnvelope.maxM];
+    return self;
 }
 
 -(void) setMinXValue: (double) x{
@@ -364,8 +373,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFGeometryEnvelope *envelope = [SFGeometryEnvelope envelopeWithMinX:self.minX andMinY:self.minY andMinZ:self.minZ andMinM:self.minM andMaxX:self.maxX andMaxY:self.maxY andMaxZ:self.maxZ andMaxM:self.maxM];
-    return envelope;
+    return [SFGeometryEnvelope geometryEnvelopeWithGeometryEnvelope:self];
 }
 
 + (BOOL) supportsSecureCoding {

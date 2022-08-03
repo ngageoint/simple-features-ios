@@ -53,6 +53,16 @@
 +(SFMultiPoint *) multiPointWithPoint: (SFPoint *) point;
 
 /**
+ * Create
+ *
+ * @param multiPoint
+ *            multi point
+ *
+ *  @return new multi point
+ */
++(SFMultiPoint *) multiPointWithMultiPoint: (SFMultiPoint *) multiPoint;
+
+/**
  *  Initialize
  *
  *  @return new multi point
@@ -88,6 +98,16 @@
  *  @return new multi point
  */
 -(instancetype) initWithPoint: (SFPoint *) point;
+
+/**
+ * Initialize
+ *
+ * @param multiPoint
+ *            multi point
+ *
+ *  @return new multi point
+ */
+-(instancetype) initWithMultiPoint: (SFMultiPoint *) multiPoint;
 
 /**
  *  Get the points

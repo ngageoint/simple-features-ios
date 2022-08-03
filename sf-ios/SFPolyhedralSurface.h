@@ -57,6 +57,16 @@
 +(SFPolyhedralSurface *) polyhedralSurfaceWithPolygon: (SFPolygon *) polygon;
 
 /**
+ * Create
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface
+ *
+ *  @return new polyhedral surface
+ */
++(SFPolyhedralSurface *) polyhedralSurfaceWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface;
+
+/**
  *  Initialize
  *
  *  @return new polyhedral surface
@@ -103,6 +113,16 @@
  *  @return new polyhedral surface
  */
 -(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+
+/**
+ * Initialize
+ *
+ * @param polyhedralSurface
+ *            polyhedral surface
+ *
+ *  @return new polyhedral surface
+ */
+-(instancetype) initWithPolyhedralSurface: (SFPolyhedralSurface *) polyhedralSurface;
 
 /**
  * Get patches

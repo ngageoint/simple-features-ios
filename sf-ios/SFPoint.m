@@ -54,6 +54,10 @@
     return [[SFPoint alloc] initWithHasZ:hasZ andHasM:hasM andXValue:x andYValue:y];
 }
 
++(SFPoint *) pointWithPoint: (SFPoint *) point{
+    return [[SFPoint alloc] initWithPoint:point];
+}
+
 -(instancetype) init{
     return [self initWithXValue:0.0 andYValue:0.0];
 }
@@ -110,6 +114,15 @@
     return [self initWithHasZ:hasZ andHasM:hasM andX:[[NSDecimalNumber alloc] initWithDouble:x] andY:[[NSDecimalNumber alloc] initWithDouble:y]];
 }
 
+-(instancetype) initWithPoint: (SFPoint *) point{
+    self = [self initWithHasZ:point.hasZ andHasM:point.hasM andX:point.x andY:point.y];
+    if(self != nil){
+        _z = point.z;
+        _m = point.m;
+    }
+    return self;
+}
+
 -(void) setZ: (NSDecimalNumber *) z{
     _z = z;
     [self setHasZ:z != nil];
@@ -145,10 +158,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPoint *point = [SFPoint pointWithHasZ:self.hasZ andHasM:self.hasM andX:self.x andY:self.y];
-    [point setZ:self.z];
-    [point setM:self.m];
-    return point;
+    return [SFPoint pointWithPoint:self];
 }
 
 + (BOOL) supportsSecureCoding {

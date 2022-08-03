@@ -155,6 +155,15 @@
 +(SFPoint *) pointWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y;
 
 /**
+ *  Create
+ *
+ *  @param point point
+ *
+ *  @return new point
+ */
++(SFPoint *) pointWithPoint: (SFPoint *) point;
+
+/**
  *  Initialize
  *
  *  @return new point
@@ -273,6 +282,15 @@
  *  @return new point
  */
 -(instancetype) initWithHasZ: (BOOL) hasZ andHasM: (BOOL) hasM andXValue: (double) x andYValue: (double) y;
+
+/**
+ *  Initialize
+ *
+ *  @param point point
+ *
+ *  @return new point
+ */
+-(instancetype) initWithPoint: (SFPoint *) point;
 
 /**
  *  Set the x value

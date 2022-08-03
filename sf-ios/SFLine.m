@@ -27,6 +27,10 @@
     return [[SFLine alloc] initWithPoint1:point1 andPoint2:point2];
 }
 
++(SFLine *) lineWithLine: (SFLine *) line{
+    return [[SFLine alloc] initWithLine:line];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -53,6 +57,16 @@
     return self;
 }
 
+-(instancetype) initWithLine: (SFLine *) line{
+    self = [self initWithHasZ:line.hasZ andHasM:line.hasM];
+    if(self != nil){
+        for(SFPoint *point in line.points){
+            [self addPoint:[point mutableCopy]];
+        }
+    }
+    return self;
+}
+
 -(void) setPoints:(NSMutableArray<SFPoint *> *)points{
     [super setPoints:points];
     if(![self isEmpty] && [self numPoints] != 2){
@@ -61,11 +75,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFLine *line = [SFLine lineWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFPoint *point in self.points){
-        [line addPoint:[point mutableCopy]];
-    }
-    return line;
+    return [SFLine lineWithLine:self];
 }
 
 @end

@@ -29,6 +29,10 @@
     return [[SFPolygon alloc] initWithRing:ring];
 }
 
++(SFPolygon *) polygonWithPolygon: (SFPolygon *) polygon{
+    return [[SFPolygon alloc] initWithPolygon:polygon];
+}
+
 -(instancetype) init{
     self = [self initWithHasZ:false andHasM:false];
     return self;
@@ -59,6 +63,16 @@
     return self;
 }
 
+-(instancetype) initWithPolygon: (SFPolygon *) polygon{
+    self = [self initWithHasZ:polygon.hasZ andHasM:polygon.hasM];
+    if(self != nil){
+        for(SFLineString *ring in polygon.rings){
+            [self addRing:[ring mutableCopy]];
+        }
+    }
+    return self;
+}
+
 -(NSMutableArray<SFLineString *> *) lineStrings{
     return (NSMutableArray<SFLineString *> *) self.rings;
 }
@@ -84,11 +98,7 @@
 }
 
 -(id) mutableCopyWithZone: (NSZone *) zone{
-    SFPolygon *polygon = [SFPolygon polygonWithHasZ:self.hasZ andHasM:self.hasM];
-    for(SFLineString *ring in self.rings){
-        [polygon addRing:[ring mutableCopy]];
-    }
-    return polygon;
+    return [SFPolygon polygonWithPolygon:self];
 }
 
 @end

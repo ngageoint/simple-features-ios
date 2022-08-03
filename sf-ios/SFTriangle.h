@@ -51,6 +51,16 @@
 +(SFTriangle *) triangleWithRing: (SFLineString *) ring;
 
 /**
+ * Create
+ *
+ * @param triangle
+ *            triangle
+ *
+ *  @return new triangle
+ */
++(SFTriangle *) triangleWithTriangle: (SFTriangle *) triangle;
+
+/**
  *  Initialize
  *
  *  @return new triangle
@@ -86,5 +96,15 @@
  *  @return new triangle
  */
 -(instancetype) initWithRing: (SFLineString *) ring;
+
+/**
+ * Initialize
+ *
+ * @param triangle
+ *            triangle
+ *
+ *  @return new triangle
+ */
+-(instancetype) initWithTriangle: (SFTriangle *) triangle;
 
 @end
