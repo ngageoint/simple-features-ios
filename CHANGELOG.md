@@ -4,9 +4,13 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 4.1.0 (TBD)
+## [4.1.0](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.0) (09-06-2022)
 
-* TBD
+* Static creation shortcut methods
+* Copy initializers
+* Geometry utility intersections, distance, bearings, conversions, envelopes, crop, equal, contains, and bound
+* GeometryEnvelope modified to Secure Coding
+* GeometryEnvelope value setters, directionals, mids, centroid, empty, contains, and build geometry
 
 ## [4.0.1](https://github.com/ngageoint/simple-features-ios/releases/tag/4.0.1) (02-10-2022)
 
