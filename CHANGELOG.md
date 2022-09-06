@@ -4,6 +4,10 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+# 4.1.1 (TBD)
+
+* TBD
+
 ## [4.1.0](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.0) (09-06-2022)
 
 * Static creation shortcut methods
