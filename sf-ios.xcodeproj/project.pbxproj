@@ -62,7 +62,6 @@
 		042FC6D11B96421E00549A4B /* SFGeometryPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */; };
 		042FC6D21B96421E00549A4B /* SFGeometryPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */; };
 		042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */; };
-		042FC6D51B96453E00549A4B /* sf_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6D41B96453E00549A4B /* sf_ios.h */; };
 		0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */; };
 		0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */; };
 		0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */; };
@@ -174,7 +173,6 @@
 		042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryPrinter.h; sourceTree = "<group>"; };
 		042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryPrinter.m; sourceTree = "<group>"; };
 		042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Prefix.pch"; sourceTree = "<group>"; };
-		042FC6D41B96453E00549A4B /* sf_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sf_ios.h; sourceTree = "<group>"; };
 		0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryUtils.h; sourceTree = "<group>"; };
 		0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtils.m; sourceTree = "<group>"; };
 		0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidPoint.h; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 		042FC64D1B963FE500549A4B /* sf-ios */ = {
 			isa = PBXGroup;
 			children = (
-				042FC6D41B96453E00549A4B /* sf_ios.h */,
 				042FC6681B96421E00549A4B /* SFCircularString.h */,
 				042FC6691B96421E00549A4B /* SFCircularString.m */,
 				042FC66A1B96421E00549A4B /* SFCompoundCurve.h */,
@@ -476,7 +473,6 @@
 				042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */,
 				049D955D27B4479B003C8046 /* SFDegreesCentroid.h in Headers */,
 				042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */,
-				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
 				0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */,
 				0445CB2F1EA150D1008DC0D7 /* SFCentroidCurve.h in Headers */,
 				041F18D324C75D53001311E4 /* SFGeometryFilter.h in Headers */,
