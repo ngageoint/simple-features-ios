@@ -4,9 +4,9 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-# 4.1.1 (TBD)
+## [4.1.1](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.1) (TBD)
 
-* TBD
+* Imports cleanup and simplification
 
 ## [4.1.0](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.0) (09-06-2022)
 
