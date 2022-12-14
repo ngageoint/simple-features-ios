@@ -8,8 +8,6 @@
 
 #import "SFGeometryTestUtils.h"
 #import "SFTestUtils.h"
-#import "SFByteWriter.h"
-#import "SFByteReader.h"
 
 @implementation SFGeometryTestUtils
 

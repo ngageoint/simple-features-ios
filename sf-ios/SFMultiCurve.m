@@ -7,7 +7,6 @@
 //
 
 #import "SFMultiCurve.h"
-#import "SFCurve.h"
 
 @implementation SFMultiCurve
 

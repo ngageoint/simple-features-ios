@@ -7,9 +7,7 @@
 //
 
 #import "SFGeometryEnvelope.h"
-#import "SFPoint.h"
 #import "SFLine.h"
-#import "SFGeometry.h"
 #import "SFGeometryEnvelopeBuilder.h"
 
 @implementation SFGeometryEnvelope

@@ -7,7 +7,6 @@
 //
 
 #import "SFTriangle.h"
-#import "SFLineString.h"
 #import "SFGeometryUtils.h"
 
 @implementation SFTriangle

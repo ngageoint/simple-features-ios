@@ -7,7 +7,6 @@
 //
 
 #import "SFCurve.h"
-#import "SFPoint.h"
 
 /**
  * A Curve that connects two or more points in space.

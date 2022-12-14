@@ -6,10 +6,7 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "SFPolygon.h"
-#import "SFPoint.h"
-#import "SFLineString.h"
 
 /**
  * Shamos-Hoey simple polygon detection

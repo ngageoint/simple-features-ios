@@ -6,12 +6,6 @@
 //  Copyright © 2017 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SFGeometry.h"
-#import "SFPoint.h"
-#import "SFLineString.h"
-#import "SFPolygon.h"
-#import "SFGeometryTypes.h"
 #import "SFLine.h"
 #import "SFMultiPoint.h"
 #import "SFCircularString.h"

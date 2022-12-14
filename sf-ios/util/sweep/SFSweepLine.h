@@ -6,8 +6,6 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "SFPoint.h"
 #import "SFSegment.h"
 #import "SFEvent.h"
 #import "SFLineString.h"

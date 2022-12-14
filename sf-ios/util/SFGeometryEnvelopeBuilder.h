@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "SFGeometryEnvelope.h"
-#import "SFGeometry.h"
 
 /**
  *  Builds an envelope from a Geometry
