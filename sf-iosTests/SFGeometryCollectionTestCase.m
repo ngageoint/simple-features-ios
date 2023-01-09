@@ -9,7 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "SFTestUtils.h"
 #import "SFGeometryTestUtils.h"
-#import "SFPoint.h"
 #import "SFExtendedGeometryCollection.h"
 
 @interface SFGeometryCollectionTestCase : XCTestCase

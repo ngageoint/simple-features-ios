@@ -7,12 +7,6 @@
 //
 
 #import "SFDegreesCentroid.h"
-#import "SFLineString.h"
-#import "SFPolygon.h"
-#import "SFGeometryUtils.h"
-#import "SFGeometryCollection.h"
-#import "SFCompoundCurve.h"
-#import "SFPolyhedralSurface.h"
 #import "SFGeometryUtils.h"
 
 @interface SFDegreesCentroid()

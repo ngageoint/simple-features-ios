@@ -6,8 +6,6 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SFPoint.h"
 #import "SFSegment.h"
 #import "SFEvent.h"
 #import "SFLineString.h"

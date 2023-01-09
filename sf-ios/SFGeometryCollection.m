@@ -6,13 +6,9 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFGeometryCollection.h"
 #import "SFGeometryUtils.h"
-#import "SFMultiPoint.h"
 #import "SFMultiLineString.h"
 #import "SFMultiPolygon.h"
-#import "SFMultiCurve.h"
-#import "SFMultiSurface.h"
 
 @implementation SFGeometryCollection
 

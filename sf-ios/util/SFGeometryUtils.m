@@ -7,18 +7,11 @@
 //
 
 #import "SFGeometryUtils.h"
-#import "SFGeometryCollection.h"
 #import "SFCentroidPoint.h"
 #import "SFCentroidCurve.h"
 #import "SFCentroidSurface.h"
 #import "SFMultiLineString.h"
 #import "SFMultiPolygon.h"
-#import "SFCompoundCurve.h"
-#import "SFPolyhedralSurface.h"
-#import "SFTIN.h"
-#import "SFCircularString.h"
-#import "SFTriangle.h"
-#import "SFMultiPoint.h"
 #import "SFDegreesCentroid.h"
 #import "SFGeometryConstants.h"
 

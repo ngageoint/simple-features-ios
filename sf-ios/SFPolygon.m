@@ -7,7 +7,6 @@
 //
 
 #import "SFPolygon.h"
-#import "SFLineString.h"
 #import "SFShamosHoey.h"
 #import "SFGeometryUtils.h"
 

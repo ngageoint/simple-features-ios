@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SFGeometry.h"
 #import "SFGeometryUtils.h"
 #import "SFGeometryTestUtils.h"
 #import "SFTestUtils.h"

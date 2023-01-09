@@ -7,7 +7,6 @@
 //
 
 #import "SFGeometryCollection.h"
-#import "SFPoint.h"
 
 /**
  * A restricted form of GeometryCollection where each Geometry in the collection

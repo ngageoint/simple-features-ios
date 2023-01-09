@@ -9,7 +9,6 @@
 #ifndef sf_ios_SFGeometryFilter_h
 #define sf_ios_SFGeometryFilter_h
 
-#import <Foundation/Foundation.h>
 #import "SFGeometry.h"
 
 /**

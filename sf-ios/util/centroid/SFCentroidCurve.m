@@ -7,10 +7,8 @@
 //
 
 #import "SFCentroidCurve.h"
-#import "SFLineString.h"
 #import "SFGeometryUtils.h"
 #import "SFMultiLineString.h"
-#import "SFCompoundCurve.h"
 
 @interface SFCentroidCurve()
 

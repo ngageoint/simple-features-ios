@@ -10,7 +10,6 @@
 #import "SFTestUtils.h"
 #import "SFGeometryTestUtils.h"
 #import "SFGeometryUtils.h"
-#import "SFGeometryEnvelopeBuilder.h"
 #import "SFGeometryConstants.h"
 
 @interface SFGeometryUtilsTestCase : XCTestCase
