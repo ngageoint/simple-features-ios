@@ -50,12 +50,18 @@
     
     // Update the above and below pointers
     SFSegment *next = [self higherSegment:insertLocation];
+    if (next == nil) {
+        next = [self.tree firstObject];
+    }
     SFSegment *previous = [self lowerSegment:insertLocation];
-    if (next != nil) {
+    if (previous == nil) {
+        previous = [self.tree lastObject];
+    }
+    if (next != segment) {
         segment.above = next;
         next.below = segment;
     }
-    if (previous != nil) {
+    if (previous != segment) {
         segment.below = previous;
         previous.above = segment;
     }
@@ -120,7 +126,7 @@
  */
 -(SFSegment *) lowerSegment: (int) location{
     SFSegment *lower = nil;
-    if(location - 1 > 0){
+    if(location > 0){
         lower = [self.tree objectAtIndex:location - 1];
     }
     return lower;
@@ -182,7 +188,7 @@
 
     BOOL intersect = NO;
     
-    if (segment1 != nil && segment2 != nil) {
+    if (segment1 != nil && segment2 != nil && segment1 != segment2) {
         
         int ring1 = segment1.ring;
         int ring2 = segment2.ring;

@@ -25,7 +25,7 @@
 }
 
 - (void)testSimple {
-
+    
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     [self addPoint:points withX:0 andY:0];
@@ -63,7 +63,7 @@
     
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygonPoints:points]];
     [SFTestUtils assertEqualIntWithValue:7 andValue2:(int)points.count];
-
+    
     [points removeAllObjects];
     
     [self addPoint:points withX:-106.3256836 andY:40.2962865];
@@ -116,7 +116,7 @@
     [self addPoint:points withX:-104.7930908 andY:39.7369603];
     [self addPoint:points withX:-104.808197 andY:39.7541849];
     [self addPoint:points withX:-104.8383236 andY:39.753723];
-
+    
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygonPoints:points]];
     [SFTestUtils assertEqualIntWithValue:8 andValue2:(int)points.count];
     
@@ -126,7 +126,7 @@
     [self addPoint:points withX:-105.6445313 andY:38.5911138];
     [self addPoint:points withX:-105.0842285 andY:40.3046654];
     [self addPoint:points withX:-105.6445313 andY:38.5911138];
-
+    
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygonPoints:points]];
     [SFTestUtils assertEqualIntWithValue:4 andValue2:(int)points.count];
     
@@ -166,7 +166,7 @@
     [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
-
+    
 }
 
 - (void)testNonSimpleHole {
@@ -241,7 +241,7 @@
     [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
-
+    
 }
 
 - (void)testIntersectingHoles {
@@ -295,7 +295,7 @@
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints]];
-
+    
 }
 
 - (void)testHoleInsideHole {
@@ -332,7 +332,7 @@
     [SFTestUtils assertEqualIntWithValue:2 andValue2:[polygon numRings]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints] ];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
-
+    
     NSMutableArray<SFPoint *> *holePoints2 = [NSMutableArray array];
     
     [self addPoint:holePoints2 withX:2 andY:2];
@@ -349,7 +349,7 @@
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:0]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:1]) numPoints]];
     [SFTestUtils assertEqualIntWithValue:3 andValue2:[((SFLineString *)[polygon.rings objectAtIndex:2]) numPoints]];
-
+    
 }
 
 - (void)testExternalHole {
@@ -460,13 +460,228 @@
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygonPoints:points]];
     [SFTestUtils assertEqualIntWithValue:1 + (int) (radius / increment * 4) andValue2:(int)points.count];
-
+    
     [points removeObjectAtIndex:invalidIndex];
     previousPoint = [points objectAtIndex:points.count - 3];
     [self addPoint:points withX:[previousPoint.x doubleValue] andY:[previousPoint.y doubleValue] + .000000000000001];
     
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygonPoints:points]];
     [SFTestUtils assertEqualIntWithValue:1 + (int) (radius / increment * 4) andValue2:(int)points.count];
+    
+}
+
+- (void) testPolygons1 {
+    
+    SFLineString *ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:0]];
+    SFPolygon *polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertFalse:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:4]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertTrue:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertFalse:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertTrue:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:1 andYValue:3]];
+    [ring addPoint:[SFPoint pointWithXValue:3 andYValue:1]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertFalse:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:3 andYValue:1]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:1 andYValue:3]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertTrue:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:1 andYValue:3]];
+    [ring addPoint:[SFPoint pointWithXValue:3 andYValue:1]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertFalse:[polygon isSimple]];
+    
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:1 andYValue:3]];
+    [ring addPoint:[SFPoint pointWithXValue:4 andYValue:4]];
+    [ring addPoint:[SFPoint pointWithXValue:3 andYValue:1]];
+    [ring addPoint:[SFPoint pointWithXValue:0 andYValue:0]];
+    polygon = [SFPolygon polygonWithRing:ring];
+    
+    [SFTestUtils assertTrue:[polygon isSimple]];
+    
+}
+
+- (void) testPolygons2 {
+
+    SFLineString *ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    [ring addPoint:[SFPoint pointWithXValue:120.94208471603682 andYValue:241.47274889005215]];
+    [ring addPoint:[SFPoint pointWithXValue:120.57389187028015 andYValue:240.42380619065557]];
+    [ring addPoint:[SFPoint pointWithXValue:120.40553233952696 andYValue:239.3249423106921]];
+    [ring addPoint:[SFPoint pointWithXValue:120.44278575100797 andYValue:238.2138802324909]];
+    [ring addPoint:[SFPoint pointWithXValue:120.68437322950616 andYValue:237.12876169126298]];
+    [ring addPoint:[SFPoint pointWithXValue:121.12200129996195 andYValue:236.1068378045508]];
+    [ring addPoint:[SFPoint pointWithXValue:121.74064659481407 andYValue:235.18319027576013]];
+    [ring addPoint:[SFPoint pointWithXValue:122.51907159233552 andYValue:234.38952707167576]];
+    SFPolygon *polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    [ring addPoint:[SFPoint pointWithXValue:120.94208471603682 andYValue:241.47274889005215]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.57389187028015 andYValue:240.42380619065557]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.40553233952696 andYValue:239.3249423106921]];
+    [ring addPoint:[SFPoint pointWithXValue:120.44278575100797 andYValue:238.2138802324909]];
+    [ring addPoint:[SFPoint pointWithXValue:120.68437322950616 andYValue:237.12876169126298]];
+    [ring addPoint:[SFPoint pointWithXValue:121.12200129996195 andYValue:236.1068378045508]];
+    [ring addPoint:[SFPoint pointWithXValue:121.74064659481407 andYValue:235.18319027576013]];
+    [ring addPoint:[SFPoint pointWithXValue:122.51907159233552 andYValue:234.38952707167576]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertTrue:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    [ring addPoint:[SFPoint pointWithXValue:120.94208471603682 andYValue:241.47274889005215]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.57389187028015 andYValue:240.42380619065557]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.40553233952696 andYValue:239.3249423106921]];
+    [ring addPoint:[SFPoint pointWithXValue:120.44278575100797 andYValue:238.2138802324909]];
+    [ring addPoint:[SFPoint pointWithXValue:120.68437322950616 andYValue:237.12876169126298]];
+    [ring addPoint:[SFPoint pointWithXValue:121.12200129996195 andYValue:236.1068378045508]];
+    [ring addPoint:[SFPoint pointWithXValue:121.74064659481407 andYValue:235.18319027576013]];
+    [ring addPoint:[SFPoint pointWithXValue:122.51907159233552 andYValue:234.38952707167576]];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertTrue:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    [ring addPoint:[SFPoint pointWithXValue:120.94208471603682 andYValue:241.47274889005215]];
+    [ring addPoint:[SFPoint pointWithXValue:120.57389187028015 andYValue:240.42380619065557]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.40553233952696 andYValue:239.3249423106921]];
+    [ring addPoint:[SFPoint pointWithXValue:120.44278575100797 andYValue:238.2138802324909]];
+    [ring addPoint:[SFPoint pointWithXValue:120.68437322950616 andYValue:237.12876169126298]];
+    [ring addPoint:[SFPoint pointWithXValue:121.12200129996195 andYValue:236.1068378045508]];
+    [ring addPoint:[SFPoint pointWithXValue:121.74064659481407 andYValue:235.18319027576013]];
+    [ring addPoint:[SFPoint pointWithXValue:122.51907159233552 andYValue:234.38952707167576]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:119.65450502825215 andYValue:234.97190110269844]];
+    [ring addPoint:[SFPoint pointWithXValue:120.94208471603682 andYValue:241.47274889005215]];
+    // [ring addPoint:[SFPoint pointWithXValue:120.57389187028015 andYValue:240.42380619065557]];
+    [ring addPoint:[SFPoint pointWithXValue:120.40553233952696 andYValue:239.3249423106921]];
+    [ring addPoint:[SFPoint pointWithXValue:120.44278575100797 andYValue:238.2138802324909]];
+    [ring addPoint:[SFPoint pointWithXValue:120.68437322950616 andYValue:237.12876169126298]];
+    [ring addPoint:[SFPoint pointWithXValue:121.12200129996195 andYValue:236.1068378045508]];
+    [ring addPoint:[SFPoint pointWithXValue:121.74064659481407 andYValue:235.18319027576013]];
+    [ring addPoint:[SFPoint pointWithXValue:122.51907159233552 andYValue:234.38952707167576]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
+
+}
+
+- (void) testPolygons3 {
+
+    SFLineString *ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:2.642 andYValue:4.22]];
+    [ring addPoint:[SFPoint pointWithXValue:4.41 andYValue:2.91]];
+    [ring addPoint:[SFPoint pointWithXValue:4.69 andYValue:4.42]];
+    [ring addPoint:[SFPoint pointWithXValue:2.68 andYValue:4.90]];
+    SFPolygon *polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertTrue:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:2.641 andYValue:4.22]];
+    [ring addPoint:[SFPoint pointWithXValue:4.41 andYValue:2.91]];
+    [ring addPoint:[SFPoint pointWithXValue:4.69 andYValue:4.42]];
+    [ring addPoint:[SFPoint pointWithXValue:2.68 andYValue:4.90]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:2.642 andYValue:4.22]];
+    [ring addPoint:[SFPoint pointWithXValue:3.60 andYValue:4.68]];
+    [ring addPoint:[SFPoint pointWithXValue:4.69 andYValue:4.42]];
+    [ring addPoint:[SFPoint pointWithXValue:2.68 andYValue:4.90]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertTrue:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:2.642 andYValue:4.22]];
+    [ring addPoint:[SFPoint pointWithXValue:3.60 andYValue:4.681]];
+    [ring addPoint:[SFPoint pointWithXValue:4.69 andYValue:4.42]];
+    [ring addPoint:[SFPoint pointWithXValue:2.68 andYValue:4.90]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:6.34 andYValue:2.15]];
+    [ring addPoint:[SFPoint pointWithXValue:5.85 andYValue:3.34]];
+    [ring addPoint:[SFPoint pointWithXValue:5.98 andYValue:3.07]];
+    [ring addPoint:[SFPoint pointWithXValue:5.09 andYValue:4.98]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertTrue:[polygon isSimple]];
+
+    ring = [SFLineString lineString];
+    [ring addPoint:[SFPoint pointWithXValue:2.48 andYValue:1.38]];
+    [ring addPoint:[SFPoint pointWithXValue:6.34 andYValue:2.15]];
+    [ring addPoint:[SFPoint pointWithXValue:5.855 andYValue:3.34]];
+    [ring addPoint:[SFPoint pointWithXValue:5.98 andYValue:3.07]];
+    [ring addPoint:[SFPoint pointWithXValue:5.09 andYValue:4.98]];
+    polygon = [SFPolygon polygonWithRing:ring];
+
+    [SFTestUtils assertFalse:[polygon isSimple]];
 
 }
 
