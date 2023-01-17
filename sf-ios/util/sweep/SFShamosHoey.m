@@ -58,8 +58,18 @@
         if(ringCopyPoints.count >= 3){
             SFPoint *first = [ringCopyPoints objectAtIndex:0];
             SFPoint *last = [ringCopyPoints objectAtIndex:ringCopyPoints.count - 1];
-            if([first.x compare:last.x] == NSOrderedSame && [first.y compare:last.y] == NSOrderedSame){
+            if([first isEqualXYToPoint:last]){
                 [ringCopyPoints removeObjectAtIndex:ringCopyPoints.count - 1];
+            }
+        }
+        
+        // Remove duplicate consecutive points
+        for(int j = 0; j < ringCopyPoints.count - 1; j++){
+            SFPoint *point = [ringCopyPoints objectAtIndex:j];
+            SFPoint *next = [ringCopyPoints objectAtIndex:j + 1];
+            if([point isEqualXYToPoint:next]){
+                [ringCopyPoints removeObjectAtIndex:j + 1];
+                j--;
             }
         }
         
