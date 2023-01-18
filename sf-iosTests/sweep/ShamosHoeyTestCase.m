@@ -170,7 +170,21 @@
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygonRing:[SFLineString lineStringWithPoints:points]]];
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]]];
     [SFTestUtils assertFalse:[[SFLineString lineStringWithPoints:points] isSimple]];
-    [SFTestUtils assertFalse:[[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]] isSimple]];
+    [self complex:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]];
+    [SFTestUtils assertEqualIntWithValue:4 andValue2:(int)points.count];
+    
+    [points removeAllObjects];
+    
+    [self addPoint:points withX:1 andY:0];
+    [self addPoint:points withX:0 andY:1];
+    [self addPoint:points withX:1 andY:0];
+    [self addPoint:points withX:2 andY:2];
+    
+    [SFTestUtils assertFalse:[SFShamosHoey simplePolygonPoints:points]];
+    [SFTestUtils assertFalse:[SFShamosHoey simplePolygonRing:[SFLineString lineStringWithPoints:points]]];
+    [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]]];
+    [SFTestUtils assertFalse:[[SFLineString lineStringWithPoints:points] isSimple]];
+    [self complex:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]];
     [SFTestUtils assertEqualIntWithValue:4 andValue2:(int)points.count];
     
 }
@@ -794,6 +808,12 @@
     
     SFPolygon *copy = [SFPolygon polygonWithPolygon:polygon];
     NSMutableArray<SFPoint *> *points = [copy ringAtIndex:0].points;
+    
+    SFPoint *first = [points objectAtIndex:0];
+    SFPoint *last = [points objectAtIndex:points.count - 1];
+    if([first isEqualXYToPoint:last]){
+        [points removeObjectAtIndex:points.count - 1];
+    }
     
     for(int i = 1; i < points.count; i++){
         

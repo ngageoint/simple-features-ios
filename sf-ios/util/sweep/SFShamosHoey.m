@@ -63,20 +63,29 @@
             }
         }
         
-        // Remove duplicate consecutive points
-        for(int j = 0; j < ringCopyPoints.count - 1; j++){
-            SFPoint *point = [ringCopyPoints objectAtIndex:j];
-            SFPoint *next = [ringCopyPoints objectAtIndex:j + 1];
-            if([point isEqualXYToPoint:next]){
-                [ringCopyPoints removeObjectAtIndex:j + 1];
-                j--;
-            }
-        }
-        
         // Verify enough ring points
         if (ringCopyPoints.count < 3) {
             simple = NO;
             break;
+        }
+        
+        // Check for duplicate points (thus connecting more than two edges
+        // and not simple)
+        NSMutableDictionary<NSNumber *, NSMutableSet<NSNumber *> *> *pointValues = [NSMutableDictionary dictionary];
+        for(SFPoint *point in ringCopyPoints){
+            NSDecimalNumber *x = point.x;
+            NSDecimalNumber *y = point.y;
+            NSMutableSet<NSNumber *> *xValues = [pointValues objectForKey:x];
+            if(xValues == nil){
+                xValues = [NSMutableSet set];
+                [xValues addObject:y];
+                [pointValues setObject:xValues forKey:x];
+            }else if(![xValues containsObject:y]){
+                [xValues addObject:y];
+            }else{
+                simple = NO;
+                break;
+            }
         }
         
         // Check holes to make sure the first point is in the polygon
