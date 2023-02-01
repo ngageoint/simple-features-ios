@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'sf-ios'
-  s.version          = '4.1.2'
+  s.version          = '4.1.3'
   s.license          =  {:type => 'MIT', :file => 'LICENSE' }
   s.summary          = 'iOS SDK for Simple Features'
   s.homepage         = 'https://github.com/ngageoint/simple-features-ios'

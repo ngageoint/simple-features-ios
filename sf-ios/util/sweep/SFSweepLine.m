@@ -45,7 +45,7 @@
     SFSegment *segment = [self createSegmentForEvent:event];
     
     // Add to the tree
-    int insertLocation = [self locationOfSegment:segment atX:[event.point.x doubleValue]];
+    int insertLocation = [self locationOfSegment:segment];
     [self.tree insertObject:segment atIndex:insertLocation];
     
     // Update the above and below pointers
@@ -77,38 +77,51 @@
  *
  * @param segment
  *            segment
- * @param x
- *            x value
  * @return index location
  */
--(int) locationOfSegment: (SFSegment *) segment atX: (double) x{
+-(int) locationOfSegment: (SFSegment *) segment{
     
     NSUInteger insertLocation = [self.tree indexOfObject:segment inSortedRange:NSMakeRange(0, self.tree.count) options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult(SFSegment *segment1, SFSegment *segment2){
         
-        double y1 = [self yValueAtX:x forSegment:segment1];
-        double y2 = [self yValueAtX:x forSegment:segment2];
+        NSComparisonResult compare = NSOrderedSame;
         
-        NSComparisonResult compare;
-        if (y1 < y2) {
-            compare = NSOrderedAscending;
-        } else if (y2 < y1) {
-            compare = NSOrderedDescending;
-        } else if (segment1.ring < segment2.ring) {
-            compare = NSOrderedAscending;
-        } else if (segment2.ring < segment1.ring) {
-            compare = NSOrderedDescending;
-        } else if (segment1.edge < segment2.edge) {
-            compare = NSOrderedAscending;
-        } else if (segment2.edge < segment1.edge) {
-            compare = NSOrderedDescending;
-        } else {
-            compare = NSOrderedSame;
+        if(segment1 != segment2){
+            
+            SFPoint *lp1 = [segment1 leftPoint];
+            SFPoint *rp1 = [segment1 rightPoint];
+            SFPoint *lp2 = [segment2 leftPoint];
+            SFPoint *rp2 = [segment2 rightPoint];
+            
+            if([lp1.x doubleValue] <= [lp2.x doubleValue]){
+                double s = [SFSweepLine isPoint:lp2 leftOfSegment:segment1];
+                if(s != 0){
+                    compare = [self comparison:s > 0];
+                }else{
+                    if([lp1 isEqualXToPoint:rp1]){ // Vertical line
+                        compare = [self comparison:[lp1.y doubleValue] < [lp2.y doubleValue]];
+                    }else{
+                        compare = [self comparison:[SFSweepLine isPoint:rp2 leftOfSegment:segment1] > 0];
+                    }
+                }
+            }else{
+                double s = [SFSweepLine isPoint:lp1 leftOfSegment:segment2];
+                if(s != 0){
+                    compare = [self comparison:s < 0];
+                }else{
+                    compare = [self comparison:[SFSweepLine isPoint:rp1 leftOfSegment:segment2] < 0];
+                }
+            }
+            
         }
         
         return compare;
     }];
     
     return (int)insertLocation;
+}
+
+-(NSComparisonResult) comparison: (BOOL) left{
+    return left ? NSOrderedAscending : NSOrderedDescending;
 }
 
 /**
@@ -120,7 +133,7 @@
  */
 -(SFSegment *) lowerSegment: (int) location{
     SFSegment *lower = nil;
-    if(location - 1 > 0){
+    if(location > 0){
         lower = [self.tree objectAtIndex:location - 1];
     }
     return lower;
@@ -218,9 +231,15 @@
 
 -(void) removeSegment: (SFSegment *) segment{
 
-    BOOL removed = [self removeSegment:segment atX:[segment.rightPoint.x doubleValue]];
-    if (!removed) {
-        removed = [self removeSegment:segment atX:[segment.leftPoint.x doubleValue]];
+    BOOL removed = NO;
+    
+    int location = [self locationOfSegment:segment];
+    if(location < self.tree.count){
+        SFSegment *treeSegment = [self.tree objectAtIndex:location];
+        if([treeSegment isEqual:segment]){
+            [self.tree removeObjectAtIndex:location];
+            removed = YES;
+        }
     }
     
     if (removed) {
@@ -236,54 +255,6 @@
         
         [[self.segments objectForKey:[NSNumber numberWithInt:segment.ring]] removeObjectForKey:[NSNumber numberWithInt:segment.edge]];
     }
-}
-
-/**
- * Remove the segment from the tree using the x value
- *
- * @param segment
- *            segment
- * @param x
- *            value
- * @return true if removed
- */
--(BOOL) removeSegment: (SFSegment *) segment atX: (double) x{
-    
-    BOOL removed = NO;
-    
-    int location = [self locationOfSegment:segment atX:x];
-    if(location < self.tree.count){
-        SFSegment *treeSegment = [self.tree objectAtIndex:location];
-        if([treeSegment isEqual:segment]){
-            [self.tree removeObjectAtIndex:location];
-            removed = YES;
-        }
-    }
-    
-    return removed;
-}
-
-/**
- * Get the segment y value at the x location by calculating the line slope
- *
- * @param x
- *            current point x value
- * @param segment
- *            segment
- *
- * @return segment y value
- */
--(double) yValueAtX: (double) x forSegment: (SFSegment *) segment{
-    
-    SFPoint *left = segment.leftPoint;
-    SFPoint *right = segment.rightPoint;
-    
-    double m = ([right.y doubleValue] - [left.y doubleValue]) / ([right.x doubleValue] - [left.x doubleValue]);
-    double b = [left.y doubleValue] - (m * [left.x doubleValue]);
-    
-    double y = (m * x) + b;
-    
-    return y;
 }
 
 +(NSComparisonResult) xyOrderWithPoint: (SFPoint *) point1 andPoint: (SFPoint *) point2{

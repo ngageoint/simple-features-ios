@@ -320,4 +320,31 @@
  */
 -(void) setMValue: (double) m;
 
+/**
+ * Indicates if x values are equal
+ *
+ * @param point
+ *            point to compare
+ * @return true if x is equal
+ */
+-(BOOL) isEqualXToPoint: (SFPoint *) point;
+
+/**
+ * Indicates if y values are equal
+ *
+ * @param point
+ *            point to compare
+ * @return true if y is equal
+ */
+-(BOOL) isEqualYToPoint: (SFPoint *) point;
+
+/**
+ * Indicates if x and y values are equal
+ *
+ * @param point
+ *            point to compare
+ * @return true if x and y are equal
+ */
+-(BOOL) isEqualXYToPoint: (SFPoint *) point;
+
 @end

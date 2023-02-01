@@ -149,6 +149,30 @@
     self.m = [[NSDecimalNumber alloc] initWithDouble:m];
 }
 
+-(BOOL) isEqualXToPoint: (SFPoint *) point{
+    BOOL equal;
+    if(self.x == nil){
+        equal = point.x == nil;
+    }else{
+        equal = [self.x isEqual:point.x];
+    }
+    return equal;
+}
+
+-(BOOL) isEqualYToPoint: (SFPoint *) point{
+    BOOL equal;
+    if(self.y == nil){
+        equal = point.y == nil;
+    }else{
+        equal = [self.y isEqual:point.y];
+    }
+    return equal;
+}
+
+-(BOOL) isEqualXYToPoint: (SFPoint *) point{
+    return [self isEqualXToPoint:point] && [self isEqualYToPoint:point];
+}
+
 -(BOOL) isEmpty{
     return NO;
 }
@@ -198,16 +222,7 @@
     }else if(![self.m isEqual:point.m]){
         return NO;
     }
-    if(self.x == nil){
-        if(point.x != nil)
-            return NO;
-    }else if(![self.x isEqual:point.x]){
-        return NO;
-    }
-    if(self.y == nil){
-        if(point.y != nil)
-            return NO;
-    }else if(![self.y isEqual:point.y]){
+    if(![self isEqualXYToPoint:point]){
         return NO;
     }
     if(self.z == nil){
