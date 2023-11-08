@@ -77,6 +77,7 @@
 		0472B51B1C03590500496B87 /* sf-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */; };
 		0485564824D89B5B00810C6D /* SFTextReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485564624D89B5B00810C6D /* SFTextReader.h */; };
 		0485564924D89B5B00810C6D /* SFTextReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485564724D89B5B00810C6D /* SFTextReader.m */; };
+		0493A5902AE813B9000B75E6 /* sf_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493A58F2AE813B9000B75E6 /* sf_ios.swift */; };
 		0496DB1B200813020068A2CE /* SFEventTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB19200813020068A2CE /* SFEventTypes.h */; };
 		0496DB1C200813020068A2CE /* SFEventTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496DB1A200813020068A2CE /* SFEventTypes.m */; };
 		0496DB1F200819110068A2CE /* SFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496DB1D200819110068A2CE /* SFEvent.h */; };
@@ -189,6 +190,7 @@
 		0472B51A1C03590500496B87 /* sf-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		0485564624D89B5B00810C6D /* SFTextReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFTextReader.h; sourceTree = "<group>"; };
 		0485564724D89B5B00810C6D /* SFTextReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFTextReader.m; sourceTree = "<group>"; };
+		0493A58F2AE813B9000B75E6 /* sf_ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sf_ios.swift; sourceTree = "<group>"; };
 		0496DB19200813020068A2CE /* SFEventTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEventTypes.h; sourceTree = "<group>"; };
 		0496DB1A200813020068A2CE /* SFEventTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFEventTypes.m; sourceTree = "<group>"; };
 		0496DB1D200819110068A2CE /* SFEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFEvent.h; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				042FC6D41B96453E00549A4B /* sf_ios.h */,
+				0493A58F2AE813B9000B75E6 /* sf_ios.swift */,
 				042FC6681B96421E00549A4B /* SFCircularString.h */,
 				042FC6691B96421E00549A4B /* SFCircularString.m */,
 				042FC66A1B96421E00549A4B /* SFCompoundCurve.h */,
@@ -561,6 +564,7 @@
 				TargetAttributes = {
 					042FC64A1B963FE500549A4B = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 1500;
 					};
 					042FC6551B963FE500549A4B = {
 						CreatedOnToolsVersion = 6.4;
@@ -637,6 +641,7 @@
 				042FC6B21B96421E00549A4B /* SFMultiCurve.m in Sources */,
 				042FC6D01B96421E00549A4B /* SFGeometryEnvelopeBuilder.m in Sources */,
 				042FC6CA1B96421E00549A4B /* SFByteWriter.m in Sources */,
+				0493A5902AE813B9000B75E6 /* sf_ios.swift in Sources */,
 				042FC6D21B96421E00549A4B /* SFGeometryPrinter.m in Sources */,
 				0445CB2C1EA1448C008DC0D7 /* SFCentroidPoint.m in Sources */,
 				0496DB20200819110068A2CE /* SFEvent.m in Sources */,
@@ -816,6 +821,7 @@
 		042FC6621B963FE500549A4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -827,12 +833,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.sf;
 				PRODUCT_NAME = sf_ios;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		042FC6631B963FE500549A4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -844,6 +853,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.sf;
 				PRODUCT_NAME = sf_ios;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -851,6 +861,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -870,6 +881,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B17E59AE80997CC09DD740D6 /* Pods-sf-iosTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
