@@ -11,6 +11,7 @@
 #import "SFGeometryTestUtils.h"
 #import "SFGeometryUtils.h"
 #import "SFGeometryConstants.h"
+#import "SFGeometryEnvelopeBuilder.h"
 
 @interface SFGeometryUtilsTestCase : XCTestCase
 
@@ -1136,5 +1137,548 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFTestUtils assertEqualDoubleWithValue:37.02524099014426 andValue2:[degreesCentroid.y doubleValue] andDelta:0.000001];
 
 }
+
+/**
+ * Test distance Haversine
+ */
+-(void) testDistanceHaversine{
+    
+    [self testDistanceHaversineWithLon1:-73.779 andLat1:40.640 andLon2:103.989 andLat2:1.359 andDistance:15356717.55865963 andDelta:0.0];
+    
+    [self testDistanceHaversineWithLon1:-61.207542 andLat1:15.526518 andLon2:-18.124573 andLat2:27.697002 andDistance:4633776.207109179 andDelta:0.00000001];
+    
+    [self testDistanceHaversineWithLon1:-115.49 andLat1:39.64 andLon2:52.98 andLat2:-22.69 andDistance:17858784.720537618 andDelta:0.0];
+    
+}
+
+/**
+ * Test distance Haversine
+ *
+ * @param lon1
+ *            longitude 1
+ * @param lat1
+ *            latitude 1
+ * @param lon2
+ *            longitude 2
+ * @param lat2
+ *            latitude 2
+ * @param expectedDistance
+ *            expected distance
+ * @param delta
+ *            delta
+ */
+-(void) testDistanceHaversineWithLon1: (double) lon1 andLat1: (double) lat1 andLon2: (double) lon2 andLat2: (double) lat2 andDistance: (double) expectedDistance andDelta: (double) delta{
+    
+    SFPoint *point1 = [SFPoint pointWithXValue:lon1 andYValue:lat1];
+    SFPoint *point2 = [SFPoint pointWithXValue:lon2 andYValue:lat2];
+    
+    double distance = [SFGeometryUtils distanceHaversineBetweenPoint1:point1 andPoint2:point2];
+    
+    [SFTestUtils assertEqualDoubleWithValue:expectedDistance andValue2:distance andDelta:delta];
+    
+}
+
+/**
+ * Test bearing
+ */
+-(void) testBearing{
+    
+    [self testBearingWithLon1:-73.779 andLat1:40.640 andLon2:103.989 andLat2:1.359 andBearing:3.3326543286976857 andDelta:0.0000000000001];
+    
+    [self testBearingWithLon1:-61.207542 andLat1:15.526518 andLon2:-18.124573 andLat2:27.697002 andBearing:65.56992873258116 andDelta:0.0];
+    
+    [self testBearingWithLon1:-115.49 andLat1:39.64 andLon2:52.98 andLat2:-22.69 andBearing:33.401404803852586 andDelta:0.0000000000001];
+    
+}
+
+/**
+ * Test bearing
+ *
+ * @param lon1
+ *            longitude 1
+ * @param lat1
+ *            latitude 1
+ * @param lon2
+ *            longitude 2
+ * @param lat2
+ *            latitude 2
+ * @param expectedBearing
+ *            expected bearing
+ * @param delta
+ *            delta
+ */
+-(void) testBearingWithLon1: (double) lon1 andLat1: (double) lat1 andLon2: (double) lon2 andLat2: (double) lat2 andBearing: (double) expectedBearing andDelta: (double) delta{
+    
+    SFPoint *point1 = [SFPoint pointWithXValue:lon1 andYValue:lat1];
+    SFPoint *point2 = [SFPoint pointWithXValue:lon2 andYValue:lat2];
+    
+    double bearing = [SFGeometryUtils bearingBetweenPoint1:point1 andPoint2:point2];
+    
+    [SFTestUtils assertEqualDoubleWithValue:expectedBearing andValue2:bearing andDelta:delta];
+    
+}
+
+/**
+ * Test midpoint
+ */
+-(void) testMidpoint{
+    
+    [self testMidpointWithLon1:-73.779 andLat1:40.640 andLon2:103.989 andLat2:1.359 andExpectedLon:97.01165658499957 andExpectedLat:70.180706801119 andDelta:0.0000000000001];
+    
+    [self testMidpointWithLon1:-61.207542 andLat1:15.526518 andLon2:-18.124573 andLat2:27.697002 andExpectedLon:-40.62120498446578 andExpectedLat:23.06700073523901 andDelta:0.0000000000001];
+    
+    [self testMidpointWithLon1:-115.49 andLat1:39.64 andLon2:52.98 andLat2:-22.69 andExpectedLon:10.497130585764902 andExpectedLat:47.89844929382955 andDelta:0.000000000001];
+    
+}
+
+/**
+ * Test midpoint
+ *
+ * @param lon1
+ *            longitude 1
+ * @param lat1
+ *            latitude 1
+ * @param lon2
+ *            longitude 2
+ * @param lat2
+ *            latitude 2
+ * @param expectedLon
+ *            expected longitude
+ * @param expectedLat
+ *            expected latitude
+ * @param delta
+ *            delta
+ */
+-(void) testMidpointWithLon1: (double) lon1 andLat1: (double) lat1 andLon2: (double) lon2 andLat2: (double) lat2 andExpectedLon: (double) expectedLon andExpectedLat: (double) expectedLat andDelta: (double) delta{
+    
+    SFPoint *point1 = [SFPoint pointWithXValue:lon1 andYValue:lat1];
+    SFPoint *point2 = [SFPoint pointWithXValue:lon2 andYValue:lat2];
+    
+    SFPoint *midpoint = [SFGeometryUtils geodesicMidpointBetweenPoint1:point1 andPoint2:point2];
+    
+    [SFTestUtils assertEqualDoubleWithValue:expectedLon andValue2:[midpoint xValue] andDelta:delta];
+    [SFTestUtils assertEqualDoubleWithValue:expectedLat andValue2:[midpoint yValue] andDelta:delta];
+    
+    SFPoint *point1Radians = [SFGeometryUtils degreesToRadiansWithPoint:point1];
+    SFPoint *point2Radians = [SFGeometryUtils degreesToRadiansWithPoint:point2];
+    
+    SFPoint *midpointRadians = [SFGeometryUtils geodesicMidpointRadiansBetweenPoint1:point1Radians andPoint2:point2Radians];
+    
+    SFPoint *midpointRadians2 = [SFGeometryUtils degreesToRadiansWithPoint:midpoint];
+    
+    [SFTestUtils assertEqualDoubleWithValue:[midpointRadians2 xValue] andValue2:[midpointRadians xValue] andDelta:delta];
+    [SFTestUtils assertEqualDoubleWithValue:[midpointRadians2 yValue] andValue2:[midpointRadians yValue] andDelta:delta];
+    
+}
+
+/**
+ * Test geodesic path
+ */
+-(void) testGeodesicPath{
+    
+    double METERS_TEST = 2500000;
+    
+    SFPoint *point1 = [SFPoint pointWithXValue:-73.779 andYValue:40.640];
+    SFPoint *point2 = [SFPoint pointWithXValue:103.989 andYValue:1.359];
+    
+    NSArray<SFPoint *> *path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:100000000];
+    
+    [SFTestUtils assertEqualIntWithValue:2 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:10000000];
+    
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:97.01165658499957 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:70.180706801119 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:METERS_TEST];
+    
+    int PATH_COUNT_1 = 9;
+    [SFTestUtils assertEqualIntWithValue:PATH_COUNT_1 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:-71.92354211648598 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:57.84299258409111 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-66.48824612217787 andValue2:[[path objectAtIndex:2] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:74.96658102555037 andValue2:[[path objectAtIndex:2] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:57.819970305247146 andValue2:[[path objectAtIndex:3] xValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:86.50086370806171 andValue2:[[path objectAtIndex:3] yValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:97.01165658499957 andValue2:[[path objectAtIndex:4] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:70.180706801119 andValue2:[[path objectAtIndex:4] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:100.68758599469604 andValue2:[[path objectAtIndex:5] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:53.01802965780041 andValue2:[[path objectAtIndex:5] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:102.22354481789006 andValue2:[[path objectAtIndex:6] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:35.80797373447713 andValue2:[[path objectAtIndex:6] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:103.19828968828496 andValue2:[[path objectAtIndex:7] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:18.585518760662953 andValue2:[[path objectAtIndex:7] yValue] andDelta:0.0000000000001];
+    
+    point1 = [SFPoint pointWithXValue:-61.207542 andYValue:15.526518];
+    point2 = [SFPoint pointWithXValue:-18.124573 andYValue:27.697002];
+    
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:METERS_TEST];
+    
+    int PATH_COUNT_2 = 3;
+    [SFTestUtils assertEqualIntWithValue:PATH_COUNT_2 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:-40.62120498446578 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:23.06700073523901 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:1500000];
+    
+    [SFTestUtils assertEqualIntWithValue:5 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:-51.154455380800286 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:19.58837936536169 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-40.62120498446578 andValue2:[[path objectAtIndex:2] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:23.06700073523901 andValue2:[[path objectAtIndex:2] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-29.591449129559173 andValue2:[[path objectAtIndex:3] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:25.814850212565023 andValue2:[[path objectAtIndex:3] yValue] andDelta:0.0000000000001];
+    
+    point1 = [SFPoint pointWithXValue:-115.49 andYValue:39.64];
+    point2 = [SFPoint pointWithXValue:52.98 andYValue:-22.69];
+    
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:10000000];
+    
+    [SFTestUtils assertEqualIntWithValue:3 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:10.497130585764902 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:47.89844929382955 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    
+    path = [SFGeometryUtils geodesicPathBetweenPoint1:point1 andPoint2:point2 withMaxDistance:METERS_TEST];
+    
+    int PATH_COUNT_3 = 9;
+    [SFTestUtils assertEqualIntWithValue:PATH_COUNT_3 andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    [SFTestUtils assertEqualDoubleWithValue:-96.24706669925085 andValue2:[[path objectAtIndex:1] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:55.05735117318652 andValue2:[[path objectAtIndex:1] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-60.22371275346116 andValue2:[[path objectAtIndex:2] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:64.43472917406754 andValue2:[[path objectAtIndex:2] yValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-16.117214263945066 andValue2:[[path objectAtIndex:3] xValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:61.05440885911931 andValue2:[[path objectAtIndex:3] yValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:10.497130585764902 andValue2:[[path objectAtIndex:4] xValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:47.89844929382955 andValue2:[[path objectAtIndex:4] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:25.189402921803275 andValue2:[[path objectAtIndex:5] xValue] andDelta:0.000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:31.25647851927572 andValue2:[[path objectAtIndex:5] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:35.259366393531955 andValue2:[[path objectAtIndex:6] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:13.465910465448717 andValue2:[[path objectAtIndex:6] yValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:43.88449185422331 andValue2:[[path objectAtIndex:7] xValue] andDelta:0.0000000000001];
+    [SFTestUtils assertEqualDoubleWithValue:-4.667462203083873 andValue2:[[path objectAtIndex:7] yValue] andDelta:0.0000000000001];
+    
+    SFLineString *lineString = [SFLineString lineString];
+    
+    int expectedPoints = 0;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    
+    point1 = [SFPoint pointWithXValue:-73.779 andYValue:40.640];
+    [lineString addPoint:point1];
+    expectedPoints++;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    
+    point2 = [SFPoint pointWithXValue:103.989 andYValue:1.359];
+    [lineString addPoint:point2];
+    expectedPoints += PATH_COUNT_1 - 1;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:path.count - 1]];
+    
+    SFPoint *point3 = [SFPoint pointWithXValue:-61.207542 andYValue:15.526518];
+    [lineString addPoint:point3];
+    int PATH_COUNT_1_2 = (int) [SFGeometryUtils geodesicPathBetweenPoint1:point2 andPoint2:point3 withMaxDistance:METERS_TEST].count;
+    expectedPoints += PATH_COUNT_1_2 - 1;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:PATH_COUNT_1 - 1]];
+    [SFTestUtils assertEqualWithValue:point3 andValue2:[path objectAtIndex:path.count - 1]];
+    
+    SFPoint *point4 = [SFPoint pointWithXValue:-18.124573 andYValue:27.697002];
+    [lineString addPoint:point4];
+    expectedPoints += PATH_COUNT_2 - 1;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:PATH_COUNT_1 - 1]];
+    [SFTestUtils assertEqualWithValue:point3 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2 - 2]];
+    [SFTestUtils assertEqualWithValue:point4 andValue2:[path objectAtIndex:path.count - 1]];
+    
+    SFPoint *point5 = [SFPoint pointWithXValue:-115.49 andYValue:39.64];
+    [lineString addPoint:point5];
+    int PATH_COUNT_2_3 = (int) [SFGeometryUtils geodesicPathBetweenPoint1:point4 andPoint2:point5 withMaxDistance:METERS_TEST].count;
+    expectedPoints += PATH_COUNT_2_3 - 1;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:PATH_COUNT_1 - 1]];
+    [SFTestUtils assertEqualWithValue:point3 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2 - 2]];
+    [SFTestUtils assertEqualWithValue:point4 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2 + PATH_COUNT_2 - 3]];
+    [SFTestUtils assertEqualWithValue:point5 andValue2:[path objectAtIndex:path.count - 1]];
+    
+    SFPoint *point6 = [SFPoint pointWithXValue:52.98 andYValue:-22.69];
+    [lineString addPoint:point6];
+    expectedPoints += PATH_COUNT_3 - 1;
+    
+    path = [SFGeometryUtils geodesicPathOfLine:lineString withMaxDistance:METERS_TEST];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)path.count];
+    [self pathDuplicateCheck:path];
+    [SFTestUtils assertEqualWithValue:point1 andValue2:[path firstObject]];
+    [SFTestUtils assertEqualWithValue:point2 andValue2:[path objectAtIndex:PATH_COUNT_1 - 1]];
+    [SFTestUtils assertEqualWithValue:point3 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2 - 2]];
+    [SFTestUtils assertEqualWithValue:point4 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2 + PATH_COUNT_2 - 3]];
+    [SFTestUtils assertEqualWithValue:point5 andValue2:[path objectAtIndex:PATH_COUNT_1 + PATH_COUNT_1_2
+                                                        + PATH_COUNT_2 + PATH_COUNT_2_3 - 4]];
+    [SFTestUtils assertEqualWithValue:point6 andValue2:[path objectAtIndex:path.count - 1]];
+    
+}
+
+/**
+ * Test geodesic envelope
+ */
+-(void) testGeodesicEnvelope{
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelope]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-85 andMinYValue:0 andMaxXValue:85 andMaxYValue:0]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:0 andMinYValue:-45 andMaxXValue:0 andMaxYValue:45]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-85 andMinYValue:-45 andMaxXValue:85 andMaxYValue:45] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-85 andMinYValue:-85.0189306062998 andMaxXValue:85 andMaxYValue:85.0189306062998]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:0 andMinYValue:40 andMaxXValue:60 andMaxYValue:60] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:0 andMinYValue:40 andMaxXValue:60 andMaxYValue:63.43494882292201]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-116.564009 andMinYValue:52.257876 andMaxXValue:21.002792 andMaxYValue:55.548544] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-116.564009 andMinYValue:52.257876 andMaxXValue:21.002792 andMaxYValue:76.05697069912907]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-0.118092 andMinYValue:1.290270 andMaxXValue:103.851959 andMaxYValue:51.509865] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-0.118092 andMinYValue:1.290270 andMaxXValue:103.851959 andMaxYValue:63.908548725225884]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-71.038887 andMinYValue:-33.92584 andMaxXValue:18.42322 andMaxYValue:42.364506] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-71.038887 andMinYValue:-43.43480368259327 andMaxXValue:18.42322 andMaxYValue:52.08227546634191]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-65.116900 andMinYValue:-54.656860 andMaxXValue:13.008587 andMaxYValue:-9.120679] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-65.116900 andMinYValue:-61.16106506177795 andMaxXValue:13.008587 andMaxYValue:-9.120679]];
+    
+    [self testGeodesicEnvelope:[SFGeometryEnvelope envelopeWithMinXValue:-69.001773 andMinYValue:-51.614743 andMaxXValue:120.316646 andMaxYValue:22.794475] withExpected:[SFGeometryEnvelope envelopeWithMinXValue:-69.001773 andMinYValue:-86.31825003835286 andMaxXValue:120.316646 andMaxYValue:79.0603064734963]];
+}
+
+/**
+ * Test geodesic geometry envelope expansion
+ *
+ * @param envelope
+ *            geometry envelope and expected geometry envelope
+ */
+-(void) testGeodesicEnvelope: (SFGeometryEnvelope *) envelope{
+    [self testGeodesicEnvelope:envelope withExpected:envelope];
+}
+
+/**
+ * Test geodesic geometry envelope expansion
+ *
+ * @param envelope
+ *            geometry envelope
+ * @param expected
+ *            expected geometry envelope
+ */
+-(void) testGeodesicEnvelope: (SFGeometryEnvelope *) envelope withExpected: (SFGeometryEnvelope *) expected{
+    
+    double distancePixels = 512.0;
+    double delta = 0.000000000001;
+    
+    SFGeometryEnvelope *geodesic = [SFGeometryUtils geodesicEnvelope:envelope];
+    [self compareEnvelope:expected withEnvelope:geodesic withDelta:delta];
+    
+    if ([envelope maxXValue] - [envelope minXValue] <= 180.0) {
+        
+        // Top line
+        double distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topLeft] andPoint2:[envelope topRight]];
+        double maxDistance = distance / distancePixels;
+        NSArray<SFPoint *> *path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topLeft] andPoint2:[envelope topRight] withMaxDistance:maxDistance];
+        SFGeometryEnvelope *pathEnvelope = [SFGeometryEnvelopeBuilder buildEnvelopeWithGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        // Bottom line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope bottomLeft] andPoint2:[envelope bottomRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope bottomLeft] andPoint2:[envelope bottomRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+        // The rest of the line tests below are not really needed, but
+        // included as extra sanity checks
+        
+        // Left line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topLeft] andPoint2:[envelope bottomLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topLeft] andPoint2:[envelope bottomLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        // Right line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topRight] andPoint2:[envelope bottomRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topRight] andPoint2:[envelope bottomRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+        // Diagonal line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topLeft] andPoint2:[envelope bottomRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topLeft] andPoint2:[envelope bottomRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        // Other diagonal line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topRight] andPoint2:[envelope bottomLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topRight] andPoint2:[envelope bottomLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+        // Mid horizontal line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope leftMid] andPoint2:[envelope rightMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope leftMid] andPoint2:[envelope rightMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        // Mid vertical line
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+        // Mid to neighbor mid lines
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope leftMid] andPoint2:[envelope topMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope leftMid] andPoint2:[envelope topMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topMid] andPoint2:[envelope rightMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topMid] andPoint2:[envelope rightMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope rightMid] andPoint2:[envelope bottomMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope rightMid] andPoint2:[envelope bottomMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope bottomMid] andPoint2:[envelope leftMid]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope bottomMid] andPoint2:[envelope leftMid] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+        // Mid to corner lines
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope leftMid] andPoint2:[envelope topRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope leftMid] andPoint2:[envelope topRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope leftMid] andPoint2:[envelope bottomRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope leftMid] andPoint2:[envelope bottomRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope topMid] andPoint2:[envelope bottomRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope rightMid] andPoint2:[envelope topLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope rightMid] andPoint2:[envelope topLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope rightMid] andPoint2:[envelope bottomLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope rightMid] andPoint2:[envelope bottomLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope bottomMid] andPoint2:[envelope topLeft]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope bottomMid] andPoint2:[envelope topLeft] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        distance = [SFGeometryUtils distanceHaversineBetweenPoint1:[envelope bottomMid] andPoint2:[envelope topRight]];
+        maxDistance = distance / distancePixels;
+        path = [SFGeometryUtils geodesicPathBetweenPoint1:[envelope bottomMid] andPoint2:[envelope topRight] withMaxDistance:maxDistance];
+        [SFGeometryEnvelopeBuilder buildEnvelope:pathEnvelope andGeometry:[SFLineString lineStringWithPoints:[NSMutableArray arrayWithArray:path]]];
+        
+        [self compareEnvelope:pathEnvelope withEnvelope:geodesic withDelta:delta];
+        
+    }
+    
+}
+
+/**
+ * Compare the envelopes for equality
+ *
+ * @param expected
+ *            expected geometry envelope
+ * @param envelope
+ *            geometry envelope
+ * @param delta
+ *            comparison delta
+ */
+-(void) compareEnvelope: (SFGeometryEnvelope *) expected withEnvelope: (SFGeometryEnvelope *) envelope withDelta: (double) delta{
+    if (![envelope isEqual:expected]) {
+        [SFTestUtils assertEqualDoubleWithValue:[expected minXValue] andValue2:[envelope minXValue] andDelta:delta];
+        [SFTestUtils assertEqualDoubleWithValue:[expected minYValue] andValue2:[envelope minYValue] andDelta:delta];
+        [SFTestUtils assertEqualDoubleWithValue:[expected maxXValue] andValue2:[envelope maxXValue] andDelta:delta];
+        [SFTestUtils assertEqualDoubleWithValue:[expected maxYValue] andValue2:[envelope maxYValue] andDelta:delta];
+    }
+}
+
+/**
+ * Check that there are no back to back duplicate points
+ *
+ * @param path
+ *            point path
+ */
+-(void) pathDuplicateCheck: (NSArray<SFPoint *> *) path{
+    
+    int count = (int) path.count - 1;
+    for (int i = 0; i < count; i++) {
+        [SFTestUtils assertFalse:[[path objectAtIndex:i] isEqual:[path objectAtIndex:i + 1]]];
+    }
+    
+}
+
 
 @end
