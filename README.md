@@ -47,12 +47,12 @@ Include this repository by specifying it in a Podfile using a supported option.
 
 Pull from [CocoaPods](https://cocoapods.org/pods/sf-ios):
 
-    pod 'sf-ios', '~> 4.1.3'
+    pod 'sf-ios', '~> 4.1.4'
 
 Pull from GitHub:
 
     pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :branch => 'master'
-    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :tag => '4.1.3'
+    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :tag => '4.1.4'
 
 Include as local project:
 

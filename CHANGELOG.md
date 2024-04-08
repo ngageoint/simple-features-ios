@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 4.1.4 (TBD)
+## [4.1.4](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.4) (04-08-2024)
 
 * Geometry Utils for Haversine distance, geodesic midpoints, geodesic paths, and geodesic envelopes
 * Envelope left mid, bottom mid, right mid, and top mid methods
