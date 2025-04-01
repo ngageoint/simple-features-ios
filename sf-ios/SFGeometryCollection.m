@@ -57,7 +57,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.geometries = [NSMutableArray array];
@@ -94,9 +94,9 @@
     return [self.geometries objectAtIndex:n];
 }
 
--(enum SFGeometryType) collectionType{
+-(SFGeometryType) collectionType{
     
-    enum SFGeometryType geometryType = [self geometryType];
+    SFGeometryType geometryType = [self geometryType];
     
     switch (geometryType) {
         case SF_MULTIPOINT:
@@ -119,7 +119,7 @@
             }
             break;
         default:
-            [NSException raise:@"Unexpected" format:@"Unexpected Geometry Collection Type: %u", geometryType];
+            [NSException raise:@"Unexpected" format:@"Unexpected Geometry Collection Type: %ld", geometryType];
     }
     
     return geometryType;

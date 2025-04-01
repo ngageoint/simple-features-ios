@@ -27,7 +27,7 @@
  *            element, null if geometry is top level
  * @return true if passes filter and geometry should be included
  */
--(BOOL) filterGeometry: (SFGeometry *) geometry inType: (enum SFGeometryType) containingType;
+-(BOOL) filterGeometry: (SFGeometry *) geometry inType: (SFGeometryType) containingType;
 
 @end
 

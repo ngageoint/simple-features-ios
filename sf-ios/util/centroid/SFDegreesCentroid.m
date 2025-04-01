@@ -83,7 +83,7 @@
  */
 -(void) calculate: (SFGeometry *) geometry{
 
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
 
     switch (geometryType) {
      

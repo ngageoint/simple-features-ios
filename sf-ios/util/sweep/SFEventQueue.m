@@ -43,8 +43,8 @@
         SFPoint *point1 = [points objectAtIndex:i];
         SFPoint *point2 = [points objectAtIndex:(i + 1) % points.count];
         
-        enum SFEventType type1 = SF_ET_RIGHT;
-        enum SFEventType type2 = SF_ET_LEFT;
+        SFEventType type1 = SF_ET_RIGHT;
+        SFEventType type2 = SF_ET_LEFT;
         if([SFSweepLine xyOrderWithPoint:point1 andPoint:point2] == NSOrderedAscending){
             type1 = SF_ET_LEFT;
             type2 = SF_ET_RIGHT;

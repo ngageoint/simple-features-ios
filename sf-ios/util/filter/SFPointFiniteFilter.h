@@ -18,7 +18,7 @@
 /**
  * Finite Filter type
  */
-@property (nonatomic) enum SFFiniteFilterType type;
+@property (nonatomic) SFFiniteFilterType type;
 
 /**
  * Include z values in filtering
@@ -44,7 +44,7 @@
  *
  *  @return new point finite filter
  */
--(instancetype) initWithType: (enum SFFiniteFilterType) type;
+-(instancetype) initWithType: (SFFiniteFilterType) type;
 
 /**
  *  Initialize, filter on x, y, and optionally z
@@ -54,7 +54,7 @@
  *
  *  @return new point finite filter
  */
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ;
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ;
 
 /**
  *  Initialize, filter on x, y, and optionally m
@@ -64,7 +64,7 @@
  *
  *  @return new point finite filter
  */
--(instancetype) initWithType: (enum SFFiniteFilterType) type andM: (BOOL) filterM;
+-(instancetype) initWithType: (SFFiniteFilterType) type andM: (BOOL) filterM;
 
 /**
  *  Initialize, filter on x, y, and optionally z and m
@@ -75,7 +75,7 @@
  *
  *  @return new point finite filter
  */
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM;
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM;
 
 /**
  *  Initialize, filter on x, y, and optionally z

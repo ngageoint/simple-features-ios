@@ -12,7 +12,7 @@
 
 @implementation SFGeometry
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super init];
     if(self != nil){
         self.geometryType = geometryType;
@@ -87,7 +87,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
-        _geometryType = (enum SFGeometryType)[decoder decodeIntForKey:@"geometryType"];
+        _geometryType = (SFGeometryType)[decoder decodeIntForKey:@"geometryType"];
         _hasZ = [decoder decodeBoolForKey:@"hasZ"];
         _hasM = [decoder decodeBoolForKey:@"hasM"];
     }

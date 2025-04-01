@@ -16,22 +16,22 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type{
+-(instancetype) initWithType: (SFFiniteFilterType) type{
     self = [self initWithType:type andZ:NO andM:NO];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ{
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ{
     self = [self initWithType:type andZ:filterZ andM:NO];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andM: (BOOL) filterM{
+-(instancetype) initWithType: (SFFiniteFilterType) type andM: (BOOL) filterM{
     self = [self initWithType:type andZ:NO andM:filterM];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM{
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM{
     self = [super self];
     if(self){
         _type = type;
@@ -56,7 +56,7 @@
     return self;
 }
 
--(BOOL) filterGeometry: (SFGeometry *) geometry inType: (enum SFGeometryType) containingType{
+-(BOOL) filterGeometry: (SFGeometry *) geometry inType: (SFGeometryType) containingType{
     return geometry.geometryType != SF_POINT || ![geometry isKindOfClass:[SFPoint class]] || [self filterPoint:(SFPoint *)geometry];
 }
 
@@ -91,7 +91,7 @@
             passes = !isinf(value);
             break;
         default:
-            [NSException raise:@"Unsupported" format:@"Unsupported filter type: %u", _type];
+            [NSException raise:@"Unsupported" format:@"Unsupported filter type: %ld", _type];
     }
     return passes;
 }

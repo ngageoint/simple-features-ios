@@ -11,7 +11,7 @@
 /**
  * Event type of the point direction
  */
-enum SFEventType{
+typedef NS_ENUM(NSInteger, SFEventType) {
     SF_ET_LEFT = 0,
     SF_ET_RIGHT
 };

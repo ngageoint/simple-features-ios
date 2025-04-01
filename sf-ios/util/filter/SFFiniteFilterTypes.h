@@ -12,7 +12,7 @@
  * Finite Filter Type, including finite values and optionally one of either
  * infinite or NaN values
  */
-enum SFFiniteFilterType{
+typedef NS_ENUM(NSInteger, SFFiniteFilterType) {
     SF_FF_FINITE = 0,
     SF_FF_FINITE_AND_INFINITE,
     SF_FF_FINITE_AND_NAN
