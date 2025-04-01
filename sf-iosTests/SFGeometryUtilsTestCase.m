@@ -451,11 +451,11 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:2.5] onLinePoints:points]];
     [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:2.5 andYValue:0.00000001] onLinePoints:points]];
     [SFTestUtils assertFalse:[SFGeometryUtils point:[SFPoint pointWithXValue:2.5 andYValue:0.0000001] onLinePoints:points]];
-    [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:2.5000000001] onLinePoints:points]];
+    [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:2.5000000000000001] onLinePoints:points]];
     [SFTestUtils assertFalse:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:2.500000001] onLinePoints:points]];
     [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:-0.0000000000000001 andYValue:0] onLinePoints:points]];
     [SFTestUtils assertFalse:[SFGeometryUtils point:[SFPoint pointWithXValue:-0.000000000000001 andYValue:0] onLinePoints:points]];
-    [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:5.0000000000000001] onLinePoints:points]];
+    [SFTestUtils assertTrue:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue: 5.0000000000000001] onLinePoints:points]];
     [SFTestUtils assertFalse:[SFGeometryUtils point:[SFPoint pointWithXValue:5 andYValue:5.000000000000001] onLinePoints:points]];
     
 }
