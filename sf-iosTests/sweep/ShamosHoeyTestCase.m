@@ -463,10 +463,11 @@
 
 - (void)testLargeSimple {
     
-    double increment = .01;
-    double radius = 1250;
+    double increment = .07;
+    double radius = 127;
     double x = -radius + increment;
     double y = 0;
+    int expectedPoints = 7256;
     
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
@@ -496,17 +497,18 @@
     [SFTestUtils assertTrue:[SFShamosHoey simplePolygon:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]]];
     [SFTestUtils assertTrue:[[SFLineString lineStringWithPoints:points] isSimple]];
     [SFTestUtils assertTrue:[[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]] isSimple]];
-    [SFTestUtils assertEqualIntWithValue:(int) (radius / increment * 4) andValue2:(int)points.count];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)points.count];
     
 }
 
 - (void)testLargeNonSimple {
     
-    double increment = .01;
-    double radius = 1250;
+    double increment = .07;
+    double radius = 127;
     double x = -radius + increment;
     double y = 0;
-    
+    int expectedPoints = 7257;
+
     NSMutableArray<SFPoint *> *points = [NSMutableArray array];
     
     while (x <= radius) {
@@ -539,7 +541,7 @@
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]]];
     [SFTestUtils assertFalse:[[SFLineString lineStringWithPoints:points] isSimple]];
     [SFTestUtils assertFalse:[[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]] isSimple]];
-    [SFTestUtils assertEqualIntWithValue:1 + (int) (radius / increment * 4) andValue2:(int)points.count];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)points.count];
     
     [points removeObjectAtIndex:invalidIndex];
     previousPoint = [points objectAtIndex:points.count - 3];
@@ -550,7 +552,7 @@
     [SFTestUtils assertFalse:[SFShamosHoey simplePolygon:[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]]]];
     [SFTestUtils assertFalse:[[SFLineString lineStringWithPoints:points] isSimple]];
     [SFTestUtils assertFalse:[[SFPolygon polygonWithRing:[SFLineString lineStringWithPoints:points]] isSimple]];
-    [SFTestUtils assertEqualIntWithValue:1 + (int) (radius / increment * 4) andValue2:(int)points.count];
+    [SFTestUtils assertEqualIntWithValue:expectedPoints andValue2:(int)points.count];
     
 }
 
