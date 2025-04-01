@@ -21,7 +21,7 @@
     
     NSMutableString *message = [NSMutableString string];
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
             [self addPoint:(SFPoint *)geometry toMessage:message];

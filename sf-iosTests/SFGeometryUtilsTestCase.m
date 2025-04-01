@@ -1013,12 +1013,12 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
 -(void) testHierarchy{
     
     for(int geometryTypeNumber = 0; geometryTypeNumber < SF_NONE; geometryTypeNumber++){
-        enum SFGeometryType geometryType = geometryTypeNumber;
+        SFGeometryType geometryType = geometryTypeNumber;
         
-        enum SFGeometryType parentType = [SFGeometryUtils parentTypeOfType:geometryType];
+        SFGeometryType parentType = [SFGeometryUtils parentTypeOfType:geometryType];
         NSArray<NSNumber *> *parentHierarchy = [SFGeometryUtils parentHierarchyOfType:geometryType];
         
-        enum SFGeometryType previousParentType = SF_NONE;
+        SFGeometryType previousParentType = SF_NONE;
         
         while (parentType != SF_NONE) {
             [SFTestUtils assertEqualIntWithValue:parentType andValue2:[[parentHierarchy objectAtIndex:0] intValue]];
@@ -1053,7 +1053,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
  * @param childHierarchy
  *            child hierarchy
  */
--(void) testChildHierarchyWithType: (enum SFGeometryType) geometryType andHierarchy: (NSDictionary *) childHierachy{
+-(void) testChildHierarchyWithType: (SFGeometryType) geometryType andHierarchy: (NSDictionary *) childHierachy{
 
     NSArray<NSNumber *> *childTypes = [SFGeometryUtils childTypesOfType:geometryType];
     if(childTypes.count == 0){
@@ -1061,7 +1061,7 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     }else{
         [SFTestUtils assertEqualIntWithValue:(int)childTypes.count andValue2:(int)childHierachy.count];
         for(NSNumber *childTypeNumber in childTypes){
-            enum SFGeometryType childType = [childTypeNumber intValue];
+            SFGeometryType childType = [childTypeNumber intValue];
             NSDictionary *child = [childHierachy objectForKey:childTypeNumber];
             [SFTestUtils assertTrue:child != nil];
             

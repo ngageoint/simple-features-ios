@@ -57,7 +57,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     return self;
 }

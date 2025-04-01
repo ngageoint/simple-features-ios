@@ -46,7 +46,7 @@
 }
 
 -(void) addGeometry: (SFGeometry *) geometry{
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POLYGON:
         case SF_TRIANGLE:
@@ -123,7 +123,7 @@
     NSArray *rings = curvePolygon.rings;
     
     SFCurve *curve = [rings objectAtIndex:0];
-    enum SFGeometryType curveGeometryType = curve.geometryType;
+    SFGeometryType curveGeometryType = curve.geometryType;
     switch(curveGeometryType){
         case SF_COMPOUNDCURVE:
             {
@@ -143,7 +143,7 @@
     
     for(int i = 1; i < rings.count; i++){
         SFCurve *curveHole = [rings objectAtIndex:i];
-        enum SFGeometryType curveHoleGeometryType = curveHole.geometryType;
+        SFGeometryType curveHoleGeometryType = curveHole.geometryType;
         switch(curveHoleGeometryType){
             case SF_COMPOUNDCURVE:
                 {

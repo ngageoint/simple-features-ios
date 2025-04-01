@@ -38,7 +38,7 @@
     }else{
         [SFTestUtils assertNotNil:actual];
         
-        enum SFGeometryType geometryType = expected.geometryType;
+        SFGeometryType geometryType = expected.geometryType;
         switch(geometryType){
             case SF_GEOMETRY:
                 [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];

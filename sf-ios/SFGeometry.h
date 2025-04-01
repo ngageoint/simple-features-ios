@@ -19,7 +19,7 @@
 /**
  *  Geometry type
  */
-@property (nonatomic) enum SFGeometryType geometryType;
+@property (nonatomic) SFGeometryType geometryType;
 
 /**
  *  Has Z values
@@ -40,7 +40,7 @@
  *
  *  @return new geometry
  */
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
  * Does the geometry have z coordinates

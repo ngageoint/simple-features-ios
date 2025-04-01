@@ -13,7 +13,7 @@
 /**
  * Extended geometry collection geometry type
  */
-@property (nonatomic) enum SFGeometryType extendedGeometryType;
+@property (nonatomic) SFGeometryType extendedGeometryType;
 
 @end
 
@@ -47,7 +47,7 @@
 }
 
 -(void) updateGeometryType{
-    enum SFGeometryType geometryType = [self collectionType];
+    SFGeometryType geometryType = [self collectionType];
     switch (geometryType) {
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
@@ -68,7 +68,7 @@
     self.extendedGeometryType = geometryType;
 }
 
--(enum SFGeometryType) geometryType{
+-(SFGeometryType) geometryType{
     return self.extendedGeometryType;
 }
 
@@ -89,7 +89,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _extendedGeometryType = (enum SFGeometryType)[decoder decodeIntForKey:@"extendedGeometryType"];
+        _extendedGeometryType = (SFGeometryType)[decoder decodeIntForKey:@"extendedGeometryType"];
     }
     return self;
 }

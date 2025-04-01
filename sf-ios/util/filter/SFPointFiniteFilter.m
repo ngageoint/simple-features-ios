@@ -56,7 +56,7 @@
     return self;
 }
 
--(BOOL) filterGeometry: (SFGeometry *) geometry inType: (enum SFGeometryType) containingType{
+-(BOOL) filterGeometry: (SFGeometry *) geometry inType: (SFGeometryType) containingType{
     return geometry.geometryType != SF_POINT || ![geometry isKindOfClass:[SFPoint class]] || [self filterPoint:(SFPoint *)geometry];
 }
 
