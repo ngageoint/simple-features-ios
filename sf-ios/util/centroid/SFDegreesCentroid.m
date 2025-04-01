@@ -6,8 +6,8 @@
 //  Copyright © 2022 NGA. All rights reserved.
 //
 
-#import "SFDegreesCentroid.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFDegreesCentroid.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @interface SFDegreesCentroid()
 
@@ -83,7 +83,7 @@
  */
 -(void) calculate: (SFGeometry *) geometry{
 
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
 
     switch (geometryType) {
      

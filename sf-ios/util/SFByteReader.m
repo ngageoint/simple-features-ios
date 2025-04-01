@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFByteReader.h"
+#import <SimpleFeatures/SFByteReader.h>
 
 @implementation SFByteReader
 

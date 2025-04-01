@@ -6,7 +6,7 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFSegment.h"
+#import <SimpleFeatures/SFSegment.h>
 
 @interface SFSegment()
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFGeometryTypes.h"
+#import <SimpleFeatures/SFGeometryTypes.h>
 
 NSString * const SF_GEOMETRY_NAME = @"GEOMETRY";
 NSString * const SF_POINT_NAME = @"POINT";
@@ -30,7 +30,7 @@ NSString * const SF_NONE_NAME = @"NONE";
 
 @implementation SFGeometryTypes
 
-+(NSString *) name: (enum SFGeometryType) geometryType{
++(NSString *) name: (SFGeometryType) geometryType{
     NSString *name = nil;
     
     switch(geometryType){
@@ -96,8 +96,8 @@ NSString * const SF_NONE_NAME = @"NONE";
     return name;
 }
 
-+(enum SFGeometryType) fromName: (NSString *) name{
-    enum SFGeometryType value = SF_NONE;
++(SFGeometryType) fromName: (NSString *) name{
+    SFGeometryType value = SF_NONE;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -125,7 +125,7 @@ NSString * const SF_NONE_NAME = @"NONE";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum SFGeometryType)[enumValue intValue];
+            value = (SFGeometryType)[enumValue intValue];
         }
     }
     

@@ -6,10 +6,10 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFShamosHoey.h"
-#import "SFGeometryUtils.h"
-#import "SFEventQueue.h"
-#import "SFSweepLine.h"
+#import <SimpleFeatures/SFShamosHoey.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
+#import <SimpleFeatures/SFEventQueue.h>
+#import <SimpleFeatures/SFSweepLine.h>
 
 @implementation SFShamosHoey
 

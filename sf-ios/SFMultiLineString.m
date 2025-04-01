@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFMultiLineString.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFMultiLineString.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFMultiLineString
 

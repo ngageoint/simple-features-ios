@@ -6,8 +6,8 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFLinearRing.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFLinearRing.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFLinearRing
 

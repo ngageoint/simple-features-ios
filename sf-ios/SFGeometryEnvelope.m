@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFGeometryEnvelope.h"
-#import "SFLine.h"
-#import "SFGeometryEnvelopeBuilder.h"
+#import <SimpleFeatures/SFGeometryEnvelope.h>
+#import <SimpleFeatures/SFLine.h>
+#import <SimpleFeatures/SFGeometryEnvelopeBuilder.h>
 
 @implementation SFGeometryEnvelope
 

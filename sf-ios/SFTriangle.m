@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFTriangle.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFTriangle.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFTriangle
 

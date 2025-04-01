@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFPolyhedralSurface.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFPolyhedralSurface.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFPolyhedralSurface
 
@@ -56,7 +56,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.polygons = [NSMutableArray array];

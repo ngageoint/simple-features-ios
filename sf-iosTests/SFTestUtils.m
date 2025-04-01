@@ -58,6 +58,12 @@
     }
 }
 
++(void)assertEqualIntegerWithValue:(NSInteger) value andValue2: (NSInteger) value2{
+    if(value != value2){
+        [NSException raise:@"Assert Equal int" format:@"Value 1: '%ld' is not equal to Value 2: '%ld'", value, value2];
+    }
+}
+
 +(void)assertEqualDoubleWithValue:(double) value andValue2: (double) value2{
     if(value != value2){
         [NSException raise:@"Assert Equal double" format:@"Value 1: '%f' is not equal to Value 2: '%f'", value, value2];

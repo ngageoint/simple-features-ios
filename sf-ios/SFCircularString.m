@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFCircularString.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFCircularString.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFCircularString
 

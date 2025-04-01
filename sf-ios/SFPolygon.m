@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFPolygon.h"
-#import "SFShamosHoey.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFPolygon.h>
+#import <SimpleFeatures/SFShamosHoey.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFPolygon
 
@@ -57,7 +57,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     return self;
 }

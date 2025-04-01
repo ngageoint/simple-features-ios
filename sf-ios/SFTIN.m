@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFTIN.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFTIN.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFTIN
 

@@ -6,14 +6,14 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFExtendedGeometryCollection.h"
+#import <SimpleFeatures/SFExtendedGeometryCollection.h>
 
 @interface SFExtendedGeometryCollection()
 
 /**
  * Extended geometry collection geometry type
  */
-@property (nonatomic) enum SFGeometryType extendedGeometryType;
+@property (nonatomic) SFGeometryType extendedGeometryType;
 
 @end
 
@@ -47,7 +47,7 @@
 }
 
 -(void) updateGeometryType{
-    enum SFGeometryType geometryType = [self collectionType];
+    SFGeometryType geometryType = [self collectionType];
     switch (geometryType) {
         case SF_GEOMETRYCOLLECTION:
         case SF_MULTICURVE:
@@ -63,12 +63,12 @@
             geometryType = SF_MULTISURFACE;
             break;
         default:
-            [NSException raise:@"Unsupported" format:@"Unsupported extended geometry collection geometry type: %u", geometryType];
+            [NSException raise:@"Unsupported" format:@"Unsupported extended geometry collection geometry type: %ld", geometryType];
     }
     self.extendedGeometryType = geometryType;
 }
 
--(enum SFGeometryType) geometryType{
+-(SFGeometryType) geometryType{
     return self.extendedGeometryType;
 }
 
@@ -89,7 +89,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-        _extendedGeometryType = (enum SFGeometryType)[decoder decodeIntForKey:@"extendedGeometryType"];
+        _extendedGeometryType = (SFGeometryType)[decoder decodeIntForKey:@"extendedGeometryType"];
     }
     return self;
 }

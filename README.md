@@ -26,34 +26,45 @@ View the latest [Appledoc](http://ngageoint.github.io/simple-features-ios/docs/a
 
 ### Build ###
 
-[![Build & Test](https://github.com/ngageoint/simple-features-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/simple-features-ios/actions/workflows/build-test.yml)
+[![Build](https://github.com/ngageoint/simple-features-ios/actions/workflows/build.yml/badge.svg)](https://github.com/ngageoint/simple-features-ios/actions/workflows/build.yml)
 
-Build this repository using Xcode and/or CocoaPods:
+Build this repository using SPM:
 
-    pod repo update
-    pod install
+    swift build
 
-Open sf-ios.xcworkspace in Xcode or build from command line:
+Open the Swift Package in Xcode:
 
-    xcodebuild -workspace 'sf-ios.xcworkspace' -scheme sf-ios build
+    open Package.swift
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'sf-ios.xcworkspace' -scheme sf-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+    swift test
 
 ### Include Library ###
 
-Include this repository by specifying it in a Podfile using a supported option.
+Add a package dependency version:
 
-Pull from [CocoaPods](https://cocoapods.org/pods/sf-ios):
+    .package(url: "https://github.com/ngageoint/simple-features-ios", from: "5.0.0"),
 
-    pod 'sf-ios', '~> 4.1.4'
+    # Or specific branch:
 
-Pull from GitHub:
+    .package(url: "https://github.com/ngageoint/simple-features-ios", branch: "release/5.0.0"),
+    
+    # Or as a local dependency:     
 
-    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :branch => 'master'
-    pod 'sf-ios', :git => 'https://github.com/ngageoint/simple-features-ios.git', :tag => '4.1.4'
+    .package(name: "simple-features-ios", path: "../simple-features-ios"),
 
-Include as local project:
+Use it in a target:
 
-    pod 'sf-ios', :path => '../simple-features-ios'
+        .target(
+            name: "MyLibrary",
+            dependencies: [
+                .product(name: "SimpleFeatures", package: "simple-features-ios")
+            ]
+        )
+
+### Swift ###
+
+To use from Swift, import the framework:
+
+    import SimpleFeatures

@@ -6,7 +6,7 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFEventTypes.h"
+#import <SimpleFeatures/SFEventTypes.h>
 
 @implementation SFEventTypes
 

@@ -6,8 +6,8 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import "SFGeometryUtils.h"
+@import XCTest;
+@import SimpleFeatures;
 #import "SFGeometryTestUtils.h"
 #import "SFTestUtils.h"
 

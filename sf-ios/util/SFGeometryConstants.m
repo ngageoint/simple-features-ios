@@ -6,7 +6,7 @@
 //  Copyright © 2022 NGA. All rights reserved.
 //
 
-#import "SFGeometryConstants.h"
+#import <SimpleFeatures/SFGeometryConstants.h>
 
 double const SF_DEFAULT_LINE_EPSILON = 0.000000000000001;
 double const SF_DEFAULT_EQUAL_EPSILON = 0.00000001;

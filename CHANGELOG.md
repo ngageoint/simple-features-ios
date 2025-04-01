@@ -4,9 +4,13 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 4.1.5 (TBD)
+## 5.0.0 (6-4-2025)
 
-* TBD
+* Breaking changes for Swift interopability. Converted C `enum` types to Objective-C `NS_ENUM` for proper visibility in Swift.
+    * Release builds were failing in [Mage iOS app](https://github.com/ngageoint/mage-ios/) (Cannot find 'SF_POINT' in scope) and optimizations were disabled due to related symbols issues.
+    * Updated types: `SFGeometryType`, `SFFiniteFilterType`, and `SFEventType` to use `NS_ENUM(NSInteger)`.
+* Updated to Swift Package Manager (SPM) since Cocoapods is deprecated
+* Updated header imports to use modular framework imports using angular brackets for Objective-C
 
 ## [4.1.4](https://github.com/ngageoint/simple-features-ios/releases/tag/4.1.4) (04-08-2024)
 

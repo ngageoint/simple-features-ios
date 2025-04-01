@@ -6,7 +6,7 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFFiniteFilterTypes.h"
+#import <SimpleFeatures/SFFiniteFilterTypes.h>
 
 @implementation SFFiniteFilterTypes
 
