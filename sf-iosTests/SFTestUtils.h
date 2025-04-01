@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SimpleFeatures/SimpleFeatures.h>
 
 @interface SFTestUtils : NSObject
 
@@ -23,6 +24,8 @@
 +(void)assertEqualBoolWithValue:(BOOL) value andValue2: (BOOL) value2;
 
 +(void)assertEqualIntWithValue:(int) value andValue2: (int) value2;
+
++(void)assertEqualIntegerWithValue:(NSInteger) value andValue2: (NSInteger) value2;
 
 +(void)assertEqualDoubleWithValue:(double) value andValue2: (double) value2;
 

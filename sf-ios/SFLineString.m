@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFLineString.h"
-#import "SFShamosHoey.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFLineString.h>
+#import <SimpleFeatures/SFShamosHoey.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFLineString
 
@@ -45,7 +45,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM{
     self = [super initWithType:geometryType andHasZ:hasZ andHasM:hasM];
     if(self != nil){
         self.points = [NSMutableArray array];

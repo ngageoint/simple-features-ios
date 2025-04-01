@@ -6,9 +6,10 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
+@import SimpleFeatures;
+
 #import "SFTestUtils.h"
-#import "SFShamosHoey.h"
 
 @interface ShamosHoeyTestCase : XCTestCase
 

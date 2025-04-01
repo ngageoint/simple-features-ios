@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFCompoundCurve.h"
-#import "SFShamosHoey.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFCompoundCurve.h>
+#import <SimpleFeatures/SFShamosHoey.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFCompoundCurve
 

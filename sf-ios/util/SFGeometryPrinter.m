@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFGeometryPrinter.h"
-#import "SFMultiPoint.h"
-#import "SFMultiLineString.h"
-#import "SFMultiPolygon.h"
-#import "SFCircularString.h"
-#import "SFCompoundCurve.h"
-#import "SFTIN.h"
-#import "SFTriangle.h"
+#import <SimpleFeatures/SFGeometryPrinter.h>
+#import <SimpleFeatures/SFMultiPoint.h>
+#import <SimpleFeatures/SFMultiLineString.h>
+#import <SimpleFeatures/SFMultiPolygon.h>
+#import <SimpleFeatures/SFCircularString.h>
+#import <SimpleFeatures/SFCompoundCurve.h>
+#import <SimpleFeatures/SFTIN.h>
+#import <SimpleFeatures/SFTriangle.h>
 
 @implementation SFGeometryPrinter
 
@@ -21,7 +21,7 @@
     
     NSMutableString *message = [NSMutableString string];
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
             [self addPoint:(SFPoint *)geometry toMessage:message];

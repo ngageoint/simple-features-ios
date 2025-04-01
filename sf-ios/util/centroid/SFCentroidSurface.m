@@ -6,9 +6,9 @@
 //  Copyright © 2017 NGA. All rights reserved.
 //
 
-#import "SFCentroidSurface.h"
-#import "SFMultiPolygon.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFCentroidSurface.h>
+#import <SimpleFeatures/SFMultiPolygon.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @interface SFCentroidSurface()
 
@@ -46,7 +46,7 @@
 }
 
 -(void) addGeometry: (SFGeometry *) geometry{
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POLYGON:
         case SF_TRIANGLE:
@@ -82,7 +82,7 @@
             // Doesn't contribute to surface dimension
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
 }
 
@@ -123,7 +123,7 @@
     NSArray *rings = curvePolygon.rings;
     
     SFCurve *curve = [rings objectAtIndex:0];
-    enum SFGeometryType curveGeometryType = curve.geometryType;
+    SFGeometryType curveGeometryType = curve.geometryType;
     switch(curveGeometryType){
         case SF_COMPOUNDCURVE:
             {
@@ -138,12 +138,12 @@
             [self addLineString:(SFLineString *)curve];
             break;
         default:
-            [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %d", curveGeometryType];
+            [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %ld", curveGeometryType];
     }
     
     for(int i = 1; i < rings.count; i++){
         SFCurve *curveHole = [rings objectAtIndex:i];
-        enum SFGeometryType curveHoleGeometryType = curveHole.geometryType;
+        SFGeometryType curveHoleGeometryType = curveHole.geometryType;
         switch(curveHoleGeometryType){
             case SF_COMPOUNDCURVE:
                 {
@@ -158,7 +158,7 @@
                 [self addHoleLineString:(SFLineString *)curveHole];
                 break;
             default:
-                [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %d", curveHoleGeometryType];
+                [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %ld", curveHoleGeometryType];
         }
     }
 }

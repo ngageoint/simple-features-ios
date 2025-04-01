@@ -6,7 +6,7 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFSweepLine.h"
+#import <SimpleFeatures/SFSweepLine.h>
 
 @interface SFSweepLine()
 

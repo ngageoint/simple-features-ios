@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFByteWriter.h"
+#import <SimpleFeatures/SFByteWriter.h>
 
 @implementation SFByteWriter
 

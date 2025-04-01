@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFMultiPolygon.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFMultiPolygon.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFMultiPolygon
 

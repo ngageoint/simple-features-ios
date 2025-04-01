@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 NGA. All rights reserved.
 //
 
-#import "SFMultiPoint.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFMultiPoint.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFMultiPoint
 

@@ -6,7 +6,7 @@
 //  Copyright © 2020 NGA. All rights reserved.
 //
 
-#import "SFTextReader.h"
+#import <SimpleFeatures/SFTextReader.h>
 
 @interface SFTextReader()
 

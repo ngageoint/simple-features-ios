@@ -6,8 +6,8 @@
 //  Copyright © 2018 NGA. All rights reserved.
 //
 
-#import "SFLine.h"
-#import "SFGeometryUtils.h"
+#import <SimpleFeatures/SFLine.h>
+#import <SimpleFeatures/SFGeometryUtils.h>
 
 @implementation SFLine
 
