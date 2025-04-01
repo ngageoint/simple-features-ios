@@ -16,22 +16,22 @@
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type{
+-(instancetype) initWithType: (SFFiniteFilterType) type{
     self = [self initWithType:type andZ:NO andM:NO];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ{
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ{
     self = [self initWithType:type andZ:filterZ andM:NO];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andM: (BOOL) filterM{
+-(instancetype) initWithType: (SFFiniteFilterType) type andM: (BOOL) filterM{
     self = [self initWithType:type andZ:NO andM:filterM];
     return self;
 }
 
--(instancetype) initWithType: (enum SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM{
+-(instancetype) initWithType: (SFFiniteFilterType) type andZ: (BOOL) filterZ andM: (BOOL) filterM{
     self = [super self];
     if(self){
         _type = type;
