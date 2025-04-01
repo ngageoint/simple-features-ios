@@ -82,7 +82,7 @@
             // Doesn't contribute to surface dimension
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
 }
 
@@ -138,7 +138,7 @@
             [self addLineString:(SFLineString *)curve];
             break;
         default:
-            [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %d", curveGeometryType];
+            [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %ld", curveGeometryType];
     }
     
     for(int i = 1; i < rings.count; i++){
@@ -158,7 +158,7 @@
                 [self addHoleLineString:(SFLineString *)curveHole];
                 break;
             default:
-                [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %d", curveHoleGeometryType];
+                [NSException raise:@"Curve Type" format:@"Unexpected Curve Type: %ld", curveHoleGeometryType];
         }
     }
 }

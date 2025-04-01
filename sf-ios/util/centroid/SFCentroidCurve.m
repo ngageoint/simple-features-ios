@@ -69,7 +69,7 @@
             // Doesn't contribute to curve dimension
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
 }
 

@@ -90,13 +90,13 @@
                 [self compareTriangleWithExpected:(SFTriangle *)expected andActual:(SFTriangle *)actual];
                 break;
             default:
-                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
         }
     }
 }
 
 +(void) compareBaseGeometryAttributesWithExpected: (SFGeometry *) expected andActual: (SFGeometry *) actual{
-    [SFTestUtils assertEqualIntWithValue:expected.geometryType andValue2:actual.geometryType];
+    [SFTestUtils assertEqualIntegerWithValue:expected.geometryType andValue2:actual.geometryType];
     [SFTestUtils assertEqualBoolWithValue:expected.hasZ andValue2:actual.hasZ];
     [SFTestUtils assertEqualBoolWithValue:expected.hasM andValue2:actual.hasM];
 }

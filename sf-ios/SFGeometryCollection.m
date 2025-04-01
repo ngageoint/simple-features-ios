@@ -119,7 +119,7 @@
             }
             break;
         default:
-            [NSException raise:@"Unexpected" format:@"Unexpected Geometry Collection Type: %u", geometryType];
+            [NSException raise:@"Unexpected" format:@"Unexpected Geometry Collection Type: %ld", geometryType];
     }
     
     return geometryType;

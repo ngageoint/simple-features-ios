@@ -34,7 +34,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
     for (int i = 0; i < GEOMETRIES_PER_TEST; i++) {
         // Create and test a point
         SFPoint *point = [SFGeometryTestUtils createPointWithHasZ:[SFTestUtils coinFlip] andHasM:[SFTestUtils coinFlip]];
-        [SFTestUtils assertEqualIntWithValue:0 andValue2:[SFGeometryUtils dimensionOfGeometry:point]];
+//        [SFTestUtils assertEqualIntWithValue:0 andValue2:[SFGeometryUtils dimensionOfGeometry:point]];
+        XCTAssertEqual(0, [SFGeometryUtils dimensionOfGeometry:point]);
         [self geometryCentroidTesterWithGeometry:point];
     }
     
@@ -1021,13 +1022,14 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
         SFGeometryType previousParentType = SF_NONE;
         
         while (parentType != SF_NONE) {
-            [SFTestUtils assertEqualIntWithValue:parentType andValue2:[[parentHierarchy objectAtIndex:0] intValue]];
-            
+//            [SFTestUtils assertEqualIntWithValue:parentType andValue2:[[parentHierarchy objectAtIndex:0] intValue]];
+            XCTAssertEqual(parentType, [parentHierarchy objectAtIndex:0].integerValue);
             if (previousParentType != SF_NONE) {
                 NSArray<NSNumber *> *childTypes = [SFGeometryUtils childTypesOfType:parentType];
-                [SFTestUtils assertTrue:[childTypes containsObject:[NSNumber numberWithInt:previousParentType]]];
+                [SFTestUtils assertTrue:[childTypes containsObject:[NSNumber numberWithInteger:previousParentType]]];
+                
                 NSDictionary<NSNumber *, NSDictionary *> *childHierarchy = [SFGeometryUtils childHierarchyOfType:parentType];
-                NSDictionary *previousParentChildHierarchy = [childHierarchy objectForKey:[NSNumber numberWithInt:previousParentType]];
+                NSDictionary *previousParentChildHierarchy = [childHierarchy objectForKey:[NSNumber numberWithInteger:previousParentType]];
                 [SFTestUtils assertTrue:previousParentChildHierarchy != nil && previousParentChildHierarchy.count > 0];
             }
             
@@ -1065,8 +1067,8 @@ static NSUInteger GEOMETRIES_PER_TEST = 10;
             NSDictionary *child = [childHierachy objectForKey:childTypeNumber];
             [SFTestUtils assertTrue:child != nil];
             
-            [SFTestUtils assertEqualIntWithValue:geometryType andValue2:[SFGeometryUtils parentTypeOfType:childType]];
-            [SFTestUtils assertEqualIntWithValue:geometryType andValue2:[[[SFGeometryUtils parentHierarchyOfType:childType] objectAtIndex:0] intValue]];
+            [SFTestUtils assertEqualIntegerWithValue:geometryType andValue2:[SFGeometryUtils parentTypeOfType:childType]];
+            [SFTestUtils assertEqualIntegerWithValue:geometryType andValue2:[[[SFGeometryUtils parentHierarchyOfType:childType] objectAtIndex:0] intValue]];
              
              [self testChildHierarchyWithType:childType andHierarchy:[SFGeometryUtils childHierarchyOfType:childType]];
         }

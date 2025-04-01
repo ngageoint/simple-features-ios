@@ -91,7 +91,7 @@
             passes = !isinf(value);
             break;
         default:
-            [NSException raise:@"Unsupported" format:@"Unsupported filter type: %u", _type];
+            [NSException raise:@"Unsupported" format:@"Unsupported filter type: %ld", _type];
     }
     return passes;
 }

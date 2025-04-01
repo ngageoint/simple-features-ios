@@ -63,7 +63,7 @@
             geometryType = SF_MULTISURFACE;
             break;
         default:
-            [NSException raise:@"Unsupported" format:@"Unsupported extended geometry collection geometry type: %u", geometryType];
+            [NSException raise:@"Unsupported" format:@"Unsupported extended geometry collection geometry type: %ld", geometryType];
     }
     self.extendedGeometryType = geometryType;
 }

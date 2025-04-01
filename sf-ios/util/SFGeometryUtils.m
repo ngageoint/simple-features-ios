@@ -52,7 +52,7 @@
             }
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
     
     return dimension;
@@ -1782,7 +1782,7 @@
     
     SFGeometryType parentType = [self parentTypeOfType:geometryType];
     while(parentType != SF_NONE && parentType >= 0){
-        [hierarchy addObject:[NSNumber numberWithInt:parentType]];
+        [hierarchy addObject:[NSNumber numberWithInteger:parentType]];
         parentType = [self parentTypeOfType:parentType];
     }
     
