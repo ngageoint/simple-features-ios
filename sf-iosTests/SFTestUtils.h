@@ -24,6 +24,8 @@
 
 +(void)assertEqualIntWithValue:(int) value andValue2: (int) value2;
 
++(void)assertEqualIntegerWithValue:(NSInteger) value andValue2: (NSInteger) value2;
+
 +(void)assertEqualDoubleWithValue:(double) value andValue2: (double) value2;
 
 +(void)assertEqualDoubleWithValue:(double) value andValue2: (double) value2 andDelta: (double) delta;

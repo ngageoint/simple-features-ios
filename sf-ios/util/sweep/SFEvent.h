@@ -30,7 +30,7 @@
 -(instancetype) initWithEdge: (int) edge
                      andRing: (int) ring
                     andPoint: (SFPoint *) point
-                     andType: (enum SFEventType) type;
+                     andType: (SFEventType) type;
 
 /**
  * Get the edge
@@ -58,7 +58,7 @@
  *
  * @return event type
  */
--(enum SFEventType) type;
+-(SFEventType) type;
 
 /**
  * Sort the events

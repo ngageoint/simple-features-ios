@@ -41,7 +41,7 @@
 }
 
 -(void) addGeometry: (SFGeometry *) geometry{
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_LINESTRING:
         case SF_CIRCULARSTRING:
@@ -69,7 +69,7 @@
             // Doesn't contribute to curve dimension
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
 }
 

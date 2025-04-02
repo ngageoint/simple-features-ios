@@ -11,7 +11,7 @@
 /**
  * Geometry Type enumeration
  */
-enum SFGeometryType{
+typedef NS_ENUM(NSInteger, SFGeometryType) {
     SF_GEOMETRY = 0,
     SF_POINT,
     SF_LINESTRING,
@@ -65,7 +65,7 @@ extern NSString * const SF_NONE_NAME;
  *
  *  @return geometry type name
  */
-+(NSString *) name: (enum SFGeometryType) geometryType;
++(NSString *) name: (SFGeometryType) geometryType;
 
 /**
  *  Get the geometry type of the name
@@ -74,6 +74,6 @@ extern NSString * const SF_NONE_NAME;
  *
  *  @return geometry type
  */
-+(enum SFGeometryType) fromName: (NSString *) name;
++(SFGeometryType) fromName: (NSString *) name;
 
 @end

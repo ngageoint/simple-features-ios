@@ -1288,7 +1288,7 @@
  *            geometry type
  * @return list of increasing parent types
  */
-+(NSArray<NSNumber *> *) parentHierarchyOfType: (enum SFGeometryType) geometryType;
++(NSArray<NSNumber *> *) parentHierarchyOfType: (SFGeometryType) geometryType;
 
 /**
  * Get the parent Geometry Type of the provided geometry type
@@ -1298,7 +1298,7 @@
  * @return parent geometry type or null if argument is GEOMETRY (no parent
  *         type)
  */
-+(enum SFGeometryType) parentTypeOfType: (enum SFGeometryType) geometryType;
++(SFGeometryType) parentTypeOfType: (SFGeometryType) geometryType;
 
 /**
  * Get the child type hierarchy of the provided geometry type.
@@ -1307,7 +1307,7 @@
  *            geometry type
  * @return child type hierarchy, null if no children
  */
-+(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (enum SFGeometryType) geometryType;
++(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (SFGeometryType) geometryType;
 
 /**
  * Get the immediate child Geometry Types of the provided geometry type
@@ -1316,7 +1316,7 @@
  *            geometry type
  * @return child geometry types, empty list if no child types
  */
-+(NSArray<NSNumber *> *) childTypesOfType: (enum SFGeometryType) geometryType;
++(NSArray<NSNumber *> *) childTypesOfType: (SFGeometryType) geometryType;
 
 /**
  * Encode the geometry to data

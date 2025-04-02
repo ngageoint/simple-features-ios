@@ -38,7 +38,7 @@
     }else{
         [SFTestUtils assertNotNil:actual];
         
-        enum SFGeometryType geometryType = expected.geometryType;
+        SFGeometryType geometryType = expected.geometryType;
         switch(geometryType){
             case SF_GEOMETRY:
                 [NSException raise:@"Unexpected Geometry Type" format:@"Unexpected Geometry Type of %@ which is abstract", [SFGeometryTypes name:geometryType]];
@@ -90,13 +90,13 @@
                 [self compareTriangleWithExpected:(SFTriangle *)expected andActual:(SFTriangle *)actual];
                 break;
             default:
-                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %d", geometryType];
+                [NSException raise:@"Geometry Type Not Supported" format:@"Geometry Type not supported: %ld", geometryType];
         }
     }
 }
 
 +(void) compareBaseGeometryAttributesWithExpected: (SFGeometry *) expected andActual: (SFGeometry *) actual{
-    [SFTestUtils assertEqualIntWithValue:expected.geometryType andValue2:actual.geometryType];
+    [SFTestUtils assertEqualIntegerWithValue:expected.geometryType andValue2:actual.geometryType];
     [SFTestUtils assertEqualBoolWithValue:expected.hasZ andValue2:actual.hasZ];
     [SFTestUtils assertEqualBoolWithValue:expected.hasM andValue2:actual.hasM];
 }

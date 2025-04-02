@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,7 +62,6 @@
 		042FC6D11B96421E00549A4B /* SFGeometryPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */; };
 		042FC6D21B96421E00549A4B /* SFGeometryPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */; };
 		042FC6D31B96421E00549A4B /* sf-ios-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */; };
-		042FC6D51B96453E00549A4B /* sf_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 042FC6D41B96453E00549A4B /* sf_ios.h */; };
 		0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */; };
 		0445CB281EA1335B008DC0D7 /* SFGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */; };
 		0445CB2B1EA1448C008DC0D7 /* SFCentroidPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */; };
@@ -175,7 +174,6 @@
 		042FC69C1B96421E00549A4B /* SFGeometryPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryPrinter.h; sourceTree = "<group>"; };
 		042FC69D1B96421E00549A4B /* SFGeometryPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryPrinter.m; sourceTree = "<group>"; };
 		042FC69E1B96421E00549A4B /* sf-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sf-ios-Prefix.pch"; sourceTree = "<group>"; };
-		042FC6D41B96453E00549A4B /* sf_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sf_ios.h; sourceTree = "<group>"; };
 		0445CB251EA1335B008DC0D7 /* SFGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGeometryUtils.h; sourceTree = "<group>"; };
 		0445CB261EA1335B008DC0D7 /* SFGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGeometryUtils.m; sourceTree = "<group>"; };
 		0445CB291EA1448C008DC0D7 /* SFCentroidPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCentroidPoint.h; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		042FC64D1B963FE500549A4B /* sf-ios */ = {
 			isa = PBXGroup;
 			children = (
-				042FC6D41B96453E00549A4B /* sf_ios.h */,
 				0493A58F2AE813B9000B75E6 /* sf_ios.swift */,
 				042FC6681B96421E00549A4B /* SFCircularString.h */,
 				042FC6691B96421E00549A4B /* SFCircularString.m */,
@@ -479,7 +476,6 @@
 				042FC6BF1B96421E00549A4B /* SFPolyhedralSurface.h in Headers */,
 				049D955D27B4479B003C8046 /* SFDegreesCentroid.h in Headers */,
 				042FC6C51B96421E00549A4B /* SFTriangle.h in Headers */,
-				042FC6D51B96453E00549A4B /* sf_ios.h in Headers */,
 				0445CB271EA1335B008DC0D7 /* SFGeometryUtils.h in Headers */,
 				0445CB2F1EA150D1008DC0D7 /* SFCentroidCurve.h in Headers */,
 				041F18D324C75D53001311E4 /* SFGeometryFilter.h in Headers */,
@@ -559,7 +555,8 @@
 		042FC6421B963FE500549A4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1230;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = NGA;
 				TargetAttributes = {
 					042FC64A1B963FE500549A4B = {
@@ -738,6 +735,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -799,6 +797,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -811,6 +810,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -827,9 +827,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "sf-ios/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.sf;
 				PRODUCT_NAME = sf_ios;
 				SKIP_INSTALL = YES;
@@ -847,9 +853,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = "sf-ios/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.sf;
 				PRODUCT_NAME = sf_ios;
 				SKIP_INSTALL = YES;
@@ -861,7 +873,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6179C77188B4A0E8D4DEDBEB /* Pods-sf-iosTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -871,7 +882,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "sf-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mil.nga.sf.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = sf_iosTests;
 			};
@@ -881,13 +896,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B17E59AE80997CC09DD740D6 /* Pods-sf-iosTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "sf-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mil.nga.sf.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = sf_iosTests;
 			};

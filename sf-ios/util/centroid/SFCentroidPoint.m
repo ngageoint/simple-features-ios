@@ -40,7 +40,7 @@
 }
 
 -(void) addGeometry: (SFGeometry *) geometry{
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
             [self addPoint:(SFPoint *)geometry];
@@ -65,7 +65,7 @@
             }
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
 }
 

@@ -117,7 +117,7 @@
  *
  *  @return new geometry collection
  */
--(instancetype) initWithType: (enum SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
+-(instancetype) initWithType: (SFGeometryType) geometryType andHasZ: (BOOL) hasZ andHasM: (BOOL) hasM;
 
 /**
  * Initialize
@@ -171,7 +171,7 @@
  *         MULTISURFACE,
  *         GEOMETRYCOLLECTION
  */
--(enum SFGeometryType) collectionType;
+-(SFGeometryType) collectionType;
 
 /**
  * Determine if this geometry collection is a MultiPoint instance or

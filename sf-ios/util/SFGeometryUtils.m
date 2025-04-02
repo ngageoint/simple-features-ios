@@ -21,7 +21,7 @@
     
     int dimension = -1;
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
         case SF_MULTIPOINT:
@@ -52,7 +52,7 @@
             }
             break;
         default:
-            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %d", geometryType];
+            [NSException raise:@"Geometry Not Supported" format:@"Unsupported Geometry Type: %ld", geometryType];
     }
     
     return dimension;
@@ -204,7 +204,7 @@
 
 +(void) minimizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX{
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_LINESTRING:
             [self minimizeLineString:(SFLineString *)geometry withMaxX:maxX];
@@ -327,7 +327,7 @@
 
 +(void) normalizeGeometry: (SFGeometry *) geometry withMaxX: (double) maxX{
     
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
             [self normalizePoint:(SFPoint *)geometry withMaxX:maxX];
@@ -1636,7 +1636,7 @@
 
 +(void) boundGeometry: (SFGeometry *) geometry withEnvelope: (SFGeometryEnvelope *) envelope{
 
-    enum SFGeometryType geometryType = geometry.geometryType;
+    SFGeometryType geometryType = geometry.geometryType;
     switch (geometryType) {
         case SF_POINT:
             [self boundPoint:(SFPoint *)geometry withEnvelope:envelope];
@@ -1776,22 +1776,22 @@
     return hasM;
 }
 
-+(NSArray<NSNumber *> *) parentHierarchyOfType: (enum SFGeometryType) geometryType{
++(NSArray<NSNumber *> *) parentHierarchyOfType: (SFGeometryType) geometryType{
     
     NSMutableArray<NSNumber *> *hierarchy = [NSMutableArray array];
     
-    enum SFGeometryType parentType = [self parentTypeOfType:geometryType];
+    SFGeometryType parentType = [self parentTypeOfType:geometryType];
     while(parentType != SF_NONE && parentType >= 0){
-        [hierarchy addObject:[NSNumber numberWithInt:parentType]];
+        [hierarchy addObject:[NSNumber numberWithInteger:parentType]];
         parentType = [self parentTypeOfType:parentType];
     }
     
     return hierarchy;
 }
 
-+(enum SFGeometryType) parentTypeOfType: (enum SFGeometryType) geometryType{
++(SFGeometryType) parentTypeOfType: (SFGeometryType) geometryType{
     
-    enum SFGeometryType parentType = SF_NONE;
+    SFGeometryType parentType = SF_NONE;
     
     switch(geometryType){
             
@@ -1856,7 +1856,7 @@
 }
 
 
-+(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (enum SFGeometryType) geometryType{
++(NSDictionary<NSNumber *, NSDictionary *> *) childHierarchyOfType: (SFGeometryType) geometryType{
     
     NSMutableDictionary<NSNumber *, NSDictionary *> *hierarchy = [NSMutableDictionary dictionary];
     
@@ -1865,7 +1865,7 @@
     if(childTypes.count > 0){
         
         for(NSNumber *childTypeNumber in childTypes){
-            enum SFGeometryType childType = [childTypeNumber intValue];
+            SFGeometryType childType = [childTypeNumber intValue];
             [hierarchy setObject:[self childHierarchyOfType:childType] forKey:childTypeNumber];
         }
     }
@@ -1873,7 +1873,7 @@
     return hierarchy;
 }
 
-+(NSArray<NSNumber *> *) childTypesOfType: (enum SFGeometryType) geometryType{
++(NSArray<NSNumber *> *) childTypesOfType: (SFGeometryType) geometryType{
     
     NSMutableArray<NSNumber *> *childTypes = [NSMutableArray array];
     

@@ -29,7 +29,7 @@
 /**
  * Event type, left or right point
  */
-@property (nonatomic) enum SFEventType type;
+@property (nonatomic) SFEventType type;
 
 @end
 
@@ -38,7 +38,7 @@
 -(instancetype) initWithEdge: (int) edge
                       andRing: (int) ring
                      andPoint: (SFPoint *) point
-                      andType: (enum SFEventType) type{
+                      andType: (SFEventType) type{
     self = [super init];
     if(self != nil){
         self.edge = edge;
@@ -61,7 +61,7 @@
     return _point;
 }
 
--(enum SFEventType) type{
+-(SFEventType) type{
     return _type;
 }
 
