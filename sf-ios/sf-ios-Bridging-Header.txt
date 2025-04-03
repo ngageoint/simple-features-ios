@@ -9,7 +9,7 @@
 #ifndef sf_ios_Bridging_Header_h
 #define sf_ios_Bridging_Header_h
 
-#import "sf_ios.h"
+//#import "sf_ios.h"
 #import "SFCircularString.h"
 #import "SFCompoundCurve.h"
 #import "SFCurve.h"
